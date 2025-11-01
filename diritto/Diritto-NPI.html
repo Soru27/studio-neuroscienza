@@ -1,0 +1,1613 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Diritto – No Global e G8 | Sistema NPI-Learning</title>
+
+<!-- Google Fonts -->
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+
+<style>
+/* ===== DESIGN TOKENS NPI-LEARNING ===== */
+:root {
+  /* Colors */
+  --primary: #d62828;
+  --primary-dark: #9d0208;
+  --success: #4caf50;
+  --error: #f44336;
+  --warning: #ff9800;
+  --purple: #8a2be2;
+
+  /* Semantic Colors */
+  --blue: #0055a5;
+  --red: #d62828;
+  --green: #2a9d8f;
+  --yellow: #f59e0b;
+
+  /* Backgrounds */
+  --bg: #0a0e27;
+  --bg-light: #1a1f3a;
+  --card: #ffffff;
+  --card-hover: #f8f9fa;
+
+  /* Text */
+  --fg: #2c3e50;
+  --muted: #64748b;
+  --heading: #1e293b;
+
+  /* Layout */
+  --radius: 12px;
+  --pad: 20px;
+  --border: #e2e8f0;
+}
+
+/* ===== RESET & BASE ===== */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: 'Inter', 'Poppins', -apple-system, BlinkMacSystemFont, sans-serif;
+  background: linear-gradient(135deg, #f5f7fa 0%, #e2e8f0 100%);
+  color: var(--fg);
+  line-height: 1.8;
+  padding: 0;
+  min-height: 100vh;
+}
+
+/* ===== HEADER PRINCIPALE ===== */
+.top-header {
+  background: linear-gradient(135deg, var(--red), var(--primary-dark));
+  color: white;
+  padding: 20px 30px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+  position: sticky;
+  top: 0;
+  z-index: 100;
+}
+
+.course-info {
+  max-width: 1200px;
+  margin: 0 auto;
+  display: flex;
+  align-items: center;
+  gap: 20px;
+}
+
+.home-icon {
+  font-size: 2.5em;
+  text-decoration: none;
+  transition: transform 0.3s ease;
+  filter: drop-shadow(2px 2px 4px rgba(0, 0, 0, 0.3));
+}
+
+.home-icon:hover {
+  transform: scale(1.2) rotate(-10deg);
+}
+
+.course-title {
+  font-size: 1.8em;
+  font-weight: 700;
+  letter-spacing: 1px;
+  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.2);
+}
+
+.course-meta {
+  display: flex;
+  gap: 20px;
+  font-size: 0.9em;
+  opacity: 0.95;
+  margin-top: 5px;
+}
+
+.course-meta span {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+}
+
+/* ===== CONTAINER PRINCIPALE ===== */
+.container {
+  max-width: 1200px;
+  margin: 40px auto;
+  padding: 0 30px;
+}
+
+/* ===== CARD WIDGET ===== */
+.widget {
+  background: var(--card);
+  border-radius: var(--radius);
+  padding: var(--pad);
+  margin: 20px 0;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+  border-left: 4px solid var(--red);
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.widget:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.12);
+}
+
+.widget-header {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  margin-bottom: 15px;
+  padding-bottom: 12px;
+  border-bottom: 2px solid var(--border);
+}
+
+.widget-icon {
+  font-size: 2em;
+}
+
+.widget-title {
+  font-size: 1.5em;
+  font-weight: 700;
+  color: var(--heading);
+  margin: 0;
+}
+
+/* ===== TITOLI ===== */
+h1 {
+  font-size: 2.5em;
+  color: var(--heading);
+  margin-bottom: 20px;
+  padding-bottom: 15px;
+  border-bottom: 3px solid var(--red);
+}
+
+h2 {
+  font-size: 2em;
+  color: var(--red);
+  margin-top: 40px;
+  margin-bottom: 20px;
+  padding-bottom: 10px;
+  border-bottom: 2px solid var(--red);
+  text-transform: uppercase;
+  letter-spacing: 1px;
+}
+
+h3 {
+  font-size: 1.5em;
+  color: var(--blue);
+  margin-top: 30px;
+  margin-bottom: 15px;
+  font-weight: 600;
+}
+
+h4 {
+  font-size: 1.2em;
+  color: var(--green);
+  margin-top: 20px;
+  margin-bottom: 12px;
+  font-weight: 600;
+}
+
+/* ===== EVIDENZIAZIONI ===== */
+.highlight-blue {
+  color: var(--blue);
+  font-weight: 700;
+  background: linear-gradient(120deg, #e0f2fe 0%, #bae6fd 100%);
+  padding: 2px 6px;
+  border-radius: 4px;
+}
+
+.highlight-red {
+  color: var(--red);
+  font-weight: 700;
+  background: linear-gradient(120deg, #fee2e2 0%, #fecaca 100%);
+  padding: 2px 6px;
+  border-radius: 4px;
+}
+
+.highlight-green {
+  color: var(--green);
+  font-weight: 700;
+  background: linear-gradient(120deg, #d1fae5 0%, #a7f3d0 100%);
+  padding: 2px 6px;
+  border-radius: 4px;
+}
+
+.highlight-yellow {
+  color: var(--yellow);
+  font-weight: 700;
+  background: linear-gradient(120deg, #fef3c7 0%, #fde68a 100%);
+  padding: 2px 6px;
+  border-radius: 4px;
+}
+
+/* ===== TABELLE ===== */
+table {
+  width: 100%;
+  border-collapse: collapse;
+  margin: 20px 0;
+  background: white;
+  border-radius: var(--radius);
+  overflow: hidden;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+}
+
+thead {
+  background: linear-gradient(135deg, var(--red), var(--primary-dark));
+  color: white;
+}
+
+th {
+  padding: 15px;
+  text-align: left;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  font-size: 0.9em;
+}
+
+td {
+  padding: 12px 15px;
+  border-bottom: 1px solid var(--border);
+}
+
+tbody tr:hover {
+  background-color: var(--card-hover);
+}
+
+tbody tr:last-child td {
+  border-bottom: none;
+}
+
+/* ===== BLOCKQUOTE ===== */
+blockquote {
+  background: linear-gradient(135deg, #e0f2fe 0%, #dbeafe 100%);
+  border-left: 6px solid var(--blue);
+  border-radius: 8px;
+  padding: 20px 25px;
+  margin: 25px 0;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+  color: #1e3a5f;
+  font-style: italic;
+}
+
+blockquote strong {
+  color: var(--blue);
+  font-weight: 700;
+}
+
+/* ===== CODE & PRE ===== */
+pre {
+  background: linear-gradient(135deg, #1e293b 0%, #0f172a 100%);
+  color: #e2e8f0;
+  border-radius: var(--radius);
+  padding: 25px;
+  overflow-x: auto;
+  margin: 20px 0;
+  border: 2px solid #334155;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+  font-family: 'Courier New', 'Consolas', 'Monaco', monospace;
+  font-size: 0.85em;
+  line-height: 1.4;
+  white-space: pre;
+  word-wrap: normal;
+}
+
+pre code {
+  background: transparent;
+  color: inherit;
+  padding: 0;
+  border-radius: 0;
+  font-size: 1em;
+  font-family: inherit;
+}
+
+code {
+  background: #f1f5f9;
+  color: var(--red);
+  padding: 2px 6px;
+  border-radius: 4px;
+  font-size: 0.9em;
+  font-family: 'Courier New', monospace;
+}
+
+/* ===== LISTE ===== */
+ul, ol {
+  margin-left: 25px;
+  margin-bottom: 15px;
+}
+
+ul li, ol li {
+  margin-bottom: 10px;
+  line-height: 1.8;
+}
+
+ul li::marker {
+  color: var(--red);
+}
+
+/* ===== CHECKBOX ===== */
+input[type="checkbox"] {
+  transform: scale(1.3);
+  margin-right: 10px;
+  cursor: pointer;
+  accent-color: var(--red);
+}
+
+/* ===== BADGE ===== */
+.badge {
+  display: inline-block;
+  padding: 4px 10px;
+  border-radius: 20px;
+  font-size: 0.85em;
+  font-weight: 600;
+  margin: 0 5px;
+}
+
+.badge-blue { background: var(--blue); color: white; }
+.badge-red { background: var(--red); color: white; }
+.badge-green { background: var(--green); color: white; }
+.badge-yellow { background: var(--yellow); color: white; }
+
+/* ===== CALLOUT ===== */
+.callout {
+  padding: 15px 20px;
+  border-radius: 8px;
+  margin: 20px 0;
+  border-left: 4px solid;
+}
+
+.callout-info {
+  background: #e0f2fe;
+  border-color: var(--blue);
+  color: #0c4a6e;
+}
+
+.callout-warning {
+  background: #fef3c7;
+  border-color: var(--yellow);
+  color: #92400e;
+}
+
+.callout-success {
+  background: #d1fae5;
+  border-color: var(--green);
+  color: #065f46;
+}
+
+.callout-error {
+  background: #fee2e2;
+  border-color: var(--red);
+  color: #991b1b;
+}
+
+/* ===== HR ===== */
+hr {
+  border: none;
+  height: 3px;
+  background: linear-gradient(to right, var(--red), var(--blue), var(--red));
+  margin: 35px 0;
+  border-radius: 2px;
+}
+
+/* ===== LINKS ===== */
+a {
+  color: var(--blue);
+  text-decoration: none;
+  border-bottom: 2px solid transparent;
+  transition: border-bottom 0.3s ease;
+}
+
+a:hover {
+  border-bottom: 2px solid var(--blue);
+}
+
+/* ===== PARAGRAFI ===== */
+p {
+  margin-bottom: 15px;
+  line-height: 1.8;
+}
+
+strong {
+  color: var(--heading);
+  font-weight: 700;
+}
+
+em {
+  color: var(--muted);
+  font-style: italic;
+}
+
+/* ===== FOOTER ===== */
+.footer {
+  background: linear-gradient(135deg, #667eea, #764ba2);
+  color: white;
+  text-align: center;
+  padding: 30px 20px;
+  margin-top: 60px;
+  border-radius: 16px 16px 0 0;
+  box-shadow: 0 -4px 12px rgba(0, 0, 0, 0.1);
+}
+
+.footer p {
+  margin: 8px 0;
+}
+
+.footer .copyright {
+  font-weight: 700;
+  font-size: 1.1em;
+}
+
+.footer .meta {
+  font-size: 0.9em;
+  opacity: 0.95;
+}
+
+.footer .tech-info {
+  font-size: 0.85em;
+  opacity: 0.85;
+  margin-top: 15px;
+  font-style: italic;
+}
+
+/* ===== RESPONSIVE ===== */
+@media (max-width: 768px) {
+  body {
+    font-size: 14px;
+  }
+
+  .container {
+    padding: 0 15px;
+    margin: 20px auto;
+  }
+
+  .course-title {
+    font-size: 1.3em;
+  }
+
+  .course-meta {
+    flex-direction: column;
+    gap: 5px;
+  }
+
+  h1 {
+    font-size: 1.8em;
+  }
+
+  h2 {
+    font-size: 1.5em;
+  }
+
+  h3 {
+    font-size: 1.3em;
+  }
+
+  table {
+    font-size: 0.85em;
+  }
+
+  pre {
+    font-size: 0.8em;
+    padding: 15px;
+  }
+
+  .widget {
+    padding: 15px;
+  }
+}
+
+/* ===== PRINT ===== */
+@media print {
+  body {
+    background: white;
+  }
+
+  .top-header {
+    background: var(--red);
+    position: relative;
+  }
+
+  .home-icon {
+    display: none;
+  }
+
+  .widget, table, pre, blockquote {
+    page-break-inside: avoid;
+  }
+
+  pre {
+    background: #f5f5f5;
+    color: #000;
+    border: 1px solid #ccc;
+  }
+}
+
+/* ===== ANIMAZIONI ===== */
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.widget, .callout {
+  animation: fadeIn 0.5s ease-out;
+}
+</style>
+</head>
+<body>
+
+<!-- HEADER -->
+<header class="top-header">
+  <div class="course-info">
+    <a href="../economi/index.html" class="home-icon" title="Home - Tutte le Materie">🏠</a>
+    <div>
+      <div class="course-title">⚖️ DIRITTO</div>
+      <div class="course-meta">
+        <span>📅 29 Ottobre 2025</span>
+        <span>🎓 A.S. 2025/2026</span>
+        <span>👤 AFM Quinta Serale</span>
+      </div>
+    </div>
+  </div>
+</header>
+
+<!-- CONTAINER PRINCIPALE -->
+<div class="container">
+
+  <!-- TITOLO LEZIONE -->
+  <h1>No-Global e G8: Storia di Carlo Giuliani</h1>
+
+  <!-- INTRO WIDGET -->
+  <div class="widget">
+    <div class="widget-header">
+      <span class="widget-icon">📖</span>
+      <h3 class="widget-title">Introduzione</h3>
+    </div>
+    <p>
+      <span class="highlight-blue">Alessandro Baricco</span> è scrittore e musicofilo, e nel 2002 scrive
+      <strong>"Next: Piccola storia della globalizzazione"</strong>.
+    </p>
+    <p>
+      Analizzando gli anni '80, scopre che il termine ha diversi significati: da <em>neo-colonialismo</em>
+      a <em>sopraffazione</em> o <em>imperialismo</em>, ma è preferibile il primo, quale
+      <span class="highlight-blue">forma moderna di contatto fra diversi popoli</span>, inseriti in un contesto internazionale.
+    </p>
+  </div>
+
+  <!-- GLOBALIZZAZIONE E PACE -->
+  <h2>🌍 Globalizzazione e Pace</h2>
+
+  <div class="widget">
+    <p>
+      Da sempre la guerra viene fatta per motivi di conquista, onde acquisire risorse naturali,
+      territori o popolazioni residenti; interrompe la quotidianità dei residenti e i rapporti commerciali.
+    </p>
+    <p>
+      Per questo la <span class="highlight-blue">globalizzazione ha bisogno della pace</span>, e si diffonde
+      solo grazie alla pacifica convivenza, perché <strong>se sei in lite con il tuo vicino non gli venderai
+      lo stracchino, neanche se ti regala il latte</strong>.
+    </p>
+    <p>
+      Pertanto il fenomeno prospera nelle <span class="highlight-blue">pacifiche relazioni fra le nazioni</span>
+      e si diffonde nei 5 continenti.
+    </p>
+  </div>
+
+  <!-- G8 E NO GLOBAL -->
+  <h2>🌍 Il G8 e i No Global</h2>
+
+  <div class="widget" style="border-left-color: var(--yellow);">
+    <div class="widget-header">
+      <span class="widget-icon">🏛️</span>
+      <h3 class="widget-title">Il G8 come Testimonial</h3>
+    </div>
+    <p>
+      Lo scrittore si chiede, citando il <span class="highlight-yellow">G8</span>,
+      <strong>perché gli otto grandi si riuniscano a Genova pur non dovendo decidere nulla</strong>:
+      sono i <span class="highlight-yellow">testimonial della globalizzazione</span>, e sono lì per farsi vedere,
+      come Del Piero fa la pubblicità dell'acqua Uliveto.
+    </p>
+  </div>
+
+  <div class="widget" style="border-left-color: var(--green);">
+    <div class="widget-header">
+      <span class="widget-icon">✊</span>
+      <h3 class="widget-title">E i No Global cosa stanno a fare?</h3>
+    </div>
+    <p>
+      Strappano il grande manifesto, interrompono lo spot, scompigliano il copione della pubblicità.
+      Essi sono gli <span class="highlight-green">antagonisti non violenti</span> di un mondo asettico e sterile,
+      <span class="highlight-yellow">dominato dalle multinazionali</span> e fondato su una
+      <span class="highlight-yellow">logica consumistica che distrugge le coscienze</span>, per cui al rigore
+      del comunismo subentra la spirale edonistica del consumismo.
+    </p>
+    <p style="text-align: right; font-style: italic; color: var(--muted);">
+      (CIT. BARICCO)
+    </p>
+  </div>
+
+  <!-- CARLO GIULIANI -->
+  <h2>⚖️ Carlo Giuliani: Simbolo della Protesta</h2>
+
+  <div class="callout callout-error">
+    <strong>⚠️ Evento Tragico:</strong> La caduta delle ideologie ha causato una vittima:
+    <span class="highlight-red">Carlo Giuliani</span>, uno studente genovese che in
+    <span class="highlight-red">Piazza Alimonda</span> fu ucciso da un carabiniere,
+    accomunando due giovani in un tragico destino.
+  </div>
+
+  <div class="widget">
+    <p>
+      Il suo sacrificio ha smosso le coscienze sui <span class="highlight-red">limiti e sui pericoli
+      della globalizzazione</span>, che molti non accettano perché ancorati a un insieme di valori
+      e principi morali come ricorda la <span class="highlight-blue">Costituzione</span>.
+    </p>
+    <p>
+      Oggi quella piazza è stata rinominata: <strong>Piazza Carlo Giuliani, ragazzo</strong>.
+    </p>
+  </div>
+
+  <div class="widget" style="border-left-color: var(--green);">
+    <div class="widget-header">
+      <span class="widget-icon">🕊️</span>
+      <h3 class="widget-title">Memoria e Resistenza</h3>
+    </div>
+    <p>
+      Un tempo la piazza era dedicata a Monsignor Alimonda, un cardinale del 1700 che possedeva grandi territori.
+      All'apertura di Via Giulia (l'attuale Via XX Settembre), la chiesa di Santa Giulia venne smantellata
+      e trasferita nell'attuale posizione che vuole vegliare sopra i giardini pubblici, dove un cippo di marmo
+      è intitolato al <span class="highlight-red">martire genovese</span> e risulta meta di visite e pellegrinaggi
+      da parte di tutti coloro che non si arrendono alla violenza e all'insensibilità nei confronti di chi lotta
+      con la purezza dei sentimenti di Carlo Giuliani e di sua mamma <span class="highlight-green">Haidi Giuliani</span>.
+    </p>
+  </div>
+
+  <hr>
+
+  <!-- PUNTI CHIAVE -->
+  <h2>📚 PUNTI CHIAVE PER LO STUDIO</h2>
+
+  <!-- TABELLA INFORMAZIONI -->
+  <h3>🔑 Informazioni Essenziali</h3>
+
+  <table>
+    <thead>
+      <tr>
+        <th>Elemento</th>
+        <th>Dettaglio</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><strong>Autore</strong></td>
+        <td><strong>Alessandro Baricco</strong> (scrittore e musicofilo)</td>
+      </tr>
+      <tr>
+        <td><strong>Opera</strong></td>
+        <td><strong>"Next: Piccola storia della globalizzazione"</strong> (2002)</td>
+      </tr>
+      <tr>
+        <td><strong>Tema principale</strong></td>
+        <td>Analisi della <strong>globalizzazione</strong> come fenomeno complesso</td>
+      </tr>
+      <tr>
+        <td><strong>Periodo analizzato</strong></td>
+        <td>Anni '80 in poi</td>
+      </tr>
+      <tr>
+        <td><strong>Evento chiave</strong></td>
+        <td><strong>G8 di Genova</strong> (2001)</td>
+      </tr>
+      <tr>
+        <td><strong>Vittima simbolo</strong></td>
+        <td><strong>Carlo Giuliani</strong> (studente genovese)</td>
+      </tr>
+      <tr>
+        <td><strong>Luogo</strong></td>
+        <td><strong>Piazza Alimonda</strong> → oggi <strong>Piazza Carlo Giuliani, ragazzo</strong></td>
+      </tr>
+    </tbody>
+  </table>
+
+  <!-- CONCETTI FONDAMENTALI -->
+  <h3>💡 Concetti Fondamentali</h3>
+
+  <div class="widget" style="border-left-color: var(--blue);">
+    <h4>1️⃣ Cos'è la globalizzazione secondo Baricco?</h4>
+    <ul>
+      <li>✅ <strong>Forma moderna di contatto pacifico</strong> fra diversi popoli</li>
+      <li>✅ Si diffonde in contesto <strong>internazionale</strong></li>
+      <li>❌ NON è neo-colonialismo o imperialismo (anche se alcuni la interpretano così)</li>
+    </ul>
+  </div>
+
+  <div class="widget" style="border-left-color: var(--blue);">
+    <h4>2️⃣ Pace e globalizzazione: perché sono inseparabili?</h4>
+    <ul>
+      <li>La <strong>guerra interrompe</strong> i rapporti commerciali e la vita quotidiana</li>
+      <li>La globalizzazione <strong>prospera solo in tempo di pace</strong></li>
+      <li>Esempio: <em>se sei in lite con il vicino, non gli vendi niente</em></li>
+    </ul>
+  </div>
+
+  <div class="widget" style="border-left-color: var(--yellow);">
+    <h4>3️⃣ Il G8: cosa rappresenta?</h4>
+    <ul>
+      <li>Gli <strong>8 Paesi più potenti</strong> del mondo</li>
+      <li>NON si riuniscono per decidere, ma per <strong>farsi vedere</strong></li>
+      <li>Sono i <strong>testimonial della globalizzazione</strong> (come Del Piero nella pubblicità)</li>
+      <li>Rappresentano l'<strong>immagine pubblica</strong> del sistema globale</li>
+    </ul>
+  </div>
+
+  <div class="widget" style="border-left-color: var(--green);">
+    <h4>4️⃣ I No Global: chi sono e cosa fanno?</h4>
+    <ul>
+      <li><strong>Antagonisti non violenti</strong> della globalizzazione</li>
+      <li>Contestano un mondo:
+        <ul>
+          <li>🏢 Dominato dalle <strong>multinazionali</strong></li>
+          <li>💰 Fondato sul <strong>consumismo</strong></li>
+          <li>🧠 Che <strong>distrugge le coscienze</strong></li>
+        </ul>
+      </li>
+      <li>Vogliono "strappare il manifesto" e interrompere la "pubblicità" del sistema</li>
+    </ul>
+  </div>
+
+  <div class="widget" style="border-left-color: var(--red);">
+    <h4>5️⃣ Carlo Giuliani: il simbolo</h4>
+    <ul>
+      <li>👤 <strong>Studente genovese</strong></li>
+      <li>📍 Ucciso in <strong>Piazza Alimonda</strong> durante il <strong>G8 di Genova (2001)</strong></li>
+      <li>⚖️ Il suo sacrificio ha evidenziato:
+        <ul>
+          <li>I <strong>limiti della globalizzazione</strong></li>
+          <li>Il conflitto tra <strong>economia globale</strong> e <strong>valori morali/umani</strong></li>
+          <li>L'importanza dei principi della <strong>Costituzione</strong></li>
+        </ul>
+      </li>
+      <li>🕊️ Simbolo di <strong>resistenza alla violenza</strong> e della lotta per i diritti</li>
+    </ul>
+  </div>
+
+  <div class="widget" style="border-left-color: var(--green);">
+    <h4>6️⃣ Piazza Carlo Giuliani, ragazzo</h4>
+    <ul>
+      <li>Prima dedicata a <strong>Monsignor Alimonda</strong> (cardinale del 1700)</li>
+      <li>Oggi <strong>luogo di memoria</strong> e pellegrinaggio</li>
+      <li>Cippo di marmo in onore del <strong>martire genovese</strong></li>
+      <li>Meta per chi non si arrende alla violenza</li>
+    </ul>
+  </div>
+
+  <!-- TESI CENTRALE -->
+  <h3>🎯 Tesi Centrale di Baricco</h3>
+
+  <blockquote>
+    <strong>La globalizzazione è un fenomeno complesso che può essere positivo SOLO se:</strong>
+    <ul style="margin-top: 12px;">
+      <li>È fondata sulla <strong>pace</strong> e sul <strong>dialogo</strong></li>
+      <li>Non dimentica i <strong>valori umani e morali</strong></li>
+      <li>Non si riduce a puro <strong>consumismo</strong> e logica del profitto</li>
+      <li>Rispetta i principi costituzionali e la <strong>dignità delle persone</strong></li>
+    </ul>
+  </blockquote>
+
+  <!-- PAROLE CHIAVE -->
+  <h3>⚡ Da Ricordare Assolutamente</h3>
+
+  <div class="callout callout-success">
+    <p><strong>✨ Parole chiave per l'esposizione:</strong></p>
+    <ul>
+      <li><span class="badge badge-blue">Baricco</span> → Next (2002)</li>
+      <li><span class="badge badge-blue">Globalizzazione</span> → pace, contatto pacifico</li>
+      <li><span class="badge badge-yellow">G8</span> → testimonial, pubblicità del sistema</li>
+      <li><span class="badge badge-green">No Global</span> → protesta non violenta, anti-consumismo</li>
+      <li><span class="badge badge-red">Carlo Giuliani</span> → vittima, simbolo, martire</li>
+      <li><span class="badge badge-red">Piazza Alimonda</span> → Piazza Carlo Giuliani, ragazzo</li>
+      <li><span class="badge badge-green">Haidi Giuliani</span> → madre di Carlo</li>
+      <li><span class="badge badge-blue">Costituzione</span> → valori morali, principi fondamentali</li>
+    </ul>
+  </div>
+
+  <hr>
+
+  <!-- MAPPA CONCETTUALE -->
+  <h2>🗺️ MAPPA CONCETTUALE</h2>
+
+  <pre><code>                    ┌─────────────────────────────────┐
+                    │   ALESSANDRO BARICCO (2002)    │
+                    │  "Next: Piccola storia della   │
+                    │      globalizzazione"           │
+                    └───────────┬─────────────────────┘
+                                │
+                                ▼
+                    ┌───────────────────────────┐
+                    │    GLOBALIZZAZIONE        │
+                    │                           │
+                    │  • Contatto pacifico      │
+                    │  • Relazioni internazionali│
+                    │  • Necessita PACE         │
+                    └─────┬──────────────┬──────┘
+                          │              │
+            ┌─────────────┘              └─────────────┐
+            ▼                                          ▼
+    ┌───────────────┐                        ┌───────────────────┐
+    │      G8       │                        │    NO GLOBAL      │
+    │               │                        │                   │
+    │ • 8 potenze   │                        │ • Protesta non    │
+    │ • Testimonial │◄─────CONFLITTO────────►│   violenta        │
+    │ • Pubblicità  │                        │ • Anti-consumismo │
+    │ • Immagine    │                        │ • Anti-multinazio-│
+    │   del sistema │                        │   nali            │
+    └───────────────┘                        └─────────┬─────────┘
+                                                       │
+                    ┌──────────────────────────────────┘
+                    │
+                    ▼
+        ┌───────────────────────────────┐
+        │   G8 DI GENOVA (2001)         │
+        │                               │
+        │  Scontri e proteste           │
+        └─────────┬─────────────────────┘
+                  │
+                  ▼
+        ┌─────────────────────────────┐
+        │    CARLO GIULIANI           │
+        │                             │
+        │  • Studente genovese        │
+        │  • Ucciso in Piazza Alimonda│
+        │  • SIMBOLO della protesta   │
+        │  • MARTIRE                  │
+        └──────────┬──────────────────┘
+                   │
+                   ▼
+        ┌──────────────────────────────┐
+        │  RIFLESSIONE COLLETTIVA      │
+        │                              │
+        │  • Limiti globalizzazione    │
+        │  • Valori Costituzionali     │
+        │  • Diritti umani vs economia │
+        │  • Memoria e resistenza      │
+        └──────────┬───────────────────┘
+                   │
+                   ▼
+        ┌──────────────────────────────┐
+        │ PIAZZA CARLO GIULIANI,       │
+        │         RAGAZZO              │
+        │                              │
+        │  • Luogo di memoria          │
+        │  • Pellegrinaggio            │
+        │  • Haidi Giuliani (madre)    │
+        └──────────────────────────────┘</code></pre>
+
+  <!-- SCHEMA COLORATO -->
+  <h2>🎨 SCHEMA COLORATO PER MEMORIZZAZIONE</h2>
+
+  <div class="widget" style="border-left-color: var(--red);">
+    <h4>🔴 ROSSO = Conflitto e violenza</h4>
+    <ul>
+      <li><strong>G8 di Genova (2001)</strong> → scontri</li>
+      <li><strong>Morte di Carlo Giuliani</strong> → simbolo del conflitto</li>
+      <li><strong>Carabiniere e studente</strong> → tragico destino</li>
+    </ul>
+  </div>
+
+  <div class="widget" style="border-left-color: var(--blue);">
+    <h4>🔵 BLU = Pace e dialogo</h4>
+    <ul>
+      <li><strong>Globalizzazione</strong> → richiede pace</li>
+      <li><strong>Relazioni pacifiche</strong> → tra nazioni</li>
+      <li><strong>Contatto pacifico</strong> → fra popoli</li>
+    </ul>
+  </div>
+
+  <div class="widget" style="border-left-color: var(--green);">
+    <h4>🟢 VERDE = Valori e resistenza</h4>
+    <ul>
+      <li><strong>No Global</strong> → protesta non violenta</li>
+      <li><strong>Costituzione</strong> → valori morali</li>
+      <li><strong>Piazza Carlo Giuliani</strong> → memoria e resistenza</li>
+    </ul>
+  </div>
+
+  <div class="widget" style="border-left-color: var(--yellow);">
+    <h4>🟡 GIALLO = Sistema economico</h4>
+    <ul>
+      <li><strong>G8</strong> → testimonial del sistema</li>
+      <li><strong>Multinazionali</strong> → dominano l'economia</li>
+      <li><strong>Consumismo</strong> → distrugge le coscienze</li>
+    </ul>
+  </div>
+
+  <!-- TRUCCHI MNEMONICI -->
+  <h2>🧠 TRUCCHI MNEMONICI</h2>
+
+  <div class="callout callout-info">
+    <h4>🔤 Acronimo <strong>G.P.C.N.C.</strong></h4>
+    <ul>
+      <li><strong>G</strong> = <strong>G</strong>lobalizzazione (Baricco, Next)</li>
+      <li><strong>P</strong> = <strong>P</strong>ace (condizione necessaria)</li>
+      <li><strong>C</strong> = <strong>C</strong>arlo Giuliani (simbolo)</li>
+      <li><strong>N</strong> = <strong>N</strong>o Global (protesta)</li>
+      <li><strong>C</strong> = <strong>C</strong>ostituzione (valori morali)</li>
+    </ul>
+  </div>
+
+  <div class="callout callout-success">
+    <h4>🎯 Frase da ricordare</h4>
+    <p style="font-size: 1.1em; font-weight: 600; margin-top: 10px;">
+      "<strong>Baricco</strong> scrive che la <strong>globalizzazione</strong> serve <strong>pace</strong>,
+      ma al <strong>G8</strong> i <strong>No Global</strong> protestano, e <strong>Carlo</strong> muore
+      per i <strong>valori</strong> della <strong>Costituzione</strong>."
+    </p>
+  </div>
+
+  <!-- 🎯 QUIZ INTERATTIVO -->
+  <h2>🎯 QUIZ INTERATTIVO</h2>
+
+  <div class="widget" style="background: linear-gradient(135deg, rgba(255,215,0,0.08), rgba(255,165,0,0.05)); border-left: 4px solid var(--yellow);">
+    <div style="display:flex; align-items:center; gap:12px; margin-bottom:16px">
+      <div class="badge badge-yellow">🎯 Quiz 1</div>
+      <div style="font-size:0.85em; color:var(--muted)">Test di comprensione</div>
+    </div>
+
+    <p><strong>Secondo Baricco, la globalizzazione ha bisogno di:</strong></p>
+    <div style="margin:12px 0">
+      <label style="display:block; margin:8px 0; cursor:pointer">
+        <input type="radio" name="quiz1" value="A" style="margin-right:8px">
+        A) Guerra e conquista territoriale
+      </label>
+      <label style="display:block; margin:8px 0; cursor:pointer">
+        <input type="radio" name="quiz1" value="B" style="margin-right:8px">
+        B) Pace e contatto pacifico ✅
+      </label>
+      <label style="display:block; margin:8px 0; cursor:pointer">
+        <input type="radio" name="quiz1" value="C" style="margin-right:8px">
+        C) Isolamento economico
+      </label>
+      <label style="display:block; margin:8px 0; cursor:pointer">
+        <input type="radio" name="quiz1" value="D" style="margin-right:8px">
+        D) Autarchia nazionale
+      </label>
+    </div>
+    <button onclick="validateQuiz(1, 'B')" style="padding:10px 20px; background:var(--yellow); color:#000; border:none; border-radius:6px; font-weight:600; cursor:pointer; margin-top:8px">Verifica Risposta</button>
+    <div id="quiz1-feedback" style="margin-top:12px"></div>
+    <div id="quiz1-stats" style="margin-top:8px; font-size:0.85em; color:var(--muted)"></div>
+  </div>
+
+  <div class="widget" style="background: linear-gradient(135deg, rgba(255,215,0,0.08), rgba(255,165,0,0.05)); border-left: 4px solid var(--yellow);">
+    <div style="display:flex; align-items:center; gap:12px; margin-bottom:16px">
+      <div class="badge badge-yellow">🎯 Quiz 2</div>
+      <div style="font-size:0.85em; color:var(--muted)">Test di comprensione</div>
+    </div>
+
+    <p><strong>Chi sono i "testimonial della globalizzazione"?</strong></p>
+    <div style="margin:12px 0">
+      <label style="display:block; margin:8px 0; cursor:pointer">
+        <input type="radio" name="quiz2" value="A" style="margin-right:8px">
+        A) I No Global
+      </label>
+      <label style="display:block; margin:8px 0; cursor:pointer">
+        <input type="radio" name="quiz2" value="B" style="margin-right:8px">
+        B) Le multinazionali e i governi del G8 ✅
+      </label>
+      <label style="display:block; margin:8px 0; cursor:pointer">
+        <input type="radio" name="quiz2" value="C" style="margin-right:8px">
+        C) I sindacati operai
+      </label>
+      <label style="display:block; margin:8px 0; cursor:pointer">
+        <input type="radio" name="quiz2" value="D" style="margin-right:8px">
+        D) Le ONG umanitarie
+      </label>
+    </div>
+    <button onclick="validateQuiz(2, 'B')" style="padding:10px 20px; background:var(--yellow); color:#000; border:none; border-radius:6px; font-weight:600; cursor:pointer; margin-top:8px">Verifica Risposta</button>
+    <div id="quiz2-feedback" style="margin-top:12px"></div>
+    <div id="quiz2-stats" style="margin-top:8px; font-size:0.85em; color:var(--muted)"></div>
+  </div>
+
+  <div class="widget" style="background: linear-gradient(135deg, rgba(255,215,0,0.08), rgba(255,165,0,0.05)); border-left: 4px solid var(--yellow);">
+    <div style="display:flex; align-items:center; gap:12px; margin-bottom:16px">
+      <div class="badge badge-yellow">🎯 Quiz 3</div>
+      <div style="font-size:0.85em; color:var(--muted)">Test di comprensione</div>
+    </div>
+
+    <p><strong>Carlo Giuliani è stato ucciso a Genova in:</strong></p>
+    <div style="margin:12px 0">
+      <label style="display:block; margin:8px 0; cursor:pointer">
+        <input type="radio" name="quiz3" value="A" style="margin-right:8px">
+        A) Via Garibaldi
+      </label>
+      <label style="display:block; margin:8px 0; cursor:pointer">
+        <input type="radio" name="quiz3" value="B" style="margin-right:8px">
+        B) Piazza Alimonda ✅
+      </label>
+      <label style="display:block; margin:8px 0; cursor:pointer">
+        <input type="radio" name="quiz3" value="C" style="margin-right:8px">
+        C) Piazza De Ferrari
+      </label>
+      <label style="display:block; margin:8px 0; cursor:pointer">
+        <input type="radio" name="quiz3" value="D" style="margin-right:8px">
+        D) Porto Antico
+      </label>
+    </div>
+    <button onclick="validateQuiz(3, 'B')" style="padding:10px 20px; background:var(--yellow); color:#000; border:none; border-radius:6px; font-weight:600; cursor:pointer; margin-top:8px">Verifica Risposta</button>
+    <div id="quiz3-feedback" style="margin-top:12px"></div>
+    <div id="quiz3-stats" style="margin-top:8px; font-size:0.85em; color:var(--muted)"></div>
+  </div>
+
+  <!-- 🃏 FLASHCARDS INTERATTIVE -->
+  <h2>🃏 FLASHCARDS INTERATTIVE</h2>
+
+  <div class="widget" style="background: rgba(156,39,176,0.08);">
+    <div style="display:flex; align-items:center; gap:12px; margin-bottom:16px">
+      <div class="badge" style="background:#9c27b0; color:#fff">🃏 Flashcard 1</div>
+      <div style="font-size:0.85em; color:var(--muted)">Clicca per scoprire</div>
+    </div>
+
+    <div class="flashcard-container" onclick="flipFlashcard('fc-dir1')" style="cursor:pointer">
+      <div class="flashcard" id="fc-dir1" style="background:rgba(156,39,176,0.05); border:2px solid rgba(156,39,176,0.3); border-radius:8px; padding:16px; transition:all 0.3s">
+        <div class="flashcard-front">
+          <p style="font-size:1.2em; font-weight:700; color:var(--heading); margin:0">❓ Alessandro Baricco</p>
+          <p style="font-size:0.85em; color:var(--muted); margin-top:8px">Chi è e cosa ha scritto?</p>
+          <p style="font-size:0.75em; color:var(--yellow); margin-top:12px">👉 Clicca per la risposta</p>
+        </div>
+        <div class="flashcard-back" style="display:none">
+          <p style="font-size:1em; color:var(--fg); margin:0; line-height:1.6">
+            <strong style="color:#9c27b0">Scrittore italiano</strong> autore di <strong>"Next: Piccola storia della globalizzazione"</strong> (2002). Analizza la globalizzazione come fenomeno di contatto pacifico tra popoli.
+          </p>
+          <p style="font-size:0.75em; color:var(--muted); margin-top:8px">✅ Vista <span id="fc-dir1-count">0</span> volte</p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="widget" style="background: rgba(156,39,176,0.08);">
+    <div style="display:flex; align-items:center; gap:12px; margin-bottom:16px">
+      <div class="badge" style="background:#9c27b0; color:#fff">🃏 Flashcard 2</div>
+      <div style="font-size:0.85em; color:var(--muted)">Clicca per scoprire</div>
+    </div>
+
+    <div class="flashcard-container" onclick="flipFlashcard('fc-dir2')" style="cursor:pointer">
+      <div class="flashcard" id="fc-dir2" style="background:rgba(156,39,176,0.05); border:2px solid rgba(156,39,176,0.3); border-radius:8px; padding:16px; transition:all 0.3s">
+        <div class="flashcard-front">
+          <p style="font-size:1.2em; font-weight:700; color:var(--heading); margin:0">❓ No Global</p>
+          <p style="font-size:0.85em; color:var(--muted); margin-top:8px">Chi sono e cosa contestano?</p>
+          <p style="font-size:0.75em; color:var(--yellow); margin-top:12px">👉 Clicca per la risposta</p>
+        </div>
+        <div class="flashcard-back" style="display:none">
+          <p style="font-size:1em; color:var(--fg); margin:0; line-height:1.6">
+            <strong style="color:#9c27b0">Movimento di protesta</strong> antagonista non violento contro la globalizzazione. Contesta <strong>consumismo, multinazionali e perdita di valori tradizionali</strong>.
+          </p>
+          <p style="font-size:0.75em; color:var(--muted); margin-top:8px">✅ Vista <span id="fc-dir2-count">0</span> volte</p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="widget" style="background: rgba(156,39,176,0.08);">
+    <div style="display:flex; align-items:center; gap:12px; margin-bottom:16px">
+      <div class="badge" style="background:#9c27b0; color:#fff">🃏 Flashcard 3</div>
+      <div style="font-size:0.85em; color:var(--muted)">Clicca per scoprire</div>
+    </div>
+
+    <div class="flashcard-container" onclick="flipFlashcard('fc-dir3')" style="cursor:pointer">
+      <div class="flashcard" id="fc-dir3" style="background:rgba(156,39,176,0.05); border:2px solid rgba(156,39,176,0.3); border-radius:8px; padding:16px; transition:all 0.3s">
+        <div class="flashcard-front">
+          <p style="font-size:1.2em; font-weight:700; color:var(--heading); margin:0">❓ G8</p>
+          <p style="font-size:0.85em; color:var(--muted); margin-top:8px">Qual è il loro ruolo secondo Baricco?</p>
+          <p style="font-size:0.75em; color:var(--yellow); margin-top:12px">👉 Clicca per la risposta</p>
+        </div>
+        <div class="flashcard-back" style="display:none">
+          <p style="font-size:1em; color:var(--fg); margin:0; line-height:1.6">
+            Gruppo delle <strong style="color:#9c27b0">8 potenze economiche</strong> mondiali. Sono i <strong>"testimonial della globalizzazione"</strong>, come testimonial pubblicitari che mostrano il "volto" del sistema economico globale.
+          </p>
+          <p style="font-size:0.75em; color:var(--muted); margin-top:8px">✅ Vista <span id="fc-dir3-count">0</span> volte</p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="widget" style="background: rgba(156,39,176,0.08);">
+    <div style="display:flex; align-items:center; gap:12px; margin-bottom:16px">
+      <div class="badge" style="background:#9c27b0; color:#fff">🃏 Flashcard 4</div>
+      <div style="font-size:0.85em; color:var(--muted)">Clicca per scoprire</div>
+    </div>
+
+    <div class="flashcard-container" onclick="flipFlashcard('fc-dir4')" style="cursor:pointer">
+      <div class="flashcard" id="fc-dir4" style="background:rgba(156,39,176,0.05); border:2px solid rgba(156,39,176,0.3); border-radius:8px; padding:16px; transition:all 0.3s">
+        <div class="flashcard-front">
+          <p style="font-size:1.2em; font-weight:700; color:var(--heading); margin:0">❓ Carlo Giuliani</p>
+          <p style="font-size:0.85em; color:var(--muted); margin-top:8px">Chi era e cosa rappresenta?</p>
+          <p style="font-size:0.75em; color:var(--yellow); margin-top:12px">👉 Clicca per la risposta</p>
+        </div>
+        <div class="flashcard-back" style="display:none">
+          <p style="font-size:1em; color:var(--fg); margin:0; line-height:1.6">
+            <strong style="color:#9c27b0">Studente genovese 23enne</strong> ucciso in <strong>Piazza Alimonda</strong> durante il G8 di Genova (2001). È diventato <strong>simbolo e martire</strong> della protesta contro il sistema economico globale.
+          </p>
+          <p style="font-size:0.75em; color:var(--muted); margin-top:8px">✅ Vista <span id="fc-dir4-count">0</span> volte</p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="widget" style="background: rgba(156,39,176,0.08);">
+    <div style="display:flex; align-items:center; gap:12px; margin-bottom:16px">
+      <div class="badge" style="background:#9c27b0; color:#fff">🃏 Flashcard 5</div>
+      <div style="font-size:0.85em; color:var(--muted)">Clicca per scoprire</div>
+    </div>
+
+    <div class="flashcard-container" onclick="flipFlashcard('fc-dir5')" style="cursor:pointer">
+      <div class="flashcard" id="fc-dir5" style="background:rgba(156,39,176,0.05); border:2px solid rgba(156,39,176,0.3); border-radius:8px; padding:16px; transition:all 0.3s">
+        <div class="flashcard-front">
+          <p style="font-size:1.2em; font-weight:700; color:var(--heading); margin:0">❓ Haidi Giuliani</p>
+          <p style="font-size:0.85em; color:var(--muted); margin-top:8px">Chi è e qual è il suo ruolo?</p>
+          <p style="font-size:0.75em; color:var(--yellow); margin-top:12px">👉 Clicca per la risposta</p>
+        </div>
+        <div class="flashcard-back" style="display:none">
+          <p style="font-size:1em; color:var(--fg); margin:0; line-height:1.6">
+            <strong style="color:#9c27b0">Madre di Carlo Giuliani</strong>. Mantiene viva la <strong>memoria del figlio</strong> e rappresenta la <strong>resistenza morale</strong> contro l'ingiustizia. Simbolo di dignità e lotta per i valori costituzionali.
+          </p>
+          <p style="font-size:0.75em; color:var(--muted); margin-top:8px">✅ Vista <span id="fc-dir5-count">0</span> volte</p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="widget" style="background: rgba(156,39,176,0.08);">
+    <div style="display:flex; align-items:center; gap:12px; margin-bottom:16px">
+      <div class="badge" style="background:#9c27b0; color:#fff">🃏 Flashcard 6</div>
+      <div style="font-size:0.85em; color:var(--muted)">Clicca per scoprire</div>
+    </div>
+
+    <div class="flashcard-container" onclick="flipFlashcard('fc-dir6')" style="cursor:pointer">
+      <div class="flashcard" id="fc-dir6" style="background:rgba(156,39,176,0.05); border:2px solid rgba(156,39,176,0.3); border-radius:8px; padding:16px; transition:all 0.3s">
+        <div class="flashcard-front">
+          <p style="font-size:1.2em; font-weight:700; color:var(--heading); margin:0">❓ Piazza Carlo Giuliani, ragazzo</p>
+          <p style="font-size:0.85em; color:var(--muted); margin-top:8px">Cosa rappresenta oggi?</p>
+          <p style="font-size:0.75em; color:var(--yellow); margin-top:12px">👉 Clicca per la risposta</p>
+        </div>
+        <div class="flashcard-back" style="display:none">
+          <p style="font-size:1em; color:var(--fg); margin:0; line-height:1.6">
+            <strong style="color:#9c27b0">Piazza a Genova</strong> dedicata a Carlo. È luogo di <strong>memoria collettiva</strong> e <strong>simbolo di resistenza</strong> contro l'ingiustizia. Rappresenta il conflitto tra economia globale e valori umani.
+          </p>
+          <p style="font-size:0.75em; color:var(--muted); margin-top:8px">✅ Vista <span id="fc-dir6-count">0</span> volte</p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div id="flashcard-stats" style="margin-top:16px; padding:12px; background:rgba(156,39,176,0.08); border-radius:6px; text-align:center; font-size:0.85em"></div>
+
+  <!-- 🧠 AUTO-VALUTAZIONE -->
+  <h2>🧠 AUTO-VALUTAZIONE</h2>
+
+  <div class="widget" style="background: linear-gradient(135deg, rgba(66,135,245,0.08), rgba(46,204,113,0.05)); border-left: 4px solid var(--blue);">
+    <div style="display:flex; align-items:center; gap:12px; margin-bottom:16px">
+      <div class="badge badge-blue">🧠 Self-Assessment</div>
+      <div style="font-size:0.85em; color:var(--muted)">Valuta il tuo apprendimento</div>
+    </div>
+
+    <p style="margin-bottom:16px"><strong>Come ti senti dopo aver studiato questa lezione?</strong></p>
+
+    <div style="display:grid; gap:16px">
+      <div>
+        <label style="display:block; margin-bottom:8px; font-size:0.85em; color:var(--muted)">💭 Quanto ricordi dei concetti? (1=Poco, 5=Tutto)</label>
+        <div style="display:flex; gap:12px; align-items:center">
+          <span style="font-size:0.85em">1</span>
+          <input type="range" id="sa-dir-ricordo" min="1" max="5" value="3" style="flex:1; accent-color:var(--blue)">
+          <span style="font-size:0.85em">5</span>
+          <span id="sa-dir-ricordo-val" style="font-weight:700; color:var(--blue); min-width:30px; text-align:center">3</span>
+        </div>
+      </div>
+
+      <div>
+        <label style="display:block; margin-bottom:8px; font-size:0.85em; color:var(--muted)">💪 Quanto ti senti sicuro? (1=Insicuro, 5=Sicurissimo)</label>
+        <div style="display:flex; gap:12px; align-items:center">
+          <span style="font-size:0.85em">1</span>
+          <input type="range" id="sa-dir-sicurezza" min="1" max="5" value="3" style="flex:1; accent-color:var(--green)">
+          <span style="font-size:0.85em">5</span>
+          <span id="sa-dir-sicurezza-val" style="font-weight:700; color:var(--green); min-width:30px; text-align:center">3</span>
+        </div>
+      </div>
+
+      <div>
+        <label style="display:block; margin-bottom:8px; font-size:0.85em; color:var(--muted)">🎯 Quanto puoi applicarlo in verifica? (1=Per niente, 5=Perfettamente)</label>
+        <div style="display:flex; gap:12px; align-items:center">
+          <span style="font-size:0.85em">1</span>
+          <input type="range" id="sa-dir-applicazione" min="1" max="5" value="3" style="flex:1; accent-color:var(--yellow)">
+          <span style="font-size:0.85em">5</span>
+          <span id="sa-dir-applicazione-val" style="font-weight:700; color:var(--yellow); min-width:30px; text-align:center">3</span>
+        </div>
+      </div>
+    </div>
+
+    <button onclick="saveSelfAssessmentDir()" style="width:100%; padding:12px; margin-top:16px; background:var(--blue); color:#fff; border:none; border-radius:6px; font-weight:600; cursor:pointer">💾 Salva Valutazione</button>
+
+    <div id="sa-dir-feedback" style="margin-top:12px"></div>
+    <div id="sa-dir-trend" style="margin-top:8px; font-size:0.85em; color:var(--muted)"></div>
+  </div>
+
+  <!-- 🗣️ FEYNMAN MODE -->
+  <h2>🗣️ FEYNMAN MODE</h2>
+
+  <div class="widget" style="background: linear-gradient(135deg, rgba(138,43,226,0.08), rgba(138,43,226,0.05)); border-left: 4px solid var(--purple);">
+    <div style="display:flex; align-items:center; gap:12px; margin-bottom:16px">
+      <div class="badge" style="background:var(--purple); color:#fff">🗣️ Tecnica Feynman</div>
+      <div style="font-size:0.85em; color:var(--muted)">Spiega con parole tue</div>
+    </div>
+
+    <p style="margin-bottom:12px; font-size:0.95em; line-height:1.7;">
+      <strong>Spiega questa lezione come se dovessi insegnarla a un amico:</strong>
+      <span style="display:block; font-size:0.85em; color:var(--muted); margin-top:8px">
+        💡 Se riesci a spiegarlo in modo semplice, significa che hai davvero capito!
+      </span>
+    </p>
+
+    <textarea id="feynman-dir" rows="8" placeholder="Es: Baricco dice che la globalizzazione funziona solo se c'è pace, perché..." style="width:100%; padding:12px; border-radius:8px; border:2px solid var(--border); font-family:inherit; font-size:0.95em; line-height:1.6; resize:vertical"></textarea>
+
+    <div style="display:flex; gap:12px; margin-top:12px">
+      <button onclick="saveFeynmanDir()" style="flex:1; padding:10px; background:var(--purple); color:#fff; border:none; border-radius:6px; font-weight:600; cursor:pointer">💾 Salva Spiegazione</button>
+      <button onclick="clearFeynmanDir()" style="padding:10px 20px; background:var(--border); color:var(--fg); border:none; border-radius:6px; font-weight:600; cursor:pointer">🗑️ Pulisci</button>
+    </div>
+
+    <div id="feynman-dir-feedback" style="margin-top:12px; font-size:0.85em"></div>
+  </div>
+
+  <!-- CHECKLIST FINALE -->
+  <h2>✅ CHECKLIST FINALE PRIMA DELLA VERIFICA</h2>
+
+  <div class="widget">
+    <div style="margin-bottom:16px">
+      <div style="background:var(--border); border-radius:20px; height:24px; overflow:hidden">
+        <div id="checklist-bar" style="width:0%; height:100%; background:linear-gradient(90deg, var(--green), var(--blue)); transition:width 0.3s ease"></div>
+      </div>
+      <div style="font-size:0.85em; margin-top:6px; text-align:center; color:var(--muted)">
+        <span id="checklist-count">0</span>/10 completati
+      </div>
+    </div>
+
+    <ul style="list-style-type: none; margin-left: 0;">
+      <li style="margin:10px 0"><input type="checkbox" id="check1" style="margin-right:8px"><label for="check1"> Conosco <strong>autore</strong> (Baricco) e <strong>opera</strong> (Next, 2002)?</label></li>
+      <li style="margin:10px 0"><input type="checkbox" id="check2" style="margin-right:8px"><label for="check2"> So spiegare il concetto di <strong>globalizzazione</strong> secondo Baricco?</label></li>
+      <li style="margin:10px 0"><input type="checkbox" id="check3" style="margin-right:8px"><label for="check3"> Comprendo il rapporto tra <strong>globalizzazione e pace</strong>?</label></li>
+      <li style="margin:10px 0"><input type="checkbox" id="check4" style="margin-right:8px"><label for="check4"> So chi sono i <strong>No Global</strong> e cosa contestano?</label></li>
+      <li style="margin:10px 0"><input type="checkbox" id="check5" style="margin-right:8px"><label for="check5"> Conosco il ruolo del <strong>G8</strong> come "testimonial"?</label></li>
+      <li style="margin:10px 0"><input type="checkbox" id="check6" style="margin-right:8px"><label for="check6"> So raccontare la storia di <strong>Carlo Giuliani</strong>?</label></li>
+      <li style="margin:10px 0"><input type="checkbox" id="check7" style="margin-right:8px"><label for="check7"> Ricordo il significato di <strong>Piazza Carlo Giuliani, ragazzo</strong>?</label></li>
+      <li style="margin:10px 0"><input type="checkbox" id="check8" style="margin-right:8px"><label for="check8"> So citare <strong>Haidi Giuliani</strong> come madre di Carlo?</label></li>
+      <li style="margin:10px 0"><input type="checkbox" id="check9" style="margin-right:8px"><label for="check9"> Comprendo il legame con i valori della <strong>Costituzione</strong>?</label></li>
+      <li style="margin:10px 0"><input type="checkbox" id="check10" style="margin-right:8px"><label for="check10"> So esporre la <strong>tesi centrale</strong> di Baricco?</label></li>
+    </ul>
+
+    <div id="checklist-celebration" style="margin-top:16px; padding:12px; background:rgba(76,175,80,0.1); border-radius:8px; display:none; text-align:center">
+      <p style="font-size:1.2em; margin:0">🎉 <strong>Congratulazioni!</strong> 🎉</p>
+      <p style="font-size:0.9em; margin:8px 0 0; color:var(--muted)">Hai completato tutti i punti! Sei pronto per la verifica! 🏆</p>
+    </div>
+  </div>
+
+  <!-- SINTESI ULTRA-RAPIDA -->
+  <h2>🏆 SINTESI ULTRA-RAPIDA (30 SECONDI)</h2>
+
+  <div class="callout callout-warning">
+    <p style="font-size: 1.05em; line-height: 1.9;">
+      <strong>Alessandro Baricco</strong> (2002, <em>Next</em>) analizza la <strong>globalizzazione</strong>
+      come <strong>contatto pacifico</strong> fra popoli, possibile solo in tempo di <strong>pace</strong>.
+      Il <strong>G8</strong> rappresenta il "volto pubblicitario" del sistema, contestato dai
+      <strong>No Global</strong> (anti-consumismo, anti-multinazionali). Durante il <strong>G8 di Genova (2001)</strong>,
+      <strong>Carlo Giuliani</strong>, studente, viene ucciso, diventando <strong>simbolo</strong> del conflitto
+      tra economia globale e <strong>valori costituzionali</strong>. <strong>Piazza Carlo Giuliani, ragazzo</strong>
+      è oggi luogo di <strong>memoria</strong> e <strong>resistenza</strong>, onorato da sua madre
+      <strong>Haidi Giuliani</strong>.
+    </p>
+  </div>
+
+</div>
+
+<!-- FOOTER -->
+<footer class="footer">
+  <p class="copyright">© 2025 - Jeffrey Minaya</p>
+  <p class="meta">Diritto | A.S. 2025/2026 | AFM Quinta Serale</p>
+  <p class="meta">Lezione del 29 Ottobre 2025</p>
+  <p class="tech-info">
+    Sistema NPI-Learning v2.0 | Design Responsivo | Materiale di Studio Integrato
+  </p>
+</footer>
+
+<script>
+// Log caricamento
+console.log('⚖️ Diritto - NPI-Learning caricato');
+console.log('📅 Lezione: 29 Ottobre 2025');
+console.log('🎨 Design System: NPI-Learning v2.0');
+console.log('🏠 Navigazione: ../economi/index.html');
+
+// Salva progresso visualizzazione
+const viewData = {
+  subject: 'Diritto',
+  topic: 'No Global e G8',
+  date: '2025-10-29',
+  timestamp: new Date().toISOString()
+};
+console.log('📊 View data:', viewData);
+
+// ========== QUIZ SYSTEM ==========
+function validateQuiz(num, correctAnswer) {
+  const selectedInput = document.querySelector(`input[name="quiz${num}"]:checked`);
+  const feedback = document.getElementById(`quiz${num}-feedback`);
+  const statsDiv = document.getElementById(`quiz${num}-stats`);
+
+  if (!selectedInput) {
+    feedback.innerHTML = '<div style="padding:12px; background:rgba(255,152,0,0.15); border-left:4px solid var(--warning); border-radius:6px">⚠️ Seleziona una risposta prima di verificare!</div>';
+    return;
+  }
+
+  const userAnswer = selectedInput.value;
+  const storageKey = 'quiz-stats-diritto';
+  let stats = JSON.parse(localStorage.getItem(storageKey) || '{}');
+  if (!stats[`quiz${num}`]) stats[`quiz${num}`] = { attempts: 0, correct: 0, firstTryCorrect: false };
+
+  stats[`quiz${num}`].attempts++;
+
+  if (userAnswer === correctAnswer) {
+    stats[`quiz${num}`].correct++;
+    if (stats[`quiz${num}`].attempts === 1) stats[`quiz${num}`].firstTryCorrect = true;
+
+    feedback.innerHTML = `
+      <div style="padding:12px; background:rgba(76,175,80,0.15); border-left:4px solid var(--success); border-radius:6px">
+        <div style="font-size:1.2em; margin-bottom:8px">✅ <strong>Esatto!</strong></div>
+        <p style="font-size:0.85em; margin:4px 0; color:var(--muted)">Risposta corretta! Ottimo lavoro! 🎉</p>
+        ${stats[`quiz${num}`].attempts === 1 ? '<div style="margin-top:8px; color:var(--yellow)">🏆 Perfetto al primo tentativo! +10 punti</div>' : ''}
+      </div>
+    `;
+
+    // Disabilita tutte le opzioni
+    document.querySelectorAll(`input[name="quiz${num}"]`).forEach(inp => inp.disabled = true);
+  } else {
+    feedback.innerHTML = `
+      <div style="padding:12px; background:rgba(244,67,54,0.15); border-left:4px solid var(--error); border-radius:6px">
+        <div style="font-size:1.1em; margin-bottom:8px">❌ <strong>Non corretto</strong></div>
+        <p style="font-size:0.85em; margin:4px 0; color:var(--muted)">Rileggi la sezione e riprova!</p>
+      </div>
+    `;
+  }
+
+  localStorage.setItem(storageKey, JSON.stringify(stats));
+  const percentage = ((stats[`quiz${num}`].correct / stats[`quiz${num}`].attempts) * 100).toFixed(0);
+  statsDiv.innerHTML = `📊 Tentativi: ${stats[`quiz${num}`].attempts} · Corretti: ${stats[`quiz${num}`].correct} · Precisione: ${percentage}%`;
+}
+
+// ========== FLASHCARDS SYSTEM ==========
+const flashcardsDir = ['fc-dir1', 'fc-dir2', 'fc-dir3', 'fc-dir4', 'fc-dir5', 'fc-dir6'];
+const flashcardStorageKey = 'flashcards-diritto';
+
+let flashcardStats = JSON.parse(localStorage.getItem(flashcardStorageKey) || '{}');
+flashcardsDir.forEach(id => {
+  if (!flashcardStats[id]) flashcardStats[id] = { views: 0, lastView: null };
+  const countSpan = document.getElementById(id + '-count');
+  if (countSpan) countSpan.textContent = flashcardStats[id].views;
+});
+
+window.flipFlashcard = function(id) {
+  const card = document.getElementById(id);
+  const front = card.querySelector('.flashcard-front');
+  const back = card.querySelector('.flashcard-back');
+
+  if (back.style.display === 'none') {
+    front.style.display = 'none';
+    back.style.display = 'block';
+    card.style.background = 'rgba(156,39,176,0.12)';
+    card.style.borderColor = '#9c27b0';
+
+    flashcardStats[id].views++;
+    flashcardStats[id].lastView = new Date().toISOString();
+    const countSpan = document.getElementById(id + '-count');
+    if (countSpan) countSpan.textContent = flashcardStats[id].views;
+    localStorage.setItem(flashcardStorageKey, JSON.stringify(flashcardStats));
+
+    updateFlashcardStatsDir();
+  } else {
+    front.style.display = 'block';
+    back.style.display = 'none';
+    card.style.background = 'rgba(156,39,176,0.05)';
+    card.style.borderColor = 'rgba(156,39,176,0.3)';
+  }
+};
+
+function updateFlashcardStatsDir() {
+  const totalViews = flashcardsDir.reduce((sum, id) => sum + (flashcardStats[id].views || 0), 0);
+  const mastered = flashcardsDir.filter(id => flashcardStats[id].views >= 5).length;
+  const avgViews = totalViews / flashcardsDir.length;
+
+  const statsDiv = document.getElementById('flashcard-stats');
+  if (statsDiv) {
+    statsDiv.innerHTML = `
+      📊 <strong>Statistiche:</strong> ${totalViews} visualizzazioni totali ·
+      Media ${avgViews.toFixed(1)} per card ·
+      ${mastered}/6 masterate (5+ viste)
+      ${mastered === 6 ? ' · 🏆 <strong>Tutte masterate! +100 punti bonus</strong>' : ''}
+    `;
+  }
+}
+
+// ========== SELF-ASSESSMENT SYSTEM ==========
+['ricordo', 'sicurezza', 'applicazione'].forEach(type => {
+  const slider = document.getElementById(`sa-dir-${type}`);
+  const valSpan = document.getElementById(`sa-dir-${type}-val`);
+  if (slider && valSpan) {
+    slider.addEventListener('input', () => {
+      valSpan.textContent = slider.value;
+    });
+  }
+});
+
+window.saveSelfAssessmentDir = function() {
+  const ricordo = document.getElementById('sa-dir-ricordo').value;
+  const sicurezza = document.getElementById('sa-dir-sicurezza').value;
+  const applicazione = document.getElementById('sa-dir-applicazione').value;
+  const feedback = document.getElementById('sa-dir-feedback');
+  const trendDiv = document.getElementById('sa-dir-trend');
+
+  const media = ((parseFloat(ricordo) + parseFloat(sicurezza) + parseFloat(applicazione)) / 3).toFixed(1);
+  const now = new Date().toLocaleDateString('it-IT');
+
+  const key = 'self-assessment-diritto';
+  let history = JSON.parse(localStorage.getItem(key) || '[]');
+  history.push({ date: now, ricordo, sicurezza, applicazione, media: parseFloat(media) });
+  localStorage.setItem(key, JSON.stringify(history));
+
+  let icon = '✅', color = 'var(--green)', message = 'Ottimo! Continua così!', suggestion = '';
+
+  if (media < 3) {
+    icon = '⚠️'; color = 'var(--red)'; message = 'Attenzione: questa lezione richiede revisione';
+    suggestion = '<p style="margin-top:8px; font-size:0.85em; color:var(--yellow)">💡 <strong>Suggerimento:</strong> Rileggi i concetti chiave e rifai quiz e flashcards</p>';
+  } else if (media < 4) {
+    icon = '👍'; color = 'var(--yellow)'; message = 'Buono! Potresti migliorare con pratica extra';
+    suggestion = '<p style="margin-top:8px; font-size:0.85em; color:var(--yellow)">💡 <strong>Suggerimento:</strong> Rivedi la mappa concettuale e pratica la Tecnica Feynman</p>';
+  }
+
+  feedback.innerHTML = `<div style="padding:12px; background:rgba(66,135,245,0.1); border-left:4px solid ${color}; border-radius:6px"><div style="font-size:1.2em; margin-bottom:8px">${icon} <strong>Media: ${media}/5</strong></div><p style="font-size:0.85em; margin:4px 0">${message}</p>${suggestion}</div>`;
+
+  if (history.length > 1) {
+    const prev = history[history.length - 2];
+    const diff = (parseFloat(media) - prev.media).toFixed(1);
+    const arrow = diff > 0 ? '📈' : (diff < 0 ? '📉' : '➡️');
+    const sign = diff > 0 ? '+' : '';
+    trendDiv.innerHTML = `${arrow} Trend: Ultima volta ${prev.media}/5 → Oggi ${media}/5 (${sign}${diff})`;
+  } else {
+    trendDiv.innerHTML = '📊 Prima valutazione salvata! Rivaluta tra qualche giorno per vedere il trend';
+  }
+};
+
+// ========== FEYNMAN MODE SYSTEM ==========
+const feynmanKey = 'feynman-diritto';
+const feynmanTextarea = document.getElementById('feynman-dir');
+const feynmanFeedback = document.getElementById('feynman-dir-feedback');
+
+// Carica contenuto salvato
+if (feynmanTextarea) {
+  const saved = localStorage.getItem(feynmanKey);
+  if (saved) {
+    feynmanTextarea.value = saved;
+    feynmanFeedback.innerHTML = '<div style="padding:8px; background:rgba(76,175,80,0.1); border-radius:6px; color:var(--green)">✅ Spiegazione precedente caricata</div>';
+  }
+}
+
+window.saveFeynmanDir = function() {
+  const text = feynmanTextarea.value.trim();
+  if (text.length < 50) {
+    feynmanFeedback.innerHTML = '<div style="padding:8px; background:rgba(255,152,0,0.1); border-radius:6px; color:var(--warning)">⚠️ Scrivi almeno 50 caratteri per una spiegazione completa</div>';
+    return;
+  }
+
+  localStorage.setItem(feynmanKey, text);
+  const wordCount = text.split(/\s+/).length;
+  feynmanFeedback.innerHTML = `
+    <div style="padding:12px; background:rgba(76,175,80,0.1); border-left:4px solid var(--green); border-radius:6px">
+      <div style="font-size:1.1em; margin-bottom:8px">✅ <strong>Spiegazione salvata!</strong></div>
+      <p style="font-size:0.85em; margin:4px 0">📝 ${wordCount} parole · ${text.length} caratteri</p>
+      <p style="font-size:0.85em; margin:8px 0 0; color:var(--muted)">💡 Rileggila domani per verificare se ha ancora senso!</p>
+    </div>
+  `;
+};
+
+window.clearFeynmanDir = function() {
+  if (confirm('Sei sicuro di voler cancellare la tua spiegazione?')) {
+    feynmanTextarea.value = '';
+    localStorage.removeItem(feynmanKey);
+    feynmanFeedback.innerHTML = '<div style="padding:8px; background:rgba(244,67,54,0.1); border-radius:6px; color:var(--error)">🗑️ Spiegazione cancellata</div>';
+  }
+};
+
+// ========== CHECKLIST SYSTEM ==========
+const checks = ['check1', 'check2', 'check3', 'check4', 'check5', 'check6', 'check7', 'check8', 'check9', 'check10'];
+const checklistBar = document.getElementById('checklist-bar');
+const checklistCount = document.getElementById('checklist-count');
+const checklistCelebration = document.getElementById('checklist-celebration');
+const checklistKey = 'checklist-diritto';
+
+function loadChecklist() {
+  try {
+    const saved = JSON.parse(localStorage.getItem(checklistKey) || '{}');
+    checks.forEach(id => {
+      const el = document.getElementById(id);
+      if (el && saved[id]) el.checked = true;
+    });
+  } catch {}
+  updateChecklist();
+}
+
+function saveChecklist() {
+  const data = {};
+  checks.forEach(id => {
+    const el = document.getElementById(id);
+    if (el) data[id] = el.checked;
+  });
+  localStorage.setItem(checklistKey, JSON.stringify(data));
+}
+
+function updateChecklist() {
+  const checked = checks.filter(id => document.getElementById(id)?.checked).length;
+  const perc = (checked / 10 * 100) | 0;
+  if (checklistBar) checklistBar.style.width = perc + '%';
+  if (checklistCount) checklistCount.textContent = checked;
+
+  if (checklistCelebration) {
+    if (checked === 10) {
+      checklistCelebration.style.display = 'block';
+    } else {
+      checklistCelebration.style.display = 'none';
+    }
+  }
+
+  saveChecklist();
+}
+
+checks.forEach(id => {
+  const el = document.getElementById(id);
+  if (el) el.addEventListener('change', updateChecklist);
+});
+
+// Inizializza all'avvio
+document.addEventListener('DOMContentLoaded', function() {
+  console.log('✅ DOM caricato - Sistema NPI pronto');
+  updateFlashcardStatsDir();
+  loadChecklist();
+
+  // Carica stats quiz se presenti
+  const quizStats = JSON.parse(localStorage.getItem('quiz-stats-diritto') || '{}');
+  [1, 2, 3].forEach(num => {
+    if (quizStats[`quiz${num}`] && quizStats[`quiz${num}`].correct > 0) {
+      const statsDiv = document.getElementById(`quiz${num}-stats`);
+      if (statsDiv) {
+        const percentage = ((quizStats[`quiz${num}`].correct / quizStats[`quiz${num}`].attempts) * 100).toFixed(0);
+        statsDiv.innerHTML = `📊 Tentativi: ${quizStats[`quiz${num}`].attempts} · Corretti: ${quizStats[`quiz${num}`].correct} · Precisione: ${percentage}%`;
+      }
+    }
+  });
+
+  // Carica ultima valutazione self-assessment
+  const saHistory = JSON.parse(localStorage.getItem('self-assessment-diritto') || '[]');
+  if (saHistory.length > 0) {
+    const last = saHistory[saHistory.length - 1];
+    document.getElementById('sa-dir-ricordo').value = last.ricordo;
+    document.getElementById('sa-dir-sicurezza').value = last.sicurezza;
+    document.getElementById('sa-dir-applicazione').value = last.applicazione;
+    document.getElementById('sa-dir-ricordo-val').textContent = last.ricordo;
+    document.getElementById('sa-dir-sicurezza-val').textContent = last.sicurezza;
+    document.getElementById('sa-dir-applicazione-val').textContent = last.applicazione;
+    const trendDiv = document.getElementById('sa-dir-trend');
+    if (trendDiv) {
+      trendDiv.innerHTML = `📅 Ultima valutazione: ${last.date} · Media: ${last.media}/5`;
+    }
+  }
+});
+</script>
+
+</body>
+</html>

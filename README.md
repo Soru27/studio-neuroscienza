@@ -19,8 +19,8 @@ Sistema di apprendimento accelerato con 6 moduli, quiz interattivi, flashcards e
 
 ### ✅ **DIRITTO** (Completa)
 Materiale su No-Global, G8 di Genova, Carlo Giuliani.
-- 📂 Cartella: `../diritto/`
-- 🌐 File: HTML + MD con design professionale
+- 📂 Cartella: `diritto/`
+- 🌐 File: HTML + MD con design professionale + NPI-Learning
 
 ### 🔜 **ALTRE MATERIE** (In Preparazione)
 - 📈 **Economia Politica**
