@@ -1,0 +1,1818 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>05-riepilogo-generale.md</title>
+<meta http-equiv="Content-type" content="text/html;charset=UTF-8">
+
+<style>
+/* https://github.com/microsoft/vscode/blob/master/extensions/markdown-language-features/media/markdown.css */
+/*---------------------------------------------------------------------------------------------
+ *  Copyright (c) Microsoft Corporation. All rights reserved.
+ *  Licensed under the MIT License. See License.txt in the project root for license information.
+ *--------------------------------------------------------------------------------------------*/
+
+body {
+	font-family: var(--vscode-markdown-font-family, -apple-system, BlinkMacSystemFont, "Segoe WPC", "Segoe UI", "Ubuntu", "Droid Sans", sans-serif);
+	font-size: var(--vscode-markdown-font-size, 14px);
+	padding: 0 26px;
+	line-height: var(--vscode-markdown-line-height, 22px);
+	word-wrap: break-word;
+}
+
+#code-csp-warning {
+	position: fixed;
+	top: 0;
+	right: 0;
+	color: white;
+	margin: 16px;
+	text-align: center;
+	font-size: 12px;
+	font-family: sans-serif;
+	background-color:#444444;
+	cursor: pointer;
+	padding: 6px;
+	box-shadow: 1px 1px 1px rgba(0,0,0,.25);
+}
+
+#code-csp-warning:hover {
+	text-decoration: none;
+	background-color:#007acc;
+	box-shadow: 2px 2px 2px rgba(0,0,0,.25);
+}
+
+body.scrollBeyondLastLine {
+	margin-bottom: calc(100vh - 22px);
+}
+
+body.showEditorSelection .code-line {
+	position: relative;
+}
+
+body.showEditorSelection .code-active-line:before,
+body.showEditorSelection .code-line:hover:before {
+	content: "";
+	display: block;
+	position: absolute;
+	top: 0;
+	left: -12px;
+	height: 100%;
+}
+
+body.showEditorSelection li.code-active-line:before,
+body.showEditorSelection li.code-line:hover:before {
+	left: -30px;
+}
+
+.vscode-light.showEditorSelection .code-active-line:before {
+	border-left: 3px solid rgba(0, 0, 0, 0.15);
+}
+
+.vscode-light.showEditorSelection .code-line:hover:before {
+	border-left: 3px solid rgba(0, 0, 0, 0.40);
+}
+
+.vscode-light.showEditorSelection .code-line .code-line:hover:before {
+	border-left: none;
+}
+
+.vscode-dark.showEditorSelection .code-active-line:before {
+	border-left: 3px solid rgba(255, 255, 255, 0.4);
+}
+
+.vscode-dark.showEditorSelection .code-line:hover:before {
+	border-left: 3px solid rgba(255, 255, 255, 0.60);
+}
+
+.vscode-dark.showEditorSelection .code-line .code-line:hover:before {
+	border-left: none;
+}
+
+.vscode-high-contrast.showEditorSelection .code-active-line:before {
+	border-left: 3px solid rgba(255, 160, 0, 0.7);
+}
+
+.vscode-high-contrast.showEditorSelection .code-line:hover:before {
+	border-left: 3px solid rgba(255, 160, 0, 1);
+}
+
+.vscode-high-contrast.showEditorSelection .code-line .code-line:hover:before {
+	border-left: none;
+}
+
+img {
+	max-width: 100%;
+	max-height: 100%;
+}
+
+a {
+	text-decoration: none;
+}
+
+a:hover {
+	text-decoration: underline;
+}
+
+a:focus,
+input:focus,
+select:focus,
+textarea:focus {
+	outline: 1px solid -webkit-focus-ring-color;
+	outline-offset: -1px;
+}
+
+hr {
+	border: 0;
+	height: 2px;
+	border-bottom: 2px solid;
+}
+
+h1 {
+	padding-bottom: 0.3em;
+	line-height: 1.2;
+	border-bottom-width: 1px;
+	border-bottom-style: solid;
+}
+
+h1, h2, h3 {
+	font-weight: normal;
+}
+
+table {
+	border-collapse: collapse;
+}
+
+table > thead > tr > th {
+	text-align: left;
+	border-bottom: 1px solid;
+}
+
+table > thead > tr > th,
+table > thead > tr > td,
+table > tbody > tr > th,
+table > tbody > tr > td {
+	padding: 5px 10px;
+}
+
+table > tbody > tr + tr > td {
+	border-top: 1px solid;
+}
+
+blockquote {
+	margin: 0 7px 0 5px;
+	padding: 0 16px 0 10px;
+	border-left-width: 5px;
+	border-left-style: solid;
+}
+
+code {
+	font-family: Menlo, Monaco, Consolas, "Droid Sans Mono", "Courier New", monospace, "Droid Sans Fallback";
+	font-size: 1em;
+	line-height: 1.357em;
+}
+
+body.wordWrap pre {
+	white-space: pre-wrap;
+}
+
+pre:not(.hljs),
+pre.hljs code > div {
+	padding: 16px;
+	border-radius: 3px;
+	overflow: auto;
+}
+
+pre code {
+	color: var(--vscode-editor-foreground);
+	tab-size: 4;
+}
+
+/** Theming */
+
+.vscode-light pre {
+	background-color: rgba(220, 220, 220, 0.4);
+}
+
+.vscode-dark pre {
+	background-color: rgba(10, 10, 10, 0.4);
+}
+
+.vscode-high-contrast pre {
+	background-color: rgb(0, 0, 0);
+}
+
+.vscode-high-contrast h1 {
+	border-color: rgb(0, 0, 0);
+}
+
+.vscode-light table > thead > tr > th {
+	border-color: rgba(0, 0, 0, 0.69);
+}
+
+.vscode-dark table > thead > tr > th {
+	border-color: rgba(255, 255, 255, 0.69);
+}
+
+.vscode-light h1,
+.vscode-light hr,
+.vscode-light table > tbody > tr + tr > td {
+	border-color: rgba(0, 0, 0, 0.18);
+}
+
+.vscode-dark h1,
+.vscode-dark hr,
+.vscode-dark table > tbody > tr + tr > td {
+	border-color: rgba(255, 255, 255, 0.18);
+}
+
+</style>
+
+<style>
+/* Tomorrow Theme */
+/* http://jmblog.github.com/color-themes-for-google-code-highlightjs */
+/* Original theme - https://github.com/chriskempson/tomorrow-theme */
+
+/* Tomorrow Comment */
+.hljs-comment,
+.hljs-quote {
+	color: #8e908c;
+}
+
+/* Tomorrow Red */
+.hljs-variable,
+.hljs-template-variable,
+.hljs-tag,
+.hljs-name,
+.hljs-selector-id,
+.hljs-selector-class,
+.hljs-regexp,
+.hljs-deletion {
+	color: #c82829;
+}
+
+/* Tomorrow Orange */
+.hljs-number,
+.hljs-built_in,
+.hljs-builtin-name,
+.hljs-literal,
+.hljs-type,
+.hljs-params,
+.hljs-meta,
+.hljs-link {
+	color: #f5871f;
+}
+
+/* Tomorrow Yellow */
+.hljs-attribute {
+	color: #eab700;
+}
+
+/* Tomorrow Green */
+.hljs-string,
+.hljs-symbol,
+.hljs-bullet,
+.hljs-addition {
+	color: #718c00;
+}
+
+/* Tomorrow Blue */
+.hljs-title,
+.hljs-section {
+	color: #4271ae;
+}
+
+/* Tomorrow Purple */
+.hljs-keyword,
+.hljs-selector-tag {
+	color: #8959a8;
+}
+
+.hljs {
+	display: block;
+	overflow-x: auto;
+	color: #4d4d4c;
+	padding: 0.5em;
+}
+
+.hljs-emphasis {
+	font-style: italic;
+}
+
+.hljs-strong {
+	font-weight: bold;
+}
+</style>
+
+<style>
+/*
+ * Markdown PDF CSS
+ */
+
+ body {
+	font-family: -apple-system, BlinkMacSystemFont, "Segoe WPC", "Segoe UI", "Ubuntu", "Droid Sans", sans-serif, "Meiryo";
+	padding: 0 12px;
+}
+
+pre {
+	background-color: #f8f8f8;
+	border: 1px solid #cccccc;
+	border-radius: 3px;
+	overflow-x: auto;
+	white-space: pre-wrap;
+	overflow-wrap: break-word;
+}
+
+pre:not(.hljs) {
+	padding: 23px;
+	line-height: 19px;
+}
+
+blockquote {
+	background: rgba(127, 127, 127, 0.1);
+	border-color: rgba(0, 122, 204, 0.5);
+}
+
+.emoji {
+	height: 1.4em;
+}
+
+code {
+	font-size: 14px;
+	line-height: 19px;
+}
+
+/* for inline code */
+:not(pre):not(.hljs) > code {
+	color: #C9AE75; /* Change the old color so it seems less like an error */
+	font-size: inherit;
+}
+
+/* Page Break : use <div class="page"/> to insert page break
+-------------------------------------------------------- */
+.page {
+	page-break-after: always;
+}
+
+</style>
+
+<style>:root{--bg: #0b0c10; --fg:#eceff4; --muted:#9aa4b2; --card:#111318; --border:#23262e;--blue:#4da3ff; --red:#ff5964; --green:#3ad29f; --yellow:#ffd166;--shadow: 0 6px 18px rgba(0,0,0,.25);--radius:16px; --pad:16px; --gap:14px; --font: Inter, system-ui, Segoe UI, Roboto, Arial, sans-serif;}@media (prefers-color-scheme: light){:root{ --bg:#f7f8fb; --fg:#0f172a; --muted:#475569; --card:#ffffff; --border:#e5e7eb;--blue:#2563eb; --red:#ef4444; --green:#10b981; --yellow:#f59e0b; }}html,body{background:var(--bg); color:var(--fg); font-family:var(--font);}.container{max-width:1200px; margin:32px auto; padding:0 16px;}.grid{display:grid; gap:var(--gap);}.grid-2{grid-template-columns: 1.2fr .8fr;}@media (max-width:960px){ .grid-2{grid-template-columns:1fr;} }.card{background:var(--card); border:1px solid var(--border); border-radius:var(--radius); padding:var(--pad); box-shadow:var(--shadow);margin-bottom: 18px;}.card h2, .card h3{margin-top:0}.badge{display:inline-flex; align-items:center; gap:6px; font-weight:600; font-size:.85rem; padding:6px 10px; border-radius:999px; border:1px solid var(--border); background:linear-gradient(180deg, rgba(255,255,255,.04), transparent);}.b-blue{color:var(--blue); border-color:color-mix(in oklab, var(--blue), #000 70%);}.b-red{color:var(--red); border-color:color-mix(in oklab, var(--red), #000 70%);}.b-green{color:var(--green); border-color:color-mix(in oklab, var(--green), #000 70%);}.b-yellow{color:var(--yellow); border-color:color-mix(in oklab, var(--yellow), #000 70%);}.callout{border-left:6px solid var(--border); padding:14px 16px; border-radius:12px; background:linear-gradient(180deg, rgba(255,255,255,.03), transparent);margin: 12px 0;}.co-blue{border-left-color:var(--blue)}.co-red{border-left-color:var(--red)}.co-green{border-left-color:var(--green)}.co-yellow{border-left-color:var(--yellow)}.kbd{font:600 .85rem ui-monospace, SFMono-Regular, Menlo, monospace; background:var(--border); padding:2px 6px; border-radius:6px; border:1px solid color-mix(in oklab, var(--border), #000 35%);}.progress{height:10px; background:color-mix(in oklab, var(--border), #000 20%); border-radius:999px; overflow:hidden;}.progress > i{display:block; height:100%; width:0%; background:linear-gradient(90deg, var(--green), var(--blue)); transition:width .4s ease;}.separator{height:1px; background:var(--border); margin:18px 0;}.recall .hidden-answer{filter: blur(8px); transition:filter .2s; user-select: none;}.recall.reveal .hidden-answer{filter:none; user-select: auto;}.btn{display:inline-flex; align-items:center; gap:10px; padding:10px 14px; border-radius:12px; border:1px solid var(--border); background:var(--card); color:var(--fg); cursor:pointer;font-family: var(--font);}.btn:hover{border-color:color-mix(in oklab, var(--border), var(--fg) 30%);}.sticky{position:sticky; top:18px; align-self: start;}.small{font-size:.9rem; color:var(--muted)}input[type="text"], input[type="range"]{width: 100%;padding: 8px;border-radius: 8px;border: 1px solid var(--border);background: var(--bg);color: var(--fg);font-family: var(--font);}label{display: block;font-size: 0.9rem;color: var(--muted);margin-bottom: 6px;}blockquote{border-left: 4px solid var(--blue);padding-left: 16px;margin-left: 0;background: linear-gradient(90deg, rgba(77, 163, 255, 0.1), transparent);border-radius: 8px;padding: 12px 16px;}details{background: var(--card);border: 1px solid var(--border);border-radius: 12px;padding: 12px;margin: 12px 0;}details summary{cursor: pointer;font-weight: 600;padding: 8px;border-radius: 8px;}details summary:hover{background: color-mix(in oklab, var(--border), transparent 50%);}</style>
+
+<script src="https://unpkg.com/mermaid/dist/mermaid.min.js"></script>
+</head>
+<body>
+  <script>
+    mermaid.initialize({
+      startOnLoad: true,
+      theme: document.body.classList.contains('vscode-dark') || document.body.classList.contains('vscode-high-contrast')
+          ? 'dark'
+          : 'default'
+    });
+  </script>
+
+<style>
+.top-header {
+  position: sticky;
+  top: 0;
+  z-index: 1000;
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  color: #ffffff;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+  padding: 12px 20px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 12px;
+}
+.top-header .course-info {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  flex-wrap: wrap;
+}
+.top-header .home-icon {
+  font-size: 1.5rem;
+  cursor: pointer;
+  transition: transform 0.2s;
+  text-decoration: none;
+  color: #ffffff;
+}
+.top-header .home-icon:hover {
+  transform: scale(1.1);
+}
+.top-header .course-title {
+  font-weight: 700;
+  font-size: 1rem;
+  letter-spacing: 0.5px;
+}
+.top-header .course-meta {
+  font-size: 0.85rem;
+  opacity: 0.9;
+  display: flex;
+  gap: 8px;
+  flex-wrap: wrap;
+}
+.top-header .course-meta span {
+  background: rgba(255,255,255,0.2);
+  padding: 4px 10px;
+  border-radius: 12px;
+}
+.nav-horizontal {
+  display: flex;
+  gap: 8px;
+  flex-wrap: wrap;
+  align-items: center;
+}
+.nav-horizontal a {
+  background: rgba(255,255,255,0.15);
+  color: #ffffff;
+  padding: 8px 14px;
+  border-radius: 8px;
+  text-decoration: none;
+  font-size: 0.9rem;
+  font-weight: 500;
+  transition: all 0.2s;
+  border: 1px solid rgba(255,255,255,0.2);
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+}
+.nav-horizontal a:hover {
+  background: rgba(255,255,255,0.25);
+  border-color: rgba(255,255,255,0.4);
+  transform: translateY(-2px);
+}
+.nav-horizontal a.active {
+  background: rgba(255,255,255,0.95);
+  color: #667eea;
+  font-weight: 700;
+  border-color: rgba(255,255,255,0.5);
+}
+@media (max-width: 768px) {
+  .top-header {
+    padding: 10px 15px;
+  }
+  .top-header .course-title {
+    font-size: 0.9rem;
+  }
+  .top-header .course-meta {
+    font-size: 0.75rem;
+  }
+  .nav-horizontal a {
+    font-size: 0.8rem;
+    padding: 6px 10px;
+  }
+}
+</style>
+
+<header class="top-header">
+  <div class="course-info">
+    <a href="../index.html" class="home-icon" title="Home - Tutte le Materie">🏠</a>
+    <div>
+      <div class="course-title">📚 ECONOMIA AZIENDALE</div>
+      <div class="course-meta">
+        <span>A.S. 2025/2026</span>
+        <span>AFM Quinta Serale</span>
+      </div>
+    </div>
+  </div>
+  <nav class="nav-horizontal">
+    <a href="01-immobilizzazioni-materiali.html">🔵 Immobilizzazioni</a>
+    <a href="02-leasing-costruzioni.html">🔵 Leasing</a>
+    <a href="03-scritture-operative.html">🟡 Operative</a>
+    <a href="04-assestamenti-rettifiche.html">🟢 Assestamenti</a>
+    <a href="05-riepilogo-generale.html" class="active">📊 Riepilogo</a>
+    <a href="simulazioni/dashboard-simulazioni.html">🎯 Simulazioni</a>
+  </nav>
+</header>
+
+<div class="container">
+
+<h1 id="%F0%9F%93%8A-riepilogo-generale---economia-aziendale">📊 RIEPILOGO GENERALE - ECONOMIA AZIENDALE</h1>
+<blockquote>
+<p><strong>Obiettivo:</strong> Consolidare tutti i moduli in schemi comparativi e visioni d'insieme</p>
+</blockquote>
+
+<div class="card" id="npi-widget" aria-live="polite"><div style="display:flex; justify-content:space-between; align-items:center; gap:10px; flex-wrap:wrap"><div class="badge b-blue">🧠 NPI-Learning — Riepilogo</div><div class="small">Valuta la tua comprensione globale</div></div><div class="separator"></div><div class="grid" style="grid-template-columns:1fr 1fr 1fr; gap:18px"><label>Ritenzione R(t) %<input id="npi-r" type="range" min="0" max="100" step="5" value="0"><span id="npi-r-val" class="small" style="display:block; margin-top:4px">0%</span></label><label>Energia E(t) 1–5<input id="npi-e" type="range" min="1" max="5" step="1" value="3"><span id="npi-e-val" class="small" style="display:block; margin-top:4px">3/5</span></label><label>Coerenza C(t) 1–5<input id="npi-c" type="range" min="1" max="5" step="1" value="3"><span id="npi-c-val" class="small" style="display:block; margin-top:4px">3/5</span></label></div><div class="separator"></div><div class="grid" style="grid-template-columns:1fr auto; align-items:center"><div class="progress"><i id="npi-bar"></i></div><div id="npi-chip" class="badge">Stato: —</div></div><div class="small" id="npi-tip" style="margin-top:8px"></div></div>
+
+<script>(function(){const id = (sel)=>document.querySelector(sel);const r = id('#npi-r'), e = id('#npi-e'), c = id('#npi-c');const rVal = id('#npi-r-val'), eVal = id('#npi-e-val'), cVal = id('#npi-c-val');const bar = id('#npi-bar'), chip = id('#npi-chip'), tip = id('#npi-tip');const KEY='npi-riepilogo';function load(){try{ const v = JSON.parse(localStorage.getItem(KEY)||'{}');if(v.r!=null){ r.value=v.r; e.value=v.e; c.value=v.c; }}catch{}update();}function save(){ localStorage.setItem(KEY, JSON.stringify({r:+r.value, e:+e.value, c:+c.value})); }function compute(){const R = +r.value/100, E = +e.value/5, C = +c.value/5;return Math.max(0, Math.min(1, 0.5*R + 0.25*E + 0.25*C));}function label(score){if(score>=0.75) return {txt:'🟢 Flow', tip:'Pronto per esame!'};if(score>=0.40) return {txt:'🟡 Ristruttura', tip:'Rivedi tabelle comparative'};return {txt:'🔴 Ricodifica', tip:'Ripassa singoli moduli'};  }function update(){const s = compute();bar.style.width = (s*100).toFixed(0)+'%';chip.className = 'badge ' + (s>=0.75?'b-green':(s>=0.4?'b-yellow':'b-red'));chip.textContent = 'Stato: ' + label(s).txt + ' ('+(s*100|0)+'%)';tip.textContent = label(s).tip;rVal.textContent = r.value + '%';eVal.textContent = e.value + '/5';cVal.textContent = c.value + '/5';save();}[r,e,c].forEach(x=>x.addEventListener('input', update));load();})();</script>
+
+<div class="card" style="display:flex; align-items:center; justify-content:space-between; gap:10px; flex-wrap:wrap;"><div><div class="badge b-yellow">🎯 Active-Recall</div><div class="small" style="margin-top:6px">Premi <span class="kbd">R</span> per mostrare/nascondere</div></div><button id="recall-toggle" class="btn"><span>Mostra risposte</span> <span class="kbd">R</span></button></div>
+
+<script>(function(){const root=document.documentElement;const btn=document.getElementById('recall-toggle');function toggle(){ root.classList.toggle('reveal'); btn.firstElementChild.textContent = root.classList.contains('reveal')?'Nascondi risposte':'Mostra risposte'; }btn.addEventListener('click', toggle);document.addEventListener('keydown', (e)=>{ if(e.key.toLowerCase()==='r' && !e.ctrlKey && !e.altKey && !e.metaKey) {if(!['INPUT','TEXTAREA'].includes(document.activeElement.tagName)){ toggle(); }}});root.classList.add('recall');})();</script>
+
+<!-- 📊 DASHBOARD INTERATTIVITÀ GLOBALE -->
+<div class="card" style="background: linear-gradient(135deg, rgba(138,43,226,0.08), rgba(66,135,245,0.05)); border-left: 4px solid #8a2be2; margin: 24px 0">
+  <div style="display:flex; align-items:center; gap:12px; margin-bottom:20px">
+    <div class="badge" style="background:linear-gradient(135deg, #8a2be2, #4287f5); color:#fff">📊 Dashboard Interattività</div>
+    <div class="small" style="color:var(--muted)">Monitoraggio progresso globale</div>
+  </div>
+
+  <div id="dashboard-content">
+    <p class="small" style="color:var(--muted); text-align:center; padding:20px">⏳ Caricamento statistiche...</p>
+  </div>
+</div>
+
+<script>
+(function() {
+  const dashboardDiv = document.getElementById('dashboard-content');
+
+  // Recupera tutte le stats da localStorage
+  const quizImmobilizzazioni = JSON.parse(localStorage.getItem('quiz-stats-immobilizzazioni') || '{}');
+  const quizLeasing = JSON.parse(localStorage.getItem('quiz-stats-leasing') || '{}');
+  const selfImmob = {
+    chunk1: JSON.parse(localStorage.getItem('self-assessment-immobilizzazioni-chunk1') || '[]'),
+    chunk2: JSON.parse(localStorage.getItem('self-assessment-immobilizzazioni-chunk2') || '[]'),
+    chunk3: JSON.parse(localStorage.getItem('self-assessment-immobilizzazioni-chunk3') || '[]')
+  };
+  const selfLeasing = {
+    chunk1: JSON.parse(localStorage.getItem('self-assessment-leasing-chunk1') || '[]')
+  };
+  const feynmanTFR = JSON.parse(localStorage.getItem('feynman-scritture-tfr') || '{}');
+
+  // Calcola statistiche aggregate
+  let totalQuizAttempts = 0;
+  let totalQuizCorrect = 0;
+  let quizModules = 0;
+
+  // Quiz Immobilizzazioni
+  if (quizImmobilizzazioni.quiz1 || quizImmobilizzazioni.quiz2 || quizImmobilizzazioni.quiz3) {
+    quizModules++;
+    ['quiz1', 'quiz2', 'quiz3'].forEach(q => {
+      if (quizImmobilizzazioni[q]) {
+        totalQuizAttempts += quizImmobilizzazioni[q].attempts || 0;
+        totalQuizCorrect += quizImmobilizzazioni[q].correct || 0;
+      }
+    });
+  }
+
+  // Quiz Leasing
+  if (quizLeasing.quiz1) {
+    quizModules++;
+    totalQuizAttempts += quizLeasing.quiz1.attempts || 0;
+    totalQuizCorrect += quizLeasing.quiz1.correct || 0;
+  }
+
+  // Quiz Scritture (file 03)
+  const quizScritture = JSON.parse(localStorage.getItem('quiz-stats-scritture') || '{}');
+  if (quizScritture.quiz1 || quizScritture.quiz2) {
+    quizModules++;
+    ['quiz1', 'quiz2'].forEach(q => {
+      if (quizScritture[q]) {
+        totalQuizAttempts += quizScritture[q].attempts || 0;
+        totalQuizCorrect += quizScritture[q].correct || 0;
+      }
+    });
+  }
+
+  // Quiz Assestamenti (file 04)
+  const quizAssestamenti = JSON.parse(localStorage.getItem('quiz-stats-assestamenti') || '{}');
+  if (quizAssestamenti.quiz1 || quizAssestamenti.quiz2) {
+    quizModules++;
+    ['quiz1', 'quiz2'].forEach(q => {
+      if (quizAssestamenti[q]) {
+        totalQuizAttempts += quizAssestamenti[q].attempts || 0;
+        totalQuizCorrect += quizAssestamenti[q].correct || 0;
+      }
+    });
+  }
+
+  const quizPercentage = totalQuizAttempts > 0 ? ((totalQuizCorrect / totalQuizAttempts) * 100).toFixed(0) : 0;
+
+  // Self-Assessment medio
+  let allSelfAssessments = [];
+  Object.values(selfImmob).forEach(arr => {
+    if (arr.length > 0) allSelfAssessments.push(arr[arr.length - 1].media);
+  });
+  Object.values(selfLeasing).forEach(arr => {
+    if (arr.length > 0) allSelfAssessments.push(arr[arr.length - 1].media);
+  });
+
+  const avgSelfAssessment = allSelfAssessments.length > 0
+    ? (allSelfAssessments.reduce((a,b) => a+b, 0) / allSelfAssessments.length).toFixed(1)
+    : 0;
+
+  // Feynman stats
+  const feynmanAttempts = feynmanTFR.attempts || 0;
+  const feynmanPerfect = feynmanTFR.perfect || 0;
+  const feynmanPercentage = feynmanAttempts > 0 ? ((feynmanPerfect / feynmanAttempts) * 100).toFixed(0) : 0;
+
+  // Feynman Ammortamento stats (file 01)
+  const feynmanAmmortamento = JSON.parse(localStorage.getItem('feynman-immobilizzazioni-ammortamento') || '{}');
+  const feynmanAmmAttempts = feynmanAmmortamento.attempts || 0;
+  const feynmanAmmPerfect = feynmanAmmortamento.perfect || 0;
+
+  // Flashcards stats
+  const flashcardsImmob = JSON.parse(localStorage.getItem('flashcards-immobilizzazioni') || '{}');
+  const flashcardsScritture = JSON.parse(localStorage.getItem('flashcards-scritture') || '{}');
+
+  const flashcardsImmobKeys = Object.keys(flashcardsImmob);
+  const flashcardsScritKeys = Object.keys(flashcardsScritture);
+  const totalFlashcards = flashcardsImmobKeys.length + flashcardsScritKeys.length;
+
+  const masteredImmob = flashcardsImmobKeys.filter(id => flashcardsImmob[id].views >= 5).length;
+  const masteredScrit = flashcardsScritKeys.filter(id => flashcardsScritture[id].views >= 5).length;
+  const masteredFlashcards = masteredImmob + masteredScrit;
+
+  const totalFlashcardViews = [...flashcardsImmobKeys, ...flashcardsScritKeys]
+    .reduce((sum, id) => {
+      const card = flashcardsImmob[id] || flashcardsScritture[id];
+      return sum + (card?.views || 0);
+    }, 0);
+
+  const flashcardsPercentage = totalFlashcards > 0 ? ((masteredFlashcards / totalFlashcards) * 100).toFixed(0) : 0;
+
+  // Calcola punti totali (gamification)
+  let totalPoints = 0;
+  totalPoints += totalQuizCorrect * 10; // +10 per quiz corretto
+  totalPoints += allSelfAssessments.length * 5; // +5 per self-assessment completato
+  totalPoints += feynmanPerfect * 15; // +15 per Feynman perfetto (TFR)
+  totalPoints += feynmanAmmPerfect * 15; // +15 per Feynman perfetto (Ammortamento)
+  totalPoints += masteredFlashcards * 20; // +20 per flashcard masterata (5+ viste)
+
+  // Determina badge
+  let badge = '🥉 Principiante';
+  let badgeColor = '#cd7f32';
+  if (totalPoints >= 600) { badge = '🏆 Maestro'; badgeColor = '#ffd700'; }
+  else if (totalPoints >= 300) { badge = '🥇 Esperto'; badgeColor = '#ffd700'; }
+  else if (totalPoints >= 100) { badge = '🥈 Studente'; badgeColor = '#c0c0c0'; }
+
+  // Render dashboard
+  dashboardDiv.innerHTML = `
+    <div style="display:grid; gap:20px">
+
+      <!-- Badge e Punti Totali -->
+      <div style="text-align:center; padding:20px; background:rgba(138,43,226,0.1); border-radius:12px">
+        <div style="font-size:3em; margin-bottom:8px">${badge.split(' ')[0]}</div>
+        <div style="font-size:1.5em; font-weight:700; color:${badgeColor}; margin-bottom:4px">${badge.split(' ').slice(1).join(' ')}</div>
+        <div style="font-size:2em; font-weight:700; color:var(--blue); margin-top:8px">${totalPoints} punti</div>
+        <div class="small" style="color:var(--muted); margin-top:4px">
+          ${totalPoints < 100 ? 'Prossimo livello: Studente (100 pt)' :
+            totalPoints < 300 ? 'Prossimo livello: Esperto (300 pt)' :
+            totalPoints < 600 ? 'Prossimo livello: Maestro (600 pt)' :
+            'Livello massimo raggiunto! 🎉'}
+        </div>
+      </div>
+
+      <!-- Statistiche Moduli -->
+      <div style="display:grid; grid-template-columns:repeat(auto-fit, minmax(250px, 1fr)); gap:16px">
+
+        <!-- Mini-Quiz -->
+        <div style="padding:16px; background:rgba(255,215,0,0.1); border-left:4px solid var(--yellow); border-radius:8px">
+          <div style="display:flex; align-items:center; gap:8px; margin-bottom:12px">
+            <span style="font-size:1.5em">🎯</span>
+            <strong>Mini-Quiz</strong>
+          </div>
+          <div style="font-size:2em; font-weight:700; color:var(--yellow); margin-bottom:8px">${totalQuizCorrect}/${totalQuizAttempts}</div>
+          <div class="small" style="color:var(--muted)">Risposte corrette</div>
+          <div style="margin-top:12px">
+            <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:4px">
+              <span class="small">Precisione</span>
+              <span class="small" style="font-weight:700">${quizPercentage}%</span>
+            </div>
+            <div class="progress"><i style="width:${quizPercentage}%; background:var(--yellow)"></i></div>
+          </div>
+          <div class="small" style="margin-top:8px; color:var(--muted)">
+            ${quizModules > 0 ? `Moduli attivi: Immobilizzazioni (3), Leasing (1), Scritture (2), Assestamenti (2)` : 'Nessun quiz completato'}
+          </div>
+        </div>
+
+        <!-- Self-Assessment -->
+        <div style="padding:16px; background:rgba(66,135,245,0.1); border-left:4px solid var(--blue); border-radius:8px">
+          <div style="display:flex; align-items:center; gap:8px; margin-bottom:12px">
+            <span style="font-size:1.5em">🧠</span>
+            <strong>Auto-Valutazione</strong>
+          </div>
+          <div style="font-size:2em; font-weight:700; color:var(--blue); margin-bottom:8px">${avgSelfAssessment}/5</div>
+          <div class="small" style="color:var(--muted)">Media complessiva</div>
+          <div style="margin-top:12px">
+            <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:4px">
+              <span class="small">Progresso</span>
+              <span class="small" style="font-weight:700">${((avgSelfAssessment / 5) * 100).toFixed(0)}%</span>
+            </div>
+            <div class="progress"><i style="width:${(avgSelfAssessment / 5) * 100}%; background:var(--blue)"></i></div>
+          </div>
+          <div class="small" style="margin-top:8px; color:var(--muted)">Valutazioni totali: ${allSelfAssessments.length}</div>
+        </div>
+
+        <!-- Feynman Mode -->
+        <div style="padding:16px; background:rgba(138,43,226,0.1); border-left:4px solid #8a2be2; border-radius:8px">
+          <div style="display:flex; align-items:center; gap:8px; margin-bottom:12px">
+            <span style="font-size:1.5em">🎤</span>
+            <strong>Feynman Mode</strong>
+          </div>
+          <div style="font-size:2em; font-weight:700; color:#8a2be2; margin-bottom:8px">${feynmanPerfect + feynmanAmmPerfect}/${feynmanAttempts + feynmanAmmAttempts}</div>
+          <div class="small" style="color:var(--muted)">Spiegazioni perfette</div>
+          <div style="margin-top:12px">
+            <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:4px">
+              <span class="small">Precisione</span>
+              <span class="small" style="font-weight:700">${(feynmanAttempts + feynmanAmmAttempts) > 0 ? ((feynmanPerfect + feynmanAmmPerfect) / (feynmanAttempts + feynmanAmmAttempts) * 100).toFixed(0) : 0}%</span>
+            </div>
+            <div class="progress"><i style="width:${(feynmanAttempts + feynmanAmmAttempts) > 0 ? ((feynmanPerfect + feynmanAmmPerfect) / (feynmanAttempts + feynmanAmmAttempts) * 100).toFixed(0) : 0}%; background:#8a2be2"></i></div>
+          </div>
+          <div class="small" style="margin-top:8px; color:var(--muted)">${(feynmanAttempts + feynmanAmmAttempts) > 0 ? 'Concetti: TFR, Ammortamento' : 'Nessuna spiegazione tentata'}</div>
+        </div>
+
+        <!-- Flashcards -->
+        <div style="padding:16px; background:rgba(156,39,176,0.1); border-left:4px solid #9c27b0; border-radius:8px">
+          <div style="display:flex; align-items:center; gap:8px; margin-bottom:12px">
+            <span style="font-size:1.5em">🃏</span>
+            <strong>Flashcards</strong>
+          </div>
+          <div style="font-size:2em; font-weight:700; color:#9c27b0; margin-bottom:8px">${masteredFlashcards}/${totalFlashcards}</div>
+          <div class="small" style="color:var(--muted)">Cards masterate (5+ viste)</div>
+          <div style="margin-top:12px">
+            <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:4px">
+              <span class="small">Progresso</span>
+              <span class="small" style="font-weight:700">${flashcardsPercentage}%</span>
+            </div>
+            <div class="progress"><i style="width:${flashcardsPercentage}%; background:#9c27b0"></i></div>
+          </div>
+          <div class="small" style="margin-top:8px; color:var(--muted)">${totalFlashcardViews > 0 ? `${totalFlashcardViews} visualizzazioni totali` : 'Nessuna flashcard visualizzata'}</div>
+        </div>
+
+      </div>
+
+      <!-- Dettaglio per modulo -->
+      <details style="margin-top:12px">
+        <summary style="cursor:pointer; padding:12px; background:rgba(66,135,245,0.05); border-radius:6px; font-weight:600">
+          📋 Dettaglio per modulo
+        </summary>
+        <div style="padding:16px; margin-top:8px">
+
+          <h4 style="margin-bottom:12px">📦 01 - Immobilizzazioni Materiali</h4>
+          <ul class="small" style="margin:8px 0; padding-left:20px">
+            <li>Quiz: ${(quizImmobilizzazioni.quiz1?.correct || 0) + (quizImmobilizzazioni.quiz2?.correct || 0) + (quizImmobilizzazioni.quiz3?.correct || 0)}/${(quizImmobilizzazioni.quiz1?.attempts || 0) + (quizImmobilizzazioni.quiz2?.attempts || 0) + (quizImmobilizzazioni.quiz3?.attempts || 0)} corretti</li>
+            <li>Self-Assessment: ${selfImmob.chunk1.length + selfImmob.chunk2.length + selfImmob.chunk3.length} valutazioni completate</li>
+            <li>Feynman Ammortamento: ${feynmanAmmPerfect}/${feynmanAmmAttempts} perfetti</li>
+            <li>Flashcards: ${masteredImmob}/${flashcardsImmobKeys.length} masterate (${totalFlashcards > 0 ? ((masteredImmob / flashcardsImmobKeys.length) * 100).toFixed(0) : 0}%)</li>
+            <li>Ultimo CHUNK 1: ${selfImmob.chunk1.length > 0 ? selfImmob.chunk1[selfImmob.chunk1.length-1].media + '/5' : 'Non valutato'}</li>
+            <li>Ultimo CHUNK 2: ${selfImmob.chunk2.length > 0 ? selfImmob.chunk2[selfImmob.chunk2.length-1].media + '/5' : 'Non valutato'}</li>
+            <li>Ultimo CHUNK 3: ${selfImmob.chunk3.length > 0 ? selfImmob.chunk3[selfImmob.chunk3.length-1].media + '/5' : 'Non valutato'}</li>
+          </ul>
+
+          <h4 style="margin:20px 0 12px">📦 02 - Leasing e Costruzioni</h4>
+          <ul class="small" style="margin:8px 0; padding-left:20px">
+            <li>Quiz: ${quizLeasing.quiz1?.correct || 0}/${quizLeasing.quiz1?.attempts || 0} corretti</li>
+            <li>Self-Assessment: ${selfLeasing.chunk1.length} valutazioni completate</li>
+            <li>Ultimo CHUNK 1: ${selfLeasing.chunk1.length > 0 ? selfLeasing.chunk1[selfLeasing.chunk1.length-1].media + '/5' : 'Non valutato'}</li>
+          </ul>
+
+          <h4 style="margin:20px 0 12px">📦 03 - Scritture Operative</h4>
+          <ul class="small" style="margin:8px 0; padding-left:20px">
+            <li>Quiz TFR: ${quizScritture.quiz1?.correct || 0}/${quizScritture.quiz1?.attempts || 0} + ${quizScritture.quiz2?.correct || 0}/${quizScritture.quiz2?.attempts || 0} corretti</li>
+            <li>Feynman TFR: ${feynmanPerfect}/${feynmanAttempts} perfetti (${feynmanPercentage}%)</li>
+            <li>Flashcards TFR: ${masteredScrit}/${flashcardsScritKeys.length} masterate (${flashcardsScritKeys.length > 0 ? ((masteredScrit / flashcardsScritKeys.length) * 100).toFixed(0) : 0}%)</li>
+          </ul>
+
+          <h4 style="margin:20px 0 12px">📦 04 - Assestamenti e Rettifiche</h4>
+          <ul class="small" style="margin:8px 0; padding-left:20px">
+            <li>Quiz Rateo Attivo: ${quizAssestamenti.quiz1?.correct || 0}/${quizAssestamenti.quiz1?.attempts || 0} corretti</li>
+            <li>Quiz Risconto Attivo: ${quizAssestamenti.quiz2?.correct || 0}/${quizAssestamenti.quiz2?.attempts || 0} corretti</li>
+            <li>Precisione totale: ${(quizAssestamenti.quiz1?.attempts || 0) + (quizAssestamenti.quiz2?.attempts || 0) > 0 ? (((quizAssestamenti.quiz1?.correct || 0) + (quizAssestamenti.quiz2?.correct || 0)) / ((quizAssestamenti.quiz1?.attempts || 0) + (quizAssestamenti.quiz2?.attempts || 0)) * 100).toFixed(0) : 0}%</li>
+          </ul>
+
+        </div>
+      </details>
+
+      <!-- Call to Action -->
+      ${totalPoints < 100 ? `
+      <div style="padding:16px; background:rgba(255,193,7,0.1); border-left:4px solid var(--yellow); border-radius:8px; margin-top:12px">
+        <p class="small" style="margin:0">
+          💡 <strong>Suggerimento:</strong> Completa più quiz e self-assessment per sbloccare il badge "Studente" (100 punti)!
+        </p>
+      </div>
+      ` : ''}
+
+      <!-- Test Suite Link -->
+      <div style="padding:16px; background:rgba(138,43,226,0.1); border-left:4px solid #8a2be2; border-radius:8px; margin-top:12px; text-align:center;">
+        <p style="margin:0 0 12px 0; font-weight:600; color:#8a2be2">🧪 Strumenti Sviluppatore</p>
+        <a href="TEST-SUITE.html" style="display:inline-block; padding:10px 20px; background:linear-gradient(135deg, #8a2be2, #4287f5); color:white; text-decoration:none; border-radius:8px; font-weight:600; transition:transform 0.2s;">
+          🔬 Apri Test Suite → Verifica Sistema
+        </a>
+        <p class="small" style="margin:8px 0 0 0; color:var(--muted)">
+          Controlla localStorage, test features, reset dati
+        </p>
+      </div>
+
+    </div>
+  `;
+})();
+</script>
+
+<div class="grid grid-2">
+  <main class="grid" style="gap:18px">
+<hr>
+<h2 id="%F0%9F%8E%AF-mappa-concettuale-visuale-con-colori">🎯 MAPPA CONCETTUALE VISUALE CON COLORI</h2>
+<pre class="hljs"><code><div>                    📊 ECONOMIA AZIENDALE
+                           │
+        ┌──────────────────┼──────────────────┐
+        │                  │                  │
+    🟡 OPERATIVE      🔵 PLURIENNALI     🟢 ASSESTAMENTI
+        │                  │                  │
+        ├─ Acquisti        ├─ IMMOBILIZZ.    ├─ Ratei (ANTICIPO)
+        ├─ Vendite         │  • Acquisto     │  🔴 Non ancora pagato
+        ├─ IVA             │  • Ammort. ←──┐ │  🟢 Già maturato
+        └─ Imposte         │  • Vendita    │ │
+           (IRES/IRAP)     │               │ ├─ Risconti (RINVIO)
+                           ├─ LEASING      │ │  🟢 Già pagato
+                           │  • Maxicanone │ │  🔴 Non ancora competenza
+                           │  • Canoni     │ │
+                           │  • Risconti ──┘ ├─ Svalutazioni
+                           │                 │  🔴 Prudenza
+                           └─ TFR            │  🔵 Fondo rettificativo
+                              • Quota        │
+                              • Rivalut.     └─ Rimanenze
+                              • Ritenuta        🟢 Integrazione CE
+                                                🔵 Variazione stock
+</div></code></pre>
+<h3 id="%F0%9F%8E%A8-legenda-colori">🎨 Legenda Colori:</h3>
+<ul>
+<li>🔵 <strong>BLU</strong> = Concetti teorici fondamentali (es: VNC, Costo storico)</li>
+<li>🔴 <strong>ROSSO</strong> = Attenzione! Errori comuni o formule critiche</li>
+<li>🟢 <strong>VERDE</strong> = Operazioni corrette, risultati positivi</li>
+<li>🟡 <strong>GIALLO</strong> = Procedure operative, step-by-step</li>
+</ul>
+<hr>
+<h2 id="%F0%9F%97%BA%EF%B8%8F-mappa-relazioni-tra-concetti">🗺️ MAPPA RELAZIONI TRA CONCETTI</h2>
+<pre class="hljs"><code><div>        [ACQUISTO IMMOBILIZZAZIONE]
+                   │
+                   ↓ (registrazione)
+            🔵 COSTO STORICO
+         (Prezzo + Oneri accessori)
+                   │
+                   ↓ (ogni anno)
+            🟡 AMMORTAMENTO
+         (Costo × Coefficiente)
+                   │
+                   ↓ (accumula)
+           🔵 FONDO AMMORTAMENTO
+                   │
+                   ↓ (calcolo)
+        🔵 VNC = Costo - Fondo
+                   │
+         ┌─────────┴─────────┐
+         ↓                   ↓
+    [VENDITA]           [CONTINUA USO]
+         │                   │
+         ↓                   ↓
+  Confronto VNC         Ammortamento
+    vs Prezzo           anni successivi
+         │
+    ┌────┴────┐
+    ↓         ↓
+🟢 PLUS    🔴 MINUS
+(Ricavo)  (Costo)
+</div></code></pre>
+<hr>
+<h2 id="%F0%9F%93%8B-tabella-1-operazioni-vs-tipo">📋 TABELLA 1: OPERAZIONI vs TIPO</h2>
+<table>
+<thead>
+<tr>
+<th>Operazione</th>
+<th>Tipo</th>
+<th>Dare</th>
+<th>Avere</th>
+<th>CE/SP</th>
+<th>Quando</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Acquisto merci</strong></td>
+<td>Ordinaria</td>
+<td>Merci + IVA</td>
+<td>Debiti</td>
+<td>CE B6</td>
+<td>Continuo</td>
+</tr>
+<tr>
+<td><strong>Vendita merci</strong></td>
+<td>Ordinaria</td>
+<td>Crediti</td>
+<td>Merci + IVA</td>
+<td>CE A1</td>
+<td>Continuo</td>
+</tr>
+<tr>
+<td><strong>Acquisto immob.</strong></td>
+<td>Pluriennale</td>
+<td>Immob. + IVA</td>
+<td>Debiti</td>
+<td>SP B II</td>
+<td>Occasionale</td>
+</tr>
+<tr>
+<td><strong>Ammortamento</strong></td>
+<td>Rettifica</td>
+<td>Amm. (CE)</td>
+<td>Fondo (SP)</td>
+<td>CE B10</td>
+<td>Annuale</td>
+</tr>
+<tr>
+<td><strong>Vendita immob.</strong></td>
+<td>Straordinaria</td>
+<td>Fondo + Banca ±</td>
+<td>Immob. ±</td>
+<td>CE A5/E21</td>
+<td>Occasionale</td>
+</tr>
+<tr>
+<td><strong>Leasing</strong></td>
+<td>Operativa</td>
+<td>Canoni + IVA</td>
+<td>Debiti</td>
+<td>CE B8</td>
+<td>Periodico</td>
+</tr>
+<tr>
+<td><strong>TFR</strong></td>
+<td>Personale</td>
+<td>TFR</td>
+<td>Debiti TFR</td>
+<td>CE B9</td>
+<td>Annuale</td>
+</tr>
+<tr>
+<td><strong>IVA liquidazione</strong></td>
+<td>Tributaria</td>
+<td>IVA debito</td>
+<td>IVA credito + Debiti</td>
+<td>SP D</td>
+<td>Mensile/Trim</td>
+</tr>
+<tr>
+<td><strong>Imposte</strong></td>
+<td>Tributaria</td>
+<td>Imposte</td>
+<td>Acconti + Debiti</td>
+<td>CE 20</td>
+<td>Annuale</td>
+</tr>
+<tr>
+<td><strong>Rateo attivo</strong></td>
+<td>Assestamento</td>
+<td>Ratei attivi</td>
+<td>Ricavo</td>
+<td>SP C II</td>
+<td>31/12</td>
+</tr>
+<tr>
+<td><strong>Rateo passivo</strong></td>
+<td>Assestamento</td>
+<td>Costo</td>
+<td>Ratei passivi</td>
+<td>SP D</td>
+<td>31/12</td>
+</tr>
+<tr>
+<td><strong>Risconto attivo</strong></td>
+<td>Assestamento</td>
+<td>Risconti attivi</td>
+<td>Costo</td>
+<td>SP C</td>
+<td>31/12</td>
+</tr>
+<tr>
+<td><strong>Risconto passivo</strong></td>
+<td>Assestamento</td>
+<td>Ricavo</td>
+<td>Risconti passivi</td>
+<td>SP E</td>
+<td>31/12</td>
+</tr>
+<tr>
+<td><strong>Svalutazione crediti</strong></td>
+<td>Rettifica</td>
+<td>Svalutazione</td>
+<td>Fondo</td>
+<td>CE B10d</td>
+<td>31/12</td>
+</tr>
+<tr>
+<td><strong>Rimanenze</strong></td>
+<td>Integrazione</td>
+<td>Prodotti</td>
+<td>Variazione rim.</td>
+<td>SP C I</td>
+<td>31/12</td>
+</tr>
+<tr>
+<td><strong>Fondi rischi</strong></td>
+<td>Accantonamento</td>
+<td>Accantonamento</td>
+<td>Fondo rischi</td>
+<td>CE B12</td>
+<td>31/12</td>
+</tr>
+</tbody>
+</table>
+<hr>
+<h2 id="%F0%9F%93%8B-tabella-2-ratei-vs-risconti-con-mnemonica-rarp">📋 TABELLA 2: RATEI vs RISCONTI (con Mnemonica R.A.R.P.)</h2>
+<pre class="hljs"><code><div>        COMPETENZA ECONOMICA
+               │
+    ┌──────────┼──────────┐
+    │          │          │
+PAGAMENTO   OPERAZIONE   MATURAZIONE
+    │          │          │
+    ↓          ↓          ↓
+
+🟢 RISCONTO ATTIVO (R.A.)       🔴 RATEO ATTIVO (R.A.)
+   Pagato ma non competenza       Maturato ma non pagato
+   └─→ RINVIO costo futuro       └─→ ANTICIPO ricavo
+
+   Esempio: Affitto 01/11         Esempio: Interessi attivi
+   per 12 mesi = € 12.000         prestito 01/10, esigibili
+   Competenza n: 2 mesi           30/09/n+1
+   Risconto: 10 mesi = 10.000     Rateo: 3 mesi interessi
+
+   🟡 PROCEDURA:                  🟡 PROCEDURA:
+   Dare: Risconti attivi          Dare: Ratei attivi
+   Avere: Costo (storno)          Avere: Ricavo (integrazione)
+
+🔵 RISCONTO PASSIVO (R.P.)      🔴 RATEO PASSIVO (R.P.)
+   Incassato ma non competenza    Maturato ma non pagato
+   └─→ RINVIO ricavo futuro      └─→ ANTICIPO costo
+
+   Esempio: Canone incassato      Esempio: Interessi passivi
+   01/11 per 12 mesi              mutuo, pagabili 30/06/n+1
+   Competenza n: 2 mesi           Rateo: 6 mesi interessi
+   Risconto: 10 mesi
+
+   🟡 PROCEDURA:                  🟡 PROCEDURA:
+   Dare: Ricavo (storno)          Dare: Costo (integrazione)
+   Avere: Risconti passivi        Avere: Ratei passivi
+</div></code></pre>
+<h3 id="%F0%9F%93%8A-tabella-comparativa-dettagliata">📊 Tabella Comparativa Dettagliata:</h3>
+<table>
+<thead>
+<tr>
+<th>Aspetto</th>
+<th>🟢 Risconto Attivo</th>
+<th>🔵 Risconto Passivo</th>
+<th>🔴 Rateo Attivo</th>
+<th>🔴 Rateo Passivo</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Natura</strong></td>
+<td>Costo anticipato</td>
+<td>Ricavo anticipato</td>
+<td>Ricavo maturato</td>
+<td>Costo maturato</td>
+</tr>
+<tr>
+<td><strong>Competenza</strong></td>
+<td>FUTURA</td>
+<td>FUTURA</td>
+<td>PRESENTE</td>
+<td>PRESENTE</td>
+</tr>
+<tr>
+<td><strong>Pagamento</strong></td>
+<td>🟢 GIÀ FATTO</td>
+<td>🟢 GIÀ FATTO</td>
+<td>🔴 FUTURO</td>
+<td>🔴 FUTURO</td>
+</tr>
+<tr>
+<td><strong>Azione</strong></td>
+<td>RINVIO</td>
+<td>RINVIO</td>
+<td>ANTICIPO</td>
+<td>ANTICIPO</td>
+</tr>
+<tr>
+<td><strong>Dare</strong></td>
+<td>Risconti attivi</td>
+<td>Ricavo</td>
+<td>Ratei attivi</td>
+<td>Costo</td>
+</tr>
+<tr>
+<td><strong>Avere</strong></td>
+<td>Costo</td>
+<td>Risconti passivi</td>
+<td>Ricavo</td>
+<td>Ratei passivi</td>
+</tr>
+<tr>
+<td><strong>SP</strong></td>
+<td>Attivo C</td>
+<td>Passivo E</td>
+<td>Attivo C II</td>
+<td>Passivo D</td>
+</tr>
+<tr>
+<td><strong>Effetto CE</strong></td>
+<td>⬇️ Costo anno n</td>
+<td>⬇️ Ricavo anno n</td>
+<td>⬆️ Ricavo anno n</td>
+<td>⬆️ Costo anno n</td>
+</tr>
+<tr>
+<td><strong>Formula</strong></td>
+<td>Costo × (gg fut/tot)</td>
+<td>Ricavo × (gg fut/tot)</td>
+<td>K × % × (gg mat/365)</td>
+<td>K × % × (gg mat/365)</td>
+</tr>
+<tr>
+<td><strong>Esempio</strong></td>
+<td>Affitto pagato anticipato</td>
+<td>Canone incassato anticipato</td>
+<td>Interessi attivi maturati</td>
+<td>Interessi passivi maturati</td>
+</tr>
+</tbody>
+</table>
+<h3 id="%F0%9F%8E%AF-mnemonica-rarp">🎯 Mnemonica R.A.R.P.:</h3>
+<ul>
+<li><strong>R.A.</strong> (Risconto Attivo) = &quot;Ho pagato, Rinvio il costo&quot;</li>
+<li><strong>R.A.</strong> (Rateo Attivo) = &quot;Ho guadagnato, Anticipo il ricavo&quot;</li>
+<li><strong>R.P.</strong> (Risconto Passivo) = &quot;Ho incassato, Rinvio il ricavo&quot;</li>
+<li><strong>R.P.</strong> (Rateo Passivo) = &quot;Devo pagare, Anticipo il costo&quot;</li>
+</ul>
+<hr>
+<h2 id="%F0%9F%93%8B-tabella-3-schema-stato-patrimoniale">📋 TABELLA 3: SCHEMA STATO PATRIMONIALE</h2>
+<h3 id="attivo">ATTIVO</h3>
+<table>
+<thead>
+<tr>
+<th>Voce</th>
+<th>Sigla</th>
+<th>Contenuto</th>
+<th>Esempi da moduli</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>A) Crediti v/soci</strong></td>
+<td>A</td>
+<td>Versamenti ancora dovuti</td>
+<td>–</td>
+</tr>
+<tr>
+<td><strong>B) Immobilizzazioni</strong></td>
+<td>B</td>
+<td>Beni pluriennali</td>
+<td></td>
+</tr>
+<tr>
+<td>   II. Materiali</td>
+<td>B II</td>
+<td>Immob. materiali</td>
+<td>Impianti, macchinari, attrezzature</td>
+</tr>
+<tr>
+<td>     – Fondo amm.to</td>
+<td>–</td>
+<td>Rettifica negativa</td>
+<td>Fondo ammortamento impianti</td>
+</tr>
+<tr>
+<td><strong>C) Attivo circolante</strong></td>
+<td>C</td>
+<td>Beni a breve termine</td>
+<td></td>
+</tr>
+<tr>
+<td>   I. Rimanenze</td>
+<td>C I</td>
+<td>Magazzino</td>
+<td>Prodotti finiti, merci</td>
+</tr>
+<tr>
+<td>   II. Crediti</td>
+<td>C II</td>
+<td>Esigibili entro 12m</td>
+<td>Crediti v/clienti, Ratei attivi</td>
+</tr>
+<tr>
+<td>     – Fondo svalutazione</td>
+<td>–</td>
+<td>Rettifica negativa</td>
+<td>Fondo svalutazione crediti</td>
+</tr>
+<tr>
+<td>   III. Attività finanziarie</td>
+<td>C III</td>
+<td>Titoli</td>
+<td>–</td>
+</tr>
+<tr>
+<td>   IV. Disponibilità liquide</td>
+<td>C IV</td>
+<td>Denaro</td>
+<td>Banca c/c, Cassa</td>
+</tr>
+<tr>
+<td>   Risconti attivi</td>
+<td>C</td>
+<td>Costi anticipati</td>
+<td>Risconti attivi (affitti, assicurazioni)</td>
+</tr>
+<tr>
+<td><strong>D) Ratei e risconti</strong></td>
+<td>D</td>
+<td>Rettifiche temporali</td>
+<td>Risconti attivi</td>
+</tr>
+</tbody>
+</table>
+<h3 id="passivo">PASSIVO</h3>
+<table>
+<thead>
+<tr>
+<th>Voce</th>
+<th>Sigla</th>
+<th>Contenuto</th>
+<th>Esempi da moduli</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>A) Patrimonio netto</strong></td>
+<td>A</td>
+<td>Capitale proprio</td>
+<td>Capitale sociale, Utile d'esercizio</td>
+</tr>
+<tr>
+<td><strong>B) Fondi rischi</strong></td>
+<td>B</td>
+<td>Accantonamenti</td>
+<td>Fondo rischi cause legali, Fondo manutenzioni</td>
+</tr>
+<tr>
+<td><strong>C) TFR</strong></td>
+<td>C</td>
+<td>Trattamento fine rapporto</td>
+<td>Debiti per TFR</td>
+</tr>
+<tr>
+<td><strong>D) Debiti</strong></td>
+<td>D</td>
+<td>Obbligazioni</td>
+<td></td>
+</tr>
+<tr>
+<td>   Verso fornitori</td>
+<td>D7</td>
+<td>Acquisti da pagare</td>
+<td>Debiti v/fornitori</td>
+</tr>
+<tr>
+<td>   Tributari</td>
+<td>D12</td>
+<td>Imposte e IVA</td>
+<td>Debiti per IVA, Debiti per imposte</td>
+</tr>
+<tr>
+<td>   Istituti previdenza</td>
+<td>D13</td>
+<td>INPS, INAIL</td>
+<td>Debiti per ritenute</td>
+</tr>
+<tr>
+<td>   Altri</td>
+<td>D14</td>
+<td>Vari</td>
+<td>Ratei passivi</td>
+</tr>
+<tr>
+<td><strong>E) Ratei e risconti</strong></td>
+<td>E</td>
+<td>Rettifiche temporali</td>
+<td>Risconti passivi, Ratei passivi</td>
+</tr>
+</tbody>
+</table>
+<hr>
+<h2 id="%F0%9F%93%8B-tabella-4-schema-conto-economico">📋 TABELLA 4: SCHEMA CONTO ECONOMICO</h2>
+<h3 id="valore-della-produzione-a">VALORE DELLA PRODUZIONE (A)</h3>
+<table>
+<thead>
+<tr>
+<th>Voce</th>
+<th>Sigla</th>
+<th>Contenuto</th>
+<th>Esempi da moduli</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Ricavi vendite</td>
+<td>A1</td>
+<td>Fatturato</td>
+<td>Merci c/vendite</td>
+</tr>
+<tr>
+<td>Variazione rimanenze</td>
+<td>A2</td>
+<td>Δ magazzino</td>
+<td>Variazione rimanenze prodotti finiti</td>
+</tr>
+<tr>
+<td>Incrementi per lavori interni</td>
+<td>A3</td>
+<td>Costruzioni</td>
+<td>Costruzioni interne</td>
+</tr>
+<tr>
+<td>Altri ricavi</td>
+<td>A5</td>
+<td>Ricavi accessori</td>
+<td>Plusvalenze, Fitti attivi, Interessi attivi</td>
+</tr>
+</tbody>
+</table>
+<h3 id="costi-della-produzione-b">COSTI DELLA PRODUZIONE (B)</h3>
+<table>
+<thead>
+<tr>
+<th>Voce</th>
+<th>Sigla</th>
+<th>Contenuto</th>
+<th>Esempi da moduli</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Materie prime</td>
+<td>B6</td>
+<td>Acquisti</td>
+<td>Merci c/acquisti</td>
+</tr>
+<tr>
+<td>Servizi</td>
+<td>B7</td>
+<td>Prestazioni esterne</td>
+<td>Consulenze, Trasporti</td>
+</tr>
+<tr>
+<td>Godimento beni di terzi</td>
+<td>B8</td>
+<td>Affitti, leasing</td>
+<td>Canoni di leasing, Fitti passivi</td>
+</tr>
+<tr>
+<td>Personale</td>
+<td>B9</td>
+<td>Costi del lavoro</td>
+<td>Salari, Stipendi, TFR</td>
+</tr>
+<tr>
+<td>Ammortamenti</td>
+<td>B10</td>
+<td>Quote annue</td>
+<td>Ammortamento impianti, Ammortamento attrezzature</td>
+</tr>
+<tr>
+<td>   Svalutazioni</td>
+<td>B10d</td>
+<td>Rettifiche crediti</td>
+<td>Svalutazione crediti</td>
+</tr>
+<tr>
+<td>Accantonamenti</td>
+<td>B12</td>
+<td>Fondi rischi</td>
+<td>Accantonamento manutenzioni, rischi legali</td>
+</tr>
+<tr>
+<td>Oneri diversi</td>
+<td>B14</td>
+<td>Altri costi</td>
+<td>–</td>
+</tr>
+</tbody>
+</table>
+<h3 id="proventi-e-oneri-finanziari-c">PROVENTI E ONERI FINANZIARI (C)</h3>
+<table>
+<thead>
+<tr>
+<th>Voce</th>
+<th>Sigla</th>
+<th>Contenuto</th>
+<th>Esempi da moduli</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Proventi</td>
+<td>C15</td>
+<td>Interessi attivi</td>
+<td>Interessi attivi bancari, su prestiti</td>
+</tr>
+<tr>
+<td>Oneri</td>
+<td>C17</td>
+<td>Interessi passivi</td>
+<td>Interessi passivi su mutui, scoperti</td>
+</tr>
+</tbody>
+</table>
+<h3 id="rettifiche-di-valore-d">RETTIFICHE DI VALORE (D)</h3>
+<table>
+<thead>
+<tr>
+<th>Voce</th>
+<th>Sigla</th>
+<th>Contenuto</th>
+<th>Esempi da moduli</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Rivalutazioni</td>
+<td>D18</td>
+<td>Plus su partecipazioni</td>
+<td>–</td>
+</tr>
+<tr>
+<td>Svalutazioni</td>
+<td>D19</td>
+<td>Minus su partecipazioni</td>
+<td>–</td>
+</tr>
+</tbody>
+</table>
+<h3 id="proventi-e-oneri-straordinari-e">PROVENTI E ONERI STRAORDINARI (E)</h3>
+<table>
+<thead>
+<tr>
+<th>Voce</th>
+<th>Sigla</th>
+<th>Contenuto</th>
+<th>Esempi da moduli</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Proventi</td>
+<td>E20</td>
+<td>Straordinari positivi</td>
+<td>Plusvalenze da alienazioni</td>
+</tr>
+<tr>
+<td>Oneri</td>
+<td>E21</td>
+<td>Straordinari negativi</td>
+<td>Minusvalenze, Insussistenze passive, Perdite su crediti</td>
+</tr>
+</tbody>
+</table>
+<h3 id="imposte-20-22">IMPOSTE (20-22)</h3>
+<table>
+<thead>
+<tr>
+<th>Voce</th>
+<th>Sigla</th>
+<th>Contenuto</th>
+<th>Esempi da moduli</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Imposte correnti</td>
+<td>20</td>
+<td>IRES, IRAP</td>
+<td>Imposte dell'esercizio</td>
+</tr>
+<tr>
+<td>Imposte differite</td>
+<td>21/22</td>
+<td>Fiscalità differita</td>
+<td>–</td>
+</tr>
+</tbody>
+</table>
+<p><strong>23. UTILE (PERDITA) DELL'ESERCIZIO</strong></p>
+<hr>
+<h2 id="%F0%9F%94%84-flusso-operativo-completo">🔄 FLUSSO OPERATIVO COMPLETO</h2>
+<h3 id="1-durante-lanno-operazioni-ordinarie">1. Durante l'Anno (Operazioni Ordinarie)</h3>
+<pre class="hljs"><code><div>ACQUISTI → Merci + IVA credito → Debiti v/fornitori
+    ↓
+VENDITE → Crediti v/clienti → Merci + IVA debito
+    ↓
+PAGAMENTI → Banca → Elimina debiti
+    ↓
+INCASSI → Banca → Elimina crediti
+    ↓
+LIQUIDAZIONE IVA → IVA debito – IVA credito → Debiti per IVA / Credito IVA
+</div></code></pre>
+<h3 id="2-operazioni-pluriennali">2. Operazioni Pluriennali</h3>
+<pre class="hljs"><code><div>ACQUISTO IMMOBILIZZAZIONE → Costo storico + IVA → Debiti
+    ↓
+AMMORTAMENTO ANNUALE → Quota × Coeff. % → Fondo ammortamento
+    ↓ (dopo anni)
+VENDITA → Confronto VNC vs Prezzo → Plus/Minus
+    │
+    ├─ Elimina Costo storico (Avere)
+    ├─ Elimina Fondo (Dare)
+    └─ Incassa Prezzo (Dare: Banca)
+</div></code></pre>
+<h3 id="3-fine-anno-assestamenti---3112">3. Fine Anno (Assestamenti - 31/12)</h3>
+<pre class="hljs"><code><div>COMPETENZA ECONOMICA
+    ↓
+┌────────────┴────────────┐
+│                         │
+COSTI/RICAVI          COSTI/RICAVI
+ANTICIPATI            POSTICIPATI
+    ↓                     ↓
+RISCONTI              RATEI
+(rinvio a futuro)     (anticipo da futuro)
+    ↓                     ↓
+Attivo/Passivo SP     Attivo/Passivo SP
+</div></code></pre>
+<pre class="hljs"><code><div>RETTIFICHE DI VALORE
+    ↓
+├─ Svalutazione crediti → Fondo svalutazione
+├─ Accantonamenti → Fondi rischi e oneri
+└─ Rimanenze finali → Magazzino + Variazione
+</div></code></pre>
+<hr>
+<h2 id="%F0%9F%A7%AE-formule-chiave-con-codifica-visuale">🧮 FORMULE CHIAVE CON CODIFICA VISUALE</h2>
+<h3 id="%F0%9F%94%B5-immobilizzazioni-concetti-base">🔵 Immobilizzazioni (Concetti Base)</h3>
+<pre class="hljs"><code><div>🔵 1. Costo Storico = Prezzo + Costi Accessori
+        └─ Include: Trasporto, Installazione, Oneri notarili
+
+🔵 2. VNC (Valore Netto Contabile) = Costo Storico – Fondo Ammortamento
+        └─ Rappresenta il valore residuo dell'immobilizzazione
+
+🟡 3. Ammortamento Ordinario = Costo Storico × Coefficiente %
+        └─ Applicato per intero anno di possesso
+
+🔴 4. Ammortamento Parziale = (Costo × Coeff.) × (mesi / 12)
+        └─ ATTENZIONE: Usa mesi, non giorni! (salvo specificato)
+
+🟢 5. Plusvalenza = Prezzo Vendita – VNC (se risultato &gt; 0)
+        └─ Ricavo straordinario (CE Voce E.20)
+
+🔴 6. Minusvalenza = VNC – Prezzo Vendita (se VNC &gt; Prezzo)
+        └─ Costo straordinario (CE Voce E.21)
+</div></code></pre>
+<h3 id="%F0%9F%9F%A1-leasing-procedure">🟡 Leasing (Procedure)</h3>
+<pre class="hljs"><code><div>🟡 7. Canone Medio Mensile = (Maxicanone + Totale canoni ordinari) / Mesi totali
+        └─ Base per calcolare competenza economica
+
+🟡 8. Competenza Annua = Canone Medio × Mesi di competenza nell'anno
+        └─ Costo effettivo da imputare al CE
+
+🔵 9. Risconto Attivo = Canoni pagati – Competenza annua
+        └─ Se hai pagato più di quanto di competenza (comune primi anni)
+</div></code></pre>
+<h3 id="%F0%9F%94%B4-tfr-formule-critiche---attenzione">🔴 TFR (Formule Critiche - Attenzione!)</h3>
+<pre class="hljs"><code><div>🟡 10. Quota TFR = Stipendi lordi annui × 7,41%
+         (oppure: Stipendi / 13,5)
+         └─ Accantonamento dell'anno
+
+🔴 11. Rivalutazione = TFR pregresso × 75% × ISTAT%
+         └─ ATTENZIONE: Solo 75% del fondo, non 100%!
+
+🔴 12. Ritenuta Fiscale = Rivalutazione × 17%
+         └─ ATTENZIONE: Solo su rivalutazione, NON su quota!
+
+🔵 13. TFR finale = TFR iniziale + Quota + Rivalutazione – Ritenuta
+         └─ Saldo Debiti per TFR al 31/12
+</div></code></pre>
+<h3 id="iva-e-imposte">IVA e Imposte</h3>
+<pre class="hljs"><code><div>14. IVA da versare = IVA a debito – IVA a credito
+
+15. IRES = Reddito imponibile × 24%
+
+16. IRAP = Valore produzione × 3,9%
+
+17. Imposte nette = Imposte dovute – Acconti – Ritenute
+</div></code></pre>
+<h3 id="assestamenti">Assestamenti</h3>
+<pre class="hljs"><code><div>18. Risconto = Importo totale × (Giorni futuri / Giorni totali)
+
+19. Rateo = Capitale × Tasso × (Giorni maturati / 365)
+
+20. Fondo Svalutazione Target = Crediti nominali × % stimata
+
+21. Accantonamento = Target – Fondo esistente
+
+22. Valore Netto Crediti = Crediti – Fondo Svalutazione
+</div></code></pre>
+<hr>
+<h2 id="%F0%9F%8E%AF-decision-tree-quale-scrittura-uso">🎯 DECISION TREE: Quale Scrittura Uso?</h2>
+<pre class="hljs"><code><div>HO UN'OPERAZIONE
+    ↓
+È un BENE PLURIENNALE? (immobilizzazione)
+├─ SÌ → Acquisto: Immob. + IVA → Debiti
+│       Ogni anno: Ammortamento → Fondo
+│       Vendita: VNC vs Prezzo → Plus/Minus
+│
+└─ NO → È un COSTO o RICAVO?
+        ↓
+    È GIÀ PAGATO/INCASSATO ma competenza FUTURA?
+    ├─ SÌ → RISCONTO (Attivo se costo, Passivo se ricavo)
+    │
+    └─ NO → È MATURATO ma pagamento/incasso FUTURO?
+            ├─ SÌ → RATEO (Attivo se ricavo, Passivo se costo)
+            │
+            └─ NO → Scrittura ORDINARIA
+                    ├─ Acquisto: Merci + IVA → Debiti
+                    ├─ Vendita: Crediti → Merci + IVA
+                    ├─ TFR: TFR → Debiti TFR
+                    └─ IVA: Liquidazione periodica
+</div></code></pre>
+<hr>
+<h2 id="%E2%9C%85-checklist-globale">✅ CHECKLIST GLOBALE</h2>
+<p>Prima di considerare la preparazione completa:</p>
+<h3 id="immobilizzazioni">Immobilizzazioni</h3>
+<ul>
+<li><input type="checkbox" id="checkbox0"><label for="checkbox0">So calcolare costo storico con accessori</label></li>
+<li><input type="checkbox" id="checkbox1"><label for="checkbox1">So fare ammortamento ordinario e parziale</label></li>
+<li><input type="checkbox" id="checkbox2"><label for="checkbox2">So determinare VNC</label></li>
+<li><input type="checkbox" id="checkbox3"><label for="checkbox3">So gestire plus/minusvalenza</label></li>
+<li><input type="checkbox" id="checkbox4"><label for="checkbox4">So eliminare immobilizzazioni</label></li>
+</ul>
+<h3 id="leasing">Leasing</h3>
+<ul>
+<li><input type="checkbox" id="checkbox5"><label for="checkbox5">So calcolare canone medio mensile</label></li>
+<li><input type="checkbox" id="checkbox6"><label for="checkbox6">So applicare competenza economica</label></li>
+<li><input type="checkbox" id="checkbox7"><label for="checkbox7">So calcolare risconti su leasing</label></li>
+<li><input type="checkbox" id="checkbox8"><label for="checkbox8">So registrare riscatto finale</label></li>
+</ul>
+<h3 id="operative">Operative</h3>
+<ul>
+<li><input type="checkbox" id="checkbox9"><label for="checkbox9">So fare acquisti/vendite con IVA</label></li>
+<li><input type="checkbox" id="checkbox10"><label for="checkbox10">So calcolare TFR completo (quota + riv + ritenuta)</label></li>
+<li><input type="checkbox" id="checkbox11"><label for="checkbox11">So liquidare IVA periodica</label></li>
+<li><input type="checkbox" id="checkbox12"><label for="checkbox12">So calcolare IRES e IRAP</label></li>
+</ul>
+<h3 id="assestamenti">Assestamenti</h3>
+<ul>
+<li><input type="checkbox" id="checkbox13"><label for="checkbox13">So distinguere ratei da risconti</label></li>
+<li><input type="checkbox" id="checkbox14"><label for="checkbox14">So usare formule giorni/365 e mesi/tot</label></li>
+<li><input type="checkbox" id="checkbox15"><label for="checkbox15">So svalutare crediti con fondo</label></li>
+<li><input type="checkbox" id="checkbox16"><label for="checkbox16">So calcolare ratei su interessi</label></li>
+<li><input type="checkbox" id="checkbox17"><label for="checkbox17">So registrare rimanenze e fondi</label></li>
+</ul>
+<h3 id="integrazione">Integrazione</h3>
+<ul>
+<li><input type="checkbox" id="checkbox18"><label for="checkbox18">So fare scritture collegate (es: ammortamento + vendita)</label></li>
+<li><input type="checkbox" id="checkbox19"><label for="checkbox19">So riconoscere tipo operazione da caso pratico</label></li>
+<li><input type="checkbox" id="checkbox20"><label for="checkbox20">So usare decision tree per scegliere scrittura</label></li>
+<li><input type="checkbox" id="checkbox21"><label for="checkbox21">Ho fatto almeno 1 test completo con score &gt;85%</label></li>
+</ul>
+<hr>
+<h2 id="%F0%9F%93%8A-autovalutazione-finale">📊 AUTOVALUTAZIONE FINALE</h2>
+<table>
+<thead>
+<tr>
+<th>Modulo</th>
+<th>Chiarezza (1-10)</th>
+<th>Velocità esecuzione</th>
+<th>Errori comuni</th>
+<th>Priorità ripasso</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Immobilizzazioni</td>
+<td>___</td>
+<td>___</td>
+<td>___</td>
+<td>☐ Alta ☐ Media ☐ Bassa</td>
+</tr>
+<tr>
+<td>Leasing</td>
+<td>___</td>
+<td>___</td>
+<td>___</td>
+<td>☐ Alta ☐ Media ☐ Bassa</td>
+</tr>
+<tr>
+<td>Operative</td>
+<td>___</td>
+<td>___</td>
+<td>___</td>
+<td>☐ Alta ☐ Media ☐ Bassa</td>
+</tr>
+<tr>
+<td>Assestamenti</td>
+<td>___</td>
+<td>___</td>
+<td>___</td>
+<td>☐ Alta ☐ Media ☐ Bassa</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Punteggio target:</strong> 8+ su tutti i moduli</p>
+
+</main>
+
+<aside class="sticky">
+
+<div class="card">
+<div class="badge b-green">📌 Navigazione Moduli</div>
+<div class="separator"></div>
+<div class="grid" style="gap:10px">
+<a href="01-immobilizzazioni-materiali.html" class="btn"><span>🔵</span> Immobilizzazioni</a>
+<a href="02-leasing-costruzioni.html" class="btn"><span>🔵</span> Leasing</a>
+<a href="03-scritture-operative.html" class="btn"><span>🟡</span> Operative</a>
+<a href="04-assestamenti-rettifiche.html" class="btn"><span>🟢</span> Assestamenti</a>
+<a href="../simulazioni/01-livello-base.html" class="btn"><span>🎯</span> Simulazioni</a>
+</div>
+</div>
+
+<div class="card">
+<div class="badge b-yellow">✅ Checklist Globale</div>
+<div class="separator"></div>
+<div class="small" style="margin-bottom:12px">Progressi sincronizzati da tutti i moduli</div>
+<div id="global-checklist" class="grid" style="gap:8px">
+<label style="display:flex;align-items:center;gap:8px"><input type="checkbox" data-module="immobilizzazioni" data-total="7"><span class="small">Immobilizzazioni <i id="prog-immob">0/7</i></span></label>
+<label style="display:flex;align-items:center;gap:8px"><input type="checkbox" data-module="leasing" data-total="6"><span class="small">Leasing <i id="prog-leasing">0/6</i></span></label>
+<label style="display:flex;align-items:center;gap:8px"><input type="checkbox" data-module="scritture" data-total="7"><span class="small">Operative <i id="prog-scritture">0/7</i></span></label>
+<label style="display:flex;align-items:center;gap:8px"><input type="checkbox" data-module="assestamenti" data-total="5"><span class="small">Assestamenti <i id="prog-assest">0/5</i></span></label>
+</div>
+<div class="separator"></div>
+<div class="progress"><i id="master-progress"></i></div>
+<div class="small" style="margin-top:8px; text-align:center" id="master-pct">Completamento: 0%</div>
+</div>
+
+<div class="card">
+<details>
+<summary>📊 Formula Rapide</summary>
+<div class="separator"></div>
+<div class="small" style="line-height:1.8">
+<strong>VNC:</strong> Costo – Fondo<br>
+<strong>Ammort:</strong> Costo × Coeff × (gg/365)<br>
+<strong>Plus:</strong> Prezzo – VNC<br>
+<strong>Canone:</strong> (Maxi + Tot) ÷ Mesi<br>
+<strong>Ratei:</strong> Importo × (gg/365)<br>
+<strong>IVA 22%:</strong> Imponibile × 1.22
+</div>
+</details>
+</div>
+
+</aside>
+
+</div>
+
+</div>
+
+<script>(function(){ const modules = ['immobilizzazioni', 'leasing', 'scritture', 'assestamenti'];const checks = document.querySelectorAll('#global-checklist input[type="checkbox"]');const bar = document.getElementById('master-progress');const pct = document.getElementById('master-pct');function load(){ let total = 0, checked = 0;modules.forEach((mod, i)=>{const KEY = 'checklist-'+mod;try{const saved = JSON.parse(localStorage.getItem(KEY)||'[]');const count = saved.filter(Boolean).length;const maxCount = parseInt(checks[i].dataset.total);total += maxCount;checked += count;document.getElementById('prog-'+mod.slice(0,6)).textContent = count+'/'+maxCount;checks[i].checked = (count === maxCount);}catch{}}); const perc = total>0 ? ((checked/total)*100).toFixed(0) : 0;bar.style.width = perc+'%';pct.textContent = 'Completamento: '+perc+'%';}load();setInterval(load, 2000);})();</script>
+
+<hr>
+<h2 id="%F0%9F%94%97-prossimi-passi">🔗 PROSSIMI PASSI</h2>
+<ol>
+<li><strong>Test Finale Integrato</strong> → <code>quiz-active-recall/03-test-finale-integrato.md</code></li>
+<li><strong>Simulazioni Verifiche</strong> → <code>simulazioni/</code> (3 livelli)</li>
+<li><strong>Self-Check Metacognitivo</strong> → <code>metodi-apprendimento/02-self-check.md</code></li>
+<li><strong>Mappe Visive</strong> → <code>mappe-visive/</code> (da creare)</li>
+</ol>
+<hr>
+<blockquote>
+<p>💡 <strong>Tip Finale:</strong> Stampa questo riepilogo e usalo come &quot;cheat sheet&quot; per l'ultimo ripasso pre-esame. Le tabelle comparative sono il tuo migliore alleato per velocità di richiamo.</p>
+</blockquote>
+
+<style>
+.footer-copyright {
+  text-align: center;
+  margin-top: 50px;
+  padding: 30px 25px;
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  color: #ffffff;
+  border-radius: 16px;
+  box-shadow: 0 8px 20px rgba(0,0,0,0.2);
+  font-size: 0.95em;
+  line-height: 1.8;
+}
+.footer-copyright strong {
+  color: #ffffff !important;
+  font-weight: 700;
+  font-size: 1.1em;
+}
+.footer-copyright em {
+  color: #f0f0f0;
+  font-style: italic;
+}
+.footer-copyright .warning {
+  margin-top: 15px;
+  padding: 12px;
+  background: rgba(255,255,255,0.15);
+  border-radius: 8px;
+  font-size: 0.85em;
+  border: 1px solid rgba(255,255,255,0.3);
+}
+</style>
+
+<div class="footer-copyright">
+  <strong>📚 Sistema NPI-Learning per Economia Aziendale</strong><br>
+  Creato da <strong>Jeffrey Minaya</strong> | AFM Quinta Serale | © 2025<br>
+  <em>Documento didattico ottimizzato con tecniche di neuroscienza applicata</em>
+  <div class="warning">
+    ⚠️ <strong>Uso Riservato:</strong> Questo materiale è protetto da copyright.<br>
+    La distribuzione, riproduzione o uso commerciale non autorizzato è vietato.<br>
+    Per richieste di utilizzo: contattare l'autore.
+  </div>
+</div>
+
+</body>
+</html>

@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Matematica - In Arrivo</title>
+<style>
+:root {
+  --primary: #8a2be2;
+  --bg-gradient: linear-gradient(135deg, #8a2be2 0%, #9d4edd 100%);
+}
+
+* { margin: 0; padding: 0; box-sizing: border-box; }
+
+body {
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  background: var(--bg-gradient);
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 20px;
+}
+
+.container {
+  max-width: 600px;
+  background: white;
+  border-radius: 20px;
+  padding: 50px;
+  text-align: center;
+  box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+}
+
+.icon {
+  font-size: 6em;
+  margin-bottom: 20px;
+  animation: pulse 2s ease-in-out infinite;
+}
+
+@keyframes pulse {
+  0%, 100% { transform: scale(1); }
+  50% { transform: scale(1.1); }
+}
+
+h1 {
+  font-size: 2.5em;
+  color: var(--primary);
+  margin-bottom: 20px;
+}
+
+p {
+  font-size: 1.2em;
+  color: #64748b;
+  margin-bottom: 30px;
+  line-height: 1.6;
+}
+
+.btn {
+  display: inline-block;
+  padding: 15px 40px;
+  background: var(--bg-gradient);
+  color: white;
+  text-decoration: none;
+  border-radius: 50px;
+  font-weight: 600;
+  font-size: 1.1em;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.btn:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 10px 25px rgba(138, 43, 226, 0.4);
+}
+
+.meta {
+  margin-top: 30px;
+  padding-top: 20px;
+  border-top: 2px solid #e2e8f0;
+  color: #94a3b8;
+  font-size: 0.9em;
+}
+</style>
+</head>
+<body>
+
+<div class="container">
+  <div class="icon">🔢</div>
+  <h1>Matematica</h1>
+  <p>
+    📚 Il materiale per questa materia è in fase di preparazione.<br>
+    Torna presto per accedere a contenuti completi su analisi matematica,
+    statistica e matematica finanziaria.
+  </p>
+  <a href="../index.html" class="btn">🏠 Torna alla Homepage</a>
+  <div class="meta">
+    A.S. 2025/2026 | Jeffrey Minaya | AFM Quinta Serale
+  </div>
+</div>
+
+</body>
+</html>

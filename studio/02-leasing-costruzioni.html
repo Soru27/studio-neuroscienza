@@ -1,0 +1,1229 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>02-leasing-costruzioni.md</title>
+<meta http-equiv="Content-type" content="text/html;charset=UTF-8">
+
+<style>
+/* https://github.com/microsoft/vscode/blob/master/extensions/markdown-language-features/media/markdown.css */
+/*---------------------------------------------------------------------------------------------
+ *  Copyright (c) Microsoft Corporation. All rights reserved.
+ *  Licensed under the MIT License. See License.txt in the project root for license information.
+ *--------------------------------------------------------------------------------------------*/
+
+body {
+	font-family: var(--vscode-markdown-font-family, -apple-system, BlinkMacSystemFont, "Segoe WPC", "Segoe UI", "Ubuntu", "Droid Sans", sans-serif);
+	font-size: var(--vscode-markdown-font-size, 14px);
+	padding: 0 26px;
+	line-height: var(--vscode-markdown-line-height, 22px);
+	word-wrap: break-word;
+}
+
+#code-csp-warning {
+	position: fixed;
+	top: 0;
+	right: 0;
+	color: white;
+	margin: 16px;
+	text-align: center;
+	font-size: 12px;
+	font-family: sans-serif;
+	background-color:#444444;
+	cursor: pointer;
+	padding: 6px;
+	box-shadow: 1px 1px 1px rgba(0,0,0,.25);
+}
+
+#code-csp-warning:hover {
+	text-decoration: none;
+	background-color:#007acc;
+	box-shadow: 2px 2px 2px rgba(0,0,0,.25);
+}
+
+body.scrollBeyondLastLine {
+	margin-bottom: calc(100vh - 22px);
+}
+
+body.showEditorSelection .code-line {
+	position: relative;
+}
+
+body.showEditorSelection .code-active-line:before,
+body.showEditorSelection .code-line:hover:before {
+	content: "";
+	display: block;
+	position: absolute;
+	top: 0;
+	left: -12px;
+	height: 100%;
+}
+
+body.showEditorSelection li.code-active-line:before,
+body.showEditorSelection li.code-line:hover:before {
+	left: -30px;
+}
+
+.vscode-light.showEditorSelection .code-active-line:before {
+	border-left: 3px solid rgba(0, 0, 0, 0.15);
+}
+
+.vscode-light.showEditorSelection .code-line:hover:before {
+	border-left: 3px solid rgba(0, 0, 0, 0.40);
+}
+
+.vscode-light.showEditorSelection .code-line .code-line:hover:before {
+	border-left: none;
+}
+
+.vscode-dark.showEditorSelection .code-active-line:before {
+	border-left: 3px solid rgba(255, 255, 255, 0.4);
+}
+
+.vscode-dark.showEditorSelection .code-line:hover:before {
+	border-left: 3px solid rgba(255, 255, 255, 0.60);
+}
+
+.vscode-dark.showEditorSelection .code-line .code-line:hover:before {
+	border-left: none;
+}
+
+.vscode-high-contrast.showEditorSelection .code-active-line:before {
+	border-left: 3px solid rgba(255, 160, 0, 0.7);
+}
+
+.vscode-high-contrast.showEditorSelection .code-line:hover:before {
+	border-left: 3px solid rgba(255, 160, 0, 1);
+}
+
+.vscode-high-contrast.showEditorSelection .code-line .code-line:hover:before {
+	border-left: none;
+}
+
+img {
+	max-width: 100%;
+	max-height: 100%;
+}
+
+a {
+	text-decoration: none;
+}
+
+a:hover {
+	text-decoration: underline;
+}
+
+a:focus,
+input:focus,
+select:focus,
+textarea:focus {
+	outline: 1px solid -webkit-focus-ring-color;
+	outline-offset: -1px;
+}
+
+hr {
+	border: 0;
+	height: 2px;
+	border-bottom: 2px solid;
+}
+
+h1 {
+	padding-bottom: 0.3em;
+	line-height: 1.2;
+	border-bottom-width: 1px;
+	border-bottom-style: solid;
+}
+
+h1, h2, h3 {
+	font-weight: normal;
+}
+
+table {
+	border-collapse: collapse;
+}
+
+table > thead > tr > th {
+	text-align: left;
+	border-bottom: 1px solid;
+}
+
+table > thead > tr > th,
+table > thead > tr > td,
+table > tbody > tr > th,
+table > tbody > tr > td {
+	padding: 5px 10px;
+}
+
+table > tbody > tr + tr > td {
+	border-top: 1px solid;
+}
+
+blockquote {
+	margin: 0 7px 0 5px;
+	padding: 0 16px 0 10px;
+	border-left-width: 5px;
+	border-left-style: solid;
+}
+
+code {
+	font-family: Menlo, Monaco, Consolas, "Droid Sans Mono", "Courier New", monospace, "Droid Sans Fallback";
+	font-size: 1em;
+	line-height: 1.357em;
+}
+
+body.wordWrap pre {
+	white-space: pre-wrap;
+}
+
+pre:not(.hljs),
+pre.hljs code > div {
+	padding: 16px;
+	border-radius: 3px;
+	overflow: auto;
+}
+
+pre code {
+	color: var(--vscode-editor-foreground);
+	tab-size: 4;
+}
+
+/** Theming */
+
+.vscode-light pre {
+	background-color: rgba(220, 220, 220, 0.4);
+}
+
+.vscode-dark pre {
+	background-color: rgba(10, 10, 10, 0.4);
+}
+
+.vscode-high-contrast pre {
+	background-color: rgb(0, 0, 0);
+}
+
+.vscode-high-contrast h1 {
+	border-color: rgb(0, 0, 0);
+}
+
+.vscode-light table > thead > tr > th {
+	border-color: rgba(0, 0, 0, 0.69);
+}
+
+.vscode-dark table > thead > tr > th {
+	border-color: rgba(255, 255, 255, 0.69);
+}
+
+.vscode-light h1,
+.vscode-light hr,
+.vscode-light table > tbody > tr + tr > td {
+	border-color: rgba(0, 0, 0, 0.18);
+}
+
+.vscode-dark h1,
+.vscode-dark hr,
+.vscode-dark table > tbody > tr + tr > td {
+	border-color: rgba(255, 255, 255, 0.18);
+}
+
+</style>
+
+<style>
+/* Tomorrow Theme */
+/* http://jmblog.github.com/color-themes-for-google-code-highlightjs */
+/* Original theme - https://github.com/chriskempson/tomorrow-theme */
+
+/* Tomorrow Comment */
+.hljs-comment,
+.hljs-quote {
+	color: #8e908c;
+}
+
+/* Tomorrow Red */
+.hljs-variable,
+.hljs-template-variable,
+.hljs-tag,
+.hljs-name,
+.hljs-selector-id,
+.hljs-selector-class,
+.hljs-regexp,
+.hljs-deletion {
+	color: #c82829;
+}
+
+/* Tomorrow Orange */
+.hljs-number,
+.hljs-built_in,
+.hljs-builtin-name,
+.hljs-literal,
+.hljs-type,
+.hljs-params,
+.hljs-meta,
+.hljs-link {
+	color: #f5871f;
+}
+
+/* Tomorrow Yellow */
+.hljs-attribute {
+	color: #eab700;
+}
+
+/* Tomorrow Green */
+.hljs-string,
+.hljs-symbol,
+.hljs-bullet,
+.hljs-addition {
+	color: #718c00;
+}
+
+/* Tomorrow Blue */
+.hljs-title,
+.hljs-section {
+	color: #4271ae;
+}
+
+/* Tomorrow Purple */
+.hljs-keyword,
+.hljs-selector-tag {
+	color: #8959a8;
+}
+
+.hljs {
+	display: block;
+	overflow-x: auto;
+	color: #4d4d4c;
+	padding: 0.5em;
+}
+
+.hljs-emphasis {
+	font-style: italic;
+}
+
+.hljs-strong {
+	font-weight: bold;
+}
+</style>
+
+<style>
+/*
+ * Markdown PDF CSS
+ */
+
+ body {
+	font-family: -apple-system, BlinkMacSystemFont, "Segoe WPC", "Segoe UI", "Ubuntu", "Droid Sans", sans-serif, "Meiryo";
+	padding: 0 12px;
+}
+
+pre {
+	background-color: #f8f8f8;
+	border: 1px solid #cccccc;
+	border-radius: 3px;
+	overflow-x: auto;
+	white-space: pre-wrap;
+	overflow-wrap: break-word;
+}
+
+pre:not(.hljs) {
+	padding: 23px;
+	line-height: 19px;
+}
+
+blockquote {
+	background: rgba(127, 127, 127, 0.1);
+	border-color: rgba(0, 122, 204, 0.5);
+}
+
+.emoji {
+	height: 1.4em;
+}
+
+code {
+	font-size: 14px;
+	line-height: 19px;
+}
+
+/* for inline code */
+:not(pre):not(.hljs) > code {
+	color: #C9AE75; /* Change the old color so it seems less like an error */
+	font-size: inherit;
+}
+
+/* Page Break : use <div class="page"/> to insert page break
+-------------------------------------------------------- */
+.page {
+	page-break-after: always;
+}
+
+</style>
+
+<style>
+/* NPI-LEARNING DESIGN SYSTEM */
+:root{--bg: #0b0c10; --fg:#eceff4; --muted:#9aa4b2; --card:#111318; --border:#23262e;--blue:#4da3ff; --red:#ff5964; --green:#3ad29f; --yellow:#ffd166;--shadow: 0 6px 18px rgba(0,0,0,.25);--radius:16px; --radius-sm:12px; --pad:16px; --gap:14px; --font: Inter, system-ui, Segoe UI, Roboto, Ubuntu, Arial, sans-serif;}
+@media (prefers-color-scheme: light){:root{ --bg:#f7f8fb; --fg:#0f172a; --muted:#475569; --card:#ffffff; --border:#e5e7eb;--blue:#2563eb; --red:#ef4444; --green:#10b981; --yellow:#f59e0b; }}
+html,body{background:var(--bg); color:var(--fg); font-family:var(--font);}
+.container{max-width:1100px; margin:32px auto; padding:0 16px;}
+.grid{display:grid; gap:var(--gap);}.grid-2{grid-template-columns: 1.2fr .8fr;}
+@media (max-width:960px){ .grid-2{grid-template-columns:1fr;} }
+.card{background:var(--card); border:1px solid var(--border); border-radius:var(--radius); padding:var(--pad); box-shadow:var(--shadow);margin-bottom: 18px;}
+.card h2, .card h3{margin-top:0}
+.badge{display:inline-flex; align-items:center; gap:6px; font-weight:600; font-size:.85rem; padding:6px 10px; border-radius:999px; border:1px solid var(--border); background:linear-gradient(180deg, rgba(255,255,255,.04), transparent);}
+.b-blue{color:var(--blue); border-color:color-mix(in oklab, var(--blue), #000 70%);}
+.b-red{color:var(--red); border-color:color-mix(in oklab, var(--red), #000 70%);}
+.b-green{color:var(--green); border-color:color-mix(in oklab, var(--green), #000 70%);}
+.b-yellow{color:var(--yellow); border-color:color-mix(in oklab, var(--yellow), #000 70%);}
+.callout{border-left:6px solid var(--border); padding:14px 16px; border-radius:12px; background:linear-gradient(180deg, rgba(255,255,255,.03), transparent);margin: 12px 0;}
+.co-blue{border-left-color:var(--blue)}.co-red{border-left-color:var(--red)}.co-green{border-left-color:var(--green)}.co-yellow{border-left-color:var(--yellow)}
+.kbd{font:600 .85rem ui-monospace, SFMono-Regular, Menlo, monospace; background:var(--border); padding:2px 6px; border-radius:6px; border:1px solid color-mix(in oklab, var(--border), #000 35%);}
+.progress{height:10px; background:color-mix(in oklab, var(--border), #000 20%); border-radius:999px; overflow:hidden;}
+.progress > i{display:block; height:100%; width:0%; background:linear-gradient(90deg, var(--green), var(--blue)); transition:width .4s ease;}
+.separator{height:1px; background:var(--border); margin:18px 0;}
+.recall .hidden-answer{filter: blur(8px); transition:filter .2s; user-select: none;}
+.recall.reveal .hidden-answer{filter:none; user-select: auto;}
+.btn{display:inline-flex; align-items:center; gap:10px; padding:10px 14px; border-radius:12px; border:1px solid var(--border); background:var(--card); color:var(--fg); cursor:pointer;font-family: var(--font);}
+.btn:hover{border-color:color-mix(in oklab, var(--border), var(--fg) 30%);}
+.sticky{position:sticky; top:18px; align-self: start;}.small{font-size:.9rem; color:var(--muted)}
+input[type="text"], input[type="range"]{width: 100%;padding: 8px;border-radius: 8px;border: 1px solid var(--border);background: var(--bg);color: var(--fg);font-family: var(--font);}
+label{display: block;font-size: 0.9rem;color: var(--muted);margin-bottom: 6px;}
+blockquote{border-left: 4px solid var(--blue);padding-left: 16px;margin-left: 0;background: linear-gradient(90deg, rgba(77, 163, 255, 0.1), transparent);border-radius: 8px;padding: 12px 16px;}
+details{background: var(--card);border: 1px solid var(--border);border-radius: 12px;padding: 12px;margin: 12px 0;}
+details summary{cursor: pointer;font-weight: 600;padding: 8px;border-radius: 8px;}
+details summary:hover{background: color-mix(in oklab, var(--border), transparent 50%);}
+</style>
+
+<script src="https://unpkg.com/mermaid/dist/mermaid.min.js"></script>
+</head>
+<body>
+  <script>
+    mermaid.initialize({
+      startOnLoad: true,
+      theme: document.body.classList.contains('vscode-dark') || document.body.classList.contains('vscode-high-contrast')
+          ? 'dark'
+          : 'default'
+    });
+  </script>
+
+<style>
+.top-header {
+  position: sticky;
+  top: 0;
+  z-index: 1000;
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  color: #ffffff;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+  padding: 12px 20px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 12px;
+}
+.top-header .course-info {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  flex-wrap: wrap;
+}
+.top-header .home-icon {
+  font-size: 1.5rem;
+  cursor: pointer;
+  transition: transform 0.2s;
+  text-decoration: none;
+  color: #ffffff;
+}
+.top-header .home-icon:hover {
+  transform: scale(1.1);
+}
+.top-header .course-title {
+  font-weight: 700;
+  font-size: 1rem;
+  letter-spacing: 0.5px;
+}
+.top-header .course-meta {
+  font-size: 0.85rem;
+  opacity: 0.9;
+  display: flex;
+  gap: 8px;
+  flex-wrap: wrap;
+}
+.top-header .course-meta span {
+  background: rgba(255,255,255,0.2);
+  padding: 4px 10px;
+  border-radius: 12px;
+}
+.nav-horizontal {
+  display: flex;
+  gap: 8px;
+  flex-wrap: wrap;
+  align-items: center;
+}
+.nav-horizontal a {
+  background: rgba(255,255,255,0.15);
+  color: #ffffff;
+  padding: 8px 14px;
+  border-radius: 8px;
+  text-decoration: none;
+  font-size: 0.9rem;
+  font-weight: 500;
+  transition: all 0.2s;
+  border: 1px solid rgba(255,255,255,0.2);
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+}
+.nav-horizontal a:hover {
+  background: rgba(255,255,255,0.25);
+  border-color: rgba(255,255,255,0.4);
+  transform: translateY(-2px);
+}
+.nav-horizontal a.active {
+  background: rgba(255,255,255,0.95);
+  color: #667eea;
+  font-weight: 700;
+  border-color: rgba(255,255,255,0.5);
+}
+@media (max-width: 768px) {
+  .top-header {
+    padding: 10px 15px;
+  }
+  .top-header .course-title {
+    font-size: 0.9rem;
+  }
+  .top-header .course-meta {
+    font-size: 0.75rem;
+  }
+  .nav-horizontal a {
+    font-size: 0.8rem;
+    padding: 6px 10px;
+  }
+}
+</style>
+
+<header class="top-header">
+  <div class="course-info">
+    <a href="../index.html" class="home-icon" title="Home - Tutte le Materie">🏠</a>
+    <div>
+      <div class="course-title">📚 ECONOMIA AZIENDALE</div>
+      <div class="course-meta">
+        <span>A.S. 2025/2026</span>
+        <span>AFM Quinta Serale</span>
+      </div>
+    </div>
+  </div>
+  <nav class="nav-horizontal">
+    <a href="01-immobilizzazioni-materiali.html">🔵 Immobilizzazioni</a>
+    <a href="02-leasing-costruzioni.html" class="active">🔵 Leasing</a>
+    <a href="03-scritture-operative.html">🟡 Operative</a>
+    <a href="04-assestamenti-rettifiche.html">🟢 Assestamenti</a>
+    <a href="05-riepilogo-generale.html">📊 Riepilogo</a>
+    <a href="simulazioni/dashboard-simulazioni.html">🎯 Simulazioni</a>
+  </nav>
+</header>
+
+<div class="container">
+
+<h1 id="%F0%9F%8F%A6-leasing-e-costruzioni-in-economia">🏦 LEASING E COSTRUZIONI IN ECONOMIA</h1>
+<blockquote>
+<p><strong>Tempo di studio consigliato:</strong> 35 minuti | <strong>Revisione:</strong> 10 minuti | <strong>Active Recall:</strong> 15 minuti</p>
+</blockquote>
+
+<div class="card" id="npi-widget" aria-live="polite">
+  <div style="display:flex; justify-content:space-between; align-items:center; gap:10px; flex-wrap:wrap">
+    <div class="badge b-blue">🧠 NPI-Learning</div>
+    <div class="small">Compila dopo ogni <b>chunk</b></div>
+  </div>
+  <div class="separator"></div>
+  <div class="grid" style="grid-template-columns:1fr 1fr 1fr; gap:18px">
+    <label>Ritenzione R(t) %<input id="npi-r" type="range" min="0" max="100" step="5" value="0"><span id="npi-r-val" class="small" style="display:block; margin-top:4px">0%</span></label>
+    <label>Energia E(t) 1–5<input id="npi-e" type="range" min="1" max="5" step="1" value="3"><span id="npi-e-val" class="small" style="display:block; margin-top:4px">3/5</span></label>
+    <label>Coerenza C(t) 1–5<input id="npi-c" type="range" min="1" max="5" step="1" value="3"><span id="npi-c-val" class="small" style="display:block; margin-top:4px">3/5</span></label>
+  </div>
+  <div class="separator"></div>
+  <div class="grid" style="grid-template-columns:1fr auto; align-items:center">
+    <div class="progress"><i id="npi-bar"></i></div>
+    <div id="npi-chip" class="badge">Stato: —</div>
+  </div>
+  <div class="small" id="npi-tip" style="margin-top:8px"></div>
+</div>
+
+<script>
+(function(){
+  const id = (sel)=>document.querySelector(sel);
+  const r = id('#npi-r'), e = id('#npi-e'), c = id('#npi-c');
+  const rVal = id('#npi-r-val'), eVal = id('#npi-e-val'), cVal = id('#npi-c-val');
+  const bar = id('#npi-bar'), chip = id('#npi-chip'), tip = id('#npi-tip');
+  const KEY='npi-leasing';
+  function load(){try{ const v = JSON.parse(localStorage.getItem(KEY)||'{}');if(v.r!=null){ r.value=v.r; e.value=v.e; c.value=v.c; }}catch{}update();}
+  function save(){ localStorage.setItem(KEY, JSON.stringify({r:+r.value, e:+e.value, c:+c.value})); }
+  function compute(){const R = +r.value/100, E = +e.value/5, C = +c.value/5;return Math.max(0, Math.min(1, 0.5*R + 0.25*E + 0.25*C));}
+  function label(score){if(score>=0.75) return {txt:'🟢 Flow', tip:'Prosegui. Mantieni ritmo.'};if(score>=0.40) return {txt:'🟡 Ristruttura', tip:'Pausa 5′ + schema.'};return {txt:'🔴 Ricodifica', tip:'Riparti da esempio 🟢 + definizione 🔵.'};  }
+  function update(){const s = compute();bar.style.width = (s*100).toFixed(0)+'%';chip.className = 'badge ' + (s>=0.75?'b-green':(s>=0.4?'b-yellow':'b-red'));chip.textContent = 'Stato: ' + label(s).txt + ' ('+(s*100|0)+'%)';tip.textContent = label(s).tip;rVal.textContent = r.value + '%';eVal.textContent = e.value + '/5';cVal.textContent = c.value + '/5';save();}
+  [r,e,c].forEach(x=>x.addEventListener('input', update));load();
+})();
+</script>
+
+<div class="card" style="display:flex; align-items:center; justify-content:space-between; gap:10px; flex-wrap:wrap;">
+  <div><div class="badge b-yellow">🎯 Active-Recall Mode</div><div class="small" style="margin-top:6px">Premi <span class="kbd">R</span> per mostrare/nascondere risposte</div></div>
+  <button id="recall-toggle" class="btn"><span>Mostra risposte</span> <span class="kbd">R</span></button>
+</div>
+
+<script>
+(function(){const root=document.documentElement;const btn=document.getElementById('recall-toggle');function toggle(){ root.classList.toggle('reveal'); btn.firstElementChild.textContent = root.classList.contains('reveal')?'Nascondi risposte':'Mostra risposte'; }btn.addEventListener('click', toggle);document.addEventListener('keydown', (e)=>{ if(e.key.toLowerCase()==='r' && !e.ctrlKey && !e.altKey && !e.metaKey) {if(!['INPUT','TEXTAREA'].includes(document.activeElement.tagName)){ toggle(); }}});root.classList.add('recall');})();
+</script>
+<div class="card">
+  <h2 id="%F0%9F%8E%AF-obiettivi-di-apprendimento" style="margin-top:0">🎯 OBIETTIVI DI APPRENDIMENTO</h2>
+  <p>Dopo questo modulo saprai:</p>
+  <ul style="margin:0">
+    <li>✅ Calcolare il canone medio mensile di un leasing</li>
+    <li>✅ Gestire maxicanone e canoni periodici</li>
+    <li>✅ Applicare il principio di competenza al leasing</li>
+    <li>✅ Registrare costruzioni in economia</li>
+  </ul>
+</div>
+
+<div class="grid grid-2">
+  <main class="grid" style="gap:18px">
+
+<section class="card">
+  <div style="display:flex; align-items:center; justify-content:space-between; flex-wrap:wrap; gap:12px">
+    <h2 id="%F0%9F%93%A6-chunk-1-leasing-finanziario---concetti-base-12-min" style="margin:0">📦 CHUNK 1: Leasing - Concetti Base</h2>
+    <div style="display:flex; gap:8px; align-items:center">
+      <span class="badge b-blue">🔵 Teoria</span>
+      <span class="small">12 min</span>
+    </div>
+  </div>
+  <div class="small" style="margin:6px 0 12px; color:var(--muted)"><b>Obiettivo:</b> Calcolare canone medio mensile</div>
+<h3 id="%F0%9F%94%B9-cos%C3%A8-il-leasing">🔹 Cos'è il Leasing?</h3>
+<p>Il <strong>leasing</strong> è un contratto di <strong>affitto con opzione di riscatto finale</strong>.</p>
+<p><strong>Parti coinvolte:</strong></p>
+<ul>
+<li><strong>Società di leasing</strong> (concedente) → proprietaria del bene</li>
+<li><strong>Utilizzatore</strong> (azienda) → usa il bene pagando canoni</li>
+</ul>
+<p><strong>Struttura tipica:</strong></p>
+<pre class="hljs"><code><div>MAXICANONE (anticipo) + CANONI PERIODICI + RISCATTO FINALE
+</div></code></pre>
+<h3 id="%F0%9F%94%B9-componenti-del-contratto">🔹 Componenti del Contratto</h3>
+<table>
+<thead>
+<tr>
+<th>Elemento</th>
+<th>Descrizione</th>
+<th>Esempio</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Maxicanone</strong></td>
+<td>Anticipo iniziale (1° canone maggiorato)</td>
+<td>€ 8.000</td>
+</tr>
+<tr>
+<td><strong>Canoni mensili</strong></td>
+<td>Pagamenti periodici</td>
+<td>€ 4.000/mese</td>
+</tr>
+<tr>
+<td><strong>Durata</strong></td>
+<td>Periodo contrattuale</td>
+<td>20 mesi</td>
+</tr>
+<tr>
+<td><strong>Riscatto</strong></td>
+<td>Prezzo finale per acquistare il bene</td>
+<td>€ 2.500</td>
+</tr>
+<tr>
+<td><strong>IVA</strong></td>
+<td>Applicata su ogni canone</td>
+<td>22%</td>
+</tr>
+</tbody>
+</table>
+<h3 id="%F0%9F%94%B9-trattamento-contabile">🔹 Trattamento Contabile</h3>
+<p><strong>Nel sistema italiano (patrimoniale):</strong></p>
+<ul>
+<li>Il bene <strong>non</strong> entra nell'attivo dell'utilizzatore</li>
+<li>I canoni sono registrati come <strong>costi d'esercizio</strong></li>
+<li>Solo al riscatto finale il bene diventa di proprietà</li>
+</ul>
+<p><strong>Formula chiave:</strong></p>
+<pre class="hljs"><code><div>Canone Medio Mensile = (Maxicanone + Totale canoni ordinari) / Numero mesi totali
+</div></code></pre>
+<h3 id="%F0%9F%92%A1-esempio-base">💡 Esempio Base</h3>
+<p><strong>Contratto:</strong></p>
+<ul>
+<li>Maxicanone: € 8.000</li>
+<li>19 canoni mensili da € 4.000</li>
+<li>Durata: 20 mesi (1 + 19)</li>
+<li>Riscatto finale: € 2.500</li>
+</ul>
+<p><strong>Calcolo canone medio:</strong></p>
+<pre class="hljs"><code><div>Totale canoni ordinari = 19 × 4.000 = € 76.000
+Canone medio = (8.000 + 76.000) / 20 = 84.000 / 20 = € 4.200/mese
+</div></code></pre>
+<h3 id="%F0%9F%8E%A8-timeline-visiva">🎨 Timeline Visiva</h3>
+<pre class="hljs"><code><div>Mese 0        Mesi 1-19         Mese 20
+   │              │                │
+   ▼              ▼                ▼
+MAXICANONE    CANONI          RISCATTO
+€ 8.000      € 4.000/mese      € 2.500
+   │              │                │
+   └──────────────┴────────────────┘
+        LEASING OPERATIVO
+</div></code></pre>
+
+  <div class="separator"></div>
+
+  <!-- 🎯 MINI-QUIZ #1: Calcolo Canone Medio -->
+  <div class="card" style="background: linear-gradient(135deg, rgba(255,215,0,0.08), rgba(255,165,0,0.05)); border-left: 4px solid var(--yellow); margin: 20px 0">
+    <div style="display:flex; align-items:center; gap:12px; margin-bottom:16px">
+      <div class="badge b-yellow">🎯 Mini-Quiz #1</div>
+      <div class="small" style="color:var(--muted)">Test pratico · 2 min</div>
+    </div>
+
+    <p><strong>Calcola il Canone Medio:</strong></p>
+    <p class="small" style="color:var(--muted); margin-bottom:12px">Maxicanone iniziale € 18.000 + 24 canoni mensili da € 1.200 cad.</p>
+
+    <div style="display:grid; grid-template-columns:auto 1fr auto; gap:12px; align-items:center; margin-bottom:12px">
+      <span style="font-size:1.1em">💰 Canone Medio =</span>
+      <input type="number" id="quiz1-leasing" placeholder="inserisci importo" style="padding:10px; border-radius:6px; border:2px solid var(--border); background:var(--card); color:var(--fg); font-size:1.1em; text-align:center">
+      <button onclick="validateQuizLeasing1()" style="padding:10px 20px; background:var(--yellow); color:#000; border:none; border-radius:6px; font-weight:600; cursor:pointer">Verifica</button>
+    </div>
+
+    <div id="quiz1-leasing-feedback" style="margin-top:12px"></div>
+    <div id="quiz1-leasing-stats" class="small" style="margin-top:8px; color:var(--muted)"></div>
+  </div>
+
+  <script>
+  function validateQuizLeasing1() {
+    const input = document.getElementById('quiz1-leasing');
+    const feedback = document.getElementById('quiz1-leasing-feedback');
+    const statsDiv = document.getElementById('quiz1-leasing-stats');
+    const userAnswer = parseFloat(input.value);
+    const correctAnswer = 2450; // (18000 + 24×1200) / 24 = 46800 / 24 = 1950... NO! (18000 + 28800) / 24 = 1950... WAIT
+    // Maxicanone: 18000, Canoni: 24 × 1200 = 28800, Totale: 46800
+    // Canone medio = Totale / n.canoni = 46800 / 24 = 1950
+    const correctAnswerFixed = 1950;
+
+    let stats = JSON.parse(localStorage.getItem('quiz-stats-leasing') || '{}');
+    if (!stats.quiz1) stats.quiz1 = { attempts: 0, correct: 0, firstTryCorrect: false };
+    stats.quiz1.attempts++;
+
+    if (Math.abs(userAnswer - correctAnswerFixed) < 1) {
+      stats.quiz1.correct++;
+      if (stats.quiz1.attempts === 1) stats.quiz1.firstTryCorrect = true;
+
+      feedback.innerHTML = `
+        <div style="padding:12px; background:rgba(46,204,113,0.15); border-left:4px solid var(--green); border-radius:6px">
+          <div style="font-size:1.2em; margin-bottom:8px">✅ <strong>Esatto!</strong></div>
+          <p class="small" style="margin:4px 0"><strong>Passaggi:</strong></p>
+          <ul class="small" style="margin:8px 0; padding-left:20px">
+            <li>Maxicanone: € 18.000</li>
+            <li>Canoni: 24 × € 1.200 = € 28.800</li>
+            <li>Totale: € 18.000 + € 28.800 = <strong>€ 46.800</strong></li>
+            <li>Canone medio: € 46.800 ÷ 24 = <strong>€ 1.950</strong></li>
+          </ul>
+          ${stats.quiz1.attempts === 1 ? '<div style="margin-top:8px; color:var(--yellow)">🏆 Perfetto al primo tentativo! +10 punti</div>' : ''}
+        </div>
+      `;
+      input.disabled = true;
+      input.style.borderColor = 'var(--green)';
+    } else {
+      feedback.innerHTML = `
+        <div style="padding:12px; background:rgba(231,76,60,0.15); border-left:4px solid var(--red); border-radius:6px">
+          <div style="font-size:1.1em; margin-bottom:8px">❌ <strong>Non corretto</strong></div>
+          <p class="small" style="margin:4px 0">Ricorda: <strong>Canone Medio = (Maxicanone + Totale canoni) ÷ Numero canoni</strong></p>
+          <p class="small" style="margin:4px 0; color:var(--yellow)">💡 Hint: Prima calcola il totale dei 24 canoni, poi aggiungi il maxicanone</p>
+        </div>
+      `;
+      input.focus();
+    }
+
+    localStorage.setItem('quiz-stats-leasing', JSON.stringify(stats));
+    const percentage = ((stats.quiz1.correct / stats.quiz1.attempts) * 100).toFixed(0);
+    statsDiv.innerHTML = `📊 Tentativi: ${stats.quiz1.attempts} · Corretti: ${stats.quiz1.correct} · Precisione: ${percentage}%`;
+  }
+
+  (function() {
+    const stats = JSON.parse(localStorage.getItem('quiz-stats-leasing') || '{}');
+    if (stats.quiz1 && stats.quiz1.correct > 0) {
+      const statsDiv = document.getElementById('quiz1-leasing-stats');
+      const percentage = ((stats.quiz1.correct / stats.quiz1.attempts) * 100).toFixed(0);
+      statsDiv.innerHTML = `📊 Tentativi: ${stats.quiz1.attempts} · Corretti: ${stats.quiz1.correct} · Precisione: ${percentage}%`;
+    }
+  })();
+  </script>
+
+  <!-- 🎯 SELF-ASSESSMENT CHUNK 1 -->
+  <div class="card" style="background: linear-gradient(135deg, rgba(66,135,245,0.08), rgba(46,204,113,0.05)); border-left: 4px solid var(--blue); margin: 20px 0">
+    <div style="display:flex; align-items:center; gap:12px; margin-bottom:16px">
+      <div class="badge b-blue">🧠 Auto-Valutazione</div>
+      <div class="small" style="color:var(--muted)">CHUNK 1 · 1 min</div>
+    </div>
+
+    <p style="margin-bottom:16px"><strong>Come ti senti dopo aver studiato questo CHUNK?</strong></p>
+
+    <div style="display:grid; gap:16px">
+      <div>
+        <label class="small" style="display:block; margin-bottom:8px; color:var(--muted)">💭 Quanto ricordi dei concetti? (1=Poco, 5=Tutto)</label>
+        <div style="display:flex; gap:12px; align-items:center">
+          <span class="small">1</span>
+          <input type="range" id="sa1-leasing-ricordo" min="1" max="5" value="3" style="flex:1; accent-color:var(--blue)">
+          <span class="small">5</span>
+          <span id="sa1-leasing-ricordo-val" style="font-weight:700; color:var(--blue); min-width:30px; text-align:center">3</span>
+        </div>
+      </div>
+
+      <div>
+        <label class="small" style="display:block; margin-bottom:8px; color:var(--muted)">💪 Quanto ti senti sicuro? (1=Insicuro, 5=Sicurissimo)</label>
+        <div style="display:flex; gap:12px; align-items:center">
+          <span class="small">1</span>
+          <input type="range" id="sa1-leasing-sicurezza" min="1" max="5" value="3" style="flex:1; accent-color:var(--green)">
+          <span class="small">5</span>
+          <span id="sa1-leasing-sicurezza-val" style="font-weight:700; color:var(--green); min-width:30px; text-align:center">3</span>
+        </div>
+      </div>
+
+      <div>
+        <label class="small" style="display:block; margin-bottom:8px; color:var(--muted)">🎯 Quanto puoi applicarlo in un esercizio? (1=Per niente, 5=Perfettamente)</label>
+        <div style="display:flex; gap:12px; align-items:center">
+          <span class="small">1</span>
+          <input type="range" id="sa1-leasing-applicazione" min="1" max="5" value="3" style="flex:1; accent-color:var(--yellow)">
+          <span class="small">5</span>
+          <span id="sa1-leasing-applicazione-val" style="font-weight:700; color:var(--yellow); min-width:30px; text-align:center">3</span>
+        </div>
+      </div>
+    </div>
+
+    <button onclick="saveSelfAssessmentLeasing1()" style="width:100%; padding:12px; margin-top:16px; background:var(--blue); color:#fff; border:none; border-radius:6px; font-weight:600; cursor:pointer">💾 Salva Valutazione</button>
+
+    <div id="sa1-leasing-feedback" style="margin-top:12px"></div>
+    <div id="sa1-leasing-trend" class="small" style="margin-top:8px; color:var(--muted)"></div>
+  </div>
+
+  <script>
+  ['ricordo', 'sicurezza', 'applicazione'].forEach(tipo => {
+    const slider = document.getElementById('sa1-leasing-' + tipo);
+    const label = document.getElementById('sa1-leasing-' + tipo + '-val');
+    slider.addEventListener('input', () => { label.textContent = slider.value; });
+  });
+
+  function saveSelfAssessmentLeasing1() {
+    const ricordo = parseInt(document.getElementById('sa1-leasing-ricordo').value);
+    const sicurezza = parseInt(document.getElementById('sa1-leasing-sicurezza').value);
+    const applicazione = parseInt(document.getElementById('sa1-leasing-applicazione').value);
+    const media = ((ricordo + sicurezza + applicazione) / 3).toFixed(1);
+
+    const feedback = document.getElementById('sa1-leasing-feedback');
+    const trendDiv = document.getElementById('sa1-leasing-trend');
+
+    const key = 'self-assessment-leasing-chunk1';
+    let history = JSON.parse(localStorage.getItem(key) || '[]');
+    const now = new Date().toISOString().split('T')[0];
+    history.push({ date: now, ricordo, sicurezza, applicazione, media: parseFloat(media) });
+    localStorage.setItem(key, JSON.stringify(history));
+
+    let icon = '✅', color = 'var(--green)', message = 'Ottimo! Continua così!', suggestion = '';
+
+    if (media < 3) {
+      icon = '⚠️'; color = 'var(--red)'; message = 'Attenzione: questo CHUNK richiede revisione';
+      suggestion = '<p class="small" style="margin-top:8px; color:var(--yellow)">💡 <strong>Suggerimento:</strong> Rileggi la sezione, rifai il mini-quiz, poi rivaluta tra 1 giorno</p>';
+    } else if (media < 4) {
+      icon = '👍'; color = 'var(--yellow)'; message = 'Buono! Potresti migliorare con pratica extra';
+      suggestion = '<p class="small" style="margin-top:8px; color:var(--yellow)">💡 <strong>Suggerimento:</strong> Fai un paio di esercizi aggiuntivi per consolidare</p>';
+    }
+
+    feedback.innerHTML = `<div style="padding:12px; background:rgba(66,135,245,0.1); border-left:4px solid ${color}; border-radius:6px"><div style="font-size:1.2em; margin-bottom:8px">${icon} <strong>Media: ${media}/5</strong></div><p class="small" style="margin:4px 0">${message}</p>${suggestion}</div>`;
+
+    if (history.length > 1) {
+      const prev = history[history.length - 2];
+      const diff = (parseFloat(media) - prev.media).toFixed(1);
+      const arrow = diff > 0 ? '📈' : (diff < 0 ? '📉' : '➡️');
+      const sign = diff > 0 ? '+' : '';
+      trendDiv.innerHTML = `${arrow} Trend: Ultima volta ${prev.media}/5 → Oggi ${media}/5 (${sign}${diff})`;
+    } else {
+      trendDiv.innerHTML = '📊 Prima valutazione salvata! Rivaluta tra qualche giorno per vedere il trend';
+    }
+  }
+
+  (function() {
+    const key = 'self-assessment-leasing-chunk1';
+    const history = JSON.parse(localStorage.getItem(key) || '[]');
+    if (history.length > 0) {
+      const last = history[history.length - 1];
+      document.getElementById('sa1-leasing-ricordo').value = last.ricordo;
+      document.getElementById('sa1-leasing-sicurezza').value = last.sicurezza;
+      document.getElementById('sa1-leasing-applicazione').value = last.applicazione;
+      document.getElementById('sa1-leasing-ricordo-val').textContent = last.ricordo;
+      document.getElementById('sa1-leasing-sicurezza-val').textContent = last.sicurezza;
+      document.getElementById('sa1-leasing-applicazione-val').textContent = last.applicazione;
+      const trendDiv = document.getElementById('sa1-leasing-trend');
+      trendDiv.innerHTML = `📅 Ultima valutazione: ${last.date} · Media: ${last.media}/5`;
+    }
+  })();
+  </script>
+
+  <label class="btn" style="width:100%; justify-content:space-between">
+    <span><input id="chk1done" type="checkbox" style="accent-color:var(--green); margin-right:8px"> Ho completato CHUNK 1 (canone medio)</span>
+  </label>
+  <div class="progress" style="margin-top:8px"><i id="chunk1bar"></i></div>
+</section>
+
+<script>(function(){const key='chunk1-leasing';const box=document.getElementById('chk1done');const bar=document.getElementById('chunk1bar');function load(){ const v=localStorage.getItem(key)==='1'; box.checked=v; bar.style.width=v?'100%':'0%'; }function save(){ localStorage.setItem(key, box.checked?'1':'0'); bar.style.width=box.checked?'100%':'0%'; }box.addEventListener('change', save); load();})();</script>
+
+<div class="card">
+  <div class="badge b-red">🔴 ACC loop</div>
+  <div class="small" style="margin:8px 0">Errori sul canone medio:</div>
+  <div class="grid" style="grid-template-columns:1fr 1fr 1fr; gap:12px; margin-top:12px">
+    <label>Errore<input id="acc-err-ch1" type="text" placeholder="es. non ho diviso maxicanone"></label>
+    <label>Motivo<input id="acc-why-ch1" type="text" placeholder="es. ho saltato un passaggio"></label>
+    <label>Cura<input id="acc-fix-ch1" type="text" placeholder="es. schema step-by-step"></label>
+  </div>
+</div>
+
+<script>(function(){const k='acc-chunk1-leasing';const el = {err:document.getElementById('acc-err-ch1'), why:document.getElementById('acc-why-ch1'), fix:document.getElementById('acc-fix-ch1')};function load(){ try{ const v=JSON.parse(localStorage.getItem(k)||'{}'); for(const t in v){ if(el[t]) el[t].value=v[t]; } }catch{} }function save(){ const v={err:el.err.value, why:el.why.value, fix:el.fix.value}; localStorage.setItem(k, JSON.stringify(v)); }['input','change'].forEach(ev=>Object.values(el).forEach(i=>i.addEventListener(ev, save)));load();})();</script>
+
+<section class="card">
+  <div style="display:flex; align-items:center; justify-content:space-between; flex-wrap:wrap; gap:12px">
+    <h2 id="%F0%9F%93%A6-chunk-2-registrazioni-contabili-del-leasing-15-min" style="margin:0">📦 CHUNK 2: Registrazioni Leasing</h2>
+    <div style="display:flex; gap:8px; align-items:center">
+      <span class="badge b-yellow">🟡 Procedura</span>
+      <span class="small">15 min</span>
+    </div>
+  </div>
+  <div class="small" style="margin:6px 0 12px; color:var(--muted)"><b>Obiettivo:</b> Registrare maxicanone e canoni periodici</div>
+<h3 id="%F0%9F%94%B9-scenario-completo">🔹 Scenario Completo</h3>
+<p><strong>Dati operazione:</strong></p>
+<ul>
+<li>Maxicanone versato: 01/07/n → € 8.000 + IVA 22%</li>
+<li>19 canoni mensili: € 4.000 + IVA 22%</li>
+<li>Esercizio contabile: 01/01 – 31/12</li>
+<li><strong>Competenza anno n:</strong> dal 01/07 al 31/12 = 6 mesi</li>
+</ul>
+<h3 id="%F0%9F%94%B9-step-1-pagamento-maxicanone-0107n">🔹 Step 1: Pagamento Maxicanone (01/07/n)</h3>
+<pre class="hljs"><code><div>DARE: Canoni di leasing             € 8.000
+DARE: IVA a credito                 € 1.760
+    AVERE: Banca c/c                        € 9.760
+</div></code></pre>
+<h3 id="%F0%9F%94%B9-step-2-pagamento-canoni-mensili">🔹 Step 2: Pagamento Canoni Mensili</h3>
+<p>Ogni mese (da luglio a dicembre):</p>
+<pre class="hljs"><code><div>DARE: Canoni di leasing             € 4.000
+DARE: IVA a credito                 €   880
+    AVERE: Debiti v/società leasing         € 4.880
+</div></code></pre>
+<p><strong>Totale 6 mesi (lug-dic):</strong></p>
+<pre class="hljs"><code><div>Canoni registrati = 8.000 + (4.000 × 5) = € 28.000
+</div></code></pre>
+<p><em>(5 canoni perché il maxicanone copre anche luglio)</em></p>
+<h3 id="%F0%9F%94%B9-step-3-rettifica-di-fine-anno-3112n">🔹 Step 3: Rettifica di Fine Anno (31/12/n)</h3>
+<p><strong>Problema:</strong> Il maxicanone di € 8.000 ha valore medio di € 4.200, quindi:</p>
+<pre class="hljs"><code><div>Costo corretto 6 mesi = 4.200 × 6 = € 25.200
+Costi già registrati = € 28.000
+Differenza da rinviare = 28.000 – 25.200 = € 2.800 → RISCONTO ATTIVO
+</div></code></pre>
+<p><strong>Scrittura di assestamento:</strong></p>
+<pre class="hljs"><code><div>DARE: Risconti attivi               € 2.800
+    AVERE: Canoni di leasing                € 2.800
+</div></code></pre>
+<p><strong>Effetto:</strong></p>
+<ul>
+<li>⬇️ Costo di competenza dell'anno n</li>
+<li>⬆️ Costo anticipato (Attivo SP) da ripartire nell'anno n+1</li>
+</ul>
+<h3 id="%F0%9F%A7%A0-schema-logico">🧠 Schema Logico</h3>
+<pre class="hljs"><code><div>COMPETENZA ECONOMICA
+│
+├─ Canone medio mensile = € 4.200
+├─ Mesi di competenza = 6 (lug-dic)
+├─ Costo corretto = € 25.200
+│
+└─ Costi registrati &gt; Costo corretto
+   → RISCONTO ATTIVO (rinvio a n+1)
+</div></code></pre>
+<h3 id="%F0%9F%94%B9-step-4-riscatto-finale-opzionale">🔹 Step 4: Riscatto Finale (opzionale)</h3>
+<p>Se a fine contratto si esercita il riscatto:</p>
+<pre class="hljs"><code><div>DARE: Impianti e macchinari         € 2.500
+DARE: IVA a credito                 €   550
+    AVERE: Banca c/c                        € 3.050
+</div></code></pre>
+<p><strong>Solo ora</strong> il bene entra nell'attivo e inizia l'ammortamento.</p>
+<hr>
+<h2 id="%F0%9F%93%A6-chunk-3-costruzioni-in-economia-10-min">📦 CHUNK 3: Costruzioni in Economia (10 min)</h2>
+<h3 id="%F0%9F%94%B9-definizione">🔹 Definizione</h3>
+<p>Quando l'impresa <strong>costruisce internamente</strong> un bene (es. macchinario, edificio) usando:</p>
+<ul>
+<li>Materiali propri</li>
+<li>Manodopera interna</li>
+<li>Risorse aziendali</li>
+</ul>
+<h3 id="%F0%9F%94%B9-principio-contabile">🔹 Principio Contabile</h3>
+<p>I costi di costruzione vanno <strong>capitalizzati</strong> (trasformati in immobilizzazione) invece di essere registrati come costi d'esercizio.</p>
+<p><strong>Logica:</strong></p>
+<pre class="hljs"><code><div>Costi Operativi → Costruzioni Interne → Immobilizzazione Finita
+</div></code></pre>
+<h3 id="%F0%9F%94%B9-fase-1-registrazione-costi-di-costruzione">🔹 Fase 1: Registrazione Costi di Costruzione</h3>
+<p>Durante la costruzione, tutti i costi vanno in un conto transitorio:</p>
+<pre class="hljs"><code><div>DARE: Immobilizzazioni in corso     € XX.XXX
+    AVERE: Costruzioni interne              € XX.XXX
+</div></code></pre>
+<p><strong>Costi inclusi:</strong></p>
+<ul>
+<li>Materiali utilizzati</li>
+<li>Manodopera diretta</li>
+<li>Costi indiretti di produzione</li>
+<li>Ammortamenti dei macchinari usati per costruire</li>
+</ul>
+<h3 id="%F0%9F%92%A1-esempio">💡 Esempio</h3>
+<p>Un'azienda costruisce un macchinario speciale:</p>
+<ul>
+<li>Materiali: € 15.000</li>
+<li>Manodopera: € 8.000</li>
+<li>Ammortamenti attrezzature: € 2.000</li>
+<li><strong>Totale costo di costruzione: € 25.000</strong></li>
+</ul>
+<p><strong>Durante la costruzione:</strong></p>
+<pre class="hljs"><code><div>DARE: Immobilizzazioni in corso     € 25.000
+    AVERE: Costruzioni interne              € 25.000
+</div></code></pre>
+<h3 id="%F0%9F%94%B9-fase-2-completamento-della-costruzione">🔹 Fase 2: Completamento della Costruzione</h3>
+<p>Quando il bene è pronto per l'uso:</p>
+<pre class="hljs"><code><div>DARE: Impianti e macchinari         € 25.000
+    AVERE: Immobilizzazioni in corso        € 25.000
+</div></code></pre>
+<p><strong>Da questo momento:</strong></p>
+<ul>
+<li>✅ Il bene entra definitivamente nell'attivo (B II 2)</li>
+<li>✅ Inizia l'ammortamento ordinario</li>
+</ul>
+<h3 id="%F0%9F%8E%A8-flusso-completo">🎨 Flusso Completo</h3>
+<pre class="hljs"><code><div>1. FASE COSTRUZIONE
+   Costi sostenuti
+      ↓
+   DARE: Immobilizzazioni in corso
+   AVERE: Costruzioni interne
+      ↓
+   [Bene in costruzione - SP Attivo]
+
+2. FASE COMPLETAMENTO
+   DARE: Impianti e macchinari
+   AVERE: Immobilizzazioni in corso
+      ↓
+   [Bene pronto - inizia ammortamento]
+</div></code></pre>
+<h3 id="%F0%9F%A7%A0-differenza-con-acquisto">🧠 Differenza con Acquisto</h3>
+<table>
+<thead>
+<tr>
+<th>Aspetto</th>
+<th>Acquisto Esterno</th>
+<th>Costruzione Interna</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Fornitore</td>
+<td>Terzi</td>
+<td>Azienda stessa</td>
+</tr>
+<tr>
+<td>Costo</td>
+<td>Prezzo + accessori</td>
+<td>Somma costi interni</td>
+</tr>
+<tr>
+<td>IVA</td>
+<td>Su fattura</td>
+<td>Non c'è (autoproduzione)</td>
+</tr>
+<tr>
+<td>Conto transitorio</td>
+<td>No</td>
+<td>Sì (Immob. in corso)</td>
+</tr>
+<tr>
+<td>Quando ammortizzare</td>
+<td>Da subito</td>
+<td>Da quando è pronto</td>
+</tr>
+</tbody>
+</table>
+<h3 id="%F0%9F%94%B9-vantaggi-costruzione-in-economia">🔹 Vantaggi Costruzione in Economia</h3>
+<p>✅ Costo generalmente inferiore
+✅ Personalizzazione totale
+✅ Utilizzo capacità produttiva inutilizzata
+✅ Know-how interno</p>
+<p>❌ Tempi più lunghi
+❌ Rischio di errori tecnici</p>
+<hr>
+<h2 id="%F0%9F%A7%A0-mappa-mentale-completa">🧠 MAPPA MENTALE COMPLETA</h2>
+<pre class="hljs"><code><div>LEASING E COSTRUZIONI
+│
+├─ LEASING FINANZIARIO
+│  ├─ Componenti
+│  │  ├─ Maxicanone (anticipo)
+│  │  ├─ Canoni periodici
+│  │  └─ Riscatto finale
+│  │
+│  ├─ Calcoli
+│  │  ├─ Canone medio = (Max + Tot canoni) / Mesi
+│  │  └─ Competenza = Canone medio × Mesi anno
+│  │
+│  └─ Scritture
+│     ├─ Pagamenti → Costi + IVA
+│     ├─ Assestamento → Risconti attivi
+│     └─ Riscatto → Immobilizzazione
+│
+└─ COSTRUZIONI IN ECONOMIA
+   ├─ Durante costruzione
+   │  └─ DARE: Immobilizzazioni in corso
+   │     AVERE: Costruzioni interne
+   │
+   └─ A completamento
+      └─ DARE: Impianti e macchinari
+         AVERE: Immobilizzazioni in corso
+</div></code></pre>
+<hr>
+<h2 id="%F0%9F%93%8A-tabella-riepilogativa-leasing">📊 TABELLA RIEPILOGATIVA LEASING</h2>
+<table>
+<thead>
+<tr>
+<th>Elemento</th>
+<th>Formula/Azione</th>
+<th>Esempio</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Maxicanone</td>
+<td>Pagamento iniziale</td>
+<td>€ 8.000</td>
+</tr>
+<tr>
+<td>Canoni ordinari</td>
+<td>N canoni × importo</td>
+<td>19 × € 4.000 = € 76.000</td>
+</tr>
+<tr>
+<td>Canone medio</td>
+<td>(Max + Tot) / Mesi totali</td>
+<td>(8.000 + 76.000) / 20 = € 4.200</td>
+</tr>
+<tr>
+<td>Competenza annua</td>
+<td>Canone medio × Mesi</td>
+<td>€ 4.200 × 6 = € 25.200</td>
+</tr>
+<tr>
+<td>Risconto attivo</td>
+<td>Pagato – Competenza</td>
+<td>€ 28.000 – € 25.200 = € 2.800</td>
+</tr>
+</tbody>
+</table>
+
+  <div class="separator"></div>
+  <label class="btn" style="width:100%; justify-content:space-between">
+    <span><input id="chk2done" type="checkbox" style="accent-color:var(--green); margin-right:8px"> Ho completato tutti i chunk</span>
+  </label>
+  <div class="progress" style="margin-top:8px"><i id="chunk2bar"></i></div>
+</section>
+
+<script>(function(){const key='chunk2-leasing';const box=document.getElementById('chk2done');const bar=document.getElementById('chunk2bar');function load(){ const v=localStorage.getItem(key)==='1'; box.checked=v; bar.style.width=v?'100%':'0%'; }function save(){ localStorage.setItem(key, box.checked?'1':'0'); bar.style.width=box.checked?'100%':'0%'; }box.addEventListener('change', save); load();})();</script>
+
+  </main>
+
+  <aside class="grid sticky" style="gap:18px">
+    <div class="card">
+      <div class="badge b-green">✅ Checklist</div>
+      <ul style="list-style:none; padding:0; margin:12px 0 0; display:grid; gap:8px">
+        <li><label><input type="checkbox" id="check-canone" style="accent-color:var(--green); margin-right:8px"> Canone medio</label></li>
+        <li><label><input type="checkbox" id="check-competenza" style="accent-color:var(--green); margin-right:8px"> Competenza economica</label></li>
+        <li><label><input type="checkbox" id="check-maxi" style="accent-color:var(--green); margin-right:8px"> Maxicanone</label></li>
+        <li><label><input type="checkbox" id="check-risconti" style="accent-color:var(--green); margin-right:8px"> Risconti attivi</label></li>
+        <li><label><input type="checkbox" id="check-riscatto" style="accent-color:var(--green); margin-right:8px"> Riscatto</label></li>
+        <li><label><input type="checkbox" id="check-costruzioni" style="accent-color:var(--green); margin-right:8px"> Costruzioni</label></li>
+      </ul>
+      <div class="separator"></div>
+      <div class="progress"><i id="checklist-bar"></i></div>
+      <div class="small" style="margin-top:6px; text-align:center"><span id="checklist-count">0</span>/6</div>
+    </div>
+
+    <script>
+    (function(){const checks = ['canone','competenza','maxi','risconti','riscatto','costruzioni'].map(id=>'check-'+id);const bar = document.getElementById('checklist-bar');const count = document.getElementById('checklist-count');const key = 'checklist-leasing';function load(){try{ const v = JSON.parse(localStorage.getItem(key)||'{}');checks.forEach(id=>{ const el = document.getElementById(id); if(el && v[id]) el.checked=true; });}catch{}update();}function save(){const v = {};checks.forEach(id=>{ const el = document.getElementById(id); if(el) v[id]=el.checked; });localStorage.setItem(key, JSON.stringify(v));}function update(){const checked = checks.filter(id=>document.getElementById(id)?.checked).length;const perc = (checked/6*100)|0;bar.style.width = perc+'%';count.textContent = checked;save();}checks.forEach(id=>document.getElementById(id)?.addEventListener('change', update));load();})();
+    </script>
+
+    <div class="card">
+      <div class="badge b-blue">🔵 Formula</div>
+      <div class="callout co-blue" style="margin-top:12px; padding:10px">
+        <b>Canone medio</b><br>
+        <code style="font-size:0.85rem">(Maxicanone + Tot) ÷ Mesi</code>
+      </div>
+    </div>
+
+    <div class="card">
+      <div class="badge b-yellow">🔄 Prossimi passi</div>
+      <ol class="small" style="margin:12px 0 0; padding-left:20px">
+        <li><b>Active Recall</b></li>
+        <li><b>Confronta</b> con mod. 01</li>
+        <li><b>Prossimo</b>: 03-scritture</li>
+      </ol>
+    </div>
+  </aside>
+</div>
+
+<div class="separator" style="margin:32px 0"></div>
+</div>
+<hr>
+<h2 id="%F0%9F%94%84-prossimi-passi">🔄 PROSSIMI PASSI</h2>
+<ol>
+<li><strong>Active Recall</strong> → <code>quiz-active-recall/02-quiz-leasing-costruzioni.md</code></li>
+<li><strong>Interleaved Practice</strong> → Confronta leasing con acquisto diretto (modulo 01)</li>
+<li><strong>Prossimo argomento</strong> → <code>03-scritture-operative.md</code></li>
+</ol>
+<hr>
+<blockquote>
+<p>💡 <strong>Tip di Studio:</strong> Il leasing è un argomento &quot;ponte&quot; tra immobilizzazioni e competenza economica. Ripassa insieme a ratei e risconti per vedere il pattern comune.</p>
+</blockquote>
+
+<style>
+.footer-copyright {
+  text-align: center;
+  margin-top: 50px;
+  padding: 30px 25px;
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  color: #ffffff;
+  border-radius: 16px;
+  box-shadow: 0 8px 20px rgba(0,0,0,0.2);
+  font-size: 0.95em;
+  line-height: 1.8;
+}
+.footer-copyright strong {
+  color: #ffffff !important;
+  font-weight: 700;
+  font-size: 1.1em;
+}
+.footer-copyright em {
+  color: #f0f0f0;
+  font-style: italic;
+}
+.footer-copyright .warning {
+  margin-top: 15px;
+  padding: 12px;
+  background: rgba(255,255,255,0.15);
+  border-radius: 8px;
+  font-size: 0.85em;
+  border: 1px solid rgba(255,255,255,0.3);
+}
+</style>
+
+<div class="footer-copyright">
+  <strong>📚 Sistema NPI-Learning per Economia Aziendale</strong><br>
+  Creato da <strong>Jeffrey Minaya</strong> | AFM Quinta Serale | © 2025<br>
+  <em>Documento didattico ottimizzato con tecniche di neuroscienza applicata</em>
+  <div class="warning">
+    ⚠️ <strong>Uso Riservato:</strong> Questo materiale è protetto da copyright.<br>
+    La distribuzione, riproduzione o uso commerciale non autorizzato è vietato.<br>
+    Per richieste di utilizzo: contattare l'autore.
+  </div>
+</div>
+
+</body>
+</html>

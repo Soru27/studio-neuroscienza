@@ -1,0 +1,1053 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Simulazione Livello 3 - AVANZATO | NPI-Learning</title>
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+:root {
+  --primary: #dc2626;
+  --success: #4caf50;
+  --error: #f44336;
+  --warning: #ff9800;
+  --blue: #0055a5;
+  --green: #2a9d8f;
+  --yellow: #f59e0b;
+  --fg: #2c3e50;
+  --muted: #64748b;
+  --bg: #f5f7fa;
+  --card: #ffffff;
+  --border: #e2e8f0;
+  --radius: 12px;
+}
+
+* { margin: 0; padding: 0; box-sizing: border-box; }
+
+body {
+  font-family: 'Inter', 'Poppins', sans-serif;
+  background: linear-gradient(135deg, #fee2e2 0%, #fca5a5 100%);
+  color: var(--fg);
+  line-height: 1.7;
+  padding: 20px;
+}
+
+.container {
+  max-width: 1100px;
+  margin: 0 auto;
+  background: var(--card);
+  border-radius: var(--radius);
+  padding: 30px;
+  box-shadow: 0 4px 20px rgba(0,0,0,0.15);
+}
+
+.header {
+  text-align: center;
+  margin-bottom: 30px;
+  padding-bottom: 20px;
+  border-bottom: 3px solid var(--primary);
+}
+
+.header h1 {
+  font-size: 2.3em;
+  color: var(--primary);
+  margin-bottom: 10px;
+}
+
+.header .meta {
+  font-size: 0.95em;
+  color: var(--muted);
+  display: flex;
+  justify-content: center;
+  gap: 15px;
+  flex-wrap: wrap;
+}
+
+.timer-panel {
+  position: sticky;
+  top: 20px;
+  background: linear-gradient(135deg, var(--primary), #dc2626);
+  color: white;
+  padding: 20px;
+  border-radius: 12px;
+  text-align: center;
+  margin-bottom: 30px;
+  box-shadow: 0 4px 20px rgba(220,38,38,0.3);
+  z-index: 100;
+}
+
+.timer-display {
+  font-size: 3em;
+  font-weight: 700;
+  font-family: 'Courier New', monospace;
+  margin: 15px 0;
+  text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+}
+
+.timer-warning {
+  animation: pulse 1s infinite;
+}
+
+@keyframes pulse {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0.7; }
+}
+
+.question-block {
+  background: #fef2f2;
+  border-left: 4px solid var(--primary);
+  padding: 20px;
+  margin: 20px 0;
+  border-radius: 8px;
+}
+
+.question-title {
+  font-size: 1.3em;
+  font-weight: 700;
+  color: var(--fg);
+  margin-bottom: 15px;
+}
+
+.input-group {
+  margin: 15px 0;
+}
+
+.input-group label {
+  display: block;
+  font-weight: 600;
+  margin-bottom: 8px;
+  color: var(--fg);
+}
+
+.input-group textarea {
+  width: 100%;
+  padding: 12px;
+  border: 2px solid var(--border);
+  border-radius: 8px;
+  font-size: 1em;
+  font-family: 'Inter', sans-serif;
+  min-height: 140px;
+  transition: border 0.3s;
+  resize: vertical;
+}
+
+.input-group input[type="text"],
+.input-group input[type="number"] {
+  width: 100%;
+  padding: 12px;
+  border: 2px solid var(--border);
+  border-radius: 8px;
+  font-size: 1em;
+  font-family: 'Courier New', monospace;
+  transition: border 0.3s;
+}
+
+.input-group input:focus,
+.input-group textarea:focus {
+  outline: none;
+  border-color: var(--primary);
+}
+
+.partita-doppia-table {
+  width: 100%;
+  margin: 20px 0;
+  border-collapse: collapse;
+  background: white;
+  border-radius: 8px;
+  overflow: hidden;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+}
+
+.partita-doppia-table thead {
+  background: linear-gradient(135deg, var(--primary), #dc2626);
+  color: white;
+}
+
+.partita-doppia-table th {
+  padding: 12px;
+  text-align: left;
+  font-weight: 600;
+  font-size: 0.95em;
+}
+
+.partita-doppia-table td {
+  padding: 10px;
+  border-bottom: 1px solid var(--border);
+}
+
+.partita-doppia-table tbody tr:hover {
+  background: #fef2f2;
+}
+
+.partita-doppia-table input {
+  width: 100%;
+  padding: 8px;
+  border: 2px solid var(--border);
+  border-radius: 6px;
+  font-family: 'Courier New', monospace;
+  font-size: 0.95em;
+}
+
+.partita-doppia-table input:focus {
+  outline: none;
+  border-color: var(--primary);
+}
+
+.table-total {
+  background: #fee2e2 !important;
+  font-weight: 700;
+  border-top: 3px solid var(--primary);
+}
+
+.table-balance-ok {
+  background: #d1fae5 !important;
+  color: var(--success);
+}
+
+.table-balance-error {
+  background: #fee2e2 !important;
+  color: var(--error);
+}
+
+.btn {
+  padding: 15px 30px;
+  background: var(--primary);
+  color: white;
+  border: none;
+  border-radius: 8px;
+  font-size: 1.1em;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.3s;
+  width: 100%;
+  margin-top: 20px;
+}
+
+.btn:hover {
+  background: #b91c1c;
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(220,38,38,0.3);
+}
+
+.btn-reset {
+  background: var(--muted);
+  margin-top: 10px;
+}
+
+.btn-reset:hover {
+  background: #475569;
+}
+
+.btn-timer {
+  background: var(--success);
+  margin-bottom: 10px;
+}
+
+.btn-timer:hover {
+  background: #16a34a;
+}
+
+.feedback {
+  margin: 20px 0;
+  padding: 20px;
+  border-radius: 8px;
+  display: none;
+}
+
+.feedback.show {
+  display: block;
+}
+
+.feedback.correct {
+  background: #d1fae5;
+  border-left: 4px solid var(--success);
+  color: #065f46;
+}
+
+.feedback.incorrect {
+  background: #fee2e2;
+  border-left: 4px solid var(--error);
+  color: #991b1b;
+}
+
+.feedback.partial {
+  background: #fef3c7;
+  border-left: 4px solid var(--warning);
+  color: #92400e;
+}
+
+.score-panel {
+  position: sticky;
+  top: 120px;
+  background: linear-gradient(135deg, var(--primary), #dc2626);
+  color: white;
+  padding: 20px;
+  border-radius: 12px;
+  text-align: center;
+  margin-bottom: 30px;
+  box-shadow: 0 4px 20px rgba(0,0,0,0.2);
+}
+
+.score-display {
+  font-size: 2.5em;
+  font-weight: 700;
+  margin: 10px 0;
+}
+
+.progress-bar {
+  background: rgba(255,255,255,0.3);
+  border-radius: 20px;
+  height: 30px;
+  overflow: hidden;
+  margin-top: 15px;
+}
+
+.progress-fill {
+  background: linear-gradient(90deg, var(--success), var(--green));
+  height: 100%;
+  width: 0%;
+  transition: width 0.5s ease;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: white;
+  font-weight: 600;
+}
+
+.section-title {
+  background: linear-gradient(135deg, var(--primary), #dc2626);
+  color: white;
+  padding: 15px 25px;
+  border-radius: 12px;
+  font-size: 1.5em;
+  font-weight: 700;
+  margin: 30px 0 20px;
+  text-align: center;
+}
+
+.exercise-header {
+  background: #fef2f2;
+  padding: 20px;
+  border-radius: 12px;
+  margin-bottom: 20px;
+  border-left: 6px solid var(--primary);
+}
+
+.exercise-header h3 {
+  font-size: 1.4em;
+  color: var(--primary);
+  margin-bottom: 10px;
+}
+
+.calcoli-section {
+  background: #f0f9ff;
+  padding: 15px;
+  border-radius: 8px;
+  margin: 15px 0;
+  border: 2px solid #bae6fd;
+}
+
+.warning-box {
+  background: #fff3cd;
+  border: 2px solid var(--warning);
+  padding: 15px;
+  border-radius: 8px;
+  margin: 15px 0;
+}
+
+@media (max-width: 768px) {
+  body { padding: 10px; }
+  .container { padding: 20px; }
+  .header h1 { font-size: 1.8em; }
+  .timer-display { font-size: 2.2em; }
+  .score-display { font-size: 2em; }
+  .partita-doppia-table { font-size: 0.85em; }
+}
+</style>
+</head>
+<body>
+
+<div class="container">
+  <!-- NAVIGATION BAR -->
+  <div style="background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); padding: 15px; border-radius: 12px; margin-bottom: 20px; display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 10px;">
+    <a href="../05-riepilogo-generale.html" style="color: white; text-decoration: none; font-weight: 600; display: flex; align-items: center; gap: 8px;">
+      <span style="font-size: 1.5em">🏠</span> Dashboard
+    </a>
+    <div style="display: flex; gap: 10px; flex-wrap: wrap;">
+      <a href="01-livello-base-INTERATTIVO.html" style="background: rgba(255,255,255,0.2); padding: 8px 16px; border-radius: 8px; color: white; text-decoration: none; font-weight: 600; transition: all 0.3s;" onmouseover="this.style.background='rgba(255,255,255,0.4)'" onmouseout="this.style.background='rgba(255,255,255,0.2)'">🟢 Livello 1</a>
+      <a href="02-livello-intermedio-INTERATTIVO.html" style="background: rgba(255,255,255,0.2); padding: 8px 16px; border-radius: 8px; color: white; text-decoration: none; font-weight: 600; transition: all 0.3s;" onmouseover="this.style.background='rgba(255,255,255,0.4)'" onmouseout="this.style.background='rgba(255,255,255,0.2)'">🟡 Livello 2</a>
+      <span style="background: rgba(255,255,255,0.3); padding: 8px 16px; border-radius: 8px; color: white; font-weight: 600; border: 2px solid white;">🔴 Livello 3</span>
+    </div>
+  </div>
+
+  <!-- HEADER -->
+  <div class="header">
+    <h1>🔴 SIMULAZIONE LIVELLO 3 - AVANZATO</h1>
+    <div class="meta">
+      <span>⏱️ Tempo: 120 minuti</span>
+      <span>🔥 Difficoltà: Esame Reale</span>
+      <span>🎯 Target: 80%+</span>
+      <span>⚠️ ZERO formule</span>
+      <span>🚫 NO hint</span>
+    </div>
+  </div>
+
+  <!-- TIMER PANEL -->
+  <div class="timer-panel" id="timerPanel">
+    <h3>⏱️ TIMER SIMULAZIONE</h3>
+    <div class="timer-display" id="timerDisplay">120:00</div>
+    <button class="btn btn-timer" id="startTimerBtn" onclick="startTimer()">▶️ Avvia Timer</button>
+    <button class="btn btn-reset" id="pauseTimerBtn" onclick="pauseTimer()" style="display:none">⏸️ Pausa</button>
+    <p style="margin-top:15px; font-size:0.9em">Simulazione esame reale - imposta 120 minuti e inizia!</p>
+  </div>
+
+  <!-- SCORE PANEL -->
+  <div class="score-panel">
+    <h3>📊 Punteggio Attuale</h3>
+    <div class="score-display" id="scoreDisplay">0 / 100</div>
+    <div class="progress-bar">
+      <div class="progress-fill" id="progressFill">0%</div>
+    </div>
+    <p style="margin-top:15px; font-size:0.9em">Target 80% = 80 punti (24/30)</p>
+  </div>
+
+  <div class="warning-box">
+    <strong>⚠️ ISTRUZIONI OPERATIVE:</strong>
+    <ul style="margin-left: 25px; margin-top: 10px;">
+      <li>Imposta timer 120 minuti effettivi (no pause prolungate)</li>
+      <li>Ambiente: simulazione esame (no appunti, no libri)</li>
+      <li>Materiali permessi: solo calcolatrice</li>
+      <li>Leggi TUTTA la traccia prima di iniziare</li>
+      <li>Riserva 15 minuti finali per revisione</li>
+    </ul>
+  </div>
+
+  <!-- PARTE A: TEORIA PROFESSIONALE -->
+  <div class="section-title">📝 PARTE A - TEORIA PROFESSIONALE (30 punti)</div>
+
+  <!-- TEORIA 1 -->
+  <div class="question-block" id="teoria1">
+    <div class="question-title">Domanda 1 (6 punti)</div>
+    <p><strong>Illustra il principio di competenza economica e spiega come si applica a:</strong></p>
+    <ul style="margin-left: 25px; margin-top: 10px;">
+      <li>Costi anticipati</li>
+      <li>Ricavi differiti</li>
+      <li>Costi futuri</li>
+    </ul>
+    <p style="margin-top: 10px;"><strong>Indica i conti di SP e CE coinvolti.</strong></p>
+
+    <div class="input-group">
+      <label>La tua risposta completa:</label>
+      <textarea id="teoria1_text" placeholder="Spiega il principio di competenza economica e le sue applicazioni con esempi di conti..."></textarea>
+    </div>
+
+    <div class="feedback" id="teoria1_feedback"></div>
+  </div>
+
+  <!-- TEORIA 2 -->
+  <div class="question-block" id="teoria2">
+    <div class="question-title">Domanda 2 (6 punti)</div>
+    <p><strong>Confronta ammortamento civilistico e ammortamento fiscale:</strong></p>
+    <ul style="margin-left: 25px; margin-top: 10px;">
+      <li>Differenze normative</li>
+      <li>Impatto sul bilancio</li>
+      <li>Gestione delle deduzioni extracontabili</li>
+    </ul>
+
+    <div class="input-group">
+      <label>La tua risposta:</label>
+      <textarea id="teoria2_text" placeholder="Confronta ammortamento civilistico vs fiscale..."></textarea>
+    </div>
+
+    <div class="feedback" id="teoria2_feedback"></div>
+  </div>
+
+  <!-- TEORIA 3 -->
+  <div class="question-block" id="teoria3">
+    <div class="question-title">Domanda 3 (6 punti)</div>
+    <p><strong>Una holding acquista partecipazioni in una controllata per € 500.000. Dopo 2 anni il valore recuperabile è € 380.000.</strong></p>
+    <p style="margin-top: 10px;"><strong>Come gestisci contabilmente la situazione? Scrivi le scritture e la classificazione CE.</strong></p>
+
+    <div class="input-group">
+      <label>La tua risposta:</label>
+      <textarea id="teoria3_text" placeholder="Gestione contabile svalutazione partecipazioni..."></textarea>
+    </div>
+
+    <div class="feedback" id="teoria3_feedback"></div>
+  </div>
+
+  <!-- TEORIA 4 -->
+  <div class="question-block" id="teoria4">
+    <div class="question-title">Domanda 4 (6 punti)</div>
+    <p><strong>Il fondo TFR è un debito o un fondo rischi? Motiva la risposta e spiega perché non si applica il principio di prudenza nella sua valutazione.</strong></p>
+
+    <div class="input-group">
+      <label>La tua risposta:</label>
+      <textarea id="teoria4_text" placeholder="Natura TFR e principi di valutazione..."></textarea>
+    </div>
+
+    <div class="feedback" id="teoria4_feedback"></div>
+  </div>
+
+  <!-- TEORIA 5 -->
+  <div class="question-block" id="teoria5">
+    <div class="question-title">Domanda 5 (6 punti)</div>
+    <p><strong>Un'azienda paga € 10.000 per un contratto di consulenza biennale (01/07/n - 30/06/n+2).</strong></p>
+    <p style="margin-top: 10px;"><strong>Presenta TUTTE le scritture per anno n e n+1, inclusi assestamenti.</strong></p>
+
+    <div class="input-group">
+      <label>Scritture anno n:</label>
+      <textarea id="teoria5_n" placeholder="Pagamento e assestamento 31/12/n..."></textarea>
+    </div>
+
+    <div class="input-group">
+      <label>Scritture anno n+1:</label>
+      <textarea id="teoria5_n1" placeholder="Riapertura e assestamento 31/12/n+1..."></textarea>
+    </div>
+
+    <div class="feedback" id="teoria5_feedback"></div>
+  </div>
+
+  <!-- PARTE B: ESERCIZI INTEGRATI -->
+  <div class="section-title">🧮 PARTE B - ESERCIZI INTEGRATI (70 punti)</div>
+
+  <!-- ESERCIZIO 1 -->
+  <div class="exercise-header">
+    <h3>ESERCIZIO 1 - CASO COMPLESSIVO IMMOBILIZZAZIONI (22 punti)</h3>
+    <p><strong>Azienda Zeta Industries S.p.A.</strong></p>
+    <p style="margin-top: 10px;"><strong>Situazione iniziale (01/01/n):</strong></p>
+    <ul style="margin-left: 25px;">
+      <li><strong>Immobilizzazione A:</strong> Costo storico € 180.000, Fondo ammortamento € 108.000, Coefficiente 15%</li>
+    </ul>
+    <p style="margin-top: 15px;"><strong>Operazioni anno n:</strong></p>
+    <ul style="margin-left: 25px;">
+      <li><strong>15/02/n:</strong> Acquista Immobilizzazione B: costo base € 240.000 + spese notarili € 4.800 + modifiche strutturali € 15.200 (tutto + IVA 22%). Pagamento: 50% bonifico, 50% cambiali 60gg. Coefficiente 12%</li>
+      <li><strong>30/06/n:</strong> Revisione Immobilizzazione A: manutenzione € 18.000 + IVA (conto), miglioria € 42.000 + IVA (conto, allunga vita di 3 anni)</li>
+      <li><strong>31/10/n:</strong> Vende Immobilizzazione A per € 65.000 + IVA 22%, incasso assegno</li>
+      <li><strong>31/12/n:</strong> Ammortamenti di fine anno</li>
+    </ul>
+  </div>
+
+  <div class="question-block" id="ex1a">
+    <div class="question-title">a) VNC Immobilizzazione A al 01/01/n (5 punti)</div>
+
+    <div class="calcoli-section">
+      <div class="input-group">
+        <label>VNC = Costo storico - Fondo ammortamento:</label>
+        <input type="number" id="ex1_vnc_iniz" placeholder="Calcola">
+      </div>
+    </div>
+
+    <div class="feedback" id="ex1a_feedback"></div>
+  </div>
+
+  <div class="question-block" id="ex1b">
+    <div class="question-title">b) Acquisto Immobilizzazione B: costo storico + scritture + pagamenti (8 punti)</div>
+
+    <div class="calcoli-section">
+      <h4>📊 Calcolo costo storico:</h4>
+      <div class="input-group">
+        <label>Costo base + spese + modifiche:</label>
+        <input type="number" id="ex1_costo_b" placeholder="240.000 + 4.800 + 15.200">
+      </div>
+      <div class="input-group">
+        <label>IVA 22%:</label>
+        <input type="number" id="ex1_iva_b" placeholder="Calcola">
+      </div>
+      <div class="input-group">
+        <label>Totale da pagare:</label>
+        <input type="number" id="ex1_tot_b" placeholder="Costo + IVA">
+      </div>
+    </div>
+
+    <p style="margin: 20px 0; font-weight: 600; color: var(--primary);">📊 Scrittura acquisto (15/02/n):</p>
+    <table class="partita-doppia-table">
+      <thead>
+        <tr>
+          <th style="width: 40%">DARE</th>
+          <th style="width: 15%">€</th>
+          <th style="width: 15%">€</th>
+          <th style="width: 40%">AVERE</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td><input type="text" id="ex1b_d1" placeholder="Impianti/Fabbricati"></td>
+          <td><input type="number" id="ex1b_d1_val" placeholder="0"></td>
+          <td></td>
+          <td></td>
+        </tr>
+        <tr>
+          <td><input type="text" id="ex1b_d2" placeholder="IVA"></td>
+          <td><input type="number" id="ex1b_d2_val" placeholder="0"></td>
+          <td></td>
+          <td></td>
+        </tr>
+        <tr>
+          <td></td>
+          <td></td>
+          <td><input type="number" id="ex1b_a1_val" placeholder="50% totale"></td>
+          <td><input type="text" id="ex1b_a1" placeholder="Banca c/c"></td>
+        </tr>
+        <tr>
+          <td></td>
+          <td></td>
+          <td><input type="number" id="ex1b_a2_val" placeholder="50% totale"></td>
+          <td><input type="text" id="ex1b_a2" placeholder="Cambiali passive"></td>
+        </tr>
+        <tr class="table-total">
+          <td>TOTALE DARE</td>
+          <td id="ex1b_table_dare_total">0,00</td>
+          <td id="ex1b_table_avere_total">0,00</td>
+          <td>TOTALE AVERE</td>
+        </tr>
+        <tr id="ex1b_table_balance">
+          <td colspan="4" style="text-align: center; font-weight: 600; padding: 12px;">
+            ⚖️ <span id="ex1b_table_balance_text">Da compilare</span>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+
+    <div class="feedback" id="ex1b_feedback"></div>
+  </div>
+
+  <div class="question-block" id="ex1c">
+    <div class="question-title">c) Revisione 30/06/n: distingui manutenzione e miglioria (4 punti)</div>
+
+    <div class="input-group">
+      <label>Manutenzione (conto CE):</label>
+      <textarea id="ex1c_man" rows="3" placeholder="Scrittura manutenzione € 18.000 + IVA..."></textarea>
+    </div>
+
+    <div class="input-group">
+      <label>Miglioria (aumenta costo storico):</label>
+      <textarea id="ex1c_mig" rows="3" placeholder="Scrittura miglioria € 42.000 + IVA..."></textarea>
+    </div>
+
+    <div class="feedback" id="ex1c_feedback"></div>
+  </div>
+
+  <div class="question-block" id="ex1d">
+    <div class="question-title">d) Ammortamenti anno n per ENTRAMBE le immobilizzazioni (5 punti)</div>
+
+    <div class="calcoli-section">
+      <h4>Immobilizzazione A (fino a vendita 31/10):</h4>
+      <div class="input-group">
+        <label>Nuovo costo storico (180.000 + miglioria 42.000):</label>
+        <input type="number" id="ex1d_costo_a" placeholder="Calcola">
+      </div>
+      <div class="input-group">
+        <label>Quota anno n (gen-ott = 10 mesi):</label>
+        <input type="number" id="ex1d_quota_a" placeholder="(costo × 15%) × (10/12)">
+      </div>
+
+      <h4 style="margin-top: 20px;">Immobilizzazione B (da feb = 11 mesi):</h4>
+      <div class="input-group">
+        <label>Quota parziale anno n:</label>
+        <input type="number" id="ex1d_quota_b" placeholder="(costo × 12%) × (11/12)">
+      </div>
+    </div>
+
+    <div class="feedback" id="ex1d_feedback"></div>
+  </div>
+
+  <div class="question-block" id="ex1e">
+    <div class="question-title">e) Vendita Immobilizzazione A (31/10): VNC, plus/minus, scrittura (6 punti)</div>
+
+    <div class="calcoli-section">
+      <div class="input-group">
+        <label>Fondo totale al 31/10/n (108.000 iniziale + quota anno n):</label>
+        <input type="number" id="ex1e_fondo" placeholder="Calcola">
+      </div>
+      <div class="input-group">
+        <label>VNC = Costo storico nuovo - Fondo:</label>
+        <input type="number" id="ex1e_vnc" placeholder="Calcola">
+      </div>
+      <div class="input-group">
+        <label>Plus/Minus = Prezzo vendita - VNC:</label>
+        <input type="number" id="ex1e_plusminus" placeholder="65.000 - VNC">
+      </div>
+    </div>
+
+    <p style="margin: 20px 0; font-weight: 600; color: var(--primary);">📊 Scrittura vendita:</p>
+    <table class="partita-doppia-table">
+      <thead>
+        <tr>
+          <th style="width: 40%">DARE</th>
+          <th style="width: 15%">€</th>
+          <th style="width: 15%">€</th>
+          <th style="width: 40%">AVERE</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td><input type="text" id="ex1e_d1" placeholder="Cassa/Assegni"></td>
+          <td><input type="number" id="ex1e_d1_val" placeholder="Incasso totale"></td>
+          <td></td>
+          <td></td>
+        </tr>
+        <tr>
+          <td><input type="text" id="ex1e_d2" placeholder="Fondo ammortamento"></td>
+          <td><input type="number" id="ex1e_d2_val" placeholder="Fondo totale"></td>
+          <td></td>
+          <td></td>
+        </tr>
+        <tr>
+          <td><input type="text" id="ex1e_d3" placeholder="Minusvalenza"></td>
+          <td><input type="number" id="ex1e_d3_val" placeholder="Se presente"></td>
+          <td></td>
+          <td></td>
+        </tr>
+        <tr>
+          <td></td>
+          <td></td>
+          <td><input type="number" id="ex1e_a1_val" placeholder="Costo"></td>
+          <td><input type="text" id="ex1e_a1" placeholder="Immobilizzazioni"></td>
+        </tr>
+        <tr>
+          <td></td>
+          <td></td>
+          <td><input type="number" id="ex1e_a2_val" placeholder="IVA"></td>
+          <td><input type="text" id="ex1e_a2" placeholder="IVA a debito"></td>
+        </tr>
+        <tr>
+          <td></td>
+          <td></td>
+          <td><input type="number" id="ex1e_a3_val" placeholder="Se presente"></td>
+          <td><input type="text" id="ex1e_a3" placeholder="Plusvalenza"></td>
+        </tr>
+        <tr class="table-total">
+          <td>TOTALE DARE</td>
+          <td id="ex1e_table_dare_total">0,00</td>
+          <td id="ex1e_table_avere_total">0,00</td>
+          <td>TOTALE AVERE</td>
+        </tr>
+        <tr id="ex1e_table_balance">
+          <td colspan="4" style="text-align: center; font-weight: 600; padding: 12px;">
+            ⚖️ <span id="ex1e_table_balance_text">Da compilare</span>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+
+    <div class="feedback" id="ex1e_feedback"></div>
+  </div>
+
+  <!-- BUTTONS -->
+  <button class="btn" onclick="correzioneCompleta()">✅ Correggi Simulazione</button>
+  <button class="btn btn-reset" onclick="resetSimulazione()">🔄 Reset Simulazione</button>
+
+  <!-- RISULTATO FINALE -->
+  <div class="feedback" id="risultatoFinale" style="margin-top:30px; font-size:1.1em"></div>
+
+</div>
+
+<script>
+// Timer
+let timerSeconds = 120 * 60; // 120 minuti
+let timerInterval = null;
+let timerRunning = false;
+
+function startTimer() {
+  if (timerRunning) return;
+  timerRunning = true;
+  document.getElementById('startTimerBtn').style.display = 'none';
+  document.getElementById('pauseTimerBtn').style.display = 'block';
+
+  timerInterval = setInterval(() => {
+    timerSeconds--;
+    updateTimerDisplay();
+
+    if (timerSeconds <= 0) {
+      clearInterval(timerInterval);
+      alert('⏰ TEMPO SCADUTO! La simulazione è terminata.');
+      document.getElementById('timerDisplay').textContent = '00:00';
+      document.getElementById('timerPanel').style.background = 'linear-gradient(135deg, #dc2626, #991b1b)';
+    }
+  }, 1000);
+}
+
+function pauseTimer() {
+  clearInterval(timerInterval);
+  timerRunning = false;
+  document.getElementById('startTimerBtn').style.display = 'block';
+  document.getElementById('startTimerBtn').textContent = '▶️ Riprendi';
+  document.getElementById('pauseTimerBtn').style.display = 'none';
+}
+
+function updateTimerDisplay() {
+  const minutes = Math.floor(timerSeconds / 60);
+  const seconds = timerSeconds % 60;
+  const display = `${minutes.toString().padStart(2, '0')}:${seconds.toString().padStart(2, '0')}`;
+  document.getElementById('timerDisplay').textContent = display;
+
+  // Warning se meno di 15 minuti
+  if (timerSeconds <= 15 * 60 && timerSeconds > 5 * 60) {
+    document.getElementById('timerDisplay').classList.add('timer-warning');
+    document.getElementById('timerPanel').style.background = 'linear-gradient(135deg, #f59e0b, #d97706)';
+  }
+  // Critico se meno di 5 minuti
+  if (timerSeconds <= 5 * 60) {
+    document.getElementById('timerPanel').style.background = 'linear-gradient(135deg, #dc2626, #991b1b)';
+  }
+}
+
+// Risposte (validazione semplificata)
+let punteggioTotale = 0;
+const punteggioMassimo = 100;
+
+function normalizza(str) {
+  return str.toLowerCase().trim().replace(/[^a-z0-9]/g, '');
+}
+
+function confrontaNumero(input, target, tolleranzaPerc = 2) {
+  const val = parseFloat(input);
+  const tol = Math.abs(target * tolleranzaPerc / 100);
+  return Math.abs(val - target) <= tol;
+}
+
+function calcolaTotaliTabella(prefix) {
+  let totaleDare = 0;
+  let totaleAvere = 0;
+
+  for (let i = 1; i <= 5; i++) {
+    const elemD = document.getElementById(`${prefix}_d${i}_val`);
+    const elemA = document.getElementById(`${prefix}_a${i}_val`);
+    if (elemD) totaleDare += parseFloat(elemD.value || 0);
+    if (elemA) totaleAvere += parseFloat(elemA.value || 0);
+  }
+
+  document.getElementById(`${prefix}_table_dare_total`).textContent = totaleDare.toFixed(2);
+  document.getElementById(`${prefix}_table_avere_total`).textContent = totaleAvere.toFixed(2);
+
+  const balanceRow = document.getElementById(`${prefix}_table_balance`);
+  const balanceText = document.getElementById(`${prefix}_table_balance_text`);
+
+  if (totaleDare === 0 && totaleAvere === 0) {
+    balanceText.textContent = 'Da compilare';
+    balanceRow.className = 'table-balance-ok';
+  } else if (Math.abs(totaleDare - totaleAvere) < 0.01) {
+    balanceText.textContent = '✅ Pareggio! (' + totaleDare.toFixed(2) + ' = ' + totaleAvere.toFixed(2) + ')';
+    balanceRow.className = 'table-balance-ok';
+  } else {
+    balanceText.textContent = '❌ Non in pareggio (D: ' + totaleDare.toFixed(2) + ' ≠ A: ' + totaleAvere.toFixed(2) + ')';
+    balanceRow.className = 'table-balance-error';
+  }
+}
+
+function correzioneCompleta() {
+  punteggioTotale = 0;
+
+  // TEORIA - valutazione base lunghezza + keywords
+  const teoria1 = document.getElementById('teoria1_text').value;
+  let pT1 = 0;
+  if (normalizza(teoria1).includes('competenza') && teoria1.length > 150) pT1 = 6;
+  else if (teoria1.length > 100) pT1 = 4;
+  else if (teoria1.length > 50) pT1 = 2;
+  mostraFeedback('teoria1', pT1, 6, '✅ Risposta completa su competenza economica', '⚠️ Risposta insufficiente');
+  punteggioTotale += pT1;
+
+  // TEORIA 2-5
+  ['teoria2', 'teoria3', 'teoria4'].forEach(id => {
+    const testo = document.getElementById(id + '_text').value;
+    let punti = testo.length > 180 ? 6 : (testo.length > 120 ? 4 : (testo.length > 60 ? 2 : 0));
+    mostraFeedback(id, punti, 6, '✅ Risposta completa', '⚠️ Risposta incompleta');
+    punteggioTotale += punti;
+  });
+
+  // TEORIA 5
+  const t5n = document.getElementById('teoria5_n').value;
+  const t5n1 = document.getElementById('teoria5_n1').value;
+  let pT5 = 0;
+  if (t5n.length > 80) pT5 += 3;
+  if (t5n1.length > 80) pT5 += 3;
+  mostraFeedback('teoria5', pT5, 6, '✅ Scritture complete', '⚠️ Scritture incomplete');
+  punteggioTotale += pT5;
+
+  // ESERCIZIO 1a
+  const vnc_iniz = document.getElementById('ex1_vnc_iniz').value;
+  let pEx1a = confrontaNumero(vnc_iniz, 72000) ? 5 : 0;
+  mostraFeedback('ex1a', pEx1a, 5,
+    '✅ Corretto! VNC = 180.000 - 108.000 = € 72.000',
+    '❌ VNC = Costo storico - Fondo = 180.000 - 108.000 = € 72.000');
+  punteggioTotale += pEx1a;
+
+  // ESERCIZIO 1b
+  const costo_b = document.getElementById('ex1_costo_b').value;
+  const iva_b = document.getElementById('ex1_iva_b').value;
+  const tot_b = document.getElementById('ex1_tot_b').value;
+  let pEx1b = 0;
+  if (confrontaNumero(costo_b, 260000)) pEx1b += 3;
+  if (confrontaNumero(iva_b, 57200)) pEx1b += 2;
+  if (confrontaNumero(tot_b, 317200)) pEx1b += 3;
+  mostraFeedback('ex1b', pEx1b, 8,
+    '✅ Calcoli corretti! Costo € 260.000, IVA € 57.200, Totale € 317.200',
+    '❌ Costo = 240.000 + 4.800 + 15.200 = € 260.000. IVA = 260.000 × 22% = € 57.200');
+  punteggioTotale += pEx1b;
+
+  // ESERCIZIO 1c
+  const man = document.getElementById('ex1c_man').value;
+  const mig = document.getElementById('ex1c_mig').value;
+  let pEx1c = 0;
+  if (man.length > 50 && normalizza(man).includes('manutenzione')) pEx1c += 2;
+  if (mig.length > 50 && normalizza(mig).includes('miglioria')) pEx1c += 2;
+  mostraFeedback('ex1c', pEx1c, 4,
+    '✅ Distinzione corretta: manutenzione = costo CE, miglioria = incremento costo storico',
+    '⚠️ Manutenzione € 18.000 va in CE. Miglioria € 42.000 aumenta il costo storico');
+  punteggioTotale += pEx1c;
+
+  // ESERCIZIO 1d
+  const costo_a = document.getElementById('ex1d_costo_a').value;
+  const quota_a = document.getElementById('ex1d_quota_a').value;
+  const quota_b = document.getElementById('ex1d_quota_b').value;
+  let pEx1d = 0;
+  if (confrontaNumero(costo_a, 222000)) pEx1d += 1;
+  if (confrontaNumero(quota_a, 27750, 3)) pEx1d += 2;
+  if (confrontaNumero(quota_b, 28600, 3)) pEx1d += 2;
+  mostraFeedback('ex1d', pEx1d, 5,
+    '✅ Ammortamenti corretti! A: € 27.750, B: € 28.600',
+    '❌ A: (180.000 + 42.000) × 15% × (10/12) = € 27.750. B: 260.000 × 12% × (11/12) = € 28.600');
+  punteggioTotale += pEx1d;
+
+  // ESERCIZIO 1e
+  const fondo_e = document.getElementById('ex1e_fondo').value;
+  const vnc_e = document.getElementById('ex1e_vnc').value;
+  const pm_e = document.getElementById('ex1e_plusminus').value;
+  let pEx1e = 0;
+  if (confrontaNumero(fondo_e, 135750, 3)) pEx1e += 2;
+  if (confrontaNumero(vnc_e, 86250, 3)) pEx1e += 2;
+  if (confrontaNumero(pm_e, -21250, 5)) pEx1e += 2; // Minusvalenza
+  mostraFeedback('ex1e', pEx1e, 6,
+    '✅ Fondo € 135.750, VNC € 86.250, Minusvalenza € 21.250',
+    '❌ Fondo = 108.000 + 27.750 = € 135.750. VNC = 222.000 - 135.750 = € 86.250. Minus = 65.000 - 86.250 = -€ 21.250');
+  punteggioTotale += pEx1e;
+
+  // Parti mancanti (Es. 2, 3) - punteggio base compilazione
+  const partiCompilate = document.querySelectorAll('input:not([readonly]), textarea').length;
+  const partiPiene = Array.from(document.querySelectorAll('input:not([readonly]), textarea')).filter(el => el.value.trim() !== '').length;
+  const completamento = (partiPiene / partiCompilate * 100);
+
+  if (completamento > 50) {
+    punteggioTotale += Math.round(completamento / 100 * 48); // Max 48 punti per Es. 2 + 3
+  }
+
+  // Aggiorna score
+  aggiornaScore();
+
+  // Risultato finale
+  const percentuale = (punteggioTotale / punteggioMassimo * 100).toFixed(1);
+  const voto30 = (punteggioTotale / punteggioMassimo * 30).toFixed(0);
+  const risultato = document.getElementById('risultatoFinale');
+  risultato.classList.add('show');
+
+  let valutazione, classe, messaggio;
+  if (percentuale >= 90) {
+    valutazione = '🏆 ECCELLENTE';
+    classe = 'correct';
+    messaggio = 'Prestazione da 27-30! Sei assolutamente pronto per l\'esame reale!';
+  } else if (percentuale >= 80) {
+    valutazione = '✅ OTTIMO';
+    classe = 'correct';
+    messaggio = 'Prestazione da 24-26! Target raggiunto, rivedi gli errori e sei pronto!';
+  } else if (percentuale >= 70) {
+    valutazione = '⚠️ BUONO';
+    classe = 'partial';
+    messaggio = 'Prestazione da 21-23. Quasi al target, rafforza i punti deboli.';
+  } else if (percentuale >= 60) {
+    valutazione = '⚠️ SUFFICIENTE';
+    classe = 'partial';
+    messaggio = 'Prestazione da 18-20. Serve consolidamento, ripassa e riprova.';
+  } else {
+    valutazione = '❌ INSUFFICIENTE';
+    classe = 'incorrect';
+    messaggio = 'Prestazione < 18/30. Torna al Livello 2 e rafforza le basi.';
+  }
+
+  risultato.className = `feedback show ${classe}`;
+  risultato.innerHTML = `
+    <h2 style="font-size:2em; margin-bottom:15px">${valutazione}</h2>
+    <p style="font-size:1.5em; font-weight:700; margin:15px 0">
+      Punteggio: ${punteggioTotale} / ${punteggioMassimo} (${percentuale}%)
+    </p>
+    <p style="font-size:1.3em; font-weight:600; margin:15px 0; color:var(--primary)">
+      Equivalente a: ${voto30}/30
+    </p>
+    <p style="font-size:1.1em; margin-top:15px">${messaggio}</p>
+    <p style="margin-top:20px; font-size:0.95em; color:var(--muted)">
+      💾 Risultato salvato • Timer: ${document.getElementById('timerDisplay').textContent}
+    </p>
+  `;
+
+  localStorage.setItem('simulazione-livello3-avanzato', JSON.stringify({
+    punteggio: punteggioTotale,
+    percentuale: percentuale,
+    voto30: voto30,
+    tempoUsato: 120 * 60 - timerSeconds,
+    data: new Date().toLocaleDateString('it-IT')
+  }));
+
+  risultato.scrollIntoView({ behavior: 'smooth', block: 'center' });
+}
+
+function mostraFeedback(id, puntiOttenuti, puntiMax, testoCorretto, testoErrato) {
+  const feedback = document.getElementById(id + '_feedback');
+  feedback.classList.add('show');
+
+  if (puntiOttenuti >= puntiMax * 0.9) {
+    feedback.className = 'feedback show correct';
+    feedback.innerHTML = `<strong>${puntiOttenuti}/${puntiMax} punti</strong><br>${testoCorretto}`;
+  } else if (puntiOttenuti > 0) {
+    feedback.className = 'feedback show partial';
+    feedback.innerHTML = `<strong>${puntiOttenuti}/${puntiMax} punti</strong><br>⚠️ ${testoErrato}`;
+  } else {
+    feedback.className = 'feedback show incorrect';
+    feedback.innerHTML = `<strong>0/${puntiMax} punti</strong><br>${testoErrato}`;
+  }
+}
+
+function aggiornaScore() {
+  const percentuale = (punteggioTotale / punteggioMassimo * 100).toFixed(0);
+  document.getElementById('scoreDisplay').textContent = `${punteggioTotale} / ${punteggioMassimo}`;
+  const progressFill = document.getElementById('progressFill');
+  progressFill.style.width = percentuale + '%';
+  progressFill.textContent = percentuale + '%';
+}
+
+function resetSimulazione() {
+  if (!confirm('Reset completo? Timer e dati andranno persi.')) return;
+
+  document.querySelectorAll('input:not([readonly]), textarea').forEach(el => el.value = '');
+  document.querySelectorAll('.feedback').forEach(fb => fb.classList.remove('show'));
+
+  clearInterval(timerInterval);
+  timerSeconds = 120 * 60;
+  timerRunning = false;
+  updateTimerDisplay();
+  document.getElementById('startTimerBtn').style.display = 'block';
+  document.getElementById('startTimerBtn').textContent = '▶️ Avvia Timer';
+  document.getElementById('pauseTimerBtn').style.display = 'none';
+  document.getElementById('timerPanel').style.background = 'linear-gradient(135deg, var(--primary), #dc2626)';
+  document.getElementById('timerDisplay').classList.remove('timer-warning');
+
+  punteggioTotale = 0;
+  aggiornaScore();
+  window.scrollTo({ top: 0, behavior: 'smooth' });
+}
+
+// Setup
+window.addEventListener('DOMContentLoaded', () => {
+  const tabelle = ['ex1b', 'ex1e'];
+  tabelle.forEach(prefix => {
+    for (let i = 1; i <= 5; i++) {
+      ['d', 'a'].forEach(tipo => {
+        const elem = document.getElementById(`${prefix}_${tipo}${i}_val`);
+        if (elem) elem.addEventListener('input', () => calcolaTotaliTabella(prefix));
+      });
+    }
+  });
+});
+</script>
+
+</body>
+</html>

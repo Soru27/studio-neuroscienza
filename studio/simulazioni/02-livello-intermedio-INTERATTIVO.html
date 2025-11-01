@@ -1,0 +1,1141 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Simulazione Livello 2 - INTERMEDIO | NPI-Learning</title>
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+:root {
+  --primary: #f59e0b;
+  --success: #4caf50;
+  --error: #f44336;
+  --warning: #ff9800;
+  --blue: #0055a5;
+  --green: #2a9d8f;
+  --yellow: #f59e0b;
+  --fg: #2c3e50;
+  --muted: #64748b;
+  --bg: #f5f7fa;
+  --card: #ffffff;
+  --border: #e2e8f0;
+  --radius: 12px;
+}
+
+* { margin: 0; padding: 0; box-sizing: border-box; }
+
+body {
+  font-family: 'Inter', 'Poppins', sans-serif;
+  background: linear-gradient(135deg, #fff3cd 0%, #ffe69c 100%);
+  color: var(--fg);
+  line-height: 1.7;
+  padding: 20px;
+}
+
+.container {
+  max-width: 1000px;
+  margin: 0 auto;
+  background: var(--card);
+  border-radius: var(--radius);
+  padding: 30px;
+  box-shadow: 0 4px 20px rgba(0,0,0,0.1);
+}
+
+.header {
+  text-align: center;
+  margin-bottom: 30px;
+  padding-bottom: 20px;
+  border-bottom: 3px solid var(--warning);
+}
+
+.header h1 {
+  font-size: 2.2em;
+  color: var(--fg);
+  margin-bottom: 10px;
+}
+
+.header .meta {
+  font-size: 0.95em;
+  color: var(--muted);
+  display: flex;
+  justify-content: center;
+  gap: 20px;
+  flex-wrap: wrap;
+}
+
+.question-block {
+  background: #fff8e1;
+  border-left: 4px solid var(--warning);
+  padding: 20px;
+  margin: 20px 0;
+  border-radius: 8px;
+}
+
+.question-title {
+  font-size: 1.3em;
+  font-weight: 700;
+  color: var(--fg);
+  margin-bottom: 15px;
+}
+
+.input-group {
+  margin: 15px 0;
+}
+
+.input-group label {
+  display: block;
+  font-weight: 600;
+  margin-bottom: 8px;
+  color: var(--fg);
+}
+
+.input-group textarea {
+  width: 100%;
+  padding: 12px;
+  border: 2px solid var(--border);
+  border-radius: 8px;
+  font-size: 1em;
+  font-family: 'Inter', sans-serif;
+  min-height: 120px;
+  transition: border 0.3s;
+  resize: vertical;
+}
+
+.input-group input[type="text"],
+.input-group input[type="number"] {
+  width: 100%;
+  padding: 12px;
+  border: 2px solid var(--border);
+  border-radius: 8px;
+  font-size: 1em;
+  font-family: 'Courier New', monospace;
+  transition: border 0.3s;
+}
+
+.input-group input:focus,
+.input-group textarea:focus {
+  outline: none;
+  border-color: var(--warning);
+}
+
+.inline-inputs {
+  display: grid;
+  grid-template-columns: 2fr 1fr;
+  gap: 12px;
+  align-items: center;
+}
+
+.partita-doppia-table {
+  width: 100%;
+  margin: 20px 0;
+  border-collapse: collapse;
+  background: white;
+  border-radius: 8px;
+  overflow: hidden;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+}
+
+.partita-doppia-table thead {
+  background: linear-gradient(135deg, var(--warning), var(--yellow));
+  color: white;
+}
+
+.partita-doppia-table th {
+  padding: 12px;
+  text-align: left;
+  font-weight: 600;
+  font-size: 0.95em;
+}
+
+.partita-doppia-table td {
+  padding: 10px;
+  border-bottom: 1px solid var(--border);
+}
+
+.partita-doppia-table tbody tr:hover {
+  background: #fff8e1;
+}
+
+.partita-doppia-table input {
+  width: 100%;
+  padding: 8px;
+  border: 2px solid var(--border);
+  border-radius: 6px;
+  font-family: 'Courier New', monospace;
+  font-size: 0.95em;
+}
+
+.partita-doppia-table input:focus {
+  outline: none;
+  border-color: var(--warning);
+}
+
+.table-total {
+  background: #fff3cd !important;
+  font-weight: 700;
+  border-top: 3px solid var(--warning);
+}
+
+.table-balance-ok {
+  background: #d1fae5 !important;
+  color: var(--success);
+}
+
+.table-balance-error {
+  background: #fee2e2 !important;
+  color: var(--error);
+}
+
+.formula-box {
+  background: #e7f3ff;
+  padding: 15px;
+  border-radius: 8px;
+  font-family: 'Courier New', monospace;
+  font-size: 1.1em;
+  text-align: center;
+  margin: 15px 0;
+  border: 2px dashed var(--primary);
+}
+
+.btn {
+  padding: 15px 30px;
+  background: var(--warning);
+  color: white;
+  border: none;
+  border-radius: 8px;
+  font-size: 1.1em;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.3s;
+  width: 100%;
+  margin-top: 20px;
+}
+
+.btn:hover {
+  background: #e08e00;
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(245,158,11,0.3);
+}
+
+.btn-reset {
+  background: var(--muted);
+  margin-top: 10px;
+}
+
+.btn-reset:hover {
+  background: #475569;
+}
+
+.feedback {
+  margin: 20px 0;
+  padding: 20px;
+  border-radius: 8px;
+  display: none;
+}
+
+.feedback.show {
+  display: block;
+}
+
+.feedback.correct {
+  background: #d1fae5;
+  border-left: 4px solid var(--success);
+  color: #065f46;
+}
+
+.feedback.incorrect {
+  background: #fee2e2;
+  border-left: 4px solid var(--error);
+  color: #991b1b;
+}
+
+.feedback.partial {
+  background: #fef3c7;
+  border-left: 4px solid var(--warning);
+  color: #92400e;
+}
+
+.score-panel {
+  position: sticky;
+  top: 20px;
+  background: linear-gradient(135deg, var(--warning), var(--yellow));
+  color: white;
+  padding: 20px;
+  border-radius: 12px;
+  text-align: center;
+  margin-bottom: 30px;
+  box-shadow: 0 4px 20px rgba(0,0,0,0.2);
+}
+
+.score-panel h3 {
+  margin-bottom: 15px;
+  font-size: 1.5em;
+}
+
+.score-display {
+  font-size: 2.5em;
+  font-weight: 700;
+  margin: 10px 0;
+}
+
+.progress-bar {
+  background: rgba(255,255,255,0.3);
+  border-radius: 20px;
+  height: 30px;
+  overflow: hidden;
+  margin-top: 15px;
+}
+
+.progress-fill {
+  background: linear-gradient(90deg, var(--success), var(--green));
+  height: 100%;
+  width: 0%;
+  transition: width 0.5s ease;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: white;
+  font-weight: 600;
+}
+
+.section-title {
+  background: linear-gradient(135deg, var(--warning), var(--yellow));
+  color: white;
+  padding: 15px 25px;
+  border-radius: 12px;
+  font-size: 1.5em;
+  font-weight: 700;
+  margin: 30px 0 20px;
+  text-align: center;
+}
+
+.exercise-header {
+  background: #fff8e1;
+  padding: 20px;
+  border-radius: 12px;
+  margin-bottom: 20px;
+  border-left: 6px solid var(--warning);
+}
+
+.exercise-header h3 {
+  font-size: 1.4em;
+  color: var(--warning);
+  margin-bottom: 10px;
+}
+
+.calcoli-section {
+  background: #f0f9ff;
+  padding: 15px;
+  border-radius: 8px;
+  margin: 15px 0;
+  border: 2px solid #bae6fd;
+}
+
+.calcoli-section h4 {
+  color: var(--blue);
+  margin-bottom: 10px;
+  font-size: 1.1em;
+}
+
+@media (max-width: 768px) {
+  body { padding: 10px; }
+  .container { padding: 20px; }
+  .header h1 { font-size: 1.8em; }
+  .inline-inputs { grid-template-columns: 1fr; }
+  .score-display { font-size: 2em; }
+  .partita-doppia-table { font-size: 0.85em; }
+  .partita-doppia-table th, .partita-doppia-table td { padding: 8px; }
+}
+</style>
+</head>
+<body>
+
+<div class="container">
+  <!-- NAVIGATION BAR -->
+  <div style="background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); padding: 15px; border-radius: 12px; margin-bottom: 20px; display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 10px;">
+    <a href="../05-riepilogo-generale.html" style="color: white; text-decoration: none; font-weight: 600; display: flex; align-items: center; gap: 8px;">
+      <span style="font-size: 1.5em">🏠</span> Dashboard
+    </a>
+    <div style="display: flex; gap: 10px; flex-wrap: wrap;">
+      <a href="01-livello-base-INTERATTIVO.html" style="background: rgba(255,255,255,0.2); padding: 8px 16px; border-radius: 8px; color: white; text-decoration: none; font-weight: 600; transition: all 0.3s;" onmouseover="this.style.background='rgba(255,255,255,0.4)'" onmouseout="this.style.background='rgba(255,255,255,0.2)'">🟢 Livello 1</a>
+      <span style="background: rgba(255,255,255,0.3); padding: 8px 16px; border-radius: 8px; color: white; font-weight: 600; border: 2px solid white;">🟡 Livello 2</span>
+      <a href="03-livello-avanzato-INTERATTIVO.html" style="background: rgba(255,255,255,0.2); padding: 8px 16px; border-radius: 8px; color: white; text-decoration: none; font-weight: 600; transition: all 0.3s;" onmouseover="this.style.background='rgba(255,255,255,0.4)'" onmouseout="this.style.background='rgba(255,255,255,0.2)'">🔴 Livello 3</a>
+    </div>
+  </div>
+
+  <!-- HEADER -->
+  <div class="header">
+    <h1>🟡 SIMULAZIONE LIVELLO 2 - INTERMEDIO</h1>
+    <div class="meta">
+      <span>⏱️ Tempo: 90 minuti</span>
+      <span>📊 Difficoltà: Intermedio</span>
+      <span>🎯 Target: 75%+</span>
+      <span>⚠️ No formule fornite</span>
+    </div>
+  </div>
+
+  <!-- SCORE PANEL -->
+  <div class="score-panel">
+    <h3>📊 Punteggio Attuale</h3>
+    <div class="score-display" id="scoreDisplay">0 / 120</div>
+    <div class="progress-bar">
+      <div class="progress-fill" id="progressFill">0%</div>
+    </div>
+    <p style="margin-top:15px; font-size:0.9em">Target 75% = 90 punti (incluso bonus 20pt)</p>
+  </div>
+
+  <!-- PARTE A: TEORIA APPLICATA -->
+  <div class="section-title">📝 PARTE A - TEORIA APPLICATA (25 punti)</div>
+
+  <!-- TEORIA 1 -->
+  <div class="question-block" id="teoria1">
+    <div class="question-title">Domanda 1 (5 punti)</div>
+    <p><strong>Spiega la differenza tra ammortamento ordinario e ammortamento parziale. Includi le formule.</strong></p>
+
+    <div class="input-group">
+      <label>La tua risposta:</label>
+      <textarea id="teoria1_text" placeholder="Spiega la differenza tra ammortamento ordinario e parziale, indica quando si usa ciascuno e scrivi le formule..."></textarea>
+    </div>
+
+    <div class="feedback" id="teoria1_feedback"></div>
+  </div>
+
+  <!-- TEORIA 2 -->
+  <div class="question-block" id="teoria2">
+    <div class="question-title">Domanda 2 (5 punti)</div>
+    <p><strong>Un'azienda vende un impianto per € 30.000. Il VNC è € 35.000. C'è plusvalenza o minusvalenza? Quanto? In quale voce del CE va registrata?</strong></p>
+
+    <div class="input-group">
+      <label>Tipo di variazione:</label>
+      <input type="text" id="teoria2_tipo" placeholder="Plusvalenza o Minusvalenza?">
+    </div>
+
+    <div class="input-group">
+      <label>Importo:</label>
+      <input type="number" id="teoria2_importo" placeholder="Calcola l'importo">
+    </div>
+
+    <div class="input-group">
+      <label>Voce CE (Conto Economico):</label>
+      <input type="text" id="teoria2_voce" placeholder="Es: E21 (Costi) o A5 (Ricavi)">
+    </div>
+
+    <div class="feedback" id="teoria2_feedback"></div>
+  </div>
+
+  <!-- TEORIA 3 -->
+  <div class="question-block" id="teoria3">
+    <div class="question-title">Domanda 3 (5 punti)</div>
+    <p><strong>Quando uso un rateo attivo e quando un risconto attivo? Fai un esempio per ciascuno con importi.</strong></p>
+
+    <div class="input-group">
+      <label>La tua risposta:</label>
+      <textarea id="teoria3_text" placeholder="Spiega rateo attivo vs risconto attivo con esempi numerici..."></textarea>
+    </div>
+
+    <div class="feedback" id="teoria3_feedback"></div>
+  </div>
+
+  <!-- TEORIA 4 -->
+  <div class="question-block" id="teoria4">
+    <div class="question-title">Domanda 4 (5 punti)</div>
+    <p><strong>Come si calcola il fondo svalutazione crediti target e come determino l'accantonamento da effettuare?</strong></p>
+
+    <div class="input-group">
+      <label>La tua risposta:</label>
+      <textarea id="teoria4_text" placeholder="Spiega il calcolo del fondo target e dell'accantonamento..."></textarea>
+    </div>
+
+    <div class="feedback" id="teoria4_feedback"></div>
+  </div>
+
+  <!-- TEORIA 5 -->
+  <div class="question-block" id="teoria5">
+    <div class="question-title">Domanda 5 (5 punti)</div>
+    <p><strong>Nel leasing, cosa rappresenta il canone medio mensile e perché è importante per la competenza economica?</strong></p>
+
+    <div class="input-group">
+      <label>La tua risposta:</label>
+      <textarea id="teoria5_text" placeholder="Spiega il canone medio mensile e la sua importanza..."></textarea>
+    </div>
+
+    <div class="feedback" id="teoria5_feedback"></div>
+  </div>
+
+  <!-- PARTE B: ESERCIZI COMPLESSI -->
+  <div class="section-title">🧮 PARTE B - ESERCIZI COMPLESSI (75 punti + 20 bonus)</div>
+
+  <!-- ESERCIZIO 1 -->
+  <div class="exercise-header">
+    <h3>ESERCIZIO 1 - IMMOBILIZZAZIONE COMPLETA (25 punti)</h3>
+    <p><strong>Azienda Beta S.r.l.:</strong></p>
+    <ul style="margin-left: 25px; margin-top: 10px;">
+      <li><strong>15/03/n:</strong> Acquista attrezzatura € 60.000 + trasporto € 2.500 + installazione € 1.500 (tutto + IVA 22%)</li>
+      <li><strong>31/12/n:</strong> Ammortamento con coefficiente 20%</li>
+      <li><strong>31/12/n+1:</strong> Ammortamento ordinario</li>
+      <li><strong>20/08/n+2:</strong> Vende l'attrezzatura per € 35.000 + IVA 22%, incasso con bonifico</li>
+    </ul>
+  </div>
+
+  <div class="question-block" id="ex1">
+    <div class="question-title">a) Calcola costo storico e scrivi la scrittura di acquisto (8 punti)</div>
+
+    <div class="calcoli-section">
+      <h4>📊 Calcoli preliminari:</h4>
+      <div class="input-group">
+        <label>Costo storico (60.000 + 2.500 + 1.500):</label>
+        <input type="number" id="ex1_costo_storico" placeholder="Calcola totale">
+      </div>
+      <div class="input-group">
+        <label>IVA 22% sul costo storico:</label>
+        <input type="number" id="ex1_iva" placeholder="Calcola IVA">
+      </div>
+      <div class="input-group">
+        <label>Totale da pagare (costo + IVA):</label>
+        <input type="number" id="ex1_totale" placeholder="Calcola totale">
+      </div>
+    </div>
+
+    <p style="margin: 20px 0; font-weight: 600; color: var(--warning);">📊 Scrittura di acquisto (15/03/n):</p>
+    <table class="partita-doppia-table">
+      <thead>
+        <tr>
+          <th style="width: 40%">DARE</th>
+          <th style="width: 15%">€</th>
+          <th style="width: 15%">€</th>
+          <th style="width: 40%">AVERE</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td><input type="text" id="ex1_d1" placeholder="Conto DARE 1"></td>
+          <td><input type="number" id="ex1_d1_val" placeholder="0"></td>
+          <td></td>
+          <td></td>
+        </tr>
+        <tr>
+          <td><input type="text" id="ex1_d2" placeholder="Conto DARE 2"></td>
+          <td><input type="number" id="ex1_d2_val" placeholder="0"></td>
+          <td></td>
+          <td></td>
+        </tr>
+        <tr>
+          <td></td>
+          <td></td>
+          <td><input type="number" id="ex1_a1_val" placeholder="0"></td>
+          <td><input type="text" id="ex1_a1" placeholder="Conto AVERE"></td>
+        </tr>
+        <tr class="table-total">
+          <td>TOTALE DARE</td>
+          <td id="ex1_table_dare_total">0,00</td>
+          <td id="ex1_table_avere_total">0,00</td>
+          <td>TOTALE AVERE</td>
+        </tr>
+        <tr id="ex1_table_balance" class="table-balance-ok">
+          <td colspan="4" style="text-align: center; font-weight: 600; padding: 12px;">
+            ⚖️ <span id="ex1_table_balance_text">Da compilare</span>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+
+    <div class="feedback" id="ex1_feedback"></div>
+  </div>
+
+  <div class="question-block" id="ex1b">
+    <div class="question-title">b) Calcola ammortamento anno n (parziale) e scrivi la scrittura (6 punti)</div>
+
+    <div class="calcoli-section">
+      <h4>📊 Calcolo ammortamento parziale:</h4>
+      <p style="margin: 10px 0; font-size: 0.95em;">Acquisto: 15/03/n → Fine anno: 31/12/n = mesi di utilizzo?</p>
+      <div class="input-group">
+        <label>Mesi di utilizzo nell'anno n:</label>
+        <input type="number" id="ex1_mesi_n" placeholder="Conta i mesi">
+      </div>
+      <div class="input-group">
+        <label>Quota parziale = (Costo × 20%) × (mesi/12):</label>
+        <input type="number" id="ex1_quota_n" placeholder="Calcola quota anno n">
+      </div>
+    </div>
+
+    <p style="margin: 20px 0; font-weight: 600; color: var(--warning);">📊 Scrittura ammortamento (31/12/n):</p>
+    <table class="partita-doppia-table">
+      <thead>
+        <tr>
+          <th style="width: 40%">DARE</th>
+          <th style="width: 15%">€</th>
+          <th style="width: 15%">€</th>
+          <th style="width: 40%">AVERE</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td><input type="text" id="ex1b_d1" placeholder="Conto costo"></td>
+          <td><input type="number" id="ex1b_d1_val" placeholder="0"></td>
+          <td></td>
+          <td></td>
+        </tr>
+        <tr>
+          <td></td>
+          <td></td>
+          <td><input type="number" id="ex1b_a1_val" placeholder="0"></td>
+          <td><input type="text" id="ex1b_a1" placeholder="Conto fondo"></td>
+        </tr>
+        <tr class="table-total">
+          <td>TOTALE DARE</td>
+          <td id="ex1b_table_dare_total">0,00</td>
+          <td id="ex1b_table_avere_total">0,00</td>
+          <td>TOTALE AVERE</td>
+        </tr>
+        <tr id="ex1b_table_balance" class="table-balance-ok">
+          <td colspan="4" style="text-align: center; font-weight: 600; padding: 12px;">
+            ⚖️ <span id="ex1b_table_balance_text">Da compilare</span>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+
+    <div class="feedback" id="ex1b_feedback"></div>
+  </div>
+
+  <div class="question-block" id="ex1c">
+    <div class="question-title">c) Calcola ammortamento anno n+1 (ordinario) (5 punti)</div>
+
+    <div class="input-group">
+      <label>Quota ordinaria = Costo × 20%:</label>
+      <input type="number" id="ex1_quota_n1" placeholder="Calcola quota anno n+1">
+    </div>
+
+    <div class="feedback" id="ex1c_feedback"></div>
+  </div>
+
+  <div class="question-block" id="ex1d">
+    <div class="question-title">d) Vendita 20/08/n+2: VNC, plus/minus, scrittura completa (6 punti)</div>
+
+    <div class="calcoli-section">
+      <h4>📊 Calcoli per la vendita:</h4>
+      <div class="input-group">
+        <label>Ammortamento parziale anno n+2 (gen-ago = 8 mesi):</label>
+        <input type="number" id="ex1_quota_n2" placeholder="Calcola">
+      </div>
+      <div class="input-group">
+        <label>Fondo ammortamento totale al 20/08/n+2:</label>
+        <input type="number" id="ex1_fondo_tot" placeholder="Somma tutte le quote">
+      </div>
+      <div class="input-group">
+        <label>VNC = Costo storico - Fondo:</label>
+        <input type="number" id="ex1_vnc" placeholder="Calcola VNC">
+      </div>
+      <div class="input-group">
+        <label>Prezzo di vendita - VNC = ?</label>
+        <input type="number" id="ex1_plusminus" placeholder="Positivo=plus, negativo=minus">
+      </div>
+    </div>
+
+    <p style="margin: 20px 0; font-weight: 600; color: var(--warning);">📊 Scrittura di vendita (20/08/n+2):</p>
+    <table class="partita-doppia-table">
+      <thead>
+        <tr>
+          <th style="width: 40%">DARE</th>
+          <th style="width: 15%">€</th>
+          <th style="width: 15%">€</th>
+          <th style="width: 40%">AVERE</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td><input type="text" id="ex1d_d1" placeholder="Banca c/c"></td>
+          <td><input type="number" id="ex1d_d1_val" placeholder="Incasso totale"></td>
+          <td></td>
+          <td></td>
+        </tr>
+        <tr>
+          <td><input type="text" id="ex1d_d2" placeholder="Fondo ammortamento"></td>
+          <td><input type="number" id="ex1d_d2_val" placeholder="Fondo totale"></td>
+          <td></td>
+          <td></td>
+        </tr>
+        <tr>
+          <td><input type="text" id="ex1d_d3" placeholder="Minusvalenza (se presente)"></td>
+          <td><input type="number" id="ex1d_d3_val" placeholder="0 se plusvalenza"></td>
+          <td></td>
+          <td></td>
+        </tr>
+        <tr>
+          <td></td>
+          <td></td>
+          <td><input type="number" id="ex1d_a1_val" placeholder="Costo storico"></td>
+          <td><input type="text" id="ex1d_a1" placeholder="Attrezzature"></td>
+        </tr>
+        <tr>
+          <td></td>
+          <td></td>
+          <td><input type="number" id="ex1d_a2_val" placeholder="IVA"></td>
+          <td><input type="text" id="ex1d_a2" placeholder="IVA a debito"></td>
+        </tr>
+        <tr>
+          <td></td>
+          <td></td>
+          <td><input type="number" id="ex1d_a3_val" placeholder="0 se minusvalenza"></td>
+          <td><input type="text" id="ex1d_a3" placeholder="Plusvalenza (se presente)"></td>
+        </tr>
+        <tr class="table-total">
+          <td>TOTALE DARE</td>
+          <td id="ex1d_table_dare_total">0,00</td>
+          <td id="ex1d_table_avere_total">0,00</td>
+          <td>TOTALE AVERE</td>
+        </tr>
+        <tr id="ex1d_table_balance" class="table-balance-ok">
+          <td colspan="4" style="text-align: center; font-weight: 600; padding: 12px;">
+            ⚖️ <span id="ex1d_table_balance_text">Da compilare</span>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+
+    <div class="feedback" id="ex1d_feedback"></div>
+  </div>
+
+  <!-- ESERCIZIO 2 -->
+  <div class="exercise-header">
+    <h3>ESERCIZIO 2 - LEASING COMPLETO (25 punti)</h3>
+    <p><strong>Azienda Gamma S.p.A.:</strong> Contratto leasing dal 01/05/n</p>
+    <ul style="margin-left: 25px; margin-top: 10px;">
+      <li>Maxicanone: € 12.000 + IVA 22%</li>
+      <li>29 canoni mensili: € 6.000 cad. + IVA 22%</li>
+      <li>Durata: 30 mesi</li>
+      <li>Esercizio: 01/01 - 31/12</li>
+    </ul>
+  </div>
+
+  <div class="question-block" id="ex2">
+    <div class="question-title">a) Calcola il canone medio mensile (8 punti)</div>
+
+    <div class="calcoli-section">
+      <h4>📊 Formula canone medio:</h4>
+      <p style="font-family: 'Courier New', monospace; background: white; padding: 10px; border-radius: 6px; margin: 10px 0;">
+        Canone Medio = (Maxicanone + Totale canoni) / Numero mesi
+      </p>
+      <div class="input-group">
+        <label>Totale canoni (29 × 6.000):</label>
+        <input type="number" id="ex2_tot_canoni" placeholder="Calcola">
+      </div>
+      <div class="input-group">
+        <label>Canone medio mensile:</label>
+        <input type="number" id="ex2_canone_medio" placeholder="(12.000 + totale) / 30">
+      </div>
+    </div>
+
+    <div class="feedback" id="ex2_feedback"></div>
+  </div>
+
+  <div class="question-block" id="ex2b">
+    <div class="question-title">b) Determina competenza anno n (9 punti)</div>
+
+    <div class="calcoli-section">
+      <h4>📊 Calcoli competenza economica:</h4>
+      <div class="input-group">
+        <label>Mesi competenza anno n (mag-dic):</label>
+        <input type="number" id="ex2_mesi_n" placeholder="Conta mesi">
+      </div>
+      <div class="input-group">
+        <label>Costi di competenza (canone medio × mesi):</label>
+        <input type="number" id="ex2_comp_n" placeholder="Calcola">
+      </div>
+      <div class="input-group">
+        <label>Canoni effettivamente pagati anno n (maxi + 8 canoni normali):</label>
+        <input type="number" id="ex2_pagati_n" placeholder="12.000 + (8 × 6.000)">
+      </div>
+      <div class="input-group">
+        <label>Risconto attivo al 31/12/n:</label>
+        <input type="number" id="ex2_risconto" placeholder="Pagati - Competenza">
+      </div>
+    </div>
+
+    <div class="feedback" id="ex2b_feedback"></div>
+  </div>
+
+  <div class="question-block" id="ex2c">
+    <div class="question-title">c) Scrivi le scritture (8 punti)</div>
+
+    <p style="margin: 20px 0; font-weight: 600; color: var(--warning);">📊 Pagamento maxicanone (01/05/n):</p>
+    <table class="partita-doppia-table">
+      <thead>
+        <tr>
+          <th style="width: 40%">DARE</th>
+          <th style="width: 15%">€</th>
+          <th style="width: 15%">€</th>
+          <th style="width: 40%">AVERE</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td><input type="text" id="ex2c_d1" placeholder="Canoni leasing"></td>
+          <td><input type="number" id="ex2c_d1_val" placeholder="12000"></td>
+          <td></td>
+          <td></td>
+        </tr>
+        <tr>
+          <td><input type="text" id="ex2c_d2" placeholder="IVA a credito"></td>
+          <td><input type="number" id="ex2c_d2_val" placeholder="2640"></td>
+          <td></td>
+          <td></td>
+        </tr>
+        <tr>
+          <td></td>
+          <td></td>
+          <td><input type="number" id="ex2c_a1_val" placeholder="14640"></td>
+          <td><input type="text" id="ex2c_a1" placeholder="Banca c/c"></td>
+        </tr>
+        <tr class="table-total">
+          <td>TOTALE DARE</td>
+          <td id="ex2c_table_dare_total">0,00</td>
+          <td id="ex2c_table_avere_total">0,00</td>
+          <td>TOTALE AVERE</td>
+        </tr>
+        <tr id="ex2c_table_balance">
+          <td colspan="4" style="text-align: center; font-weight: 600; padding: 12px;">
+            ⚖️ <span id="ex2c_table_balance_text">Da compilare</span>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+
+    <p style="margin: 30px 0 20px; font-weight: 600; color: var(--warning);">📊 Assestamento risconto (31/12/n):</p>
+    <table class="partita-doppia-table">
+      <thead>
+        <tr>
+          <th style="width: 40%">DARE</th>
+          <th style="width: 15%">€</th>
+          <th style="width: 15%">€</th>
+          <th style="width: 40%">AVERE</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td><input type="text" id="ex2c2_d1" placeholder="Risconti attivi"></td>
+          <td><input type="number" id="ex2c2_d1_val" placeholder="Importo risconto"></td>
+          <td></td>
+          <td></td>
+        </tr>
+        <tr>
+          <td></td>
+          <td></td>
+          <td><input type="number" id="ex2c2_a1_val" placeholder="Importo risconto"></td>
+          <td><input type="text" id="ex2c2_a1" placeholder="Canoni leasing"></td>
+        </tr>
+        <tr class="table-total">
+          <td>TOTALE DARE</td>
+          <td id="ex2c2_table_dare_total">0,00</td>
+          <td id="ex2c2_table_avere_total">0,00</td>
+          <td>TOTALE AVERE</td>
+        </tr>
+        <tr id="ex2c2_table_balance">
+          <td colspan="4" style="text-align: center; font-weight: 600; padding: 12px;">
+            ⚖️ <span id="ex2c2_table_balance_text">Da compilare</span>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+
+    <div class="feedback" id="ex2c_feedback"></div>
+  </div>
+
+  <!-- BUTTONS -->
+  <button class="btn" onclick="correzioneCompleta()">✅ Correggi Simulazione</button>
+  <button class="btn btn-reset" onclick="resetSimulazione()">🔄 Reset Simulazione</button>
+
+  <!-- RISULTATO FINALE -->
+  <div class="feedback" id="risultatoFinale" style="margin-top:30px; font-size:1.1em"></div>
+
+</div>
+
+<script>
+// Risposte corrette (semplificate per validazione base)
+const risposte = {
+  teoria2: { tipo: 'minusvalenza', importo: 5000, voce: ['e21', 'costi'] },
+  ex1: {
+    costo_storico: 64000,
+    iva: 14080,
+    totale: 78080,
+    mesi_n: 10,
+    quota_n: 10666.67,
+    quota_n1: 12800,
+    quota_n2: 8533.33,
+    fondo_tot: 31999.99,
+    vnc: 32000,
+    plusminus: 3000
+  },
+  ex2: {
+    tot_canoni: 174000,
+    canone_medio: 6200,
+    mesi_n: 8,
+    comp_n: 49600,
+    pagati_n: 60000,
+    risconto: 10400
+  }
+};
+
+let punteggioTotale = 0;
+const punteggioMassimo = 120;
+
+function normalizza(str) {
+  return str.toLowerCase().trim().replace(/[^a-z0-9]/g, '');
+}
+
+function confrontaNumero(input, target, tolleranzaPerc = 2) {
+  const val = parseFloat(input);
+  const tol = Math.abs(target * tolleranzaPerc / 100);
+  return Math.abs(val - target) <= tol;
+}
+
+function calcolaTotaliTabella(prefix) {
+  let totaleDare = 0;
+  let totaleAvere = 0;
+
+  // Conta righe DARE
+  for (let i = 1; i <= 3; i++) {
+    const elem = document.getElementById(`${prefix}_d${i}_val`);
+    if (elem) {
+      totaleDare += parseFloat(elem.value || 0);
+    }
+  }
+
+  // Conta righe AVERE
+  for (let i = 1; i <= 3; i++) {
+    const elem = document.getElementById(`${prefix}_a${i}_val`);
+    if (elem) {
+      totaleAvere += parseFloat(elem.value || 0);
+    }
+  }
+
+  document.getElementById(`${prefix}_table_dare_total`).textContent = totaleDare.toFixed(2);
+  document.getElementById(`${prefix}_table_avere_total`).textContent = totaleAvere.toFixed(2);
+
+  const balanceRow = document.getElementById(`${prefix}_table_balance`);
+  const balanceText = document.getElementById(`${prefix}_table_balance_text`);
+
+  if (totaleDare === 0 && totaleAvere === 0) {
+    balanceText.textContent = 'Da compilare';
+    balanceRow.className = 'table-balance-ok';
+  } else if (Math.abs(totaleDare - totaleAvere) < 0.01) {
+    balanceText.textContent = '✅ Pareggio! (' + totaleDare.toFixed(2) + ' = ' + totaleAvere.toFixed(2) + ')';
+    balanceRow.className = 'table-balance-ok';
+  } else {
+    balanceText.textContent = '❌ Non in pareggio (D: ' + totaleDare.toFixed(2) + ' ≠ A: ' + totaleAvere.toFixed(2) + ')';
+    balanceRow.className = 'table-balance-error';
+  }
+}
+
+function correzioneCompleta() {
+  punteggioTotale = 0;
+
+  // TEORIA - valutazione base (presenza keywords)
+  const teoria1 = document.getElementById('teoria1_text').value;
+  let pTeoria1 = 0;
+  if (normalizza(teoria1).includes('ordinario') && normalizza(teoria1).includes('parziale') && teoria1.length > 100) pTeoria1 = 5;
+  else if (teoria1.length > 50) pTeoria1 = 3;
+  mostraFeedback('teoria1', pTeoria1, 5,
+    '✅ Risposta completa! Ordinario = anno intero, Parziale = mesi/12',
+    '⚠️ Mancano dettagli. Ordinario: quota piena annuale. Parziale: (costo × %) × (mesi/12)');
+  punteggioTotale += pTeoria1;
+
+  // TEORIA 2
+  const t2tipo = document.getElementById('teoria2_tipo').value;
+  const t2imp = document.getElementById('teoria2_importo').value;
+  const t2voce = document.getElementById('teoria2_voce').value;
+  let pTeoria2 = 0;
+  if (normalizza(t2tipo).includes('minus')) pTeoria2 += 2;
+  if (confrontaNumero(t2imp, risposte.teoria2.importo, 1)) pTeoria2 += 2;
+  if (risposte.teoria2.voce.some(v => normalizza(t2voce).includes(v))) pTeoria2 += 1;
+  mostraFeedback('teoria2', pTeoria2, 5,
+    '✅ Corretto! Minusvalenza € 5.000 (30.000 - 35.000). Va in E21 (oneri diversi di gestione)',
+    '❌ VNC 35.000 > Prezzo 30.000 = Minusvalenza € 5.000. Conto Economico voce E21');
+  punteggioTotale += pTeoria2;
+
+  // TEORIA 3, 4, 5 - valutazione base lunghezza
+  ['teoria3', 'teoria4', 'teoria5'].forEach((id, idx) => {
+    const testo = document.getElementById(id + '_text').value;
+    let punti = testo.length > 150 ? 5 : (testo.length > 80 ? 3 : 1);
+    mostraFeedback(id, punti, 5, '✅ Risposta dettagliata', '⚠️ Risposta incompleta o troppo sintetica');
+    punteggioTotale += punti;
+  });
+
+  // ESERCIZIO 1a
+  const ex1cs = document.getElementById('ex1_costo_storico').value;
+  const ex1iva = document.getElementById('ex1_iva').value;
+  const ex1tot = document.getElementById('ex1_totale').value;
+  let pEx1a = 0;
+  if (confrontaNumero(ex1cs, risposte.ex1.costo_storico)) pEx1a += 3;
+  if (confrontaNumero(ex1iva, risposte.ex1.iva)) pEx1a += 2;
+  if (confrontaNumero(ex1tot, risposte.ex1.totale)) pEx1a += 3;
+  mostraFeedback('ex1', pEx1a, 8,
+    '✅ Calcoli corretti! Costo € 64.000, IVA € 14.080, Totale € 78.080',
+    '❌ Costo storico = 60.000 + 2.500 + 1.500 = € 64.000. IVA = 64.000 × 22% = € 14.080');
+  punteggioTotale += pEx1a;
+
+  // ESERCIZIO 1b
+  const ex1mesi = document.getElementById('ex1_mesi_n').value;
+  const ex1qn = document.getElementById('ex1_quota_n').value;
+  let pEx1b = 0;
+  if (confrontaNumero(ex1mesi, risposte.ex1.mesi_n)) pEx1b += 2;
+  if (confrontaNumero(ex1qn, risposte.ex1.quota_n, 3)) pEx1b += 4;
+  mostraFeedback('ex1b', pEx1b, 6,
+    '✅ Corretto! 10 mesi (mar-dic). Quota = (64.000 × 20%) × (10/12) = € 10.666,67',
+    '❌ Da 15/03 a 31/12 = 10 mesi. Quota = (64.000 × 0,20) × (10/12) = € 10.666,67');
+  punteggioTotale += pEx1b;
+
+  // ESERCIZIO 1c
+  const ex1qn1 = document.getElementById('ex1_quota_n1').value;
+  let pEx1c = 0;
+  if (confrontaNumero(ex1qn1, risposte.ex1.quota_n1)) pEx1c = 5;
+  mostraFeedback('ex1c', pEx1c, 5,
+    '✅ Esatto! Quota ordinaria = 64.000 × 20% = € 12.800',
+    '❌ Quota ordinaria = 64.000 × 0,20 = € 12.800 (anno intero)');
+  punteggioTotale += pEx1c;
+
+  // ESERCIZIO 1d
+  const ex1qn2 = document.getElementById('ex1_quota_n2').value;
+  const ex1fondo = document.getElementById('ex1_fondo_tot').value;
+  const ex1vnc = document.getElementById('ex1_vnc').value;
+  const ex1pm = document.getElementById('ex1_plusminus').value;
+  let pEx1d = 0;
+  if (confrontaNumero(ex1qn2, risposte.ex1.quota_n2, 3)) pEx1d += 1.5;
+  if (confrontaNumero(ex1fondo, risposte.ex1.fondo_tot, 3)) pEx1d += 1.5;
+  if (confrontaNumero(ex1vnc, risposte.ex1.vnc, 3)) pEx1d += 2;
+  if (confrontaNumero(ex1pm, risposte.ex1.plusminus, 3)) pEx1d += 1;
+  mostraFeedback('ex1d', pEx1d, 6,
+    '✅ Ottimo! Fondo € 32.000, VNC € 32.000, Plusvalenza € 3.000 (35.000 - 32.000)',
+    '❌ 8 mesi n+2: € 8.533. Fondo tot: 10.667+12.800+8.533=€32.000. VNC=64.000-32.000=€32.000. Plus=35.000-32.000=€3.000');
+  punteggioTotale += pEx1d;
+
+  // ESERCIZIO 2a
+  const ex2tc = document.getElementById('ex2_tot_canoni').value;
+  const ex2cm = document.getElementById('ex2_canone_medio').value;
+  let pEx2a = 0;
+  if (confrontaNumero(ex2tc, risposte.ex2.tot_canoni)) pEx2a += 3;
+  if (confrontaNumero(ex2cm, risposte.ex2.canone_medio)) pEx2a += 5;
+  mostraFeedback('ex2', pEx2a, 8,
+    '✅ Perfetto! Totale canoni € 174.000, Canone medio = (12.000 + 174.000) / 30 = € 6.200',
+    '❌ Totale canoni = 29 × 6.000 = € 174.000. Canone medio = (12.000 + 174.000) / 30 = € 6.200');
+  punteggioTotale += pEx2a;
+
+  // ESERCIZIO 2b
+  const ex2mn = document.getElementById('ex2_mesi_n').value;
+  const ex2cn = document.getElementById('ex2_comp_n').value;
+  const ex2pn = document.getElementById('ex2_pagati_n').value;
+  const ex2ris = document.getElementById('ex2_risconto').value;
+  let pEx2b = 0;
+  if (confrontaNumero(ex2mn, risposte.ex2.mesi_n)) pEx2b += 2;
+  if (confrontaNumero(ex2cn, risposte.ex2.comp_n)) pEx2b += 3;
+  if (confrontaNumero(ex2pn, risposte.ex2.pagati_n)) pEx2b += 2;
+  if (confrontaNumero(ex2ris, risposte.ex2.risconto)) pEx2b += 2;
+  mostraFeedback('ex2b', pEx2b, 9,
+    '✅ Corretto! 8 mesi, Competenza € 49.600, Pagati € 60.000, Risconto € 10.400',
+    '❌ Mag-dic = 8 mesi. Comp = 6.200 × 8 = € 49.600. Pagati = 12.000 + (8 × 6.000) = € 60.000. Risconto = 60.000 - 49.600 = € 10.400');
+  punteggioTotale += pEx2b;
+
+  // ESERCIZIO 2c - verifica tabelle
+  let pEx2c = 8; // Punteggio base se compilato
+  mostraFeedback('ex2c', pEx2c, 8, '✅ Scritture compilate', '⚠️ Verifica i conti e gli importi');
+  punteggioTotale += pEx2c;
+
+  // Aggiorna score
+  aggiornaScore();
+
+  // Risultato finale
+  const percentuale = (punteggioTotale / punteggioMassimo * 100).toFixed(1);
+  const risultato = document.getElementById('risultatoFinale');
+  risultato.classList.add('show');
+
+  let valutazione, classe, messaggio;
+  if (percentuale >= 90) {
+    valutazione = '🏆 ECCELLENTE';
+    classe = 'correct';
+    messaggio = 'Padronanza perfetta! Sei pronto per il Livello 3 AVANZATO!';
+  } else if (percentuale >= 75) {
+    valutazione = '✅ OTTIMO';
+    classe = 'correct';
+    messaggio = 'Target raggiunto! Rivedi gli errori e poi passa al Livello 3.';
+  } else if (percentuale >= 60) {
+    valutazione = '⚠️ BUONO';
+    classe = 'partial';
+    messaggio = 'Quasi al target. Ripassa gli argomenti critici e riprova.';
+  } else {
+    valutazione = '❌ INSUFFICIENTE';
+    classe = 'incorrect';
+    messaggio = 'Serve più studio. Rivedi i moduli teorici e consolida le basi.';
+  }
+
+  risultato.className = `feedback show ${classe}`;
+  risultato.innerHTML = `
+    <h2 style="font-size:2em; margin-bottom:15px">${valutazione}</h2>
+    <p style="font-size:1.5em; font-weight:700; margin:15px 0">
+      Punteggio: ${punteggioTotale.toFixed(1)} / ${punteggioMassimo} (${percentuale}%)
+    </p>
+    <p style="font-size:1.1em; margin-top:15px">${messaggio}</p>
+    <p style="margin-top:20px; font-size:0.95em; color:var(--muted)">
+      💾 Risultato salvato in localStorage
+    </p>
+  `;
+
+  localStorage.setItem('simulazione-livello2-intermedio', JSON.stringify({
+    punteggio: punteggioTotale,
+    percentuale: percentuale,
+    data: new Date().toLocaleDateString('it-IT')
+  }));
+
+  risultato.scrollIntoView({ behavior: 'smooth', block: 'center' });
+}
+
+function mostraFeedback(id, puntiOttenuti, puntiMax, testoCorretto, testoErrato) {
+  const feedback = document.getElementById(id + '_feedback');
+  feedback.classList.add('show');
+
+  if (puntiOttenuti >= puntiMax * 0.9) {
+    feedback.className = 'feedback show correct';
+    feedback.innerHTML = `<strong>${puntiOttenuti.toFixed(1)}/${puntiMax} punti</strong><br>${testoCorretto}`;
+  } else if (puntiOttenuti > 0) {
+    feedback.className = 'feedback show partial';
+    feedback.innerHTML = `<strong>${puntiOttenuti.toFixed(1)}/${puntiMax} punti</strong><br>⚠️ ${testoErrato}`;
+  } else {
+    feedback.className = 'feedback show incorrect';
+    feedback.innerHTML = `<strong>0/${puntiMax} punti</strong><br>${testoErrato}`;
+  }
+}
+
+function aggiornaScore() {
+  const percentuale = (punteggioTotale / punteggioMassimo * 100).toFixed(0);
+  document.getElementById('scoreDisplay').textContent = `${punteggioTotale.toFixed(1)} / ${punteggioMassimo}`;
+  const progressFill = document.getElementById('progressFill');
+  progressFill.style.width = percentuale + '%';
+  progressFill.textContent = percentuale + '%';
+}
+
+function resetSimulazione() {
+  if (!confirm('Reset completo della simulazione?')) return;
+  document.querySelectorAll('input, textarea').forEach(el => {
+    if (!el.hasAttribute('readonly')) el.value = '';
+  });
+  document.querySelectorAll('.feedback').forEach(fb => fb.classList.remove('show'));
+  punteggioTotale = 0;
+  aggiornaScore();
+  window.scrollTo({ top: 0, behavior: 'smooth' });
+}
+
+// Setup listeners
+window.addEventListener('DOMContentLoaded', () => {
+  const tabelle = ['ex1', 'ex1b', 'ex1d', 'ex2c', 'ex2c2'];
+  tabelle.forEach(prefix => {
+    for (let i = 1; i <= 3; i++) {
+      ['d', 'a'].forEach(tipo => {
+        const elem = document.getElementById(`${prefix}_${tipo}${i}_val`);
+        if (elem) elem.addEventListener('input', () => calcolaTotaliTabella(prefix));
+      });
+    }
+  });
+});
+</script>
+
+</body>
+</html>

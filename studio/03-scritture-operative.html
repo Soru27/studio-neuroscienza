@@ -1,0 +1,1840 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>03-scritture-operative.md</title>
+<meta http-equiv="Content-type" content="text/html;charset=UTF-8">
+
+<style>
+/* https://github.com/microsoft/vscode/blob/master/extensions/markdown-language-features/media/markdown.css */
+/*---------------------------------------------------------------------------------------------
+ *  Copyright (c) Microsoft Corporation. All rights reserved.
+ *  Licensed under the MIT License. See License.txt in the project root for license information.
+ *--------------------------------------------------------------------------------------------*/
+
+body {
+	font-family: var(--vscode-markdown-font-family, -apple-system, BlinkMacSystemFont, "Segoe WPC", "Segoe UI", "Ubuntu", "Droid Sans", sans-serif);
+	font-size: var(--vscode-markdown-font-size, 14px);
+	padding: 0 26px;
+	line-height: var(--vscode-markdown-line-height, 22px);
+	word-wrap: break-word;
+}
+
+#code-csp-warning {
+	position: fixed;
+	top: 0;
+	right: 0;
+	color: white;
+	margin: 16px;
+	text-align: center;
+	font-size: 12px;
+	font-family: sans-serif;
+	background-color:#444444;
+	cursor: pointer;
+	padding: 6px;
+	box-shadow: 1px 1px 1px rgba(0,0,0,.25);
+}
+
+#code-csp-warning:hover {
+	text-decoration: none;
+	background-color:#007acc;
+	box-shadow: 2px 2px 2px rgba(0,0,0,.25);
+}
+
+body.scrollBeyondLastLine {
+	margin-bottom: calc(100vh - 22px);
+}
+
+body.showEditorSelection .code-line {
+	position: relative;
+}
+
+body.showEditorSelection .code-active-line:before,
+body.showEditorSelection .code-line:hover:before {
+	content: "";
+	display: block;
+	position: absolute;
+	top: 0;
+	left: -12px;
+	height: 100%;
+}
+
+body.showEditorSelection li.code-active-line:before,
+body.showEditorSelection li.code-line:hover:before {
+	left: -30px;
+}
+
+.vscode-light.showEditorSelection .code-active-line:before {
+	border-left: 3px solid rgba(0, 0, 0, 0.15);
+}
+
+.vscode-light.showEditorSelection .code-line:hover:before {
+	border-left: 3px solid rgba(0, 0, 0, 0.40);
+}
+
+.vscode-light.showEditorSelection .code-line .code-line:hover:before {
+	border-left: none;
+}
+
+.vscode-dark.showEditorSelection .code-active-line:before {
+	border-left: 3px solid rgba(255, 255, 255, 0.4);
+}
+
+.vscode-dark.showEditorSelection .code-line:hover:before {
+	border-left: 3px solid rgba(255, 255, 255, 0.60);
+}
+
+.vscode-dark.showEditorSelection .code-line .code-line:hover:before {
+	border-left: none;
+}
+
+.vscode-high-contrast.showEditorSelection .code-active-line:before {
+	border-left: 3px solid rgba(255, 160, 0, 0.7);
+}
+
+.vscode-high-contrast.showEditorSelection .code-line:hover:before {
+	border-left: 3px solid rgba(255, 160, 0, 1);
+}
+
+.vscode-high-contrast.showEditorSelection .code-line .code-line:hover:before {
+	border-left: none;
+}
+
+img {
+	max-width: 100%;
+	max-height: 100%;
+}
+
+a {
+	text-decoration: none;
+}
+
+a:hover {
+	text-decoration: underline;
+}
+
+a:focus,
+input:focus,
+select:focus,
+textarea:focus {
+	outline: 1px solid -webkit-focus-ring-color;
+	outline-offset: -1px;
+}
+
+hr {
+	border: 0;
+	height: 2px;
+	border-bottom: 2px solid;
+}
+
+h1 {
+	padding-bottom: 0.3em;
+	line-height: 1.2;
+	border-bottom-width: 1px;
+	border-bottom-style: solid;
+}
+
+h1, h2, h3 {
+	font-weight: normal;
+}
+
+table {
+	border-collapse: collapse;
+}
+
+table > thead > tr > th {
+	text-align: left;
+	border-bottom: 1px solid;
+}
+
+table > thead > tr > th,
+table > thead > tr > td,
+table > tbody > tr > th,
+table > tbody > tr > td {
+	padding: 5px 10px;
+}
+
+table > tbody > tr + tr > td {
+	border-top: 1px solid;
+}
+
+blockquote {
+	margin: 0 7px 0 5px;
+	padding: 0 16px 0 10px;
+	border-left-width: 5px;
+	border-left-style: solid;
+}
+
+code {
+	font-family: Menlo, Monaco, Consolas, "Droid Sans Mono", "Courier New", monospace, "Droid Sans Fallback";
+	font-size: 1em;
+	line-height: 1.357em;
+}
+
+body.wordWrap pre {
+	white-space: pre-wrap;
+}
+
+pre:not(.hljs),
+pre.hljs code > div {
+	padding: 16px;
+	border-radius: 3px;
+	overflow: auto;
+}
+
+pre code {
+	color: var(--vscode-editor-foreground);
+	tab-size: 4;
+}
+
+/** Theming */
+
+.vscode-light pre {
+	background-color: rgba(220, 220, 220, 0.4);
+}
+
+.vscode-dark pre {
+	background-color: rgba(10, 10, 10, 0.4);
+}
+
+.vscode-high-contrast pre {
+	background-color: rgb(0, 0, 0);
+}
+
+.vscode-high-contrast h1 {
+	border-color: rgb(0, 0, 0);
+}
+
+.vscode-light table > thead > tr > th {
+	border-color: rgba(0, 0, 0, 0.69);
+}
+
+.vscode-dark table > thead > tr > th {
+	border-color: rgba(255, 255, 255, 0.69);
+}
+
+.vscode-light h1,
+.vscode-light hr,
+.vscode-light table > tbody > tr + tr > td {
+	border-color: rgba(0, 0, 0, 0.18);
+}
+
+.vscode-dark h1,
+.vscode-dark hr,
+.vscode-dark table > tbody > tr + tr > td {
+	border-color: rgba(255, 255, 255, 0.18);
+}
+
+</style>
+
+<style>
+/* Tomorrow Theme */
+/* http://jmblog.github.com/color-themes-for-google-code-highlightjs */
+/* Original theme - https://github.com/chriskempson/tomorrow-theme */
+
+/* Tomorrow Comment */
+.hljs-comment,
+.hljs-quote {
+	color: #8e908c;
+}
+
+/* Tomorrow Red */
+.hljs-variable,
+.hljs-template-variable,
+.hljs-tag,
+.hljs-name,
+.hljs-selector-id,
+.hljs-selector-class,
+.hljs-regexp,
+.hljs-deletion {
+	color: #c82829;
+}
+
+/* Tomorrow Orange */
+.hljs-number,
+.hljs-built_in,
+.hljs-builtin-name,
+.hljs-literal,
+.hljs-type,
+.hljs-params,
+.hljs-meta,
+.hljs-link {
+	color: #f5871f;
+}
+
+/* Tomorrow Yellow */
+.hljs-attribute {
+	color: #eab700;
+}
+
+/* Tomorrow Green */
+.hljs-string,
+.hljs-symbol,
+.hljs-bullet,
+.hljs-addition {
+	color: #718c00;
+}
+
+/* Tomorrow Blue */
+.hljs-title,
+.hljs-section {
+	color: #4271ae;
+}
+
+/* Tomorrow Purple */
+.hljs-keyword,
+.hljs-selector-tag {
+	color: #8959a8;
+}
+
+.hljs {
+	display: block;
+	overflow-x: auto;
+	color: #4d4d4c;
+	padding: 0.5em;
+}
+
+.hljs-emphasis {
+	font-style: italic;
+}
+
+.hljs-strong {
+	font-weight: bold;
+}
+</style>
+
+<style>
+/*
+ * Markdown PDF CSS
+ */
+
+ body {
+	font-family: -apple-system, BlinkMacSystemFont, "Segoe WPC", "Segoe UI", "Ubuntu", "Droid Sans", sans-serif, "Meiryo";
+	padding: 0 12px;
+}
+
+pre {
+	background-color: #f8f8f8;
+	border: 1px solid #cccccc;
+	border-radius: 3px;
+	overflow-x: auto;
+	white-space: pre-wrap;
+	overflow-wrap: break-word;
+}
+
+pre:not(.hljs) {
+	padding: 23px;
+	line-height: 19px;
+}
+
+blockquote {
+	background: rgba(127, 127, 127, 0.1);
+	border-color: rgba(0, 122, 204, 0.5);
+}
+
+.emoji {
+	height: 1.4em;
+}
+
+code {
+	font-size: 14px;
+	line-height: 19px;
+}
+
+/* for inline code */
+:not(pre):not(.hljs) > code {
+	color: #C9AE75; /* Change the old color so it seems less like an error */
+	font-size: inherit;
+}
+
+/* Page Break : use <div class="page"/> to insert page break
+-------------------------------------------------------- */
+.page {
+	page-break-after: always;
+}
+
+</style>
+
+<style>
+/* ========================================
+   🎨 NPI-LEARNING DESIGN SYSTEM
+   ======================================== */
+:root{--bg: #0b0c10; --fg:#eceff4; --muted:#9aa4b2; --card:#111318; --border:#23262e;--blue:#4da3ff; --red:#ff5964; --green:#3ad29f; --yellow:#ffd166;--primary:#4287f5; --success:#4caf50; --error:#f44336; --warning:#ff9800;--shadow: 0 6px 18px rgba(0,0,0,.25);--radius:16px; --pad:16px; --gap:14px; --font: Inter, system-ui, Segoe UI, Roboto, Arial, sans-serif;}@media (prefers-color-scheme: light){:root{ --bg:#f7f8fb; --fg:#0f172a; --muted:#475569; --card:#ffffff; --border:#e5e7eb;--blue:#2563eb; --red:#ef4444; --green:#10b981; --yellow:#f59e0b; --primary:#2196f3; --success:#4caf50; --error:#f44336; --warning:#ff9800; }}html,body{background:var(--bg); color:var(--fg); font-family:var(--font);}.container{max-width:1200px; margin:32px auto; padding:0 16px;}.grid{display:grid; gap:var(--gap);}.grid-2{grid-template-columns: 1.2fr .8fr;}@media (max-width:960px){ .grid-2{grid-template-columns:1fr;} }.card{background:var(--card); border:1px solid var(--border); border-radius:var(--radius); padding:var(--pad); box-shadow:var(--shadow);margin-bottom: 18px;}.card h2, .card h3{margin-top:0}.badge{display:inline-flex; align-items:center; gap:6px; font-weight:600; font-size:.85rem; padding:6px 10px; border-radius:999px; border:1px solid var(--border); background:linear-gradient(180deg, rgba(255,255,255,.04), transparent);}.b-blue{color:var(--blue); border-color:color-mix(in oklab, var(--blue), #000 70%);}.b-red{color:var(--red); border-color:color-mix(in oklab, var(--red), #000 70%);}.b-green{color:var(--green); border-color:color-mix(in oklab, var(--green), #000 70%);}.b-yellow{color:var(--yellow); border-color:color-mix(in oklab, var(--yellow), #000 70%);}.callout{border-left:6px solid var(--border); padding:14px 16px; border-radius:12px; background:linear-gradient(180deg, rgba(255,255,255,.03), transparent);margin: 12px 0;}.co-blue{border-left-color:var(--blue)}.co-red{border-left-color:var(--red)}.co-green{border-left-color:var(--green)}.co-yellow{border-left-color:var(--yellow)}.kbd{font:600 .85rem ui-monospace, SFMono-Regular, Menlo, monospace; background:var(--border); padding:2px 6px; border-radius:6px; border:1px solid color-mix(in oklab, var(--border), #000 35%);}.progress{height:10px; background:color-mix(in oklab, var(--border), #000 20%); border-radius:999px; overflow:hidden;}.progress > i{display:block; height:100%; width:0%; background:linear-gradient(90deg, var(--green), var(--blue)); transition:width .4s ease;}.separator{height:1px; background:var(--border); margin:18px 0;}.recall .hidden-answer{filter: blur(8px); transition:filter .2s; user-select: none;}.recall.reveal .hidden-answer{filter:none; user-select: auto;}.btn{display:inline-flex; align-items:center; gap:10px; padding:10px 14px; border-radius:12px; border:1px solid var(--border); background:var(--card); color:var(--fg); cursor:pointer;font-family: var(--font);}.btn:hover{border-color:color-mix(in oklab, var(--border), var(--fg) 30%);}.sticky{position:sticky; top:18px; align-self: start;}.small{font-size:.9rem; color:var(--muted)}input[type="text"], input[type="number"], input[type="range"]{width: 100%;padding: 8px;border-radius: 8px;border: 1px solid var(--border);background: var(--bg);color: var(--fg);font-family: var(--font);}label{display: block;font-size: 0.9rem;color: var(--muted);margin-bottom: 6px;}blockquote{border-left: 4px solid var(--blue);padding-left: 16px;margin-left: 0;background: linear-gradient(90deg, rgba(77, 163, 255, 0.1), transparent);border-radius: 8px;padding: 12px 16px;}details{background: var(--card);border: 1px solid var(--border);border-radius: 12px;padding: 12px;margin: 12px 0;}details summary{cursor: pointer;font-weight: 600;padding: 8px;border-radius: 8px;}details summary:hover{background: color-mix(in oklab, var(--border), transparent 50%);}.widget{background:var(--card);border:1px solid var(--border);border-radius:var(--radius);padding:var(--pad);margin:20px 0;}
+</style>
+
+<script src="https://unpkg.com/mermaid/dist/mermaid.min.js"></script>
+</head>
+<body>
+  <script>
+    mermaid.initialize({
+      startOnLoad: true,
+      theme: document.body.classList.contains('vscode-dark') || document.body.classList.contains('vscode-high-contrast')
+          ? 'dark'
+          : 'default'
+    });
+  </script>
+
+<style>
+.top-header {
+  position: sticky;
+  top: 0;
+  z-index: 1000;
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  color: #ffffff;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+  padding: 12px 20px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 12px;
+}
+.top-header .course-info {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  flex-wrap: wrap;
+}
+.top-header .home-icon {
+  font-size: 1.5rem;
+  cursor: pointer;
+  transition: transform 0.2s;
+  text-decoration: none;
+  color: #ffffff;
+}
+.top-header .home-icon:hover {
+  transform: scale(1.1);
+}
+.top-header .course-title {
+  font-weight: 700;
+  font-size: 1rem;
+  letter-spacing: 0.5px;
+}
+.top-header .course-meta {
+  font-size: 0.85rem;
+  opacity: 0.9;
+  display: flex;
+  gap: 8px;
+  flex-wrap: wrap;
+}
+.top-header .course-meta span {
+  background: rgba(255,255,255,0.2);
+  padding: 4px 10px;
+  border-radius: 12px;
+}
+.nav-horizontal {
+  display: flex;
+  gap: 8px;
+  flex-wrap: wrap;
+  align-items: center;
+}
+.nav-horizontal a {
+  background: rgba(255,255,255,0.15);
+  color: #ffffff;
+  padding: 8px 14px;
+  border-radius: 8px;
+  text-decoration: none;
+  font-size: 0.9rem;
+  font-weight: 500;
+  transition: all 0.2s;
+  border: 1px solid rgba(255,255,255,0.2);
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+}
+.nav-horizontal a:hover {
+  background: rgba(255,255,255,0.25);
+  border-color: rgba(255,255,255,0.4);
+  transform: translateY(-2px);
+}
+.nav-horizontal a.active {
+  background: rgba(255,255,255,0.95);
+  color: #667eea;
+  font-weight: 700;
+  border-color: rgba(255,255,255,0.5);
+}
+@media (max-width: 768px) {
+  .top-header {
+    padding: 10px 15px;
+  }
+  .top-header .course-title {
+    font-size: 0.9rem;
+  }
+  .top-header .course-meta {
+    font-size: 0.75rem;
+  }
+  .nav-horizontal a {
+    font-size: 0.8rem;
+    padding: 6px 10px;
+  }
+}
+</style>
+
+<header class="top-header">
+  <div class="course-info">
+    <a href="../index.html" class="home-icon" title="Home - Tutte le Materie">🏠</a>
+    <div>
+      <div class="course-title">📚 ECONOMIA AZIENDALE</div>
+      <div class="course-meta">
+        <span>A.S. 2025/2026</span>
+        <span>AFM Quinta Serale</span>
+      </div>
+    </div>
+  </div>
+  <nav class="nav-horizontal">
+    <a href="01-immobilizzazioni-materiali.html">🔵 Immobilizzazioni</a>
+    <a href="02-leasing-costruzioni.html">🔵 Leasing</a>
+    <a href="03-scritture-operative.html" class="active">🟡 Operative</a>
+    <a href="04-assestamenti-rettifiche.html">🟢 Assestamenti</a>
+    <a href="05-riepilogo-generale.html">📊 Riepilogo</a>
+    <a href="simulazioni/dashboard-simulazioni.html">🎯 Simulazioni</a>
+  </nav>
+</header>
+
+<div class="container">
+
+<h1 id="%F0%9F%93%9D-scritture-operative-base">📝 SCRITTURE OPERATIVE BASE</h1>
+<blockquote>
+<p><strong>Tempo di studio consigliato:</strong> 45 minuti | <strong>Revisione:</strong> 15 minuti | <strong>Active Recall:</strong> 20 minuti</p>
+</blockquote>
+
+<div class="card" id="npi-widget" aria-live="polite">
+  <div style="display:flex; justify-content:space-between; align-items:center; gap:10px; flex-wrap:wrap">
+    <div class="badge b-blue">🧠 NPI-Learning</div>
+    <div class="small">Compila dopo ogni <b>chunk</b> (10–15′)</div>
+  </div>
+  <div class="separator"></div>
+  <div class="grid" style="grid-template-columns:1fr 1fr 1fr; gap:18px">
+    <label>Ritenzione R(t) %<input id="npi-r" type="range" min="0" max="100" step="5" value="0"><span id="npi-r-val" class="small" style="display:block; margin-top:4px">0%</span></label>
+    <label>Energia E(t) 1–5<input id="npi-e" type="range" min="1" max="5" step="1" value="3"><span id="npi-e-val" class="small" style="display:block; margin-top:4px">3/5</span></label>
+    <label>Coerenza C(t) 1–5<input id="npi-c" type="range" min="1" max="5" step="1" value="3"><span id="npi-c-val" class="small" style="display:block; margin-top:4px">3/5</span></label>
+  </div>
+  <div class="separator"></div>
+  <div class="grid" style="grid-template-columns:1fr auto; align-items:center">
+    <div class="progress"><i id="npi-bar"></i></div>
+    <div id="npi-chip" class="badge">Stato: —</div>
+  </div>
+  <div class="small" id="npi-tip" style="margin-top:8px"></div>
+</div>
+
+<script>(function(){const id = (sel)=>document.querySelector(sel);const r = id('#npi-r'), e = id('#npi-e'), c = id('#npi-c');const rVal = id('#npi-r-val'), eVal = id('#npi-e-val'), cVal = id('#npi-c-val');const bar = id('#npi-bar'), chip = id('#npi-chip'), tip = id('#npi-tip');const KEY='npi-scritture-operative';function load(){try{ const v = JSON.parse(localStorage.getItem(KEY)||'{}');if(v.r!=null){ r.value=v.r; e.value=v.e; c.value=v.c; }}catch{}update();}function save(){ localStorage.setItem(KEY, JSON.stringify({r:+r.value, e:+e.value, c:+c.value})); }function compute(){const R = +r.value/100, E = +e.value/5, C = +c.value/5;return Math.max(0, Math.min(1, 0.5*R + 0.25*E + 0.25*C));}function label(score){if(score>=0.75) return {txt:'🟢 Flow', tip:'Ottimo! Vai con TFR e IVA'};if(score>=0.40) return {txt:'🟡 Ristruttura', tip:'Rivedi schema D.A.R.E.'};return {txt:'🔴 Ricodifica', tip:'Ripassa da acquisti/vendite'};  }function update(){const s = compute();bar.style.width = (s*100).toFixed(0)+'%';chip.className = 'badge ' + (s>=0.75?'b-green':(s>=0.4?'b-yellow':'b-red'));chip.textContent = 'Stato: ' + label(s).txt + ' ('+(s*100|0)+'%)';tip.textContent = label(s).tip;rVal.textContent = r.value + '%';eVal.textContent = e.value + '/5';cVal.textContent = c.value + '/5';save();}[r,e,c].forEach(x=>x.addEventListener('input', update));load();})();</script>
+
+<div class="card" style="display:flex; align-items:center; justify-content:space-between; gap:10px; flex-wrap:wrap;">
+  <div>
+    <div class="badge b-yellow">🎯 Active-Recall</div>
+    <div class="small" style="margin-top:6px">Premi <span class="kbd">R</span> per nascondere/mostrare</div>
+  </div>
+  <button id="recall-toggle" class="btn"><span>Nascondi risposte</span> <span class="kbd">R</span></button>
+</div>
+
+<script>(function(){const root=document.documentElement;const btn=document.getElementById('recall-toggle');function toggle(){ root.classList.toggle('reveal'); btn.firstElementChild.textContent = root.classList.contains('reveal')?'Nascondi risposte':'Mostra risposte'; }btn.addEventListener('click', toggle);document.addEventListener('keydown', (e)=>{ if(e.key.toLowerCase()==='r' && !e.ctrlKey && !e.altKey && !e.metaKey) {if(!['INPUT','TEXTAREA'].includes(document.activeElement.tagName)){ toggle(); }}});root.classList.add('recall');})();</script>
+
+<div class="grid grid-2">
+  <main class="grid" style="gap:18px">
+
+<hr>
+<h2 id="%F0%9F%8E%AF-obiettivi-di-apprendimento">🎯 OBIETTIVI DI APPRENDIMENTO</h2>
+<p>Dopo questo modulo saprai:</p>
+<ul>
+<li>✅ Registrare acquisti e vendite con IVA</li>
+<li>✅ Gestire resi, ribassi e abbuoni</li>
+<li>✅ Calcolare e registrare TFR</li>
+<li>✅ Liquidare l'IVA periodica</li>
+<li>✅ Registrare imposte (IRES e IRAP)</li>
+</ul>
+<hr>
+<h2 id="%F0%9F%93%A6-chunk-1-acquisti-e-vendite-base-15-min">📦 CHUNK 1: Acquisti e Vendite Base (15 min)</h2>
+<h3 id="%F0%9F%94%B9-acquisto-di-merci">🔹 Acquisto di Merci</h3>
+<p><strong>Schema logico:</strong></p>
+<pre class="hljs"><code><div>Costo Merci + IVA a Credito = Debito verso Fornitore
+</div></code></pre>
+<h3 id="%F0%9F%93%9D-scrittura-base">📝 Scrittura Base</h3>
+<p>Acquisto merci per € 10.000 + IVA 22%</p>
+<pre class="hljs"><code><div>DARE: Merci c/acquisti              € 10.000
+DARE: IVA a credito                 €  2.200
+    AVERE: Debiti v/fornitori               € 12.200
+</div></code></pre>
+<p><strong>Effetti:</strong></p>
+<ul>
+<li>⬆️ Costi d'esercizio (CE B6)</li>
+<li>⬆️ Attivo circolante (IVA credito)</li>
+<li>⬆️ Passivo (Debiti)</li>
+</ul>
+<h3 id="%F0%9F%94%B9-vendita-di-merci">🔹 Vendita di Merci</h3>
+<p><strong>Schema logico:</strong></p>
+<pre class="hljs"><code><div>Credito verso Cliente = Ricavo Vendite + IVA a Debito
+</div></code></pre>
+<h3 id="%F0%9F%93%9D-scrittura-base">📝 Scrittura Base</h3>
+<p>Vendita merci per € 15.000 + IVA 22%</p>
+<pre class="hljs"><code><div>DARE: Crediti v/clienti             € 18.300
+    AVERE: Merci c/vendite                  € 15.000
+    AVERE: IVA a debito                     €  3.300
+</div></code></pre>
+<p><strong>Effetti:</strong></p>
+<ul>
+<li>⬆️ Attivo circolante (Crediti)</li>
+<li>⬆️ Ricavi (CE A1)</li>
+<li>⬆️ Passivo (IVA debito)</li>
+</ul>
+<h3 id="%F0%9F%94%B9-resi-su-acquisti-storno-parziale">🔹 Resi su Acquisti (Storno Parziale)</h3>
+<p>Restituzione merci difettose al fornitore.</p>
+<p>Reso di € 2.000 + IVA 22%</p>
+<pre class="hljs"><code><div>DARE: Debiti v/fornitori            € 2.440
+    AVERE: Resi su acquisti                 € 2.000
+    AVERE: IVA a credito                    €   440
+</div></code></pre>
+<p><strong>Logica:</strong> Inverti l'acquisto originale → riduci debito e costo.</p>
+<h3 id="%F0%9F%94%B9-ribassi-e-abbuoni-passivi">🔹 Ribassi e Abbuoni Passivi</h3>
+<p><strong>Ribasso:</strong> sconto accordato dopo la vendita
+<strong>Abbuono:</strong> compenso per difetti/ritardi</p>
+<p>Ribasso concesso al cliente € 500 + IVA 22%</p>
+<pre class="hljs"><code><div>DARE: Ribassi passivi               €   500
+DARE: IVA a debito                  €   110
+    AVERE: Crediti v/clienti                €   610
+</div></code></pre>
+<p><strong>Effetto:</strong> Riduce ricavi e crediti.</p>
+<h3 id="%F0%9F%94%B9-acquisto-di-servizi">🔹 Acquisto di Servizi</h3>
+<p>Consulenza legale € 3.000 + IVA 22%</p>
+<pre class="hljs"><code><div>DARE: Consulenze legali             € 3.000
+DARE: IVA a credito                 €   660
+    AVERE: Debiti v/fornitori               € 3.660
+</div></code></pre>
+<h3 id="%F0%9F%A7%A0-mappa-mentale-acquistivendite">🧠 Mappa Mentale Acquisti/Vendite</h3>
+<pre class="hljs"><code><div>OPERAZIONI BASE
+│
+├─ ACQUISTI
+│  ├─ Merci c/acquisti (Dare)
+│  ├─ IVA a credito (Dare)
+│  └─ Debiti v/fornitori (Avere)
+│
+├─ VENDITE
+│  ├─ Crediti v/clienti (Dare)
+│  ├─ Merci c/vendite (Avere)
+│  └─ IVA a debito (Avere)
+│
+├─ RESI
+│  └─ Inverti la scrittura originale
+│
+└─ RIBASSI/ABBUONI
+   └─ Storna parzialmente ricavi/costi
+</div></code></pre>
+<hr>
+<h2 id="%F0%9F%93%A6-chunk-2-tfr---trattamento-di-fine-rapporto-12-min">📦 CHUNK 2: TFR - Trattamento di Fine Rapporto (12 min)</h2>
+<h3 id="%F0%9F%94%B9-cos%C3%A8-il-tfr">🔹 Cos'è il TFR?</h3>
+<p>Il <strong>Trattamento di Fine Rapporto</strong> è un accantonamento obbligatorio per legge che matura ogni anno in favore dei dipendenti.</p>
+<p>🔵 <strong>Formula fondamentale:</strong></p>
+<pre class="hljs"><code><div>Quota TFR annua = Retribuzione lorda ÷ 13,5
+                  (equivalente a × 7,41%)
+</div></code></pre>
+<hr>
+<h3 id="%F0%9F%A7%A0-mnemonica-qrr">🧠 MNEMONICA Q.R.R.</h3>
+<p>Per ricordare l'ordine delle 3 operazioni TFR:</p>
+<pre class="hljs"><code><div>   Q → R → R
+   │   │   │
+   │   │   └─ Ritenuta (17% sulla rivalutazione)
+   │   └───── Rivalutazione (TFR vecchio × ISTAT%)
+   └───────── Quota (Stipendi ÷ 13,5)
+</div></code></pre>
+<p>🟡 <strong>Esegui sempre in questo ordine per non sbagliare!</strong></p>
+<hr>
+<h3 id="%F0%9F%8E%A8-flowchart-completo-tfr">🎨 FLOWCHART COMPLETO TFR</h3>
+<pre class="hljs"><code><div>┌─────────────────────────────────────────────────────────────────┐
+│                     INIZIO ANNO n                                │
+│               TFR esistente: € 15.000                            │
+└───────────────────────────┬─────────────────────────────────────┘
+                            │
+                            │ Durante l'anno maturano stipendi...
+                            │
+┌───────────────────────────▼─────────────────────────────────────┐
+│  � STEP 1: QUOTA maturata nell'anno                            │
+│                                                                   │
+│  Stipendi lordi anno n: € 120.000                                │
+│  ─────────────────────────────────                               │
+│            ÷ 13,5                                                 │
+│  ═══════════════════════════                                     │
+│  🟢 Risultato: € 8.888,89                                        │
+│                                                                   │
+│  Scrittura:                                                       │
+│  DARE: TFR (costo)          € 8.888,89                           │
+│      AVERE: Debiti per TFR          € 8.888,89                   │
+└───────────────────────────┬─────────────────────────────────────┘
+                            │
+                            │ TFR ora = 15.000 + 8.888,89
+                            │
+┌───────────────────────────▼─────────────────────────────────────┐
+│  🟡 STEP 2: RIVALUTAZIONE del TFR pregresso                     │
+│                                                                   │
+│  TFR pregresso: € 15.000                                         │
+│  🔴 Fattore ISTAT: 2,5%                                          │
+│  🔴 Coefficiente: 75% (fisso per legge)                          │
+│  ─────────────────────────────────                               │
+│  15.000 × 2,5% × 75% = 15.000 × 1,875%                          │
+│  ═══════════════════════════                                     │
+│  🟢 Risultato: € 281,25                                          │
+│                                                                   │
+│  ⚠️ ATTENZIONE: si usa il TFR PREGRESSO (15.000),               │
+│     NON la quota dell'anno corrente!                             │
+│                                                                   │
+│  Scrittura:                                                       │
+│  DARE: TFR (costo)          € 281,25                             │
+│      AVERE: Debiti per TFR          € 281,25                     │
+└───────────────────────────┬─────────────────────────────────────┘
+                            │
+                            │ TFR ora = 15.000 + 8.888,89 + 281,25
+                            │
+┌───────────────────────────▼─────────────────────────────────────┐
+│  🟡 STEP 3: RITENUTA fiscale (17%)                              │
+│                                                                   │
+│  🔴 Si applica SOLO alla rivalutazione!                          │
+│  Rivalutazione: € 281,25                                         │
+│  ─────────────────────────────────                               │
+│  281,25 × 17%                                                    │
+│  ═══════════════════════════                                     │
+│  🟢 Risultato: € 47,81                                           │
+│                                                                   │
+│  ⚠️ ERRORE COMUNE: NON applicare il 17% alla quota!             │
+│     Il 17% si applica SOLO alla rivalutazione ISTAT              │
+│                                                                   │
+│  Scrittura:                                                       │
+│  DARE: Debiti per TFR       € 47,81                              │
+│      AVERE: Debiti per ritenute     € 47,81                      │
+└───────────────────────────┬─────────────────────────────────────┘
+                            │
+                            ▼
+┌─────────────────────────────────────────────────────────────────┐
+│                     🟢 SALDO FINALE                              │
+│                                                                   │
+│  TFR iniziale:            € 15.000,00                            │
+│  + Quota maturata:        €  8.888,89                            │
+│  + Rivalutazione:         €    281,25                            │
+│  – Ritenuta fiscale:      €    (47,81)                           │
+│  ──────────────────────────────────────                          │
+│  = TFR finale 31/12/n:    € 24.122,33                            │
+│                                                                   │
+│  ➡️ Va in Stato Patrimoniale Passivo (Debiti per TFR)           │
+└─────────────────────────────────────────────────────────────────┘
+</div></code></pre>
+
+<!-- ======================== MINI-QUIZ TFR ======================== -->
+<div class="widget" style="background:rgba(255,193,7,0.1); border-left:4px solid var(--warning); padding:20px; margin:24px 0;">
+    <h4 style="margin:0 0 16px 0; color:var(--warning)">🎯 MINI-QUIZ 1: Calcolo Quota TFR</h4>
+    <p class="small" style="margin:0 0 16px 0">Applica la formula fondamentale per calcolare la quota TFR maturata nell'anno.</p>
+
+    <div style="background:white; padding:16px; border-radius:8px; margin:12px 0;">
+        <strong style="display:block; margin-bottom:8px">📋 Dati esercizio:</strong>
+        <ul style="margin:8px 0; padding-left:20px">
+            <li>Stipendi lordi anno n: <strong>€ 135.000</strong></li>
+            <li>Formula: Quota TFR = Retribuzione lorda ÷ 13,5</li>
+        </ul>
+        <p style="margin:8px 0 0 0"><strong>❓ Calcola la Quota TFR maturata nell'anno:</strong></p>
+    </div>
+
+    <div style="display:flex; align-items:center; gap:12px; margin:16px 0">
+        <label style="font-weight:600">Quota TFR: €</label>
+        <input type="number" id="quiz-tfr-quota-input" placeholder="10000"
+               style="padding:8px 12px; border:2px solid #ddd; border-radius:4px; font-size:1em; width:150px">
+        <button onclick="validateQuizTFRQuota()"
+                style="padding:8px 16px; background:var(--warning); color:white; border:none; border-radius:4px; cursor:pointer; font-weight:600">
+            Verifica
+        </button>
+    </div>
+
+    <div id="quiz-tfr-quota-result" style="margin-top:16px"></div>
+
+    <details style="margin-top:16px">
+        <summary style="cursor:pointer; color:var(--primary); font-weight:600">💡 Hint (clicca se hai bisogno di aiuto)</summary>
+        <p class="small" style="margin:8px 0; padding:12px; background:rgba(33,150,243,0.1); border-radius:4px">
+            📌 La quota TFR si calcola <strong>dividendo gli stipendi lordi per 13,5</strong> (che equivale a moltiplicare per 7,41%).<br>
+            🔴 <strong>ATTENZIONE:</strong> NON dividere per 12! Il divisore corretto è 13,5 per legge.<br>
+            Calcolo: 135.000 ÷ 13,5 = ?
+        </p>
+    </details>
+</div>
+
+<div class="widget" style="background:rgba(255,193,7,0.1); border-left:4px solid var(--warning); padding:20px; margin:24px 0;">
+    <h4 style="margin:0 0 16px 0; color:var(--warning)">🎯 MINI-QUIZ 2: Calcolo Rivalutazione ISTAT</h4>
+    <p class="small" style="margin:0 0 16px 0">Applica la formula completa per la rivalutazione del TFR pregresso secondo normativa fiscale.</p>
+
+    <div style="background:white; padding:16px; border-radius:8px; margin:12px 0;">
+        <strong style="display:block; margin-bottom:8px">📋 Dati esercizio:</strong>
+        <ul style="margin:8px 0; padding-left:20px">
+            <li>TFR pregresso (anni precedenti): <strong>€ 22.000</strong></li>
+            <li>Indice ISTAT anno n: <strong>2,8%</strong></li>
+            <li>Coefficiente fisso per legge: <strong>75%</strong></li>
+            <li>Formula: Rivalutazione = TFR pregresso × ISTAT% × 75%</li>
+        </ul>
+        <p style="margin:8px 0 0 0"><strong>❓ Calcola l'importo della rivalutazione TFR:</strong></p>
+    </div>
+
+    <div style="display:flex; align-items:center; gap:12px; margin:16px 0">
+        <label style="font-weight:600">Rivalutazione: €</label>
+        <input type="number" id="quiz-tfr-rival-input" placeholder="462" step="0.01"
+               style="padding:8px 12px; border:2px solid #ddd; border-radius:4px; font-size:1em; width:150px">
+        <button onclick="validateQuizTFRRivalutazione()"
+                style="padding:8px 16px; background:var(--warning); color:white; border:none; border-radius:4px; cursor:pointer; font-weight:600">
+            Verifica
+        </button>
+    </div>
+
+    <div id="quiz-tfr-rival-result" style="margin-top:16px"></div>
+
+    <details style="margin-top:16px">
+        <summary style="cursor:pointer; color:var(--primary); font-weight:600">💡 Hint (clicca se hai bisogno di aiuto)</summary>
+        <p class="small" style="margin:8px 0; padding:12px; background:rgba(33,150,243,0.1); border-radius:4px">
+            📌 La rivalutazione si calcola in <strong>3 passaggi</strong>:<br>
+            1️⃣ TFR pregresso × Indice ISTAT → 22.000 × 2,8% = 616<br>
+            2️⃣ Risultato × 75% (coefficiente fisso) → 616 × 75% = ?<br>
+            3️⃣ Oppure calcolo diretto: 22.000 × 2,8% × 75% = 22.000 × 2,1% = ?<br><br>
+            🔴 <strong>ATTENZIONE:</strong> Si rivaluta SOLO il TFR pregresso, NON la quota dell'anno corrente!
+        </p>
+    </details>
+</div>
+
+<script>
+(function() {
+    // ===== QUIZ 1: Quota TFR =====
+    window.validateQuizTFRQuota = function() {
+        const input = document.getElementById('quiz-tfr-quota-input');
+        const resultDiv = document.getElementById('quiz-tfr-quota-result');
+        const userAnswer = parseFloat(input.value);
+        const correctAnswer = 10000; // 135.000 ÷ 13,5 = 10.000
+
+        // Get localStorage stats
+        let stats = JSON.parse(localStorage.getItem('quiz-stats-scritture') || '{}');
+        if (!stats.quiz1) stats.quiz1 = { attempts: 0, correct: 0, firstTryCorrect: false };
+        stats.quiz1.attempts++;
+
+        if (isNaN(userAnswer)) {
+            resultDiv.innerHTML = `<p style="color:var(--error); margin:0">❌ Inserisci un numero valido</p>`;
+            return;
+        }
+
+        // Tolerance ±1€ for rounding
+        if (Math.abs(userAnswer - correctAnswer) <= 1) {
+            if (stats.quiz1.attempts === 1) stats.quiz1.firstTryCorrect = true;
+            stats.quiz1.correct++;
+
+            // Award points
+            let currentPoints = parseInt(localStorage.getItem('gamification-total-points') || '0');
+            currentPoints += 10;
+            localStorage.setItem('gamification-total-points', currentPoints);
+
+            resultDiv.innerHTML = `
+                <div style="padding:12px; background:rgba(76,175,80,0.1); border:1px solid var(--success); border-radius:4px">
+                    <p style="margin:0; color:var(--success); font-weight:600">✅ CORRETTO! Quota TFR = € 10.000</p>
+                    <p class="small" style="margin:8px 0 0 0">
+                        📐 <strong>Calcolo:</strong> 135.000 ÷ 13,5 = 10.000,00<br>
+                        🎯 Hai guadagnato <strong>+10 punti</strong>! (Totale: ${currentPoints} pt)
+                    </p>
+                </div>
+            `;
+            input.disabled = true;
+            input.style.background = '#e8f5e9';
+        } else {
+            resultDiv.innerHTML = `
+                <div style="padding:12px; background:rgba(244,67,54,0.1); border:1px solid var(--error); border-radius:4px">
+                    <p style="margin:0; color:var(--error); font-weight:600">❌ Non corretto</p>
+                    <p class="small" style="margin:8px 0 0 0">
+                        🔴 Riprova! Ricorda: la formula è <strong>Stipendi ÷ 13,5</strong> (NON ÷ 12!)<br>
+                        💡 Controlla: 135.000 ÷ 13,5 = ?
+                    </p>
+                </div>
+            `;
+        }
+
+        localStorage.setItem('quiz-stats-scritture', JSON.stringify(stats));
+    };
+
+    // ===== QUIZ 2: Rivalutazione ISTAT =====
+    window.validateQuizTFRRivalutazione = function() {
+        const input = document.getElementById('quiz-tfr-rival-input');
+        const resultDiv = document.getElementById('quiz-tfr-rival-result');
+        const userAnswer = parseFloat(input.value);
+        const correctAnswer = 462; // 22.000 × 2,8% × 75% = 462
+
+        // Get localStorage stats
+        let stats = JSON.parse(localStorage.getItem('quiz-stats-scritture') || '{}');
+        if (!stats.quiz2) stats.quiz2 = { attempts: 0, correct: 0, firstTryCorrect: false };
+        stats.quiz2.attempts++;
+
+        if (isNaN(userAnswer)) {
+            resultDiv.innerHTML = `<p style="color:var(--error); margin:0">❌ Inserisci un numero valido</p>`;
+            return;
+        }
+
+        // Tolerance ±2€ for decimal rounding
+        if (Math.abs(userAnswer - correctAnswer) <= 2) {
+            if (stats.quiz2.attempts === 1) stats.quiz2.firstTryCorrect = true;
+            stats.quiz2.correct++;
+
+            // Award points
+            let currentPoints = parseInt(localStorage.getItem('gamification-total-points') || '0');
+            currentPoints += 10;
+            localStorage.setItem('gamification-total-points', currentPoints);
+
+            resultDiv.innerHTML = `
+                <div style="padding:12px; background:rgba(76,175,80,0.1); border:1px solid var(--success); border-radius:4px">
+                    <p style="margin:0; color:var(--success); font-weight:600">✅ CORRETTO! Rivalutazione = € 462</p>
+                    <p class="small" style="margin:8px 0 0 0">
+                        📐 <strong>Calcolo step-by-step:</strong><br>
+                        1️⃣ TFR pregresso × ISTAT → 22.000 × 2,8% = 616<br>
+                        2️⃣ Applicazione coefficiente → 616 × 75% = 462<br>
+                        3️⃣ Oppure diretto: 22.000 × 2,1% = 462<br>
+                        🎯 Hai guadagnato <strong>+10 punti</strong>! (Totale: ${currentPoints} pt)
+                    </p>
+                </div>
+            `;
+            input.disabled = true;
+            input.style.background = '#e8f5e9';
+        } else {
+            // Check intermediate steps to provide detailed feedback
+            const step1 = 22000 * 0.028; // 616
+            const step2 = step1 * 0.75;   // 462
+
+            let feedback = '';
+            if (Math.abs(userAnswer - step1) <= 2) {
+                feedback = `🔴 Hai calcolato il <strong>primo passaggio</strong> (22.000 × 2,8% = 616), ma hai dimenticato di moltiplicare per <strong>75%</strong>!<br>💡 Formula completa: 22.000 × 2,8% × 75%`;
+            } else {
+                feedback = `🔴 Riprova! La formula corretta è: <strong>TFR pregresso × ISTAT% × 75%</strong><br>💡 Calcola: 22.000 × 2,8% × 75% = ?`;
+            }
+
+            resultDiv.innerHTML = `
+                <div style="padding:12px; background:rgba(244,67,54,0.1); border:1px solid var(--error); border-radius:4px">
+                    <p style="margin:0; color:var(--error); font-weight:600">❌ Non corretto</p>
+                    <p class="small" style="margin:8px 0 0 0">${feedback}</p>
+                </div>
+            `;
+        }
+
+        localStorage.setItem('quiz-stats-scritture', JSON.stringify(stats));
+    };
+})();
+</script>
+
+<hr>
+<h3 id="%E2%9A%A0%EF%B8%8F-errori-comuni-da-evitare">⚠️ ERRORI COMUNI DA EVITARE</h3>
+<table>
+<thead>
+<tr>
+<th>🔴 ERRORE</th>
+<th>✅ CORRETTO</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Dividere per 12 invece di 13,5</td>
+<td>Quota = Stipendi ÷ <strong>13,5</strong> (non 12!)</td>
+</tr>
+<tr>
+<td>Rivalutare la quota dell'anno corrente</td>
+<td>Rivalutare <strong>solo TFR pregresso</strong> (anni precedenti)</td>
+</tr>
+<tr>
+<td>Applicare 17% anche alla quota</td>
+<td>Ritenuta 17% <strong>solo su rivalutazione ISTAT</strong></td>
+</tr>
+<tr>
+<td>Usare 100% dell'ISTAT</td>
+<td>Usare <strong>75% dell'indice ISTAT</strong> (per legge)</td>
+</tr>
+<tr>
+<td>Dimenticare la ritenuta</td>
+<td>La ritenuta <strong>diminuisce</strong> il debito TFR</td>
+</tr>
+</tbody>
+</table>
+
+<!-- ======================== FLASHCARDS TFR ======================== -->
+<div class="widget" style="background:rgba(156,39,176,0.05); border-left:4px solid #9c27b0; padding:20px; margin:24px 0;">
+    <h4 style="margin:0 0 16px 0; color:#9c27b0">🃏 FLASHCARDS: Concetti chiave TFR</h4>
+    <p class="small" style="margin:0 0 20px 0; color:var(--muted)">
+        Clicca su ogni card per vedere la definizione completa. Il sistema traccia le visualizzazioni per la <strong>ripetizione spaziata</strong>.
+    </p>
+
+    <div style="display:grid; gap:16px; grid-template-columns:repeat(auto-fit, minmax(280px, 1fr))">
+
+        <!-- FLASHCARD 1: Formula Quota TFR -->
+        <div class="flashcard-container" onclick="flipFlashcard('fc-tfr-1')">
+            <div class="flashcard" id="fc-tfr-1" style="background:rgba(156,39,176,0.05); border:2px solid rgba(156,39,176,0.3); border-radius:8px; padding:16px; cursor:pointer; transition:all 0.3s">
+                <div class="flashcard-front">
+                    <strong style="font-size:1.1em; color:#9c27b0">Formula Quota TFR</strong>
+                    <span class="small" style="display:block; margin-top:8px; color:var(--muted)">🔄 Click per definizione</span>
+                </div>
+                <div class="flashcard-back" style="display:none">
+                    <strong style="color:#9c27b0">Calcolo quota annua maturata</strong>
+                    <span class="small" style="display:block; margin:8px 0">✅ Vista <span id="fc-tfr-1-count">0</span> volte</span>
+                    <p class="small" style="margin:8px 0 0 0; line-height:1.5">
+                        <strong>Formula:</strong> Quota TFR = Retribuzione lorda ÷ 13,5<br>
+                        <strong>Equivalente:</strong> × 7,41% (percentuale fissa)<br>
+                        🔴 <strong>ATTENZIONE:</strong> NON dividere per 12! Il divisore corretto è 13,5 per legge.<br>
+                        📌 <strong>Esempio:</strong> Stipendi € 120.000 → 120.000 ÷ 13,5 = € 8.888,89
+                    </p>
+                </div>
+            </div>
+        </div>
+
+        <!-- FLASHCARD 2: Rivalutazione ISTAT -->
+        <div class="flashcard-container" onclick="flipFlashcard('fc-tfr-2')">
+            <div class="flashcard" id="fc-tfr-2" style="background:rgba(156,39,176,0.05); border:2px solid rgba(156,39,176,0.3); border-radius:8px; padding:16px; cursor:pointer; transition:all 0.3s">
+                <div class="flashcard-front">
+                    <strong style="font-size:1.1em; color:#9c27b0">Rivalutazione ISTAT</strong>
+                    <span class="small" style="display:block; margin-top:8px; color:var(--muted)">🔄 Click per definizione</span>
+                </div>
+                <div class="flashcard-back" style="display:none">
+                    <strong style="color:#9c27b0">Aggiornamento inflazione TFR</strong>
+                    <span class="small" style="display:block; margin:8px 0">✅ Vista <span id="fc-tfr-2-count">0</span> volte</span>
+                    <p class="small" style="margin:8px 0 0 0; line-height:1.5">
+                        <strong>Formula:</strong> Rivalutazione = TFR pregresso × ISTAT% × 75%<br>
+                        🔴 <strong>TFR pregresso:</strong> Solo anni precedenti, NON quota anno corrente!<br>
+                        📊 <strong>Coefficiente 75%:</strong> Fisso per legge (non 100%)<br>
+                        📌 <strong>Esempio:</strong> TFR vecchio € 15.000 · ISTAT 2,5% → 15.000 × 2,5% × 75% = € 281,25
+                    </p>
+                </div>
+            </div>
+        </div>
+
+        <!-- FLASHCARD 3: Ritenuta fiscale 17% -->
+        <div class="flashcard-container" onclick="flipFlashcard('fc-tfr-3')">
+            <div class="flashcard" id="fc-tfr-3" style="background:rgba(156,39,176,0.05); border:2px solid rgba(156,39,176,0.3); border-radius:8px; padding:16px; cursor:pointer; transition:all 0.3s">
+                <div class="flashcard-front">
+                    <strong style="font-size:1.1em; color:#9c27b0">Ritenuta 17%</strong>
+                    <span class="small" style="display:block; margin-top:8px; color:var(--muted)">🔄 Click per definizione</span>
+                </div>
+                <div class="flashcard-back" style="display:none">
+                    <strong style="color:#9c27b0">Tassazione rivalutazione TFR</strong>
+                    <span class="small" style="display:block; margin:8px 0">✅ Vista <span id="fc-tfr-3-count">0</span> volte</span>
+                    <p class="small" style="margin:8px 0 0 0; line-height:1.5">
+                        <strong>Calcolo:</strong> Ritenuta = Rivalutazione × 17%<br>
+                        🔴 <strong>SOLO su rivalutazione!</strong> NON si applica alla quota annua!<br>
+                        💰 <strong>Effetto:</strong> Diminuisce il debito TFR verso dipendenti<br>
+                        📌 <strong>Esempio:</strong> Rivalutazione € 281,25 → 281,25 × 17% = € 47,81<br>
+                        📝 <strong>Scrittura:</strong> DARE Debiti TFR · AVERE Debiti ritenute
+                    </p>
+                </div>
+            </div>
+        </div>
+
+        <!-- FLASHCARD 4: TFR in Stato Patrimoniale -->
+        <div class="flashcard-container" onclick="flipFlashcard('fc-tfr-4')">
+            <div class="flashcard" id="fc-tfr-4" style="background:rgba(156,39,176,0.05); border:2px solid rgba(156,39,176,0.3); border-radius:8px; padding:16px; cursor:pointer; transition:all 0.3s">
+                <div class="flashcard-front">
+                    <strong style="font-size:1.1em; color:#9c27b0">TFR in Bilancio</strong>
+                    <span class="small" style="display:block; margin-top:8px; color:var(--muted)">🔄 Click per definizione</span>
+                </div>
+                <div class="flashcard-back" style="display:none">
+                    <strong style="color:#9c27b0">Collocazione nel bilancio</strong>
+                    <span class="small" style="display:block; margin:8px 0">✅ Vista <span id="fc-tfr-4-count">0</span> volte</span>
+                    <p class="small" style="margin:8px 0 0 0; line-height:1.5">
+                        📊 <strong>Stato Patrimoniale PASSIVO</strong> sezione D "Debiti per TFR"<br>
+                        💸 <strong>Natura:</strong> Debito certo verso dipendenti (liquidabile a fine rapporto)<br>
+                        🔄 <strong>Movimentazione:</strong> Aumenta con quota+rivalutazione, diminuisce con ritenuta<br>
+                        📌 <strong>Saldo finale:</strong> TFR iniziale + quota + rivalutazione – ritenuta = TFR 31/12
+                    </p>
+                </div>
+            </div>
+        </div>
+
+        <!-- FLASHCARD 5: Mnemonica Q.R.R. -->
+        <div class="flashcard-container" onclick="flipFlashcard('fc-tfr-5')">
+            <div class="flashcard" id="fc-tfr-5" style="background:rgba(156,39,176,0.05); border:2px solid rgba(156,39,176,0.3); border-radius:8px; padding:16px; cursor:pointer; transition:all 0.3s">
+                <div class="flashcard-front">
+                    <strong style="font-size:1.1em; color:#9c27b0">Mnemonica Q.R.R.</strong>
+                    <span class="small" style="display:block; margin-top:8px; color:var(--muted)">🔄 Click per definizione</span>
+                </div>
+                <div class="flashcard-back" style="display:none">
+                    <strong style="color:#9c27b0">Ordine operazioni TFR</strong>
+                    <span class="small" style="display:block; margin:8px 0">✅ Vista <span id="fc-tfr-5-count">0</span> volte</span>
+                    <p class="small" style="margin:8px 0 0 0; line-height:1.5">
+                        🧠 <strong>Q → R → R</strong> (sempre in questo ordine!)<br>
+                        1️⃣ <strong>Q</strong>uota: Stipendi ÷ 13,5<br>
+                        2️⃣ <strong>R</strong>ivalutazione: TFR pregresso × ISTAT% × 75%<br>
+                        3️⃣ <strong>R</strong>itenuta: Rivalutazione × 17%<br>
+                        🎯 <strong>Trucco:</strong> Segui sempre Q.R.R. per non dimenticare nessun passaggio!
+                    </p>
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+    <div id="flashcards-tfr-stats" style="margin-top:20px; padding:12px; background:rgba(156,39,176,0.08); border-radius:6px; text-align:center"></div>
+</div>
+
+<script>
+(function() {
+    const flashcards = ['fc-tfr-1', 'fc-tfr-2', 'fc-tfr-3', 'fc-tfr-4', 'fc-tfr-5'];
+    let stats = JSON.parse(localStorage.getItem('flashcards-scritture') || '{}');
+
+    // Initialize stats for new flashcards
+    flashcards.forEach(id => {
+        if (!stats[id]) stats[id] = { views: 0, lastView: null };
+        document.getElementById(id + '-count').textContent = stats[id].views;
+    });
+
+    window.flipFlashcard = function(id) {
+        const card = document.getElementById(id);
+        const front = card.querySelector('.flashcard-front');
+        const back = card.querySelector('.flashcard-back');
+
+        if (back.style.display === 'none') {
+            // Show back
+            front.style.display = 'none';
+            back.style.display = 'block';
+            card.style.background = 'rgba(156,39,176,0.12)';
+            card.style.borderColor = 'rgba(156,39,176,0.5)';
+
+            // Update stats
+            stats[id].views++;
+            stats[id].lastView = new Date().toISOString();
+            document.getElementById(id + '-count').textContent = stats[id].views;
+
+            localStorage.setItem('flashcards-scritture', JSON.stringify(stats));
+            updateFlashcardStats();
+        } else {
+            // Show front
+            front.style.display = 'block';
+            back.style.display = 'none';
+            card.style.background = 'rgba(156,39,176,0.05)';
+            card.style.borderColor = 'rgba(156,39,176,0.3)';
+        }
+    };
+
+    function updateFlashcardStats() {
+        const totalViews = flashcards.reduce((sum, id) => sum + (stats[id].views || 0), 0);
+        const avgViews = totalViews / flashcards.length;
+        const mastered = flashcards.filter(id => stats[id].views >= 5).length;
+
+        const statsDiv = document.getElementById('flashcards-tfr-stats');
+        statsDiv.innerHTML = `
+            <span style="font-size:0.95em; color:#9c27b0">
+                📊 <strong>${totalViews}</strong> visualizzazioni totali ·
+                Media <strong>${avgViews.toFixed(1)}</strong> per card ·
+                <strong>${mastered}/${flashcards.length}</strong> masterate (5+ viste)
+                ${mastered === flashcards.length ? ' · 🏆 Tutte masterate! +100 punti bonus' : ''}
+            </span>
+        `;
+
+        // Award bonus points when all cards are mastered
+        if (mastered === flashcards.length && !localStorage.getItem('flashcards-scritture-bonus-awarded')) {
+            let currentPoints = parseInt(localStorage.getItem('gamification-total-points') || '0');
+            currentPoints += 100;
+            localStorage.setItem('gamification-total-points', currentPoints);
+            localStorage.setItem('flashcards-scritture-bonus-awarded', 'true');
+        }
+    }
+
+    // Initial stats display
+    updateFlashcardStats();
+})();
+</script>
+
+<hr>
+<h3 id="%F0%9F%93%8A-timeline-come-cresce-il-tfr-nel-tempo">📊 TIMELINE: Come cresce il TFR nel tempo</h3>
+<pre class="hljs"><code><div>Anno 1 (inizio attività)
+│
+├─ Stipendi: € 100.000
+├─ Quota TFR: 100.000 ÷ 13,5 = € 7.407,41
+└─ TFR totale fine anno: € 7.407,41
+    │
+    │
+Anno 2
+│
+├─ TFR iniziale: € 7.407,41
+├─ + Quota anno 2: € 7.407,41 (se stipendi uguali)
+├─ + Rivalutazione: 7.407,41 × ISTAT% × 75%
+├─ – Ritenuta: (rivalutazione × 17%)
+└─ TFR totale fine anno 2: € 14.814,82 + rivalutazione netta
+    │
+    │
+Anno 3
+│
+├─ TFR iniziale: importo anno 2
+├─ + Quota anno 3
+├─ + Rivalutazione su TFR anno 2
+├─ – Ritenuta
+└─ TFR totale fine anno 3
+    │
+    └─ ... continua ogni anno fino alla fine del rapporto
+
+🔵 Il TFR cresce con due meccanismi:
+   1. QUOTA annua (sempre presente, basata su stipendi)
+   2. RIVALUTAZIONE (interesse sul capitale accumulato)
+</div></code></pre>
+<hr>
+<h3 id="undefined">� Esempio Completo Passo-Passo</h3>
+<p><strong>📋 Dati iniziali:</strong></p>
+<ul>
+<li>Stipendi lordi anno n: € 120.000</li>
+<li>TFR esistente al 31/12/n-1: € 15.000</li>
+<li>Indice ISTAT anno n: 2,5%</li>
+</ul>
+<hr>
+<p><strong>🟡 PASSO 1: Calcolo QUOTA maturata</strong></p>
+<pre class="hljs"><code><div>🔵 Formula:  Quota = Stipendi lordi ÷ 13,5
+
+   Calcolo:  120.000 ÷ 13,5 = € 8.888,89
+
+🟢 Scrittura 1:
+   DARE: TFR (costo)                   € 8.888,89
+       AVERE: Debiti per TFR                   € 8.888,89
+
+💭 Spiegazione: Ogni anno accantoni 1/13,5 degli stipendi
+</div></code></pre>
+<hr>
+<p><strong>🟡 PASSO 2: Calcolo RIVALUTAZIONE</strong></p>
+<pre class="hljs"><code><div>🔵 Formula:  Rivalutazione = TFR pregresso × ISTAT% × 75%
+
+   Calcolo:  15.000 × 2,5% × 75%
+           = 15.000 × 1,875%
+           = € 281,25
+
+🔴 ATTENZIONE: Usi il TFR INIZIALE (15.000),
+               NON la quota appena calcolata!
+
+🟢 Scrittura 2:
+   DARE: TFR (costo)                   € 281,25
+       AVERE: Debiti per TFR                   € 281,25
+
+💭 Spiegazione: Rivaluti il &quot;vecchio&quot; TFR con inflazione ridotta (75%)
+</div></code></pre>
+<hr>
+<p><strong>🟡 PASSO 3: Calcolo RITENUTA fiscale</strong></p>
+<pre class="hljs"><code><div>🔵 Formula:  Ritenuta = Rivalutazione × 17%
+
+   Calcolo:  281,25 × 17% = € 47,81
+
+🔴 ERRORE DA EVITARE: NON calcolare 17% su 8.888,89!
+   Il 17% si applica SOLO alla rivalutazione (281,25)
+
+🟢 Scrittura 3:
+   DARE: Debiti per TFR                € 47,81
+       AVERE: Debiti per ritenute              € 47,81
+
+💭 Spiegazione: Lo Stato trattiene 17% del guadagno da rivalutazione
+</div></code></pre>
+<hr>
+<p><strong>� PASSO 4: Riepilogo saldi finali</strong></p>
+<pre class="hljs"><code><div>SALDO TFR al 31/12/n:
+
+   TFR iniziale (1/1/n):        € 15.000,00
+   + Quota anno n:              €  8.888,89
+   + Rivalutazione ISTAT:       €    281,25
+   ────────────────────────────────────────
+   Totale rivalutato:           € 24.170,14
+   – Ritenuta fiscale 17%:      €    (47,81)
+   ────────────────────────────────────────
+   🟢 TFR finale (31/12/n):     € 24.122,33
+   ════════════════════════════════════════
+
+➡️ Questo importo va nello Stato Patrimoniale:
+   PASSIVO → Debiti per TFR → € 24.122,33
+</div></code></pre>
+<hr>
+<h3 id="undefined">� VERIFICA VELOCE (Active Recall)</h3>
+<p>Prima di passare al prossimo chunk, rispondi senza guardare:</p>
+<ol>
+<li>Qual è il divisore per calcolare la quota TFR?</li>
+<li>Su cosa si applica la rivalutazione ISTAT?</li>
+<li>Su cosa si calcola il 17% di ritenuta?</li>
+<li>Qual è la percentuale ISTAT da usare effettivamente?</li>
+</ol>
+<details>
+<summary>📖 Risposte</summary>
+<ol>
+<li><strong>13,5</strong> (non 12!)</li>
+<li>Sul <strong>TFR pregresso</strong> (anni precedenti), NON sulla quota corrente</li>
+<li>Sulla <strong>rivalutazione</strong>, NON sulla quota annua</li>
+<li><strong>75% dell'indice ISTAT</strong> (es: se ISTAT 2,5% → usi 1,875%)</li>
+</ol>
+</details>
+<hr>
+<h3 id="%F0%9F%94%AC-approfondimento-perch%C3%A9-135">🔬 Approfondimento: Perché 13,5?</h3>
+<pre class="hljs"><code><div>Il divisore 13,5 deriva da:
+   - 12 mensilità
+   + 1 tredicesima
+   + 0,5 (media statistica di altri ratei: ferie, permessi, ecc.)
+   ──────────────────
+   = 13,5
+
+Alternativa: moltiplicare per 7,41% (che è 1/13,5)
+   120.000 × 7,41% = 8.892 (circa uguale a 120.000 ÷ 13,5)
+</div></code></pre>
+<h3 id="%F0%9F%A7%A0-effetti-su-ce-e-sp">🧠 Effetti su CE e SP</h3>
+<table>
+<thead>
+<tr>
+<th>Voce</th>
+<th>Conto Economico</th>
+<th>Stato Patrimoniale</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Quota TFR</td>
+<td>+ Costo personale (B9)</td>
+<td>+ Debito TFR (D)</td>
+</tr>
+<tr>
+<td>Rivalutazione</td>
+<td>+ Costo personale</td>
+<td>+ Debito TFR</td>
+</tr>
+<tr>
+<td>Ritenuta</td>
+<td>–</td>
+<td>+ Debito tributario</td>
+</tr>
+</tbody>
+</table>
+<hr>
+
+<!-- 🎤 FEYNMAN MODE: Spiega il TFR -->
+<div class="card" style="background: linear-gradient(135deg, rgba(138,43,226,0.08), rgba(238,130,238,0.05)); border-left: 4px solid #8a2be2; margin: 20px 0">
+  <div style="display:flex; align-items:center; gap:12px; margin-bottom:16px">
+    <div class="badge" style="background:#8a2be2; color:#fff">🎤 Feynman Mode</div>
+    <div class="small" style="color:var(--muted)">Spiega il TFR · 3 min</div>
+  </div>
+
+  <p style="margin-bottom:16px"><strong>🎯 Obiettivo:</strong> Spiega il TFR scegliendo le frasi corrette tra quelle proposte</p>
+
+  <div style="background:rgba(138,43,226,0.1); padding:16px; border-radius:8px; margin-bottom:16px">
+    <p class="small" style="margin:0; color:var(--muted)">
+      💡 <strong>Tecnica Feynman:</strong> Se riesci a spiegare un concetto con parole semplici, significa che l'hai davvero capito!
+    </p>
+  </div>
+
+  <div style="margin-bottom:20px">
+    <p style="margin-bottom:12px"><strong>Seleziona tutte le affermazioni CORRETTE sul TFR:</strong></p>
+
+    <div style="display:grid; gap:12px">
+      <!-- Frase corretta 1 -->
+      <label style="display:flex; align-items:start; gap:10px; padding:12px; border:2px solid var(--border); border-radius:6px; cursor:pointer; transition:all 0.2s" onmouseover="this.style.background='rgba(138,43,226,0.05)'" onmouseout="this.style.background='transparent'">
+        <input type="checkbox" id="tfr-f1" value="correct" style="margin-top:2px; accent-color:#8a2be2">
+        <span class="small">La quota TFR si calcola dividendo la retribuzione lorda annua per 13,5</span>
+      </label>
+
+      <!-- Frase errata 1 -->
+      <label style="display:flex; align-items:start; gap:10px; padding:12px; border:2px solid var(--border); border-radius:6px; cursor:pointer; transition:all 0.2s" onmouseover="this.style.background='rgba(231,76,60,0.05)'" onmouseout="this.style.background='transparent'">
+        <input type="checkbox" id="tfr-f2" value="wrong" style="margin-top:2px">
+        <span class="small">La quota TFR si calcola dividendo la retribuzione lorda per 12 mesi</span>
+      </label>
+
+      <!-- Frase corretta 2 -->
+      <label style="display:flex; align-items:start; gap:10px; padding:12px; border:2px solid var(--border); border-radius:6px; cursor:pointer; transition:all 0.2s" onmouseover="this.style.background='rgba(138,43,226,0.05)'" onmouseout="this.style.background='transparent'">
+        <input type="checkbox" id="tfr-f3" value="correct" style="margin-top:2px; accent-color:#8a2be2">
+        <span class="small">La rivalutazione si applica solo al TFR pregresso (anni precedenti), non alla quota dell'anno corrente</span>
+      </label>
+
+      <!-- Frase errata 2 -->
+      <label style="display:flex; align-items:start; gap:10px; padding:12px; border:2px solid var(--border); border-radius:6px; cursor:pointer; transition:all 0.2s" onmouseover="this.style.background='rgba(231,76,60,0.05)'" onmouseout="this.style.background='transparent'">
+        <input type="checkbox" id="tfr-f4" value="wrong" style="margin-top:2px">
+        <span class="small">La rivalutazione si applica anche alla quota TFR maturata nell'anno corrente</span>
+      </label>
+
+      <!-- Frase corretta 3 -->
+      <label style="display:flex; align-items:start; gap:10px; padding:12px; border:2px solid var(--border); border-radius:6px; cursor:pointer; transition:all 0.2s" onmouseover="this.style.background='rgba(138,43,226,0.05)'" onmouseout="this.style.background='transparent'">
+        <input type="checkbox" id="tfr-f5" value="correct" style="margin-top:2px; accent-color:#8a2be2">
+        <span class="small">La ritenuta fiscale del 17% si applica solo sulla rivalutazione ISTAT, non sulla quota</span>
+      </label>
+
+      <!-- Frase errata 3 -->
+      <label style="display:flex; align-items:start; gap:10px; padding:12px; border:2px solid var(--border); border-radius:6px; cursor:pointer; transition:all 0.2s" onmouseover="this.style.background='rgba(231,76,60,0.05)'" onmouseout="this.style.background='transparent'">
+        <input type="checkbox" id="tfr-f6" value="wrong" style="margin-top:2px">
+        <span class="small">La ritenuta fiscale del 17% si applica sia sulla quota che sulla rivalutazione</span>
+      </label>
+
+      <!-- Frase corretta 4 -->
+      <label style="display:flex; align-items:start; gap:10px; padding:12px; border:2px solid var(--border); border-radius:6px; cursor:pointer; transition:all 0.2s" onmouseover="this.style.background='rgba(138,43,226,0.05)'" onmouseout="this.style.background='transparent'">
+        <input type="checkbox" id="tfr-f7" value="correct" style="margin-top:2px; accent-color:#8a2be2">
+        <span class="small">Il TFR è un debito dell'azienda verso i dipendenti che va nello Stato Patrimoniale passivo</span>
+      </label>
+
+      <!-- Frase errata 4 -->
+      <label style="display:flex; align-items:start; gap:10px; padding:12px; border:2px solid var(--border); border-radius:6px; cursor:pointer; transition:all 0.2s" onmouseover="this.style.background='rgba(231,76,60,0.05)'" onmouseout="this.style.background='transparent'">
+        <input type="checkbox" id="tfr-f8" value="wrong" style="margin-top:2px">
+        <span class="small">Il coefficiente di rivalutazione ISTAT è del 100% dell'indice</span>
+      </label>
+    </div>
+  </div>
+
+  <button onclick="validateFeynmanTFR()" style="width:100%; padding:12px; background:#8a2be2; color:#fff; border:none; border-radius:6px; font-weight:600; cursor:pointer; font-size:1.1em">🔍 Verifica Spiegazione</button>
+
+  <div id="feynman-feedback" style="margin-top:12px"></div>
+  <div id="feynman-stats" class="small" style="margin-top:8px; color:var(--muted)"></div>
+</div>
+
+<script>
+function validateFeynmanTFR() {
+  const feedback = document.getElementById('feynman-feedback');
+  const statsDiv = document.getElementById('feynman-stats');
+
+  // Controlla quali checkbox sono selezionate
+  const selected = [];
+  const checkboxes = ['tfr-f1', 'tfr-f2', 'tfr-f3', 'tfr-f4', 'tfr-f5', 'tfr-f6', 'tfr-f7', 'tfr-f8'];
+  checkboxes.forEach(id => {
+    const box = document.getElementById(id);
+    if (box.checked) {
+      selected.push({ id: id, value: box.value });
+    }
+  });
+
+  // Risposte corrette: f1, f3, f5, f7
+  const correctIds = ['tfr-f1', 'tfr-f3', 'tfr-f5', 'tfr-f7'];
+  const wrongSelected = selected.filter(s => s.value === 'wrong').map(s => s.id);
+  const correctSelected = selected.filter(s => s.value === 'correct').map(s => s.id);
+  const correctMissing = correctIds.filter(id => !correctSelected.includes(id));
+
+  // Recupera stats da localStorage
+  let stats = JSON.parse(localStorage.getItem('feynman-scritture-tfr') || '{}');
+  if (!stats.attempts) stats = { attempts: 0, perfect: 0 };
+  stats.attempts++;
+
+  // Valida
+  if (wrongSelected.length === 0 && correctMissing.length === 0) {
+    // Perfetto! ✅
+    stats.perfect++;
+    localStorage.setItem('feynman-scritture-tfr', JSON.stringify(stats));
+
+    feedback.innerHTML = `
+      <div style="padding:16px; background:rgba(46,204,113,0.15); border-left:4px solid var(--green); border-radius:6px">
+        <div style="font-size:1.3em; margin-bottom:12px">🏆 <strong>Perfetto!</strong> Hai capito completamente il TFR!</div>
+        <p class="small" style="margin:8px 0"><strong>Concetti chiave:</strong></p>
+        <ul class="small" style="margin:8px 0; padding-left:20px">
+          <li>✅ Quota = Stipendi ÷ 13,5 (non 12!)</li>
+          <li>✅ Rivalutazione solo su TFR pregresso (non su quota anno corrente)</li>
+          <li>✅ Ritenuta 17% solo su rivalutazione ISTAT</li>
+          <li>✅ TFR = Debito verso dipendenti (Passivo SP)</li>
+        </ul>
+        <p class="small" style="margin-top:12px; padding:10px; background:rgba(138,43,226,0.1); border-radius:4px">
+          🎯 <strong>Mnemonica Q.R.R.:</strong> Quota → Rivalutazione → Ritenuta
+        </p>
+        ${stats.attempts === 1 ? '<div style="margin-top:12px; color:#8a2be2; font-weight:600">🌟 Perfetto al primo tentativo! +15 punti</div>' : ''}
+      </div>
+    `;
+
+    // Disabilita tutti i checkbox
+    checkboxes.forEach(id => document.getElementById(id).disabled = true);
+
+  } else {
+    // Errori presenti ❌
+    localStorage.setItem('feynman-scritture-tfr', JSON.stringify(stats));
+
+    let errorMsg = [];
+    if (wrongSelected.length > 0) {
+      errorMsg.push(`❌ Hai selezionato ${wrongSelected.length} affermazione/i errata/e`);
+    }
+    if (correctMissing.length > 0) {
+      errorMsg.push(`⚠️ Ti mancano ${correctMissing.length} affermazione/i corretta/e`);
+    }
+
+    feedback.innerHTML = `
+      <div style="padding:16px; background:rgba(231,76,60,0.15); border-left:4px solid var(--red); border-radius:6px">
+        <div style="font-size:1.1em; margin-bottom:8px">🤔 <strong>Quasi! Ricontrolla:</strong></div>
+        <ul class="small" style="margin:8px 0; padding-left:20px">
+          ${errorMsg.map(e => `<li>${e}</li>`).join('')}
+        </ul>
+        <p class="small" style="margin:12px 0; padding:10px; background:rgba(255,193,7,0.1); border-radius:4px">
+          💡 <strong>Hint:</strong> Ricorda la mnemonica Q.R.R. e rileggi il flowchart completo sopra
+        </p>
+        <details style="margin-top:12px">
+          <summary class="small" style="cursor:pointer; color:#8a2be2">🔍 Mostra errori comuni</summary>
+          <ul class="small" style="margin:8px 0; padding-left:20px">
+            <li>🔴 Dividere per 12 invece di 13,5</li>
+            <li>🔴 Rivalutare anche la quota dell'anno corrente</li>
+            <li>🔴 Applicare ritenuta 17% anche sulla quota</li>
+            <li>🔴 Usare 100% dell'ISTAT (corretto: 75%)</li>
+          </ul>
+        </details>
+      </div>
+    `;
+  }
+
+  // Mostra statistiche
+  const percentage = ((stats.perfect / stats.attempts) * 100).toFixed(0);
+  statsDiv.innerHTML = `📊 Tentativi: ${stats.attempts} · Perfetti: ${stats.perfect} · Precisione: ${percentage}%`;
+}
+
+// Carica stats all'avvio
+(function() {
+  const stats = JSON.parse(localStorage.getItem('feynman-scritture-tfr') || '{}');
+  if (stats.perfect > 0) {
+    const statsDiv = document.getElementById('feynman-stats');
+    const percentage = ((stats.perfect / stats.attempts) * 100).toFixed(0);
+    statsDiv.innerHTML = `📊 Tentativi: ${stats.attempts} · Perfetti: ${stats.perfect} · Precisione: ${percentage}%`;
+  }
+})();
+</script>
+
+<hr>
+<h2 id="%F0%9F%93%A6-chunk-3-liquidazione-iva-10-min">📦 CHUNK 3: Liquidazione IVA (10 min)</h2>
+<h3 id="%F0%9F%94%B9-principio-base">🔹 Principio Base</h3>
+<p><strong>Periodicamente</strong> (mensile o trimestrale) l'azienda deve:</p>
+<ol>
+<li>Confrontare IVA a debito vs IVA a credito</li>
+<li>Versare la differenza all'Erario (se a debito &gt; a credito)</li>
+<li>O portare il credito IVA in avanti</li>
+</ol>
+<h3 id="%F0%9F%94%B9-formula">🔹 Formula</h3>
+<pre class="hljs"><code><div>IVA da versare = IVA a debito – IVA a credito
+</div></code></pre>
+<p><strong>Se positivo:</strong> c'è un debito da pagare
+<strong>Se negativo:</strong> c'è un credito da riportare</p>
+<h3 id="%F0%9F%92%A1-esempio-iva-a-debito">💡 Esempio: IVA a Debito</h3>
+<p><strong>Situazione al 31/12:</strong></p>
+<ul>
+<li>IVA a debito: € 32.980</li>
+<li>IVA a credito: € 18.980</li>
+</ul>
+<pre class="hljs"><code><div>Differenza = 32.980 – 18.980 = € 14.000 (da versare)
+</div></code></pre>
+<h3 id="%F0%9F%93%9D-scrittura-di-liquidazione">📝 Scrittura di Liquidazione</h3>
+<pre class="hljs"><code><div>DARE: IVA a debito                  € 32.980
+    AVERE: IVA a credito                    € 18.980
+    AVERE: Debiti per IVA                   € 14.000
+</div></code></pre>
+<p><strong>Effetto:</strong></p>
+<ul>
+<li>Chiusura conti IVA (saldi azzerati)</li>
+<li>Nuovo debito verso Erario</li>
+</ul>
+<h3 id="%F0%9F%93%9D-scrittura-di-versamento">📝 Scrittura di Versamento</h3>
+<pre class="hljs"><code><div>DARE: Debiti per IVA                € 14.000
+    AVERE: Banca c/c                        € 14.000
+</div></code></pre>
+<h3 id="%F0%9F%94%B9-esempio-iva-a-credito">🔹 Esempio: IVA a Credito</h3>
+<p><strong>Situazione:</strong></p>
+<ul>
+<li>IVA a debito: € 8.000</li>
+<li>IVA a credito: € 12.000</li>
+</ul>
+<pre class="hljs"><code><div>Differenza = 8.000 – 12.000 = – € 4.000 (credito)
+</div></code></pre>
+<h3 id="%F0%9F%93%9D-scrittura">📝 Scrittura</h3>
+<pre class="hljs"><code><div>DARE: IVA a debito                  €  8.000
+DARE: Credito IVA                   €  4.000
+    AVERE: IVA a credito                    € 12.000
+</div></code></pre>
+<p><strong>Effetto:</strong> Credito da compensare nelle liquidazioni successive.</p>
+<h3 id="%F0%9F%8E%A8-schema-decisionale">🎨 Schema Decisionale</h3>
+<pre class="hljs"><code><div>LIQUIDAZIONE IVA
+    ↓
+Confronta IVA Debito vs IVA Credito
+    ↓
+┌─────────────┴─────────────┐
+│                           │
+IVA Debito &gt; Credito    IVA Credito &gt; Debito
+    ↓                       ↓
+DEBITO VERSO ERARIO    CREDITO IVA
+(da versare)           (da compensare)
+</div></code></pre>
+<hr>
+<h2 id="%F0%9F%93%A6-chunk-4-imposte-sul-reddito-10-min">📦 CHUNK 4: Imposte sul Reddito (10 min)</h2>
+<h3 id="%F0%9F%94%B9-ires---imposta-sul-reddito-delle-societ%C3%A0">🔹 IRES - Imposta sul Reddito delle Società</h3>
+<p><strong>Aliquota:</strong> 24% sul reddito imponibile</p>
+<p><strong>Base imponibile:</strong></p>
+<pre class="hljs"><code><div>Utile civilistico
++ Variazioni in aumento
+– Variazioni in diminuzione
+= Reddito imponibile
+</div></code></pre>
+<h3 id="%F0%9F%94%B9-irap---imposta-regionale-attivit%C3%A0-produttive">🔹 IRAP - Imposta Regionale Attività Produttive</h3>
+<p><strong>Aliquota base:</strong> 3,9% (varia per regione)</p>
+<p><strong>Base imponibile:</strong> valore della produzione netta</p>
+<h3 id="%F0%9F%92%A1-esempio-calcolo">💡 Esempio Calcolo</h3>
+<p><strong>Dati:</strong></p>
+<ul>
+<li>Reddito imponibile IRES: € 100.000</li>
+<li>Valore produzione IRAP: € 150.000</li>
+<li>Acconti versati nell'anno: € 20.000</li>
+<li>Ritenute subite: € 2.000</li>
+</ul>
+<p><strong>Calcolo IRES:</strong></p>
+<pre class="hljs"><code><div>IRES dovuta = 100.000 × 24% = € 24.000
+</div></code></pre>
+<p><strong>Calcolo IRAP:</strong></p>
+<pre class="hljs"><code><div>IRAP dovuta = 150.000 × 3,9% = € 5.850
+</div></code></pre>
+<p><strong>Totale imposte:</strong></p>
+<pre class="hljs"><code><div>Totale = 24.000 + 5.850 = € 29.850
+</div></code></pre>
+<p><strong>Imposte da versare:</strong></p>
+<pre class="hljs"><code><div>Imposte dovute:        € 29.850
+– Acconti versati:     € 20.000
+– Ritenute subite:     €  2.000
+──────────────────────────────
+= Debito residuo:      €  7.850
+</div></code></pre>
+<h3 id="%F0%9F%93%9D-scrittura-di-rilevazione">📝 Scrittura di Rilevazione</h3>
+<pre class="hljs"><code><div>DARE: Imposte dell'esercizio        € 29.850
+    AVERE: Imposte d'acconto                € 20.000
+    AVERE: Crediti per ritenute             €  2.000
+    AVERE: Debiti per imposte               €  7.850
+</div></code></pre>
+<p><strong>Effetti:</strong></p>
+<ul>
+<li>⬆️ Costo d'esercizio (CE 20)</li>
+<li>⬇️ Attivo (elimina crediti acconti)</li>
+<li>⬆️ Passivo (debito residuo)</li>
+</ul>
+<h3 id="%F0%9F%93%9D-scrittura-di-versamento">📝 Scrittura di Versamento</h3>
+<pre class="hljs"><code><div>DARE: Debiti per imposte            €  7.850
+    AVERE: Banca c/c                        €  7.850
+</div></code></pre>
+<h3 id="%F0%9F%A7%A0-schema-riepilogativo">🧠 Schema Riepilogativo</h3>
+<pre class="hljs"><code><div>IMPOSTE SUL REDDITO
+│
+├─ IRES (24%)
+│  └─ Su reddito imponibile
+│
+├─ IRAP (3,9%)
+│  └─ Su valore produzione
+│
+└─ Compensazione:
+   ├─ – Acconti versati
+   ├─ – Ritenute subite
+   └─ = Saldo da versare/credito
+</div></code></pre>
+<hr>
+<h2 id="%F0%9F%93%A6-chunk-5-scritture-di-completamento-8-min">📦 CHUNK 5: Scritture di Completamento (8 min)</h2>
+<h3 id="%F0%9F%94%B9-interessi-attivi-bancari">🔹 Interessi Attivi Bancari</h3>
+<p>Interessi € 500, ritenuta fiscale 26%</p>
+<pre class="hljs"><code><div>Ritenuta = 500 × 26% = € 130
+Netto accreditato = 500 – 130 = € 370
+</div></code></pre>
+<p><strong>Scrittura:</strong></p>
+<pre class="hljs"><code><div>DARE: Banca c/c                     €   370
+DARE: Debiti per ritenute           €   130
+    AVERE: Interessi attivi                 €   500
+</div></code></pre>
+<h3 id="%F0%9F%94%B9-interessi-passivi-su-mutuo">🔹 Interessi Passivi su Mutuo</h3>
+<p>Interessi trimestre € 1.200</p>
+<pre class="hljs"><code><div>DARE: Interessi passivi             € 1.200
+    AVERE: Banca c/c                        € 1.200
+</div></code></pre>
+<h3 id="%F0%9F%94%B9-fatture-da-emettere">🔹 Fatture da Emettere</h3>
+<p>Vendita effettuata ma fattura non ancora emessa</p>
+<p>Vendita € 5.000</p>
+<pre class="hljs"><code><div>DARE: Crediti v/clienti             € 5.000
+    AVERE: Merci c/vendite                  € 5.000
+</div></code></pre>
+<p><em>(Quando emetterai la fattura, storna questa e registra con IVA)</em></p>
+<h3 id="%F0%9F%94%B9-fatture-da-ricevere">🔹 Fatture da Ricevere</h3>
+<p>Acquisto ricevuto ma fattura non ancora arrivata</p>
+<p>Acquisto € 3.000</p>
+<pre class="hljs"><code><div>DARE: Merci c/acquisti              € 3.000
+    AVERE: Debiti v/fornitori               € 3.000
+</div></code></pre>
+<h3 id="%F0%9F%94%B9-stralcio-credito-insoluto">🔹 Stralcio Credito Insoluto</h3>
+<p>Cliente insolvente, credito € 2.500, fondo svalutazione € 1.500</p>
+<pre class="hljs"><code><div>DARE: Fondo svalutazione crediti    € 1.500
+DARE: Perdite su crediti            € 1.000
+    AVERE: Crediti v/clienti                € 2.500
+</div></code></pre>
+<p><strong>Logica:</strong></p>
+<ul>
+<li>Parte coperta dal fondo (€ 1.500)</li>
+<li>Parte scoperta = perdita d'esercizio (€ 1.000)</li>
+</ul>
+<hr>
+<h2 id="%F0%9F%A7%A0-mappa-mentale-completa">🧠 MAPPA MENTALE COMPLETA</h2>
+<pre class="hljs"><code><div>SCRITTURE OPERATIVE
+│
+├─ ACQUISTI/VENDITE
+│  ├─ Base: Merci + IVA = Debiti/Crediti
+│  ├─ Resi: Storno totale
+│  └─ Ribassi: Storno parziale
+│
+├─ TFR
+│  ├─ Quota annua = Stipendi / 13,5
+│  ├─ + Rivalutazione ISTAT
+│  └─ – Ritenuta 17%
+│
+├─ IVA
+│  ├─ Liquidazione periodica
+│  ├─ Debito – Credito
+│  └─ = Versamento o credito residuo
+│
+├─ IMPOSTE
+│  ├─ IRES 24%
+│  ├─ IRAP 3,9%
+│  └─ – Acconti – Ritenute
+│
+└─ COMPLETAMENTO
+   ├─ Interessi attivi/passivi
+   ├─ Fatture da emettere/ricevere
+   └─ Stralcio crediti
+</div></code></pre>
+<hr>
+<h2 id="%F0%9F%93%8A-tabella-riepilogativa-conti">📊 TABELLA RIEPILOGATIVA CONTI</h2>
+<table>
+<thead>
+<tr>
+<th>Operazione</th>
+<th>Dare</th>
+<th>Avere</th>
+<th>Dove in CE/SP</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Acquisto merci</td>
+<td>Merci c/acquisti</td>
+<td>Debiti v/fornitori</td>
+<td>CE B6 / SP Passivo</td>
+</tr>
+<tr>
+<td>Vendita merci</td>
+<td>Crediti v/clienti</td>
+<td>Merci c/vendite</td>
+<td>SP Attivo / CE A1</td>
+</tr>
+<tr>
+<td>TFR</td>
+<td>TFR (costo)</td>
+<td>Debiti per TFR</td>
+<td>CE B9 / SP Passivo D</td>
+</tr>
+<tr>
+<td>IVA a versare</td>
+<td>IVA a debito</td>
+<td>Debiti per IVA</td>
+<td>– / SP Passivo</td>
+</tr>
+<tr>
+<td>Imposte</td>
+<td>Imposte esercizio</td>
+<td>Debiti imposte</td>
+<td>CE 20 / SP Passivo</td>
+</tr>
+</tbody>
+</table>
+<hr>
+<h2 id="%E2%9C%85-checklist-di-fine-modulo">✅ CHECKLIST DI FINE MODULO</h2>
+<ul>
+<li><input type="checkbox" id="checkbox0"><label for="checkbox0">So registrare un acquisto con IVA</label></li>
+<li><input type="checkbox" id="checkbox1"><label for="checkbox1">So registrare una vendita con IVA</label></li>
+<li><input type="checkbox" id="checkbox2"><label for="checkbox2">So gestire resi e ribassi</label></li>
+<li><input type="checkbox" id="checkbox3"><label for="checkbox3">So calcolare la quota TFR (÷ 13,5)</label></li>
+<li><input type="checkbox" id="checkbox4"><label for="checkbox4">So calcolare la rivalutazione TFR e la ritenuta</label></li>
+<li><input type="checkbox" id="checkbox5"><label for="checkbox5">So fare la liquidazione IVA periodica</label></li>
+<li><input type="checkbox" id="checkbox6"><label for="checkbox6">So registrare IRES e IRAP</label></li>
+<li><input type="checkbox" id="checkbox7"><label for="checkbox7">So gestire fatture da emettere/ricevere</label></li>
+</ul>
+<hr>
+<h2 id="%F0%9F%94%84-prossimi-passi">🔄 PROSSIMI PASSI</h2>
+<ol>
+<li><strong>Active Recall</strong> → <code>quiz-active-recall/03-quiz-scritture-operative.md</code></li>
+<li><strong>Interleaved Practice</strong> → Alterna esercizi di TFR, IVA e imposte</li>
+<li><strong>Prossimo argomento</strong> → <code>04-assestamenti-rettifiche.md</code></li>
+</ol>
+<hr>
+<blockquote>
+<p>💡 <strong>Tip Feynman:</strong> Prova a spiegare a voce alta come si calcola il TFR come se lo insegnassi a qualcuno. Se ti inceppi, quello è il punto da rivedere.</p>
+</blockquote>
+
+</main>
+
+<aside class="sticky">
+
+<div class="card">
+  <div class="badge b-yellow">✅ Checklist Progresso</div>
+  <div class="separator"></div>
+  <div class="small" style="margin-bottom:12px">Spunta man mano che padroneggi</div>
+  <label style="display:flex;align-items:center;gap:8px;margin:8px 0"><input type="checkbox" id="check-acquisti"><span class="small">Acquisti con IVA</span></label>
+  <label style="display:flex;align-items:center;gap:8px;margin:8px 0"><input type="checkbox" id="check-vendite"><span class="small">Vendite con IVA</span></label>
+  <label style="display:flex;align-items:center;gap:8px;margin:8px 0"><input type="checkbox" id="check-resi"><span class="small">Resi e Ribassi</span></label>
+  <label style="display:flex;align-items:center;gap:8px;margin:8px 0"><input type="checkbox" id="check-tfr"><span class="small">Calcolo TFR</span></label>
+  <label style="display:flex;align-items:center;gap:8px;margin:8px 0"><input type="checkbox" id="check-rivalut"><span class="small">Rivalutazione TFR</span></label>
+  <label style="display:flex;align-items:center;gap:8px;margin:8px 0"><input type="checkbox" id="check-iva"><span class="small">Liquidazione IVA</span></label>
+  <label style="display:flex;align-items:center;gap:8px;margin:8px 0"><input type="checkbox" id="check-imposte"><span class="small">IRES e IRAP</span></label>
+  <div class="separator"></div>
+  <div class="progress"><i id="prog-scritture"></i></div>
+  <div class="small" style="margin-top:8px; text-align:center" id="prog-text">0/7 completati</div>
+</div>
+
+<script>(function(){const KEY='checklist-scritture';const checks=document.querySelectorAll('aside input[type="checkbox"]');const bar=document.getElementById('prog-scritture');const txt=document.getElementById('prog-text');function load(){try{const saved=JSON.parse(localStorage.getItem(KEY)||'[]');checks.forEach((c,i)=>{c.checked=saved[i]||false;});}catch{}update();}function save(){const state=Array.from(checks).map(c=>c.checked);localStorage.setItem(KEY,JSON.stringify(state));update();}function update(){const total=checks.length;const done=Array.from(checks).filter(c=>c.checked).length;const perc=total>0?((done/total)*100).toFixed(0):0;bar.style.width=perc+'%';txt.textContent=done+'/'+total+' completati';}checks.forEach(c=>c.addEventListener('change',save));load();})();</script>
+
+<div class="card">
+  <div class="badge b-blue">📐 Formule Veloci</div>
+  <div class="separator"></div>
+  <div class="small" style="line-height:1.8">
+    <strong>TFR Quota:</strong> Stipendi ÷ 13,5<br>
+    <strong>Rivalutazione:</strong> TFR × (1,5% + 75% ISTAT)<br>
+    <strong>Ritenuta:</strong> Rivalutazione × 17%<br>
+    <strong>IVA Vers.:</strong> IVA debito – IVA credito<br>
+    <strong>IRES:</strong> Reddito imponibile × 24%<br>
+    <strong>IRAP:</strong> Valore produzione × 3,9%
+  </div>
+</div>
+
+<div class="card">
+  <details>
+    <summary>💡 Schema D.A.R.E.</summary>
+    <div class="separator"></div>
+    <div class="small" style="line-height:1.8">
+      <strong>D</strong>are = Chi riceve<br>
+      <strong>A</strong>vere = Chi dà<br>
+      <strong>R</strong>icavo → Avere<br>
+      <strong>E</strong>conomico → Dare (costi)
+    </div>
+  </details>
+</div>
+
+<div class="card">
+  <div class="callout co-blue">
+    <b>💡 Tip Neuroscienza:</b>
+    <p class="small" style="margin:8px 0 0">Dopo aver studiato TFR, fai una pausa di 5 minuti. Il cervello consolida meglio con micro-pause tra argomenti diversi.</p>
+  </div>
+</div>
+
+</aside>
+
+</div>
+
+<div class="separator" style="margin:32px 0"></div>
+
+</div> <!-- chiusura container -->
+
+<style>
+.footer-copyright {
+  text-align: center;
+  margin-top: 50px;
+  padding: 30px 25px;
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  color: #ffffff;
+  border-radius: 16px;
+  box-shadow: 0 8px 20px rgba(0,0,0,0.2);
+  font-size: 0.95em;
+  line-height: 1.8;
+}
+.footer-copyright strong {
+  color: #ffffff !important;
+  font-weight: 700;
+  font-size: 1.1em;
+}
+.footer-copyright em {
+  color: #f0f0f0;
+  font-style: italic;
+}
+.footer-copyright .warning {
+  margin-top: 15px;
+  padding: 12px;
+  background: rgba(255,255,255,0.15);
+  border-radius: 8px;
+  font-size: 0.85em;
+  border: 1px solid rgba(255,255,255,0.3);
+}
+</style>
+
+<div class="footer-copyright">
+  <strong>📚 Sistema NPI-Learning per Economia Aziendale</strong><br>
+  Creato da <strong>Jeffrey Minaya</strong> | AFM Quinta Serale | © 2025<br>
+  <em>Documento didattico ottimizzato con tecniche di neuroscienza applicata</em>
+  <div class="warning">
+    ⚠️ <strong>Uso Riservato:</strong> Questo materiale è protetto da copyright.<br>
+    La distribuzione, riproduzione o uso commerciale non autorizzato è vietato.<br>
+    Per richieste di utilizzo: contattare l'autore.
+  </div>
+</div>
+
+</body>
+</html>

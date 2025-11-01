@@ -1,0 +1,621 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>📚 Italiano - Dashboard Letteratura</title>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
+    <style>
+        :root {
+            --primary: #8b4513;
+            --secondary: #d4a574;
+            --accent: #c19a6b;
+            --success: #4caf50;
+            --info: #2196f3;
+            --warning: #ff9800;
+            --danger: #f44336;
+            --dark: #2c1810;
+            --light: #f5f1ed;
+            --shadow: rgba(139, 69, 19, 0.15);
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            background: linear-gradient(135deg, #f5f1ed 0%, #e8dfd2 100%);
+            color: var(--dark);
+            line-height: 1.6;
+            min-height: 100vh;
+        }
+
+        .header {
+            background: linear-gradient(135deg, var(--primary) 0%, var(--accent) 100%);
+            color: white;
+            padding: 3rem 2rem;
+            box-shadow: 0 4px 6px var(--shadow);
+            margin-bottom: 2rem;
+            text-align: center;
+        }
+
+        .header h1 {
+            font-family: 'Playfair Display', serif;
+            font-size: 3rem;
+            margin-bottom: 0.5rem;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+        }
+
+        .header .subtitle {
+            font-size: 1.2rem;
+            opacity: 0.95;
+            font-weight: 300;
+        }
+
+        .container {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 0 1.5rem 3rem;
+        }
+
+        /* Sezione Autori */
+        .section-title {
+            font-family: 'Playfair Display', serif;
+            font-size: 2rem;
+            color: var(--primary);
+            margin: 3rem 0 1.5rem;
+            text-align: center;
+            position: relative;
+        }
+
+        .section-title::after {
+            content: '';
+            display: block;
+            width: 100px;
+            height: 3px;
+            background: var(--accent);
+            margin: 1rem auto 0;
+            border-radius: 2px;
+        }
+
+        /* Cards Autori */
+        .autori-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 2rem;
+            margin-bottom: 3rem;
+        }
+
+        .autore-card {
+            background: white;
+            border-radius: 12px;
+            overflow: hidden;
+            box-shadow: 0 4px 6px var(--shadow);
+            transition: all 0.3s;
+            cursor: pointer;
+        }
+
+        .autore-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 12px var(--shadow);
+        }
+
+        .autore-header {
+            background: linear-gradient(135deg, var(--primary) 0%, var(--accent) 100%);
+            color: white;
+            padding: 2rem;
+            text-align: center;
+        }
+
+        .autore-header h2 {
+            font-family: 'Playfair Display', serif;
+            font-size: 1.8rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .autore-header .periodo {
+            font-size: 0.9rem;
+            opacity: 0.9;
+        }
+
+        .autore-body {
+            padding: 1.5rem;
+        }
+
+        .autore-info {
+            display: flex;
+            gap: 0.5rem;
+            margin-bottom: 0.8rem;
+            align-items: center;
+        }
+
+        .autore-info .icon {
+            font-size: 1.2rem;
+            min-width: 30px;
+        }
+
+        .autore-info .text {
+            color: #555;
+            font-size: 0.95rem;
+        }
+
+        .opere-list {
+            margin-top: 1rem;
+        }
+
+        .opera-item {
+            background: var(--light);
+            padding: 0.8rem 1rem;
+            margin-bottom: 0.5rem;
+            border-radius: 8px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            transition: all 0.3s;
+        }
+
+        .opera-item:hover {
+            background: var(--secondary);
+            color: white;
+        }
+
+        .opera-item .title {
+            font-weight: 600;
+        }
+
+        .opera-item .status {
+            font-size: 0.85rem;
+            padding: 0.3rem 0.7rem;
+            border-radius: 15px;
+            background: white;
+            color: var(--primary);
+        }
+
+        .opera-item .status.completato {
+            background: var(--success);
+            color: white;
+        }
+
+        .opera-item .status.in-corso {
+            background: var(--warning);
+            color: white;
+        }
+
+        .btn-view {
+            display: inline-block;
+            width: 100%;
+            padding: 0.8rem;
+            margin-top: 1rem;
+            background: var(--primary);
+            color: white;
+            text-align: center;
+            text-decoration: none;
+            border-radius: 8px;
+            font-weight: 600;
+            transition: all 0.3s;
+        }
+
+        .btn-view:hover {
+            background: var(--dark);
+            transform: scale(1.02);
+        }
+
+        /* Stats Cards */
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 1.5rem;
+            margin-bottom: 3rem;
+        }
+
+        .stat-card {
+            background: white;
+            border-radius: 12px;
+            padding: 1.5rem;
+            box-shadow: 0 4px 6px var(--shadow);
+            text-align: center;
+            border-top: 4px solid var(--primary);
+        }
+
+        .stat-card .icon {
+            font-size: 3rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .stat-card .value {
+            font-size: 2.5rem;
+            font-weight: 700;
+            color: var(--primary);
+            margin-bottom: 0.3rem;
+        }
+
+        .stat-card .label {
+            color: #666;
+            font-size: 0.95rem;
+        }
+
+        /* Home button */
+        .home-btn {
+            position: fixed;
+            top: 2rem;
+            left: 2rem;
+            width: 60px;
+            height: 60px;
+            background: white;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.8rem;
+            text-decoration: none;
+            box-shadow: 0 4px 8px var(--shadow);
+            transition: all 0.3s;
+            z-index: 100;
+        }
+
+        .home-btn:hover {
+            transform: scale(1.1);
+            background: var(--primary);
+        }
+
+        /* Info Box */
+        .info-box {
+            background: white;
+            border-radius: 12px;
+            padding: 2rem;
+            box-shadow: 0 4px 6px var(--shadow);
+            margin-top: 3rem;
+        }
+
+        .info-box h3 {
+            color: var(--primary);
+            margin-bottom: 1rem;
+            font-family: 'Playfair Display', serif;
+        }
+
+        .info-box ul {
+            list-style: none;
+            padding: 0;
+        }
+
+        .info-box li {
+            padding: 0.5rem 0;
+            border-bottom: 1px solid #f0f0f0;
+        }
+
+        .info-box li:last-child {
+            border-bottom: none;
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .header h1 {
+                font-size: 2rem;
+            }
+
+            .autori-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .section-title {
+                font-size: 1.5rem;
+            }
+
+            .home-btn {
+                width: 50px;
+                height: 50px;
+                font-size: 1.5rem;
+            }
+        }
+
+        /* Scroll to top */
+        .scroll-top {
+            position: fixed;
+            bottom: 2rem;
+            right: 2rem;
+            width: 50px;
+            height: 50px;
+            background: var(--primary);
+            color: white;
+            border: none;
+            border-radius: 50%;
+            font-size: 1.5rem;
+            cursor: pointer;
+            box-shadow: 0 4px 8px var(--shadow);
+            display: none;
+            align-items: center;
+            justify-content: center;
+            transition: all 0.3s;
+        }
+
+        .scroll-top:hover {
+            background: var(--dark);
+            transform: translateY(-5px);
+        }
+
+        .scroll-top.show {
+            display: flex;
+        }
+    </style>
+</head>
+<body>
+    <!-- Home Button -->
+    <a href="../index.html" class="home-btn" title="Torna alla Homepage">🏠</a>
+
+    <!-- Header -->
+    <div class="header">
+        <h1>📚 Letteratura Italiana</h1>
+        <div class="subtitle">Dashboard Lezioni - Anno Scolastico 2025/2026</div>
+    </div>
+
+    <div class="container">
+        <!-- Statistiche -->
+        <div class="stats-grid">
+            <div class="stat-card">
+                <div class="icon">👨‍🏫</div>
+                <div class="value">2</div>
+                <div class="label">Autori Studiati</div>
+            </div>
+            <div class="stat-card">
+                <div class="icon">📖</div>
+                <div class="value">2</div>
+                <div class="label">Opere Complete</div>
+            </div>
+            <div class="stat-card">
+                <div class="icon">📝</div>
+                <div class="value">97</div>
+                <div class="label">Concetti Analizzati</div>
+            </div>
+            <div class="stat-card">
+                <div class="icon">🎯</div>
+                <div class="value">100%</div>
+                <div class="label">Progresso</div>
+            </div>
+        </div>
+
+        <!-- Sezione Leopardi -->
+        <h2 class="section-title">🌙 Giacomo Leopardi (1798-1837)</h2>
+
+        <div class="autori-grid">
+            <div class="autore-card">
+                <div class="autore-header">
+                    <h2>Giacomo Leopardi</h2>
+                    <div class="periodo">1798-1837 | Romanticismo</div>
+                </div>
+                <div class="autore-body">
+                    <div class="autore-info">
+                        <span class="icon">🏛️</span>
+                        <span class="text">Recanati (Marche) - Napoli</span>
+                    </div>
+                    <div class="autore-info">
+                        <span class="icon">🎭</span>
+                        <span class="text">Corrente: Romanticismo pessimista</span>
+                    </div>
+                    <div class="autore-info">
+                        <span class="icon">💭</span>
+                        <span class="text">Temi: Pessimismo cosmico, Natura matrigna</span>
+                    </div>
+                    <div class="autore-info">
+                        <span class="icon">📚</span>
+                        <span class="text">Opere principali: Canti, Operette Morali</span>
+                    </div>
+
+                    <div class="opere-list">
+                        <h3 style="margin-bottom: 0.8rem; color: var(--primary);">📖 Opere Studiate</h3>
+
+                        <div class="opera-item" onclick="window.location.href='leopardi-a-silvia.html'">
+                            <div>
+                                <div class="title">A Silvia</div>
+                                <div style="font-size: 0.85rem; color: #666;">Canzone libera - 1828</div>
+                            </div>
+                            <span class="status completato">✅ Completato</span>
+                        </div>
+
+                        <div class="opera-item">
+                            <div>
+                                <div class="title">L'infinito</div>
+                                <div style="font-size: 0.85rem; color: #666;">Idillio - 1819</div>
+                            </div>
+                            <span class="status">📋 Da fare</span>
+                        </div>
+
+                        <div class="opera-item">
+                            <div>
+                                <div class="title">Il sabato del villaggio</div>
+                                <div style="font-size: 0.85rem; color: #666;">Canto - 1829</div>
+                            </div>
+                            <span class="status">📋 Da fare</span>
+                        </div>
+
+                        <div class="opera-item">
+                            <div>
+                                <div class="title">La ginestra</div>
+                                <div style="font-size: 0.85rem; color: #666;">Canto - 1836</div>
+                            </div>
+                            <span class="status">📋 Da fare</span>
+                        </div>
+                    </div>
+
+                    <a href="leopardi-a-silvia.html" class="btn-view">📖 Vai alla Lezione: A Silvia</a>
+                </div>
+            </div>
+        </div>
+
+        <!-- Sezione Romanticismo & Manzoni -->
+        <h2 class="section-title">🎭 Romanticismo e Alessandro Manzoni</h2>
+
+        <div class="autori-grid">
+            <div class="autore-card">
+                <div class="autore-header">
+                    <h2>🎭 Il Romanticismo</h2>
+                    <div class="periodo">1780-1850 | Movimento Europeo</div>
+                </div>
+                <div class="autore-body">
+                    <div class="autore-info">
+                        <span class="icon">🌍</span>
+                        <span class="text">Inghilterra, Germania, Italia</span>
+                    </div>
+                    <div class="autore-info">
+                        <span class="icon">📖</span>
+                        <span class="text">Movimento Letterario Moderno</span>
+                    </div>
+                    <div class="autore-info">
+                        <span class="icon">💭</span>
+                        <span class="text">Sentimento • Fede • Libertà • Popolo</span>
+                    </div>
+                    <div class="autore-info">
+                        <span class="icon">🧠</span>
+                        <span class="text">Metodo Neuroscienza Cognitiva</span>
+                    </div>
+
+                    <div class="opere-list">
+                        <h3>📚 Contenuti</h3>
+                        <div class="opera-item completato">
+                            <span class="badge">✅ Completato</span>
+                            <strong>Definizione e Contesto</strong>
+                            <span>1780-1850 | VS Illuminismo e Classicismo</span>
+                        </div>
+                        <div class="opera-item completato">
+                            <span class="badge">✅ Completato</span>
+                            <strong>I Tre Livelli</strong>
+                            <span>Storico-Sociale • Psicologico • Artistico</span>
+                        </div>
+                        <div class="opera-item completato">
+                            <span class="badge">✅ Completato</span>
+                            <strong>Polemica Classicisti-Romantici</strong>
+                            <span>Manzoni vs Leopardi (1816-1823)</span>
+                        </div>
+                        <div class="opera-item completato">
+                            <span class="badge">✅ Completato</span>
+                            <strong>Alessandro Manzoni</strong>
+                            <span>Vita • Pensiero • I Promessi Sposi</span>
+                        </div>
+                        <div class="opera-item completato">
+                            <span class="badge">🎯 Interattivo</span>
+                            <strong>Flashcards & Quiz</strong>
+                            <span>12 flashcards • 34 punti checklist</span>
+                        </div>
+                    </div>
+
+                    <a href="romanticismo-ottocento.html" class="btn-view">📖 Vai alla Lezione: Romanticismo</a>
+                </div>
+            </div>
+        </div>
+
+        <!-- Sezione Altri Autori (placeholder) -->
+        <h2 class="section-title">📚 Altri Autori (In arrivo)</h2>
+
+        <div class="autori-grid">
+            <div class="autore-card" style="opacity: 0.6;">
+                <div class="autore-header" style="background: linear-gradient(135deg, #666 0%, #999 100%);">
+                    <h2>Dante Alighieri</h2>
+                    <div class="periodo">1265-1321 | Medioevo</div>
+                </div>
+                <div class="autore-body">
+                    <div class="autore-info">
+                        <span class="icon">🏛️</span>
+                        <span class="text">Firenze - Ravenna</span>
+                    </div>
+                    <div class="autore-info">
+                        <span class="icon">📚</span>
+                        <span class="text">Divina Commedia, Vita Nova</span>
+                    </div>
+                    <button class="btn-view" disabled style="background: #999; cursor: not-allowed;">🔒 Prossimamente</button>
+                </div>
+            </div>
+
+            <div class="autore-card" style="opacity: 0.6;">
+                <div class="autore-header" style="background: linear-gradient(135deg, #666 0%, #999 100%);">
+                    <h2>Alessandro Manzoni</h2>
+                    <div class="periodo">1785-1873 | Romanticismo</div>
+                </div>
+                <div class="autore-body">
+                    <div class="autore-info">
+                        <span class="icon">🏛️</span>
+                        <span class="text">Milano</span>
+                    </div>
+                    <div class="autore-info">
+                        <span class="icon">📚</span>
+                        <span class="text">I Promessi Sposi, Inni Sacri</span>
+                    </div>
+                    <button class="btn-view" disabled style="background: #999; cursor: not-allowed;">🔒 Prossimamente</button>
+                </div>
+            </div>
+
+            <div class="autore-card" style="opacity: 0.6;">
+                <div class="autore-header" style="background: linear-gradient(135deg, #666 0%, #999 100%);">
+                    <h2>Giovanni Verga</h2>
+                    <div class="periodo">1840-1922 | Verismo</div>
+                </div>
+                <div class="autore-body">
+                    <div class="autore-info">
+                        <span class="icon">🏛️</span>
+                        <span class="text">Catania - Milano</span>
+                    </div>
+                    <div class="autore-info">
+                        <span class="icon">📚</span>
+                        <span class="text">I Malavoglia, Mastro-don Gesualdo</span>
+                    </div>
+                    <button class="btn-view" disabled style="background: #999; cursor: not-allowed;">🔒 Prossimamente</button>
+                </div>
+            </div>
+        </div>
+
+        <!-- Info Box -->
+        <div class="info-box">
+            <h3>📌 Come Usare Questa Dashboard</h3>
+            <ul>
+                <li>✅ <strong>Completato:</strong> Opera completamente analizzata verso per verso</li>
+                <li>🚧 <strong>In Corso:</strong> Analisi in fase di sviluppo</li>
+                <li>📋 <strong>Da Fare:</strong> Opera in programma, non ancora iniziata</li>
+                <li>🔒 <strong>Bloccato:</strong> Autore previsto per prossime lezioni</li>
+            </ul>
+        </div>
+    </div>
+
+    <!-- Scroll to Top Button -->
+    <button class="scroll-top" id="scrollTopBtn" onclick="scrollToTop()">↑</button>
+
+    <script>
+        // Scroll to top
+        window.addEventListener('scroll', function() {
+            const scrollTopBtn = document.getElementById('scrollTopBtn');
+            if (window.pageYOffset > 300) {
+                scrollTopBtn.classList.add('show');
+            } else {
+                scrollTopBtn.classList.remove('show');
+            }
+        });
+
+        function scrollToTop() {
+            window.scrollTo({
+                top: 0,
+                behavior: 'smooth'
+            });
+        }
+
+        // Click su card autore
+        document.querySelectorAll('.autore-card').forEach(card => {
+            if (!card.style.opacity) {
+                card.addEventListener('click', function(e) {
+                    if (e.target.closest('.opera-item') || e.target.closest('.btn-view')) return;
+                    const btn = card.querySelector('.btn-view');
+                    if (btn && !btn.disabled) {
+                        window.location.href = btn.href;
+                    }
+                });
+            }
+        });
+
+        // Console log
+        console.log('📚 Dashboard Italiano - Letteratura');
+        console.log('👨‍🏫 Autori: 1 studiato, 3 in arrivo');
+        console.log('📖 Opere: 1 completa (A Silvia)');
+        console.log('📝 Versi analizzati: 63');
+    </script>
+</body>
+</html>

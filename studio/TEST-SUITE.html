@@ -1,0 +1,351 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>🧪 Test Suite - Sistema NPI-Learning</title>
+    <style>
+        :root {
+            --bg: #0b0c10;
+            --fg: #eceff4;
+            --card: #111318;
+            --success: #4caf50;
+            --error: #f44336;
+            --warning: #ff9800;
+            --blue: #4287f5;
+        }
+
+        body {
+            background: var(--bg);
+            color: var(--fg);
+            font-family: system-ui, -apple-system, sans-serif;
+            padding: 20px;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        h1 { text-align: center; margin-bottom: 40px; }
+
+        .test-grid {
+            display: grid;
+            gap: 20px;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+        }
+
+        .test-card {
+            background: var(--card);
+            padding: 20px;
+            border-radius: 12px;
+            border: 2px solid #23262e;
+        }
+
+        .test-card h2 {
+            margin-top: 0;
+            font-size: 1.2em;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .status {
+            display: inline-block;
+            padding: 4px 8px;
+            border-radius: 6px;
+            font-size: 0.9em;
+            font-weight: 600;
+        }
+
+        .status.ok { background: var(--success); color: white; }
+        .status.error { background: var(--error); color: white; }
+        .status.warning { background: var(--warning); color: white; }
+
+        .test-item {
+            margin: 10px 0;
+            padding: 10px;
+            background: rgba(255,255,255,0.05);
+            border-radius: 6px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        button {
+            padding: 10px 20px;
+            background: var(--blue);
+            color: white;
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+            font-weight: 600;
+            margin: 10px 5px;
+        }
+
+        button:hover { opacity: 0.8; }
+
+        .summary {
+            background: linear-gradient(135deg, rgba(66,135,245,0.2), rgba(76,175,80,0.2));
+            padding: 30px;
+            border-radius: 16px;
+            margin-bottom: 30px;
+            text-align: center;
+        }
+
+        .summary h2 { margin-top: 0; font-size: 2em; }
+        .summary .big-stat {
+            font-size: 3em;
+            font-weight: 700;
+            margin: 20px 0;
+        }
+
+        .clear-btn {
+            background: var(--error);
+        }
+    </style>
+</head>
+<body>
+
+<div class="summary">
+    <h2>🧪 Sistema Test - NPI-Learning</h2>
+    <p>Test automatico di tutte le features implementate</p>
+    <div class="big-stat" id="total-score">-</div>
+    <p id="status-text">Clicca "Esegui Test Completo" per iniziare</p>
+</div>
+
+<div style="text-align: center; margin-bottom: 30px;">
+    <button onclick="runAllTests()">▶️ Esegui Test Completo</button>
+    <button onclick="clearAllData()" class="clear-btn">🗑️ Reset localStorage</button>
+    <button onclick="location.href='05-riepilogo-generale.html'">📊 Vai al Dashboard</button>
+    <button onclick="location.href='../index.html'" style="background: linear-gradient(135deg, #667eea, #764ba2);">🏠 Home Materie</button>
+</div>
+
+<div class="test-grid">
+
+    <!-- File 01 Tests -->
+    <div class="test-card">
+        <h2>📦 File 01 - Immobilizzazioni</h2>
+        <div id="file01-tests"></div>
+    </div>
+
+    <!-- File 02 Tests -->
+    <div class="test-card">
+        <h2>📦 File 02 - Leasing</h2>
+        <div id="file02-tests"></div>
+    </div>
+
+    <!-- File 03 Tests -->
+    <div class="test-card">
+        <h2>📦 File 03 - Scritture</h2>
+        <div id="file03-tests"></div>
+    </div>
+
+    <!-- File 04 Tests -->
+    <div class="test-card">
+        <h2>📦 File 04 - Assestamenti</h2>
+        <div id="file04-tests"></div>
+    </div>
+
+    <!-- Dashboard Tests -->
+    <div class="test-card">
+        <h2>📊 File 05 - Dashboard</h2>
+        <div id="file05-tests"></div>
+    </div>
+
+    <!-- Gamification Tests -->
+    <div class="test-card">
+        <h2>🎮 Sistema Gamification</h2>
+        <div id="gamification-tests"></div>
+    </div>
+
+</div>
+
+<script>
+function checkLocalStorageKey(key, name) {
+    const exists = localStorage.getItem(key) !== null;
+    const status = exists ? 'ok' : 'error';
+    const icon = exists ? '✅' : '❌';
+    return `
+        <div class="test-item">
+            <span>${icon} ${name}</span>
+            <span class="status ${status}">${exists ? 'OK' : 'Missing'}</span>
+        </div>
+    `;
+}
+
+function testFile01() {
+    let html = '';
+    html += checkLocalStorageKey('quiz-stats-immobilizzazioni', 'Quiz Stats');
+    html += checkLocalStorageKey('self-assessment-immobilizzazioni-chunk1', 'Self-Assess C1');
+    html += checkLocalStorageKey('self-assessment-immobilizzazioni-chunk2', 'Self-Assess C2');
+    html += checkLocalStorageKey('self-assessment-immobilizzazioni-chunk3', 'Self-Assess C3');
+    html += checkLocalStorageKey('feynman-immobilizzazioni-ammortamento', 'Feynman Amm.');
+    html += checkLocalStorageKey('flashcards-immobilizzazioni', 'Flashcards');
+
+    // Count features
+    const quiz = JSON.parse(localStorage.getItem('quiz-stats-immobilizzazioni') || '{}');
+    const quizCount = Object.keys(quiz).length;
+    html += `<div style="margin-top: 10px; padding: 10px; background: rgba(66,135,245,0.2); border-radius: 6px; text-align: center;">
+        <strong>Quiz completati: ${quizCount}/3</strong>
+    </div>`;
+
+    document.getElementById('file01-tests').innerHTML = html;
+    return Object.keys(quiz).length;
+}
+
+function testFile02() {
+    let html = '';
+    html += checkLocalStorageKey('quiz-stats-leasing', 'Quiz Stats');
+    html += checkLocalStorageKey('self-assessment-leasing-chunk1', 'Self-Assess C1');
+
+    const quiz = JSON.parse(localStorage.getItem('quiz-stats-leasing') || '{}');
+    const quizCount = Object.keys(quiz).length;
+    html += `<div style="margin-top: 10px; padding: 10px; background: rgba(66,135,245,0.2); border-radius: 6px; text-align: center;">
+        <strong>Quiz completati: ${quizCount}/1</strong>
+    </div>`;
+
+    document.getElementById('file02-tests').innerHTML = html;
+    return quizCount;
+}
+
+function testFile03() {
+    let html = '';
+    html += checkLocalStorageKey('quiz-stats-scritture', 'Quiz Stats');
+    html += checkLocalStorageKey('feynman-scritture-tfr', 'Feynman TFR');
+    html += checkLocalStorageKey('flashcards-scritture', 'Flashcards');
+
+    const quiz = JSON.parse(localStorage.getItem('quiz-stats-scritture') || '{}');
+    const quizCount = Object.keys(quiz).length;
+    html += `<div style="margin-top: 10px; padding: 10px; background: rgba(66,135,245,0.2); border-radius: 6px; text-align: center;">
+        <strong>Quiz completati: ${quizCount}/2</strong>
+    </div>`;
+
+    document.getElementById('file03-tests').innerHTML = html;
+    return quizCount;
+}
+
+function testFile04() {
+    let html = '';
+    html += checkLocalStorageKey('quiz-stats-assestamenti', 'Quiz Stats');
+
+    const quiz = JSON.parse(localStorage.getItem('quiz-stats-assestamenti') || '{}');
+    const quizCount = Object.keys(quiz).length;
+    html += `<div style="margin-top: 10px; padding: 10px; background: rgba(66,135,245,0.2); border-radius: 6px; text-align: center;">
+        <strong>Quiz completati: ${quizCount}/2</strong>
+    </div>`;
+
+    document.getElementById('file04-tests').innerHTML = html;
+    return quizCount;
+}
+
+function testFile05() {
+    let html = '<div class="test-item"><span>✅ Dashboard HTML</span><span class="status ok">OK</span></div>';
+
+    // Check aggregation capability
+    const hasQuiz01 = localStorage.getItem('quiz-stats-immobilizzazioni') !== null;
+    const hasQuiz03 = localStorage.getItem('quiz-stats-scritture') !== null;
+    const hasQuiz04 = localStorage.getItem('quiz-stats-assestamenti') !== null;
+    const hasFlash = localStorage.getItem('flashcards-immobilizzazioni') !== null || localStorage.getItem('flashcards-scritture') !== null;
+
+    html += `<div class="test-item"><span>📊 Dati Quiz</span><span class="status ${hasQuiz01 && hasQuiz03 && hasQuiz04 ? 'ok' : 'warning'}">${hasQuiz01 && hasQuiz03 && hasQuiz04 ? 'OK' : 'Parziali'}</span></div>`;
+    html += `<div class="test-item"><span>🃏 Dati Flashcards</span><span class="status ${hasFlash ? 'ok' : 'warning'}">${hasFlash ? 'OK' : 'Mancanti'}</span></div>`;
+
+    document.getElementById('file05-tests').innerHTML = html;
+    return 1;
+}
+
+function testGamification() {
+    let html = '';
+    const points = localStorage.getItem('gamification-total-points') || '0';
+
+    html += `<div class="test-item"><span>💰 Punti Totali</span><span class="status ok">${points} pt</span></div>`;
+
+    // Calculate badge
+    const pts = parseInt(points);
+    let badge = '🥉 Principiante';
+    if (pts >= 600) badge = '🏆 Maestro';
+    else if (pts >= 300) badge = '🥇 Esperto';
+    else if (pts >= 100) badge = '🥈 Studente';
+
+    html += `<div class="test-item"><span>🏅 Badge Corrente</span><span class="status ok">${badge}</span></div>`;
+
+    // Count flashcard bonuses
+    const bonusImmob = localStorage.getItem('flashcards-immobilizzazioni-bonus-awarded') === 'true';
+    const bonusScrit = localStorage.getItem('flashcards-scritture-bonus-awarded') === 'true';
+    const totalBonuses = (bonusImmob ? 1 : 0) + (bonusScrit ? 1 : 0);
+
+    html += `<div class="test-item"><span>🎁 Bonus Sbloccati</span><span class="status ${totalBonuses > 0 ? 'ok' : 'warning'}">${totalBonuses}/2</span></div>`;
+
+    document.getElementById('gamification-tests').innerHTML = html;
+    return pts;
+}
+
+function runAllTests() {
+    console.log('🧪 Esecuzione test suite...');
+
+    const score01 = testFile01();
+    const score02 = testFile02();
+    const score03 = testFile03();
+    const score04 = testFile04();
+    const score05 = testFile05();
+    const scoreGam = testGamification();
+
+    const totalQuizzes = score01 + score02 + score03 + score04;
+    const totalExpected = 8; // 3+1+2+2
+    const percentage = ((totalQuizzes / totalExpected) * 100).toFixed(0);
+
+    document.getElementById('total-score').textContent = `${totalQuizzes}/${totalExpected} Quiz`;
+    document.getElementById('status-text').innerHTML = `
+        <strong>Completamento: ${percentage}%</strong><br>
+        Punti gamification: ${scoreGam} pt<br>
+        <span style="color: ${percentage >= 50 ? '#4caf50' : '#ff9800'}">
+            ${percentage >= 80 ? '🎉 Sistema operativo!' : percentage >= 50 ? '✅ Buon progresso!' : '⚠️ Inizia a completare i quiz!'}
+        </span>
+    `;
+
+    console.log('✅ Test completati!');
+}
+
+function clearAllData() {
+    if (confirm('⚠️ Sei sicuro? Questo cancellerà TUTTI i dati salvati (quiz, flashcards, punti, etc.)')) {
+        // Quiz
+        localStorage.removeItem('quiz-stats-immobilizzazioni');
+        localStorage.removeItem('quiz-stats-leasing');
+        localStorage.removeItem('quiz-stats-scritture');
+        localStorage.removeItem('quiz-stats-assestamenti');
+
+        // Self-Assessment
+        localStorage.removeItem('self-assessment-immobilizzazioni-chunk1');
+        localStorage.removeItem('self-assessment-immobilizzazioni-chunk2');
+        localStorage.removeItem('self-assessment-immobilizzazioni-chunk3');
+        localStorage.removeItem('self-assessment-leasing-chunk1');
+
+        // Feynman
+        localStorage.removeItem('feynman-immobilizzazioni-ammortamento');
+        localStorage.removeItem('feynman-scritture-tfr');
+
+        // Flashcards
+        localStorage.removeItem('flashcards-immobilizzazioni');
+        localStorage.removeItem('flashcards-scritture');
+        localStorage.removeItem('flashcards-immobilizzazioni-bonus-awarded');
+        localStorage.removeItem('flashcards-scritture-bonus-awarded');
+
+        // Gamification
+        localStorage.removeItem('gamification-total-points');
+
+        alert('✅ Tutti i dati sono stati cancellati!');
+        runAllTests();
+    }
+}
+
+// Auto-run on load
+window.addEventListener('load', runAllTests);
+</script>
+
+<footer style="margin-top: 60px; text-align: center; padding: 20px; border-top: 1px solid #23262e;">
+    <p><strong>🧪 Test Suite Sistema NPI-Learning</strong></p>
+    <p style="color: #9aa4b2; font-size: 0.9em;">
+        Creato da Jeffrey Minaya | AFM Quinta Serale | © 2025
+    </p>
+</footer>
+
+</body>
+</html>

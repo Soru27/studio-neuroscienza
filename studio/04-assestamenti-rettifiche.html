@@ -1,0 +1,1344 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>04-assestamenti-rettifiche.md</title>
+<meta http-equiv="Content-type" content="text/html;charset=UTF-8">
+
+<style>
+/* https://github.com/microsoft/vscode/blob/master/extensions/markdown-language-features/media/markdown.css */
+/*---------------------------------------------------------------------------------------------
+ *  Copyright (c) Microsoft Corporation. All rights reserved.
+ *  Licensed under the MIT License. See License.txt in the project root for license information.
+ *--------------------------------------------------------------------------------------------*/
+
+body {
+	font-family: var(--vscode-markdown-font-family, -apple-system, BlinkMacSystemFont, "Segoe WPC", "Segoe UI", "Ubuntu", "Droid Sans", sans-serif);
+	font-size: var(--vscode-markdown-font-size, 14px);
+	padding: 0 26px;
+	line-height: var(--vscode-markdown-line-height, 22px);
+	word-wrap: break-word;
+}
+
+#code-csp-warning {
+	position: fixed;
+	top: 0;
+	right: 0;
+	color: white;
+	margin: 16px;
+	text-align: center;
+	font-size: 12px;
+	font-family: sans-serif;
+	background-color:#444444;
+	cursor: pointer;
+	padding: 6px;
+	box-shadow: 1px 1px 1px rgba(0,0,0,.25);
+}
+
+#code-csp-warning:hover {
+	text-decoration: none;
+	background-color:#007acc;
+	box-shadow: 2px 2px 2px rgba(0,0,0,.25);
+}
+
+body.scrollBeyondLastLine {
+	margin-bottom: calc(100vh - 22px);
+}
+
+body.showEditorSelection .code-line {
+	position: relative;
+}
+
+body.showEditorSelection .code-active-line:before,
+body.showEditorSelection .code-line:hover:before {
+	content: "";
+	display: block;
+	position: absolute;
+	top: 0;
+	left: -12px;
+	height: 100%;
+}
+
+body.showEditorSelection li.code-active-line:before,
+body.showEditorSelection li.code-line:hover:before {
+	left: -30px;
+}
+
+.vscode-light.showEditorSelection .code-active-line:before {
+	border-left: 3px solid rgba(0, 0, 0, 0.15);
+}
+
+.vscode-light.showEditorSelection .code-line:hover:before {
+	border-left: 3px solid rgba(0, 0, 0, 0.40);
+}
+
+.vscode-light.showEditorSelection .code-line .code-line:hover:before {
+	border-left: none;
+}
+
+.vscode-dark.showEditorSelection .code-active-line:before {
+	border-left: 3px solid rgba(255, 255, 255, 0.4);
+}
+
+.vscode-dark.showEditorSelection .code-line:hover:before {
+	border-left: 3px solid rgba(255, 255, 255, 0.60);
+}
+
+.vscode-dark.showEditorSelection .code-line .code-line:hover:before {
+	border-left: none;
+}
+
+.vscode-high-contrast.showEditorSelection .code-active-line:before {
+	border-left: 3px solid rgba(255, 160, 0, 0.7);
+}
+
+.vscode-high-contrast.showEditorSelection .code-line:hover:before {
+	border-left: 3px solid rgba(255, 160, 0, 1);
+}
+
+.vscode-high-contrast.showEditorSelection .code-line .code-line:hover:before {
+	border-left: none;
+}
+
+img {
+	max-width: 100%;
+	max-height: 100%;
+}
+
+a {
+	text-decoration: none;
+}
+
+a:hover {
+	text-decoration: underline;
+}
+
+a:focus,
+input:focus,
+select:focus,
+textarea:focus {
+	outline: 1px solid -webkit-focus-ring-color;
+	outline-offset: -1px;
+}
+
+hr {
+	border: 0;
+	height: 2px;
+	border-bottom: 2px solid;
+}
+
+h1 {
+	padding-bottom: 0.3em;
+	line-height: 1.2;
+	border-bottom-width: 1px;
+	border-bottom-style: solid;
+}
+
+h1, h2, h3 {
+	font-weight: normal;
+}
+
+table {
+	border-collapse: collapse;
+}
+
+table > thead > tr > th {
+	text-align: left;
+	border-bottom: 1px solid;
+}
+
+table > thead > tr > th,
+table > thead > tr > td,
+table > tbody > tr > th,
+table > tbody > tr > td {
+	padding: 5px 10px;
+}
+
+table > tbody > tr + tr > td {
+	border-top: 1px solid;
+}
+
+blockquote {
+	margin: 0 7px 0 5px;
+	padding: 0 16px 0 10px;
+	border-left-width: 5px;
+	border-left-style: solid;
+}
+
+code {
+	font-family: Menlo, Monaco, Consolas, "Droid Sans Mono", "Courier New", monospace, "Droid Sans Fallback";
+	font-size: 1em;
+	line-height: 1.357em;
+}
+
+body.wordWrap pre {
+	white-space: pre-wrap;
+}
+
+pre:not(.hljs),
+pre.hljs code > div {
+	padding: 16px;
+	border-radius: 3px;
+	overflow: auto;
+}
+
+pre code {
+	color: var(--vscode-editor-foreground);
+	tab-size: 4;
+}
+
+/** Theming */
+
+.vscode-light pre {
+	background-color: rgba(220, 220, 220, 0.4);
+}
+
+.vscode-dark pre {
+	background-color: rgba(10, 10, 10, 0.4);
+}
+
+.vscode-high-contrast pre {
+	background-color: rgb(0, 0, 0);
+}
+
+.vscode-high-contrast h1 {
+	border-color: rgb(0, 0, 0);
+}
+
+.vscode-light table > thead > tr > th {
+	border-color: rgba(0, 0, 0, 0.69);
+}
+
+.vscode-dark table > thead > tr > th {
+	border-color: rgba(255, 255, 255, 0.69);
+}
+
+.vscode-light h1,
+.vscode-light hr,
+.vscode-light table > tbody > tr + tr > td {
+	border-color: rgba(0, 0, 0, 0.18);
+}
+
+.vscode-dark h1,
+.vscode-dark hr,
+.vscode-dark table > tbody > tr + tr > td {
+	border-color: rgba(255, 255, 255, 0.18);
+}
+
+</style>
+
+<style>
+/* Tomorrow Theme */
+/* http://jmblog.github.com/color-themes-for-google-code-highlightjs */
+/* Original theme - https://github.com/chriskempson/tomorrow-theme */
+
+/* Tomorrow Comment */
+.hljs-comment,
+.hljs-quote {
+	color: #8e908c;
+}
+
+/* Tomorrow Red */
+.hljs-variable,
+.hljs-template-variable,
+.hljs-tag,
+.hljs-name,
+.hljs-selector-id,
+.hljs-selector-class,
+.hljs-regexp,
+.hljs-deletion {
+	color: #c82829;
+}
+
+/* Tomorrow Orange */
+.hljs-number,
+.hljs-built_in,
+.hljs-builtin-name,
+.hljs-literal,
+.hljs-type,
+.hljs-params,
+.hljs-meta,
+.hljs-link {
+	color: #f5871f;
+}
+
+/* Tomorrow Yellow */
+.hljs-attribute {
+	color: #eab700;
+}
+
+/* Tomorrow Green */
+.hljs-string,
+.hljs-symbol,
+.hljs-bullet,
+.hljs-addition {
+	color: #718c00;
+}
+
+/* Tomorrow Blue */
+.hljs-title,
+.hljs-section {
+	color: #4271ae;
+}
+
+/* Tomorrow Purple */
+.hljs-keyword,
+.hljs-selector-tag {
+	color: #8959a8;
+}
+
+.hljs {
+	display: block;
+	overflow-x: auto;
+	color: #4d4d4c;
+	padding: 0.5em;
+}
+
+.hljs-emphasis {
+	font-style: italic;
+}
+
+.hljs-strong {
+	font-weight: bold;
+}
+</style>
+
+<style>
+/*
+ * Markdown PDF CSS
+ */
+
+ body {
+	font-family: -apple-system, BlinkMacSystemFont, "Segoe WPC", "Segoe UI", "Ubuntu", "Droid Sans", sans-serif, "Meiryo";
+	padding: 0 12px;
+}
+
+pre {
+	background-color: #f8f8f8;
+	border: 1px solid #cccccc;
+	border-radius: 3px;
+	overflow-x: auto;
+	white-space: pre-wrap;
+	overflow-wrap: break-word;
+}
+
+pre:not(.hljs) {
+	padding: 23px;
+	line-height: 19px;
+}
+
+blockquote {
+	background: rgba(127, 127, 127, 0.1);
+	border-color: rgba(0, 122, 204, 0.5);
+}
+
+.emoji {
+	height: 1.4em;
+}
+
+code {
+	font-size: 14px;
+	line-height: 19px;
+}
+
+/* for inline code */
+:not(pre):not(.hljs) > code {
+	color: #C9AE75; /* Change the old color so it seems less like an error */
+	font-size: inherit;
+}
+
+/* Page Break : use <div class="page"/> to insert page break
+-------------------------------------------------------- */
+.page {
+	page-break-after: always;
+}
+
+</style>
+
+<style>:root{--bg: #0b0c10; --fg:#eceff4; --muted:#9aa4b2; --card:#111318; --border:#23262e;--blue:#4da3ff; --red:#ff5964; --green:#3ad29f; --yellow:#ffd166;--primary:#4287f5; --success:#4caf50; --error:#f44336; --warning:#ff9800;--shadow: 0 6px 18px rgba(0,0,0,.25);--radius:16px; --pad:16px; --gap:14px; --font: Inter, system-ui, Segoe UI, Roboto, Arial, sans-serif;}@media (prefers-color-scheme: light){:root{ --bg:#f7f8fb; --fg:#0f172a; --muted:#475569; --card:#ffffff; --border:#e5e7eb;--blue:#2563eb; --red:#ef4444; --green:#10b981; --yellow:#f59e0b; --primary:#2196f3; --success:#4caf50; --error:#f44336; --warning:#ff9800; }}html,body{background:var(--bg); color:var(--fg); font-family:var(--font);}.container{max-width:1100px; margin:32px auto; padding:0 16px;}.grid{display:grid; gap:var(--gap);}.grid-2{grid-template-columns: 1.2fr .8fr;}@media (max-width:960px){ .grid-2{grid-template-columns:1fr;} }.card{background:var(--card); border:1px solid var(--border); border-radius:var(--radius); padding:var(--pad); box-shadow:var(--shadow);margin-bottom: 18px;}.card h2, .card h3{margin-top:0}.badge{display:inline-flex; align-items:center; gap:6px; font-weight:600; font-size:.85rem; padding:6px 10px; border-radius:999px; border:1px solid var(--border); background:linear-gradient(180deg, rgba(255,255,255,.04), transparent);}.b-blue{color:var(--blue); border-color:color-mix(in oklab, var(--blue), #000 70%);}.b-red{color:var(--red); border-color:color-mix(in oklab, var(--red), #000 70%);}.b-green{color:var(--green); border-color:color-mix(in oklab, var(--green), #000 70%);}.b-yellow{color:var(--yellow); border-color:color-mix(in oklab, var(--yellow), #000 70%);}.callout{border-left:6px solid var(--border); padding:14px 16px; border-radius:12px; background:linear-gradient(180deg, rgba(255,255,255,.03), transparent);margin: 12px 0;}.co-blue{border-left-color:var(--blue)}.co-red{border-left-color:var(--red)}.co-green{border-left-color:var(--green)}.co-yellow{border-left-color:var(--yellow)}.kbd{font:600 .85rem ui-monospace, SFMono-Regular, Menlo, monospace; background:var(--border); padding:2px 6px; border-radius:6px; border:1px solid color-mix(in oklab, var(--border), #000 35%);}.progress{height:10px; background:color-mix(in oklab, var(--border), #000 20%); border-radius:999px; overflow:hidden;}.progress > i{display:block; height:100%; width:0%; background:linear-gradient(90deg, var(--green), var(--blue)); transition:width .4s ease;}.separator{height:1px; background:var(--border); margin:18px 0;}.recall .hidden-answer{filter: blur(8px); transition:filter .2s; user-select: none;}.recall.reveal .hidden-answer{filter:none; user-select: auto;}.btn{display:inline-flex; align-items:center; gap:10px; padding:10px 14px; border-radius:12px; border:1px solid var(--border); background:var(--card); color:var(--fg); cursor:pointer;font-family: var(--font);}.btn:hover{border-color:color-mix(in oklab, var(--border), var(--fg) 30%);}.sticky{position:sticky; top:18px; align-self: start;}.small{font-size:.9rem; color:var(--muted)}input[type="text"], input[type="number"], input[type="range"]{width: 100%;padding: 8px;border-radius: 8px;border: 1px solid var(--border);background: var(--bg);color: var(--fg);font-family: var(--font);}label{display: block;font-size: 0.9rem;color: var(--muted);margin-bottom: 6px;}blockquote{border-left: 4px solid var(--blue);padding-left: 16px;margin-left: 0;background: linear-gradient(90deg, rgba(77, 163, 255, 0.1), transparent);border-radius: 8px;padding: 12px 16px;}details{background: var(--card);border: 1px solid var(--border);border-radius: 12px;padding: 12px;margin: 12px 0;}details summary{cursor: pointer;font-weight: 600;padding: 8px;border-radius: 8px;}details summary:hover{background: color-mix(in oklab, var(--border), transparent 50%);}.widget{background:var(--card);border:1px solid var(--border);border-radius:var(--radius);padding:var(--pad);margin:20px 0;}</style>
+
+<script src="https://unpkg.com/mermaid/dist/mermaid.min.js"></script>
+</head>
+<body>
+  <script>
+    mermaid.initialize({
+      startOnLoad: true,
+      theme: document.body.classList.contains('vscode-dark') || document.body.classList.contains('vscode-high-contrast')
+          ? 'dark'
+          : 'default'
+    });
+  </script>
+
+<style>
+.top-header {
+  position: sticky;
+  top: 0;
+  z-index: 1000;
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  color: #ffffff;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+  padding: 12px 20px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 12px;
+}
+.top-header .course-info {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  flex-wrap: wrap;
+}
+.top-header .home-icon {
+  font-size: 1.5rem;
+  cursor: pointer;
+  transition: transform 0.2s;
+  text-decoration: none;
+  color: #ffffff;
+}
+.top-header .home-icon:hover {
+  transform: scale(1.1);
+}
+.top-header .course-title {
+  font-weight: 700;
+  font-size: 1rem;
+  letter-spacing: 0.5px;
+}
+.top-header .course-meta {
+  font-size: 0.85rem;
+  opacity: 0.9;
+  display: flex;
+  gap: 8px;
+  flex-wrap: wrap;
+}
+.top-header .course-meta span {
+  background: rgba(255,255,255,0.2);
+  padding: 4px 10px;
+  border-radius: 12px;
+}
+.nav-horizontal {
+  display: flex;
+  gap: 8px;
+  flex-wrap: wrap;
+  align-items: center;
+}
+.nav-horizontal a {
+  background: rgba(255,255,255,0.15);
+  color: #ffffff;
+  padding: 8px 14px;
+  border-radius: 8px;
+  text-decoration: none;
+  font-size: 0.9rem;
+  font-weight: 500;
+  transition: all 0.2s;
+  border: 1px solid rgba(255,255,255,0.2);
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+}
+.nav-horizontal a:hover {
+  background: rgba(255,255,255,0.25);
+  border-color: rgba(255,255,255,0.4);
+  transform: translateY(-2px);
+}
+.nav-horizontal a.active {
+  background: rgba(255,255,255,0.95);
+  color: #667eea;
+  font-weight: 700;
+  border-color: rgba(255,255,255,0.5);
+}
+@media (max-width: 768px) {
+  .top-header {
+    padding: 10px 15px;
+  }
+  .top-header .course-title {
+    font-size: 0.9rem;
+  }
+  .top-header .course-meta {
+    font-size: 0.75rem;
+  }
+  .nav-horizontal a {
+    font-size: 0.8rem;
+    padding: 6px 10px;
+  }
+}
+</style>
+
+<header class="top-header">
+  <div class="course-info">
+    <a href="../index.html" class="home-icon" title="Home - Tutte le Materie">🏠</a>
+    <div>
+      <div class="course-title">📚 ECONOMIA AZIENDALE</div>
+      <div class="course-meta">
+        <span>A.S. 2025/2026</span>
+        <span>AFM Quinta Serale</span>
+      </div>
+    </div>
+  </div>
+  <nav class="nav-horizontal">
+    <a href="01-immobilizzazioni-materiali.html">🔵 Immobilizzazioni</a>
+    <a href="02-leasing-costruzioni.html">🔵 Leasing</a>
+    <a href="03-scritture-operative.html">🟡 Operative</a>
+    <a href="04-assestamenti-rettifiche.html" class="active">🟢 Assestamenti</a>
+    <a href="05-riepilogo-generale.html">📊 Riepilogo</a>
+    <a href="simulazioni/dashboard-simulazioni.html">🎯 Simulazioni</a>
+  </nav>
+</header>
+
+<div class="container">
+
+<h1 id="%E2%9A%99%EF%B8%8F-scritture-di-assestamento-e-rettifiche">⚙️ SCRITTURE DI ASSESTAMENTO E RETTIFICHE</h1>
+<blockquote>
+<p><strong>Tempo di studio consigliato:</strong> 50 minuti | <strong>Revisione:</strong> 15 minuti | <strong>Active Recall:</strong> 20 minuti</p>
+</blockquote>
+
+<div class="card" id="npi-widget" aria-live="polite"><div style="display:flex; justify-content:space-between; align-items:center; gap:10px; flex-wrap:wrap"><div class="badge b-blue">🧠 NPI-Learning</div><div class="small">R.A.R.P. — modulo più complesso</div></div><div class="separator"></div><div class="grid" style="grid-template-columns:1fr 1fr 1fr; gap:18px"><label>Ritenzione R(t) %<input id="npi-r" type="range" min="0" max="100" step="5" value="0"><span id="npi-r-val" class="small" style="display:block; margin-top:4px">0%</span></label><label>Energia E(t) 1–5<input id="npi-e" type="range" min="1" max="5" step="1" value="3"><span id="npi-e-val" class="small" style="display:block; margin-top:4px">3/5</span></label><label>Coerenza C(t) 1–5<input id="npi-c" type="range" min="1" max="5" step="1" value="3"><span id="npi-c-val" class="small" style="display:block; margin-top:4px">3/5</span></label></div><div class="separator"></div><div class="grid" style="grid-template-columns:1fr auto; align-items:center"><div class="progress"><i id="npi-bar"></i></div><div id="npi-chip" class="badge">Stato: —</div></div><div class="small" id="npi-tip" style="margin-top:8px"></div></div>
+
+<script>(function(){const id = (sel)=>document.querySelector(sel);const r = id('#npi-r'), e = id('#npi-e'), c = id('#npi-c');const rVal = id('#npi-r-val'), eVal = id('#npi-e-val'), cVal = id('#npi-c-val');const bar = id('#npi-bar'), chip = id('#npi-chip'), tip = id('#npi-tip');const KEY='npi-assestamenti';function load(){try{ const v = JSON.parse(localStorage.getItem(KEY)||'{}');if(v.r!=null){ r.value=v.r; e.value=v.e; c.value=v.c; }}catch{}update();}function save(){ localStorage.setItem(KEY, JSON.stringify({r:+r.value, e:+e.value, c:+c.value})); }function compute(){const R = +r.value/100, E = +e.value/5, C = +c.value/5;return Math.max(0, Math.min(1, 0.5*R + 0.25*E + 0.25*C));}function label(score){if(score>=0.75) return {txt:'🟢 Flow', tip:'Prosegui con R.A.R.P.'};if(score>=0.40) return {txt:'🟡 Ristruttura', tip:'Rivedi timeline visual'};return {txt:'🔴 Ricodifica', tip:'Riparti da Ratei/Risconti'};  }function update(){const s = compute();bar.style.width = (s*100).toFixed(0)+'%';chip.className = 'badge ' + (s>=0.75?'b-green':(s>=0.4?'b-yellow':'b-red'));chip.textContent = 'Stato: ' + label(s).txt + ' ('+(s*100|0)+'%)';tip.textContent = label(s).tip;rVal.textContent = r.value + '%';eVal.textContent = e.value + '/5';cVal.textContent = c.value + '/5';save();}[r,e,c].forEach(x=>x.addEventListener('input', update));load();})();</script>
+
+<div class="card" style="display:flex; align-items:center; justify-content:space-between; gap:10px; flex-wrap:wrap;"><div><div class="badge b-yellow">🎯 Active-Recall</div><div class="small" style="margin-top:6px">Premi <span class="kbd">R</span> per mostrare/nascondere</div></div><button id="recall-toggle" class="btn"><span>Mostra risposte</span> <span class="kbd">R</span></button></div>
+
+<script>(function(){const root=document.documentElement;const btn=document.getElementById('recall-toggle');function toggle(){ root.classList.toggle('reveal'); btn.firstElementChild.textContent = root.classList.contains('reveal')?'Nascondi risposte':'Mostra risposte'; }btn.addEventListener('click', toggle);document.addEventListener('keydown', (e)=>{ if(e.key.toLowerCase()==='r' && !e.ctrlKey && !e.altKey && !e.metaKey) {if(!['INPUT','TEXTAREA'].includes(document.activeElement.tagName)){ toggle(); }}});root.classList.add('recall');})();</script>
+
+<div class="card">
+  <h2 id="%F0%9F%8E%AF-obiettivi-di-apprendimento" style="margin-top:0">🎯 OBIETTIVI DI APPRENDIMENTO</h2>
+  <ul style="margin:0">
+    <li>✅ Applicare il principio di competenza economica</li>
+    <li>✅ Calcolare e registrare ratei attivi e passivi</li>
+    <li>✅ Gestire risconti attivi e passivi</li>
+    <li>✅ Svalutare crediti con fondo rettificativo</li>
+    <li>✅ Valutare e registrare rimanenze finali</li>
+    <li>✅ Accantonare a fondi rischi e oneri</li>
+  </ul>
+</div>
+
+<div class="grid grid-2">
+  <main class="grid" style="gap:18px">
+<h2 id="%F0%9F%93%A6-chunk-1-principio-di-competenza-10-min">📦 CHUNK 1: Principio di Competenza (10 min)</h2>
+<h3 id="%F0%9F%94%B9-cos%C3%A8-la-competenza-economica">🔹 Cos'è la Competenza Economica?</h3>
+<p>I <strong>costi</strong> e i <strong>ricavi</strong> vanno attribuiti all'esercizio in cui si <strong>manifestano economicamente</strong>, non quando vengono pagati/incassati.</p>
+<p><strong>Regola d'oro:</strong></p>
+<pre class="hljs"><code><div>Competenza ≠ Manifestazione Finanziaria
+</div></code></pre>
+<h3 id="%F0%9F%A7%A0-esempi-di-disallineamento">🧠 Esempi di Disallineamento</h3>
+<table>
+<thead>
+<tr>
+<th>Situazione</th>
+<th>Pagamento</th>
+<th>Competenza</th>
+<th>Strumento</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Affitto annuale pagato in anticipo</td>
+<td>Anno n</td>
+<td>Parte in n+1</td>
+<td>Risconto attivo</td>
+</tr>
+<tr>
+<td>Interessi su prestito maturati</td>
+<td>Anno n+1</td>
+<td>Parte in n</td>
+<td>Rateo attivo</td>
+</tr>
+<tr>
+<td>Canone assicurativo semestrale</td>
+<td>01/10/n</td>
+<td>4 mesi in n+1</td>
+<td>Risconto attivo</td>
+</tr>
+<tr>
+<td>Utenze consumate ma fatturate dopo</td>
+<td>Anno n+1</td>
+<td>Anno n</td>
+<td>Rateo passivo</td>
+</tr>
+</tbody>
+</table>
+<h3 id="%F0%9F%8E%A8-schema-logico">🎨 Schema Logico</h3>
+<pre class="hljs"><code><div>COMPETENZA ECONOMICA
+│
+├─ COSTI/RICAVI ANTICIPATI
+│  └─ RISCONTI (rinvio a esercizi futuri)
+│
+├─ COSTI/RICAVI POSTICIPATI
+│  └─ RATEI (anticipo da esercizi futuri)
+│
+└─ RETTIFICHE DI VALORE
+   ├─ Svalutazioni
+   ├─ Fondi rischi
+   └─ Rimanenze
+</div></code></pre>
+<hr>
+<h2 id="%F0%9F%93%A6-chunk-2-risconti-15-min">📦 CHUNK 2: Risconti (15 min)</h2>
+<h3 id="%F0%9F%94%B9-definizione">🔹 Definizione</h3>
+<p>I <strong>risconti</strong> servono per <strong>rinviare</strong> quote di costi o ricavi già registrati ma di competenza di esercizi futuri.</p>
+<p><strong>🟢 Principio Visuale:</strong></p>
+<pre class="hljs"><code><div>💰 Pagato/Incassato ORA → 📅 Competenza FUTURA → 🟢 RISCONTO (RINVIO)
+
+TIMELINE:
+    │
+    ↓ Pagamento fatto (es. 01/11)
+    ●═════════════════════════●
+    │   Competenza n   │  Competenza n+1  │
+    │   (2 mesi)       │   (4 mesi)       │
+    └──────────────────┴──────────────────┘
+                       31/12
+                         ↑
+                    🟢 Risconto = Rinvia 4 mesi futuri
+</div></code></pre>
+<h3 id="%F0%9F%94%B9-risconto-attivo">🔹 Risconto Attivo</h3>
+<p><strong>Quando:</strong> Hai pagato un costo, ma parte è di competenza dell'anno successivo.</p>
+<p><strong>Formula:</strong></p>
+<pre class="hljs"><code><div>Risconto Attivo = Costo totale × (Giorni futuri / Giorni totali)
+</div></code></pre>
+<h3 id="%F0%9F%92%A1-esempio-1-affitto">💡 Esempio 1: Affitto</h3>
+<p>Pagato affitto semestrale € 6.300 il 01/11/n (fino al 30/04/n+1)</p>
+<p><strong>Analisi:</strong></p>
+<ul>
+<li>Periodo totale: 6 mesi (nov, dic, gen, feb, mar, apr)</li>
+<li>Competenza anno n: 2 mesi (nov, dic)</li>
+<li>Competenza anno n+1: 4 mesi (gen-apr)</li>
+</ul>
+<p><strong>Calcolo:</strong></p>
+<pre class="hljs"><code><div>Risconto = 6.300 × (4/6) = 6.300 × 0,667 = € 4.200
+</div></code></pre>
+<p><strong>Oppure (con giorni):</strong></p>
+<pre class="hljs"><code><div>Dal 01/01/n+1 al 30/04/n+1 = 120 giorni
+Risconto = 6.300 × (120/180) = € 4.200
+</div></code></pre>
+<h3 id="%F0%9F%93%9D-scrittura-al-3112n">📝 Scrittura al 31/12/n</h3>
+<pre class="hljs"><code><div>DARE: Risconti attivi               € 4.200
+    AVERE: Fitti passivi                    € 4.200
+</div></code></pre>
+<p><strong>Effetto:</strong></p>
+<ul>
+<li>⬇️ Costo anno n (da € 6.300 a € 2.100)</li>
+<li>⬆️ Attivo SP (quota anticipata)</li>
+</ul>
+<h3 id="%F0%9F%92%A1-esempio-2-assicurazione">💡 Esempio 2: Assicurazione</h3>
+<p>Premio assicurativo € 2.400 pagato 01/07/n (valido 12 mesi)</p>
+<p><strong>Analisi:</strong></p>
+<ul>
+<li>Anno n: 6 mesi (lug-dic) → competenza</li>
+<li>Anno n+1: 6 mesi (gen-giu) → risconto</li>
+</ul>
+<p><strong>Calcolo:</strong></p>
+<pre class="hljs"><code><div>Risconto = 2.400 × (6/12) = € 1.200
+</div></code></pre>
+<h3 id="%F0%9F%93%9D-scrittura">📝 Scrittura</h3>
+<pre class="hljs"><code><div>DARE: Risconti attivi               € 1.200
+    AVERE: Assicurazioni                    € 1.200
+</div></code></pre>
+
+<!-- ======================== MINI-QUIZ 2: RISCONTO ATTIVO ======================== -->
+<div class="widget" style="background:rgba(255,193,7,0.1); border-left:4px solid var(--warning); padding:20px; margin:24px 0;">
+    <h4 style="margin:0 0 16px 0; color:var(--warning)">🎯 MINI-QUIZ 2: Calcolo Risconto Attivo</h4>
+    <p class="small" style="margin:0 0 16px 0">Applica il principio di competenza per rinviare all'anno successivo la quota di costo anticipato.</p>
+
+    <div style="background:white; padding:16px; border-radius:8px; margin:12px 0;">
+        <strong style="display:block; margin-bottom:8px">📋 Dati esercizio:</strong>
+        <ul style="margin:8px 0; padding-left:20px">
+            <li>Abbonamento servizi pagato: <strong>€ 3.600</strong></li>
+            <li>Data pagamento: <strong>1° settembre anno n</strong></li>
+            <li>Durata: <strong>12 mesi</strong> (01/09/n → 31/08/n+1)</li>
+            <li>Competenza anno n: <strong>4 mesi</strong> (settembre, ottobre, novembre, dicembre)</li>
+            <li>Competenza anno n+1: <strong>8 mesi</strong> (gennaio → agosto)</li>
+            <li>Formula: Risconto Attivo = Costo × (Mesi futuri / Mesi totali)</li>
+        </ul>
+        <p style="margin:8px 0 0 0"><strong>❓ Calcola il Risconto Attivo da rilevare al 31/12/n:</strong></p>
+    </div>
+
+    <div style="display:flex; align-items:center; gap:12px; margin:16px 0">
+        <label style="font-weight:600">Risconto Attivo: €</label>
+        <input type="number" id="quiz-risconto-input" placeholder="2400" step="0.01"
+               style="padding:8px 12px; border:2px solid #ddd; border-radius:4px; font-size:1em; width:150px">
+        <button onclick="validateQuizRisconto()"
+                style="padding:8px 16px; background:var(--warning); color:white; border:none; border-radius:4px; cursor:pointer; font-weight:600">
+            Verifica
+        </button>
+    </div>
+
+    <div id="quiz-risconto-result" style="margin-top:16px"></div>
+
+    <details style="margin-top:16px">
+        <summary style="cursor:pointer; color:var(--primary); font-weight:600">💡 Hint (clicca se hai bisogno di aiuto)</summary>
+        <p class="small" style="margin:8px 0; padding:12px; background:rgba(33,150,243,0.1); border-radius:4px">
+            📌 Il risconto attivo rappresenta la <strong>quota di costo già pagata ma di competenza futura</strong>.<br>
+            🔴 <strong>Ragionamento:</strong><br>
+            • Costo totale: € 3.600 per 12 mesi<br>
+            • Anno n (4 mesi): competenza corrente → resta a Conto Economico<br>
+            • Anno n+1 (8 mesi): competenza futura → va rinviata con Risconto Attivo<br>
+            💡 <strong>Calcolo:</strong> 3.600 × (8 mesi futuri / 12 mesi totali) = ?<br>
+            📊 <strong>Verifica:</strong> Il risconto deve essere i 2/3 del costo (8 su 12 mesi)
+        </p>
+    </details>
+</div>
+
+<script>
+(function() {
+    window.validateQuizRisconto = function() {
+        const input = document.getElementById('quiz-risconto-input');
+        const resultDiv = document.getElementById('quiz-risconto-result');
+        const userAnswer = parseFloat(input.value);
+        const correctAnswer = 2400; // 3.600 × (8/12) = 2.400
+
+        // Get localStorage stats
+        let stats = JSON.parse(localStorage.getItem('quiz-stats-assestamenti') || '{}');
+        if (!stats.quiz2) stats.quiz2 = { attempts: 0, correct: 0, firstTryCorrect: false };
+        stats.quiz2.attempts++;
+
+        if (isNaN(userAnswer)) {
+            resultDiv.innerHTML = `<p style="color:var(--error); margin:0">❌ Inserisci un numero valido</p>`;
+            return;
+        }
+
+        // Tolerance ±5€ for rounding
+        if (Math.abs(userAnswer - correctAnswer) <= 5) {
+            if (stats.quiz2.attempts === 1) stats.quiz2.firstTryCorrect = true;
+            stats.quiz2.correct++;
+
+            // Award points
+            let currentPoints = parseInt(localStorage.getItem('gamification-total-points') || '0');
+            currentPoints += 10;
+            localStorage.setItem('gamification-total-points', currentPoints);
+
+            resultDiv.innerHTML = `
+                <div style="padding:12px; background:rgba(76,175,80,0.1); border:1px solid var(--success); border-radius:4px">
+                    <p style="margin:0; color:var(--success); font-weight:600">✅ CORRETTO! Risconto Attivo = € 2.400</p>
+                    <p class="small" style="margin:8px 0 0 0">
+                        📐 <strong>Ragionamento corretto:</strong><br>
+                        • Costo totale: € 3.600 per 12 mesi<br>
+                        • Mesi di competenza anno n: 4 mesi (set-dic) → € 1.200 resta a CE<br>
+                        • Mesi di competenza anno n+1: 8 mesi (gen-ago) → € 2.400 va rinviato<br>
+                        📊 <strong>Calcolo:</strong> 3.600 × (8/12) = 3.600 × 0,667 = 2.400<br>
+                        📝 <strong>Scrittura:</strong> DARE Risconti attivi 2.400 · AVERE Abbonamenti 2.400<br>
+                        🎯 Hai guadagnato <strong>+10 punti</strong>! (Totale: ${currentPoints} pt)
+                    </p>
+                </div>
+            `;
+            input.disabled = true;
+            input.style.background = '#e8f5e9';
+        } else {
+            // Check common errors
+            const wrongAnnoN = 3600 * (4/12); // 1.200 (errore: ha calcolato competenza anno n invece di futura)
+            const wrongTotal = 3600; // Errore: non ha proporzionato
+
+            let feedback = '';
+            if (Math.abs(userAnswer - wrongAnnoN) <= 5) {
+                feedback = `🔴 Hai calcolato la competenza dell'<strong>anno N</strong> (4 mesi = € 1.200)!<br>💡 Il risconto deve rappresentare la competenza <strong>futura</strong> (8 mesi dell'anno N+1).<br>📌 Calcola: 3.600 × (8/12) invece di × (4/12)`;
+            } else if (Math.abs(userAnswer - wrongTotal) <= 5) {
+                feedback = `🔴 Non hai proporzionato il costo! Il risconto non è l'intero importo.<br>💡 Devi calcolare solo la <strong>quota futura</strong>: 3.600 × (8 mesi futuri / 12 mesi totali)`;
+            } else {
+                feedback = `🔴 Riprova! Formula: <strong>Costo × (Mesi futuri / Mesi totali)</strong><br>💡 Mesi futuri = 8 (gen-ago n+1) su 12 totali<br>📊 Calcola: 3.600 × (8/12) = ?`;
+            }
+
+            resultDiv.innerHTML = `
+                <div style="padding:12px; background:rgba(244,67,54,0.1); border:1px solid var(--error); border-radius:4px">
+                    <p style="margin:0; color:var(--error); font-weight:600">❌ Non corretto</p>
+                    <p class="small" style="margin:8px 0 0 0">${feedback}</p>
+                </div>
+            `;
+        }
+
+        localStorage.setItem('quiz-stats-assestamenti', JSON.stringify(stats));
+    };
+})();
+</script>
+
+<h3 id="%F0%9F%94%B9-risconto-passivo">🔹 Risconto Passivo</h3>
+<p><strong>Quando:</strong> Hai incassato un ricavo, ma parte è di competenza dell'anno successivo.</p>
+<h3 id="%F0%9F%92%A1-esempio-affitto-attivo">💡 Esempio: Affitto Attivo</h3>
+<p>Incassato canone annuale € 12.000 il 01/09/n</p>
+<p><strong>Analisi:</strong></p>
+<ul>
+<li>Anno n: 4 mesi (set-dic)</li>
+<li>Anno n+1: 8 mesi (gen-ago)</li>
+</ul>
+<p><strong>Calcolo:</strong></p>
+<pre class="hljs"><code><div>Risconto passivo = 12.000 × (8/12) = € 8.000
+</div></code></pre>
+<h3 id="%F0%9F%93%9D-scrittura">📝 Scrittura</h3>
+<pre class="hljs"><code><div>DARE: Fitti attivi                  € 8.000
+    AVERE: Risconti passivi                 € 8.000
+</div></code></pre>
+<p><strong>Effetto:</strong></p>
+<ul>
+<li>⬇️ Ricavo anno n (da € 12.000 a € 4.000)</li>
+<li>⬆️ Passivo SP (debito di prestazione)</li>
+</ul>
+<h3 id="%F0%9F%A7%A0-schema-comparativo">🧠 Schema Comparativo</h3>
+<table>
+<thead>
+<tr>
+<th>Tipo</th>
+<th>Formula</th>
+<th>Scrittura</th>
+<th>Posizione SP</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Risconto Attivo</strong></td>
+<td>Costo × (gg futuri / gg totali)</td>
+<td>DARE: Risconti attivi / AVERE: Costo</td>
+<td>Attivo circolante (C)</td>
+</tr>
+<tr>
+<td><strong>Risconto Passivo</strong></td>
+<td>Ricavo × (gg futuri / gg totali)</td>
+<td>DARE: Ricavo / AVERE: Risconti passivi</td>
+<td>Passivo (E)</td>
+</tr>
+</tbody>
+</table>
+<h3 id="%F0%9F%8E%A8-mappa-visiva">🎨 Mappa Visiva</h3>
+<pre class="hljs"><code><div>PAGAMENTO/INCASSO
+    │
+    ├─ Parte di competenza → Resta in CE
+    │
+    └─ Parte futura → RISCONTO
+          │
+          ├─ Se costo → Risconto ATTIVO (SP Attivo)
+          └─ Se ricavo → Risconto PASSIVO (SP Passivo)
+</div></code></pre>
+<hr>
+<h2 id="%F0%9F%93%A6-chunk-3-ratei-15-min">📦 CHUNK 3: Ratei (15 min)</h2>
+<h3 id="%F0%9F%94%B9-definizione">🔹 Definizione</h3>
+<p>I <strong>ratei</strong> servono per <strong>anticipare</strong> quote di costi o ricavi non ancora pagati/incassati ma già maturati economicamente.</p>
+<p><strong>Principio:</strong></p>
+<pre class="hljs"><code><div>Competenza presente → Pagamento/Incasso futuro → RATEO
+</div></code></pre>
+<h3 id="%F0%9F%94%B9-rateo-attivo">🔹 Rateo Attivo</h3>
+<p><strong>Quando:</strong> Hai un ricavo maturato ma che incasserai solo nell'anno successivo.</p>
+<p><strong>Formula:</strong></p>
+<pre class="hljs"><code><div>Rateo Attivo = Capitale × Tasso × (Giorni maturati / 365)
+</div></code></pre>
+<h3 id="%F0%9F%92%A1-esempio-1-interessi-su-prestito">💡 Esempio 1: Interessi su Prestito</h3>
+<p>Prestato € 500.000 al 4% annuo dal 01/09/n (interessi esigibili il 31/08/n+1)</p>
+<p><strong>Analisi:</strong></p>
+<ul>
+<li>Periodo totale: 12 mesi</li>
+<li>Maturati al 31/12/n: 4 mesi (set-dic) = 121 giorni</li>
+</ul>
+<p><strong>Calcolo:</strong></p>
+<pre class="hljs"><code><div>Interessi totali = 500.000 × 4% = € 20.000
+Rateo = 500.000 × 0,04 × (121/365) = € 6.630
+</div></code></pre>
+<h3 id="%F0%9F%93%9D-scrittura-al-3112n">📝 Scrittura al 31/12/n</h3>
+<pre class="hljs"><code><div>DARE: Ratei attivi                  € 6.630
+    AVERE: Interessi attivi                 € 6.630
+</div></code></pre>
+<p><strong>Effetto:</strong></p>
+<ul>
+<li>⬆️ Ricavo anno n (quota maturata)</li>
+<li>⬆️ Attivo SP (credito per interessi)</li>
+</ul>
+
+<!-- ======================== MINI-QUIZ 1: RATEO ATTIVO ======================== -->
+<div class="widget" style="background:rgba(255,193,7,0.1); border-left:4px solid var(--warning); padding:20px; margin:24px 0;">
+    <h4 style="margin:0 0 16px 0; color:var(--warning)">🎯 MINI-QUIZ 1: Calcolo Rateo Attivo (Interessi)</h4>
+    <p class="small" style="margin:0 0 16px 0">Applica la formula dei ratei attivi per calcolare gli interessi maturati ma non ancora incassati.</p>
+
+    <div style="background:white; padding:16px; border-radius:8px; margin:12px 0;">
+        <strong style="display:block; margin-bottom:8px">📋 Dati esercizio:</strong>
+        <ul style="margin:8px 0; padding-left:20px">
+            <li>Prestito concesso: <strong>€ 300.000</strong></li>
+            <li>Tasso annuo: <strong>3,5%</strong></li>
+            <li>Data inizio: <strong>15 ottobre anno n</strong></li>
+            <li>Interessi esigibili: 14 ottobre anno n+1</li>
+            <li>Giorni maturati al 31/12/n: <strong>78 giorni</strong> (dal 15/10 al 31/12)</li>
+            <li>Formula: Rateo Attivo = Capitale × Tasso × (Giorni / 365)</li>
+        </ul>
+        <p style="margin:8px 0 0 0"><strong>❓ Calcola il Rateo Attivo da rilevare al 31/12/n:</strong></p>
+    </div>
+
+    <div style="display:flex; align-items:center; gap:12px; margin:16px 0">
+        <label style="font-weight:600">Rateo Attivo: €</label>
+        <input type="number" id="quiz-rateo-input" placeholder="2240" step="0.01"
+               style="padding:8px 12px; border:2px solid #ddd; border-radius:4px; font-size:1em; width:150px">
+        <button onclick="validateQuizRateo()"
+                style="padding:8px 16px; background:var(--warning); color:white; border:none; border-radius:4px; cursor:pointer; font-weight:600">
+            Verifica
+        </button>
+    </div>
+
+    <div id="quiz-rateo-result" style="margin-top:16px"></div>
+
+    <details style="margin-top:16px">
+        <summary style="cursor:pointer; color:var(--primary); font-weight:600">💡 Hint (clicca se hai bisogno di aiuto)</summary>
+        <p class="small" style="margin:8px 0; padding:12px; background:rgba(33,150,243,0.1); border-radius:4px">
+            📌 La formula per il rateo attivo è: <strong>Capitale × Tasso × (Giorni / 365)</strong><br>
+            🔴 <strong>Step 1:</strong> Calcola gli interessi annuali → 300.000 × 3,5% = ?<br>
+            🔴 <strong>Step 2:</strong> Proporziona ai giorni maturati → Risultato × (78/365) = ?<br>
+            💡 Oppure calcolo diretto: 300.000 × 0,035 × (78/365) = ?
+        </p>
+    </details>
+</div>
+
+<script>
+(function() {
+    window.validateQuizRateo = function() {
+        const input = document.getElementById('quiz-rateo-input');
+        const resultDiv = document.getElementById('quiz-rateo-result');
+        const userAnswer = parseFloat(input.value);
+        const correctAnswer = 2240; // 300.000 × 3,5% × (78/365) = 2.239,73 ≈ 2.240
+
+        // Get localStorage stats
+        let stats = JSON.parse(localStorage.getItem('quiz-stats-assestamenti') || '{}');
+        if (!stats.quiz1) stats.quiz1 = { attempts: 0, correct: 0, firstTryCorrect: false };
+        stats.quiz1.attempts++;
+
+        if (isNaN(userAnswer)) {
+            resultDiv.innerHTML = `<p style="color:var(--error); margin:0">❌ Inserisci un numero valido</p>`;
+            return;
+        }
+
+        // Tolerance ±5€ for rounding
+        if (Math.abs(userAnswer - correctAnswer) <= 5) {
+            if (stats.quiz1.attempts === 1) stats.quiz1.firstTryCorrect = true;
+            stats.quiz1.correct++;
+
+            // Award points
+            let currentPoints = parseInt(localStorage.getItem('gamification-total-points') || '0');
+            currentPoints += 10;
+            localStorage.setItem('gamification-total-points', currentPoints);
+
+            resultDiv.innerHTML = `
+                <div style="padding:12px; background:rgba(76,175,80,0.1); border:1px solid var(--success); border-radius:4px">
+                    <p style="margin:0; color:var(--success); font-weight:600">✅ CORRETTO! Rateo Attivo = € 2.240</p>
+                    <p class="small" style="margin:8px 0 0 0">
+                        📐 <strong>Calcolo step-by-step:</strong><br>
+                        1️⃣ Interessi annuali → 300.000 × 3,5% = 10.500<br>
+                        2️⃣ Giorni maturati → 78 giorni su 365<br>
+                        3️⃣ Rateo → 300.000 × 0,035 × (78/365) = 2.239,73 ≈ 2.240<br>
+                        📝 <strong>Scrittura:</strong> DARE Ratei attivi 2.240 · AVERE Interessi attivi 2.240<br>
+                        🎯 Hai guadagnato <strong>+10 punti</strong>! (Totale: ${currentPoints} pt)
+                    </p>
+                </div>
+            `;
+            input.disabled = true;
+            input.style.background = '#e8f5e9';
+        } else {
+            // Check intermediate results for better feedback
+            const step1 = 300000 * 0.035; // 10.500
+            const step2 = step1 * (78/365); // 2.239,73
+
+            let feedback = '';
+            if (Math.abs(userAnswer - step1) <= 10) {
+                feedback = `🔴 Hai calcolato gli <strong>interessi annuali</strong> (10.500), ma hai dimenticato di proporzionare ai <strong>78 giorni</strong>!<br>💡 Devi moltiplicare per (78/365)`;
+            } else if (Math.abs(userAnswer - (300000 * 0.035 * 78)) <= 50) {
+                feedback = `🔴 Attenzione! Devi dividere i giorni per <strong>365</strong> (base annua), non solo moltiplicare per 78!<br>💡 Formula: 300.000 × 0,035 × (78/<strong>365</strong>)`;
+            } else {
+                feedback = `🔴 Riprova! Formula: <strong>Capitale × Tasso × (Giorni / 365)</strong><br>💡 Calcola: 300.000 × 3,5% × (78/365) = ?`;
+            }
+
+            resultDiv.innerHTML = `
+                <div style="padding:12px; background:rgba(244,67,54,0.1); border:1px solid var(--error); border-radius:4px">
+                    <p style="margin:0; color:var(--error); font-weight:600">❌ Non corretto</p>
+                    <p class="small" style="margin:8px 0 0 0">${feedback}</p>
+                </div>
+            `;
+        }
+
+        localStorage.setItem('quiz-stats-assestamenti', JSON.stringify(stats));
+    };
+})();
+</script>
+
+<h3 id="%F0%9F%94%B9-rateo-passivo">🔹 Rateo Passivo</h3>
+<p><strong>Quando:</strong> Hai un costo maturato ma che pagherai solo nell'anno successivo.</p>
+<h3 id="%F0%9F%92%A1-esempio-1-interessi-su-mutuo">💡 Esempio 1: Interessi su Mutuo</h3>
+<p>Mutuo € 150.000 al 6% annuo, interessi semestrali posticipati (prossimo pagamento 31/03/n+1)</p>
+<p><strong>Analisi:</strong></p>
+<ul>
+<li>Ultimo pagamento: 30/09/n</li>
+<li>Maturato dal 01/10/n al 31/12/n = 92 giorni</li>
+</ul>
+<p><strong>Calcolo:</strong></p>
+<pre class="hljs"><code><div>Rateo = 150.000 × 0,06 × (92/365) = € 2.267
+</div></code></pre>
+<h3 id="%F0%9F%93%9D-scrittura">📝 Scrittura</h3>
+<pre class="hljs"><code><div>DARE: Interessi passivi             € 2.267
+    AVERE: Ratei passivi                    € 2.267
+</div></code></pre>
+<h3 id="%F0%9F%92%A1-esempio-2-salari-e-stipendi">💡 Esempio 2: Salari e Stipendi</h3>
+<p>Stipendi dicembre pagati il 10 gennaio n+1: € 50.000</p>
+<pre class="hljs"><code><div>DARE: Salari e stipendi             € 50.000
+    AVERE: Ratei passivi                    € 50.000
+</div></code></pre>
+<h3 id="%F0%9F%A7%A0-schema-comparativo">🧠 Schema Comparativo</h3>
+<table>
+<thead>
+<tr>
+<th>Tipo</th>
+<th>Formula</th>
+<th>Scrittura</th>
+<th>Posizione SP</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Rateo Attivo</strong></td>
+<td>Capitale × tasso × tempo</td>
+<td>DARE: Ratei attivi / AVERE: Ricavo</td>
+<td>Attivo circolante (C II)</td>
+</tr>
+<tr>
+<td><strong>Rateo Passivo</strong></td>
+<td>Capitale × tasso × tempo</td>
+<td>DARE: Costo / AVERE: Ratei passivi</td>
+<td>Passivo (D)</td>
+</tr>
+</tbody>
+</table>
+<h3 id="%F0%9F%8E%A8-timeline-ratei">🎨 Timeline Ratei</h3>
+<pre class="hljs"><code><div>ANNO N              |        ANNO N+1
+Competenza maturata | Pagamento/Incasso
+         ↓          |
+      RATEO         |
+         │          |
+    Anticipo di     |
+   costo/ricavo     |
+</div></code></pre>
+<h3 id="%F0%9F%A7%A0-differenza-chiave-ratei-vs-risconti">🧠 Differenza Chiave: Ratei vs Risconti</h3>
+<pre class="hljs"><code><div>RATEI
+├─ Competenza: ORA
+├─ Registrazione pagamento: FUTURA
+└─ Azione: ANTICIPARE ricavo/costo
+
+RISCONTI
+├─ Competenza: FUTURA
+├─ Registrazione pagamento: GIÀ FATTA
+└─ Azione: RINVIARE ricavo/costo
+</div></code></pre>
+<hr>
+<h2 id="%F0%9F%93%A6-chunk-4-svalutazione-crediti-10-min">📦 CHUNK 4: Svalutazione Crediti (10 min)</h2>
+<h3 id="%F0%9F%94%B9-perch%C3%A9-svalutare">🔹 Perché Svalutare?</h3>
+<p>Non tutti i crediti sono incassabili al 100%. Il <strong>principio di prudenza</strong> richiede di stimare possibili perdite.</p>
+<p><strong>Obiettivo:</strong> Adeguare il valore dei crediti al <strong>valore di presumibile realizzo</strong>.</p>
+<h3 id="%F0%9F%94%B9-fondo-svalutazione-crediti">🔹 Fondo Svalutazione Crediti</h3>
+<p>È un <strong>fondo rettificativo</strong> che riduce il valore dei crediti in bilancio.</p>
+<p><strong>Formula:</strong></p>
+<pre class="hljs"><code><div>Valore netto crediti = Crediti nominali – Fondo svalutazione
+</div></code></pre>
+<h3 id="%F0%9F%92%A1-esempio-completo">💡 Esempio Completo</h3>
+<p><strong>Dati al 31/12/n:</strong></p>
+<ul>
+<li>Crediti v/clienti: € 1.450.000</li>
+<li>Fondo svalutazione esistente: € 90.000</li>
+<li>Percentuale svalutazione stimata: 8%</li>
+<li>Nuovi crediti dubbi emersi: € 13.000</li>
+</ul>
+<p><strong>Step 1: Calcolo svalutazione totale necessaria</strong></p>
+<pre class="hljs"><code><div>Svalutazione target = 1.450.000 × 8% = € 116.000
+</div></code></pre>
+<p><strong>Step 2: Accantonamento da effettuare</strong></p>
+<pre class="hljs"><code><div>Fondo esistente:        €  90.000
+Svalutazione target:    € 116.000
+──────────────────────────────────
+Accantonamento:         €  26.000
+</div></code></pre>
+<p><strong>Step 3: Crediti dubbi specifici</strong></p>
+<pre class="hljs"><code><div>Accantonamento totale = 26.000 + 13.000 = € 39.000
+</div></code></pre>
+<h3 id="%F0%9F%93%9D-scritture">📝 Scritture</h3>
+<p><strong>a) Svalutazione ordinaria</strong></p>
+<pre class="hljs"><code><div>DARE: Svalutazione crediti          € 26.000
+    AVERE: Fondo svalutazione crediti       € 26.000
+</div></code></pre>
+<p><strong>b) Svalutazione crediti dubbi</strong></p>
+<pre class="hljs"><code><div>DARE: Svalutazione crediti          € 13.000
+    AVERE: Fondo svalutazione crediti       € 13.000
+</div></code></pre>
+<h3 id="%F0%9F%94%B9-situazione-finale">🔹 Situazione Finale</h3>
+<pre class="hljs"><code><div>Crediti nominali:           € 1.450.000
+– Fondo svalutazione:       €  (129.000)
+──────────────────────────────────────
+Crediti netto bilancio:     € 1.321.000
+</div></code></pre>
+<h3 id="%F0%9F%94%B9-stralcio-credito-insoluto">🔹 Stralcio Credito Insoluto</h3>
+<p>Se un cliente diventa insolvente, elimini il credito:</p>
+<p>Credito € 5.000, fondo € 3.000</p>
+<pre class="hljs"><code><div>DARE: Fondo svalutazione crediti    € 3.000
+DARE: Perdite su crediti            € 2.000
+    AVERE: Crediti v/clienti                € 5.000
+</div></code></pre>
+<p><strong>Logica:</strong></p>
+<ul>
+<li>Fondo copre parte della perdita (€ 3.000)</li>
+<li>Parte scoperta = costo straordinario (€ 2.000)</li>
+</ul>
+<h3 id="%F0%9F%A7%A0-schema-processo">🧠 Schema Processo</h3>
+<pre class="hljs"><code><div>CREDITI NOMINALI
+    ↓
+Stima % insolvenza
+    ↓
+Calcola Fondo Target
+    ↓
+Confronta con Fondo Esistente
+    ↓
+Accantonamento = Differenza
+    ↓
+DARE: Svalutazione crediti
+AVERE: Fondo svalutazione crediti
+</div></code></pre>
+<hr>
+<h2 id="%F0%9F%93%A6-chunk-5-rimanenze-e-fondi-10-min">📦 CHUNK 5: Rimanenze e Fondi (10 min)</h2>
+<h3 id="%F0%9F%94%B9-valutazione-rimanenze">🔹 Valutazione Rimanenze</h3>
+<p>Le <strong>rimanenze finali</strong> (merci, prodotti, semilavorati) vanno valutate e iscritte in bilancio.</p>
+<p><strong>Principio:</strong></p>
+<pre class="hljs"><code><div>Valore = MINORE tra Costo di Produzione e Valore di Mercato
+</div></code></pre>
+<h3 id="%F0%9F%93%9D-scrittura-rimanenze-finali">📝 Scrittura Rimanenze Finali</h3>
+<p>Rimanenze finali prodotti € 80.000</p>
+<pre class="hljs"><code><div>DARE: Prodotti finiti               € 80.000
+    AVERE: Variazione rimanenze             € 80.000
+</div></code></pre>
+<p><strong>Effetto:</strong></p>
+<ul>
+<li>⬆️ Attivo circolante (SP C I)</li>
+<li>⬆️ Ricavi (CE A2 - variazione rimanenze)</li>
+</ul>
+<h3 id="%F0%9F%94%B9-rimanenze-iniziali-anno-successivo">🔹 Rimanenze Iniziali (anno successivo)</h3>
+<p>All'inizio dell'anno n+1, storna le rimanenze iniziali:</p>
+<pre class="hljs"><code><div>DARE: Variazione rimanenze          € 80.000
+    AVERE: Prodotti finiti                  € 80.000
+</div></code></pre>
+<h3 id="%F0%9F%94%B9-fondi-rischi-e-oneri">🔹 Fondi Rischi e Oneri</h3>
+<p>Accantonamenti per <strong>costi futuri probabili ma incerti</strong>.</p>
+<p><strong>Esempi:</strong></p>
+<ul>
+<li>Cause legali in corso</li>
+<li>Manutenzioni programmate</li>
+<li>Garanzie su prodotti</li>
+<li>Ristrutturazioni</li>
+</ul>
+<h3 id="%F0%9F%92%A1-esempio-causa-legale">💡 Esempio: Causa Legale</h3>
+<p>Causa in corso con rischio stimato € 20.000</p>
+<pre class="hljs"><code><div>DARE: Accantonamento rischi         € 20.000
+    AVERE: Fondo rischi cause legali        € 20.000
+</div></code></pre>
+<p><strong>Effetto:</strong></p>
+<ul>
+<li>⬆️ Costo d'esercizio (CE B12)</li>
+<li>⬆️ Passivo (SP B3 - Fondi rischi)</li>
+</ul>
+<h3 id="%F0%9F%92%A1-esempio-manutenzione-ciclica">💡 Esempio: Manutenzione Ciclica</h3>
+<p>Manutenzione grande revisione prevista tra 3 anni, costo stimato € 60.000</p>
+<p><strong>Accantonamento annuale:</strong></p>
+<pre class="hljs"><code><div>Quota annua = 60.000 / 3 = € 20.000
+</div></code></pre>
+<pre class="hljs"><code><div>DARE: Accantonamento manutenzioni   € 20.000
+    AVERE: Fondo manutenzioni               € 20.000
+</div></code></pre>
+<h3 id="%F0%9F%94%B9-utilizzo-del-fondo">🔹 Utilizzo del Fondo</h3>
+<p>Quando si sostiene effettivamente il costo:</p>
+<p>Manutenzione effettuata € 60.000</p>
+<pre class="hljs"><code><div>DARE: Fondo manutenzioni            € 60.000
+    AVERE: Banca c/c                        € 60.000
+</div></code></pre>
+<p><strong>Nessun costo d'esercizio</strong> → già accantonato negli anni precedenti.</p>
+<h3 id="%F0%9F%A7%A0-schema-fondi-rischi">🧠 Schema Fondi Rischi</h3>
+<pre class="hljs"><code><div>ANNO 1, 2, 3
+DARE: Accantonamento (costo)
+AVERE: Fondo rischi (passivo)
+    ↓
+Fondo cresce
+    ↓
+ANNO 4: evento si verifica
+DARE: Fondo rischi
+AVERE: Banca (pagamento)
+    ↓
+Fondo si azzera, nessun nuovo costo
+</div></code></pre>
+<hr>
+<h2 id="%F0%9F%A7%A0-mappa-mentale-completa">🧠 MAPPA MENTALE COMPLETA</h2>
+<pre class="hljs"><code><div>ASSESTAMENTI
+│
+├─ RISCONTI (rinvio futuro)
+│  ├─ Attivi: costi anticipati → Attivo SP
+│  └─ Passivi: ricavi anticipati → Passivo SP
+│
+├─ RATEI (anticipo da futuro)
+│  ├─ Attivi: ricavi maturati → Attivo SP
+│  └─ Passivi: costi maturati → Passivo SP
+│
+├─ SVALUTAZIONE CREDITI
+│  ├─ Stima % insoluti
+│  ├─ Fondo rettificativo
+│  └─ Riduce valore crediti in SP
+│
+├─ RIMANENZE
+│  ├─ Valore = min(costo, mercato)
+│  ├─ Finali → DARE: Prodotti / AVERE: Variazione
+│  └─ Iniziali → storno inverso
+│
+└─ FONDI RISCHI
+   ├─ Accantonamento costi futuri
+   ├─ Crea passivo
+   └─ Utilizzo: elimina fondo, no costo
+</div></code></pre>
+<hr>
+<h2 id="%F0%9F%93%8A-tabella-riepilogativa">📊 TABELLA RIEPILOGATIVA</h2>
+<table>
+<thead>
+<tr>
+<th>Tipo</th>
+<th>Quando</th>
+<th>Formula</th>
+<th>Dare</th>
+<th>Avere</th>
+<th>SP</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Risconto Attivo</td>
+<td>Costo pagato, competenza futura</td>
+<td>Costo × (gg fut/tot)</td>
+<td>Risconti attivi</td>
+<td>Costo</td>
+<td>Attivo C</td>
+</tr>
+<tr>
+<td>Risconto Passivo</td>
+<td>Ricavo incassato, competenza futura</td>
+<td>Ricavo × (gg fut/tot)</td>
+<td>Ricavo</td>
+<td>Risconti passivi</td>
+<td>Passivo E</td>
+</tr>
+<tr>
+<td>Rateo Attivo</td>
+<td>Ricavo maturato, incasso futuro</td>
+<td>K × % × tempo</td>
+<td>Ratei attivi</td>
+<td>Ricavo</td>
+<td>Attivo C II</td>
+</tr>
+<tr>
+<td>Rateo Passivo</td>
+<td>Costo maturato, pagamento futuro</td>
+<td>K × % × tempo</td>
+<td>Costo</td>
+<td>Ratei passivi</td>
+<td>Passivo D</td>
+</tr>
+<tr>
+<td>Svalutazione Crediti</td>
+<td>Prudenza</td>
+<td>Crediti × %</td>
+<td>Svalutazione</td>
+<td>Fondo</td>
+<td>Rettifica Attivo</td>
+</tr>
+<tr>
+<td>Fondi Rischi</td>
+<td>Costi futuri</td>
+<td>Stima</td>
+<td>Accantonamento</td>
+<td>Fondo</td>
+<td>Passivo B</td>
+</tr>
+</tbody>
+</table>
+
+</main>
+
+<aside class="grid sticky" style="gap:18px">
+  <div class="card">
+    <div class="badge b-green">✅ R.A.R.P. Checklist</div>
+    <ul style="list-style:none; padding:0; margin:12px 0 0; display:grid; gap:8px">
+      <li><label><input type="checkbox" id="check-ratei" style="accent-color:var(--green); margin-right:8px"> Ratei attivi/passivi</label></li>
+      <li><label><input type="checkbox" id="check-risconti" style="accent-color:var(--green); margin-right:8px"> Risconti attivi/passivi</label></li>
+      <li><label><input type="checkbox" id="check-svalut" style="accent-color:var(--green); margin-right:8px"> Svalutazione crediti</label></li>
+      <li><label><input type="checkbox" id="check-rimanen" style="accent-color:var(--green); margin-right:8px"> Rimanenze finali</label></li>
+      <li><label><input type="checkbox" id="check-fondi" style="accent-color:var(--green); margin-right:8px"> Fondi rischi</label></li>
+    </ul>
+    <div class="separator"></div>
+    <div class="progress"><i id="checklist-bar"></i></div>
+    <div class="small" style="margin-top:6px; text-align:center"><span id="checklist-count">0</span>/5</div>
+  </div>
+
+  <script>(function(){const checks = ['ratei','risconti','svalut','rimanen','fondi'].map(id=>'check-'+id);const bar = document.getElementById('checklist-bar');const count = document.getElementById('checklist-count');const key = 'checklist-assestamenti';function load(){try{ const v = JSON.parse(localStorage.getItem(key)||'{}');checks.forEach(id=>{ const el = document.getElementById(id); if(el && v[id]) el.checked=true; });}catch{}update();}function save(){const v = {};checks.forEach(id=>{ const el = document.getElementById(id); if(el) v[id]=el.checked; });localStorage.setItem(key, JSON.stringify(v));}function update(){const checked = checks.filter(id=>document.getElementById(id)?.checked).length;const perc = (checked/5*100)|0;bar.style.width = perc+'%';count.textContent = checked;save();}checks.forEach(id=>document.getElementById(id)?.addEventListener('change', update));load();})();</script>
+
+  <div class="card">
+    <div class="badge b-yellow">🟡 R.A.R.P. Schema</div>
+    <div style="margin-top:12px; font-size:0.85rem">
+      <div class="callout co-green" style="padding:8px; margin:4px 0"><b>Ratei</b>: Maturato non pagato</div>
+      <div class="callout co-red" style="padding:8px; margin:4px 0"><b>Risconti</b>: Pagato non maturato</div>
+      <div class="callout co-blue" style="padding:8px; margin:4px 0"><b>Rimanenze</b>: Merci in magazzino</div>
+      <div class="callout co-yellow" style="padding:8px; margin:4px 0"><b>Fondi</b>: Rischi futuri</div>
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="badge b-blue">🔵 Formula competenza</div>
+    <div class="callout co-blue" style="margin-top:12px; padding:10px">
+      <code style="font-size:0.85rem">Importo × (giorni / 365)</code>
+    </div>
+  </div>
+</aside>
+</div>
+
+<div class="separator" style="margin:32px 0"></div>
+</div>
+<hr>
+<h2 id="%F0%9F%94%84-prossimi-passi">🔄 PROSSIMI PASSI</h2>
+<ol>
+<li><strong>Active Recall</strong> → <code>quiz-active-recall/04-quiz-assestamenti.md</code></li>
+<li><strong>Feynman Technique</strong> → Spiega la differenza tra rateo e risconto senza guardare</li>
+<li><strong>Interleaved Practice</strong> → Mescola esercizi di tutti i moduli</li>
+</ol>
+<hr>
+<blockquote>
+<p>💡 <strong>Tip di Memoria:</strong> Usa l'acronimo <strong>R.A.R.P.</strong> = Risconto Attivo (costo), Rateo Attivo (ricavo), Rateo Passivo (costo), Risconto Passivo (ricavo).</p>
+</blockquote>
+
+<style>
+.footer-copyright {
+  text-align: center;
+  margin-top: 50px;
+  padding: 30px 25px;
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  color: #ffffff;
+  border-radius: 16px;
+  box-shadow: 0 8px 20px rgba(0,0,0,0.2);
+  font-size: 0.95em;
+  line-height: 1.8;
+}
+.footer-copyright strong {
+  color: #ffffff !important;
+  font-weight: 700;
+  font-size: 1.1em;
+}
+.footer-copyright em {
+  color: #f0f0f0;
+  font-style: italic;
+}
+.footer-copyright .warning {
+  margin-top: 15px;
+  padding: 12px;
+  background: rgba(255,255,255,0.15);
+  border-radius: 8px;
+  font-size: 0.85em;
+  border: 1px solid rgba(255,255,255,0.3);
+}
+</style>
+
+<div class="footer-copyright">
+  <strong>📚 Sistema NPI-Learning per Economia Aziendale</strong><br>
+  Creato da <strong>Jeffrey Minaya</strong> | AFM Quinta Serale | © 2025<br>
+  <em>Documento didattico ottimizzato con tecniche di neuroscienza applicata</em>
+  <div class="warning">
+    ⚠️ <strong>Uso Riservato:</strong> Questo materiale è protetto da copyright.<br>
+    La distribuzione, riproduzione o uso commerciale non autorizzato è vietato.<br>
+    Per richieste di utilizzo: contattare l'autore.
+  </div>
+</div>
+
+</body>
+</html>

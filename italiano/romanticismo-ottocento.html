@@ -1,0 +1,1587 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>🎭 Romanticismo - Metodo Neuroscienza Cognitiva</title>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&family=Inter:wght@300;400;600;700&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            /* Sistema Colori Tematici (Color Cognition) */
+            --blu-teoria: #0055a5;          /* Teoria, Struttura */
+            --blu-light: #e8f4ff;
+            --rosso-conflitto: #d62828;     /* Conflitto, Opposizione */
+            --rosso-light: #ffe8e8;
+            --verde-valori: #2a9d8f;        /* Valori, Morale */
+            --verde-light: #e8f9f7;
+            --giallo-sistema: #f59e0b;      /* Sistema, Tecnica */
+            --giallo-light: #fff8e8;
+
+            /* Colori base letteratura */
+            --brown: #8b4513;
+            --tan: #d4a574;
+            --dark-tan: #c19a6b;
+            --cream: #f5f1ed;
+            --bg-gradient: linear-gradient(135deg, #f5f1ed 0%, #e8dfd2 100%);
+            --text: #2c3e50;
+            --text-light: #5a6c7d;
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            line-height: 1.8;
+            color: var(--text);
+            background: var(--bg-gradient);
+            min-height: 100vh;
+            padding-bottom: 50px;
+        }
+
+        /* Header con Gradient */
+        .header {
+            background: linear-gradient(135deg, var(--brown) 0%, var(--dark-tan) 100%);
+            color: white;
+            padding: 40px 20px;
+            text-align: center;
+            box-shadow: 0 4px 20px rgba(139, 69, 19, 0.3);
+            position: relative;
+        }
+
+        .header h1 {
+            font-family: 'Playfair Display', serif;
+            font-size: 2.5em;
+            margin-bottom: 10px;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+        }
+
+        .header .subtitle {
+            font-size: 1.1em;
+            opacity: 0.95;
+            font-weight: 300;
+        }
+
+        .header .metodo-tag {
+            display: inline-block;
+            background: rgba(255,255,255,0.2);
+            padding: 8px 16px;
+            border-radius: 20px;
+            font-size: 0.85em;
+            margin-top: 15px;
+            backdrop-filter: blur(10px);
+        }
+
+        /* Container principale */
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 30px 20px;
+        }
+
+        /* Box Info Essenziali (top page) */
+        .info-box {
+            background: white;
+            border-left: 5px solid var(--brown);
+            padding: 25px;
+            margin: 30px 0;
+            border-radius: 8px;
+            box-shadow: 0 2px 15px rgba(0,0,0,0.08);
+        }
+
+        .info-box h2 {
+            color: var(--brown);
+            margin-bottom: 15px;
+            font-size: 1.3em;
+        }
+
+        /* Legenda Colori (Dual Coding) */
+        .color-legend {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 15px;
+            margin: 30px 0;
+        }
+
+        .color-card {
+            padding: 20px;
+            border-radius: 8px;
+            border-left: 5px solid;
+            background: white;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+            transition: transform 0.2s, box-shadow 0.2s;
+        }
+
+        .color-card:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 4px 20px rgba(0,0,0,0.12);
+        }
+
+        .color-card.blu { border-left-color: var(--blu-teoria); }
+        .color-card.rosso { border-left-color: var(--rosso-conflitto); }
+        .color-card.verde { border-left-color: var(--verde-valori); }
+        .color-card.giallo { border-left-color: var(--giallo-sistema); }
+
+        .color-card h3 {
+            font-size: 1.1em;
+            margin-bottom: 8px;
+        }
+
+        .color-card.blu h3 { color: var(--blu-teoria); }
+        .color-card.rosso h3 { color: var(--rosso-conflitto); }
+        .color-card.verde h3 { color: var(--verde-valori); }
+        .color-card.giallo h3 { color: var(--giallo-sistema); }
+
+        /* Sezioni espandibili */
+        .section {
+            background: white;
+            margin: 25px 0;
+            border-radius: 10px;
+            box-shadow: 0 3px 15px rgba(0,0,0,0.08);
+            overflow: hidden;
+        }
+
+        .section-header {
+            padding: 25px;
+            cursor: pointer;
+            transition: all 0.3s;
+            position: relative;
+            user-select: none;
+        }
+
+        .section-header:hover {
+            background: rgba(0,0,0,0.02);
+        }
+
+        .section-header.blu { background: var(--blu-light); border-left: 5px solid var(--blu-teoria); }
+        .section-header.rosso { background: var(--rosso-light); border-left: 5px solid var(--rosso-conflitto); }
+        .section-header.verde { background: var(--verde-light); border-left: 5px solid var(--verde-valori); }
+        .section-header.giallo { background: var(--giallo-light); border-left: 5px solid var(--giallo-sistema); }
+
+        .section-header h2 {
+            font-family: 'Playfair Display', serif;
+            font-size: 1.8em;
+            margin-bottom: 5px;
+        }
+
+        .section-header.blu h2 { color: var(--blu-teoria); }
+        .section-header.rosso h2 { color: var(--rosso-conflitto); }
+        .section-header.verde h2 { color: var(--verde-valori); }
+        .section-header.giallo h2 { color: var(--giallo-sistema); }
+
+        .section-header::after {
+            content: '▼';
+            position: absolute;
+            right: 25px;
+            top: 50%;
+            transform: translateY(-50%);
+            font-size: 1.2em;
+            transition: transform 0.3s;
+        }
+
+        .section-header.collapsed::after {
+            transform: translateY(-50%) rotate(-90deg);
+        }
+
+        .section-content {
+            padding: 0 25px 25px 25px;
+            max-height: 5000px;
+            overflow: hidden;
+            transition: max-height 0.5s ease, padding 0.5s ease;
+        }
+
+        .section-content.collapsed {
+            max-height: 0;
+            padding: 0 25px;
+        }
+
+        /* Tabelle */
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 20px 0;
+            background: white;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+        }
+
+        thead {
+            background: var(--brown);
+            color: white;
+        }
+
+        th, td {
+            padding: 15px;
+            text-align: left;
+            border-bottom: 1px solid #e0e0e0;
+        }
+
+        tbody tr:hover {
+            background: rgba(139, 69, 19, 0.05);
+        }
+
+        /* Timeline */
+        .timeline {
+            position: relative;
+            padding-left: 40px;
+            margin: 30px 0;
+        }
+
+        .timeline::before {
+            content: '';
+            position: absolute;
+            left: 10px;
+            top: 0;
+            bottom: 0;
+            width: 3px;
+            background: linear-gradient(to bottom, var(--blu-teoria), var(--verde-valori));
+        }
+
+        .timeline-item {
+            position: relative;
+            padding: 15px 0;
+            padding-left: 20px;
+        }
+
+        .timeline-item::before {
+            content: '';
+            position: absolute;
+            left: -34px;
+            top: 20px;
+            width: 15px;
+            height: 15px;
+            border-radius: 50%;
+            background: var(--verde-valori);
+            border: 3px solid white;
+            box-shadow: 0 0 0 2px var(--verde-valori);
+        }
+
+        .timeline-year {
+            font-weight: 700;
+            color: var(--blu-teoria);
+            font-size: 1.1em;
+        }
+
+        /* Mappa Concettuale ASCII */
+        .mappa-ascii {
+            background: #1e1e1e;
+            color: #d4d4d4;
+            padding: 25px;
+            border-radius: 8px;
+            font-family: 'Courier New', monospace;
+            font-size: 0.85em;
+            line-height: 1.5;
+            overflow-x: auto;
+            white-space: pre;
+            margin: 25px 0;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.2);
+        }
+
+        /* Flashcards Interattive */
+        .flashcards-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 20px;
+            margin: 30px 0;
+        }
+
+        .flashcard {
+            background: white;
+            border-radius: 10px;
+            padding: 25px;
+            box-shadow: 0 3px 15px rgba(0,0,0,0.1);
+            cursor: pointer;
+            transition: all 0.3s;
+            min-height: 180px;
+            position: relative;
+            perspective: 1000px;
+        }
+
+        .flashcard:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 6px 25px rgba(0,0,0,0.15);
+        }
+
+        .flashcard-front, .flashcard-back {
+            transition: opacity 0.3s;
+        }
+
+        .flashcard.flipped .flashcard-front {
+            opacity: 0;
+            position: absolute;
+        }
+
+        .flashcard.flipped .flashcard-back {
+            opacity: 1;
+        }
+
+        .flashcard-back {
+            opacity: 0;
+        }
+
+        .flashcard-level {
+            position: absolute;
+            top: 15px;
+            right: 15px;
+            font-size: 1.2em;
+        }
+
+        .flashcard-question {
+            font-weight: 600;
+            color: var(--brown);
+            margin-bottom: 15px;
+            font-size: 1.1em;
+        }
+
+        .flashcard-answer {
+            color: var(--text);
+            line-height: 1.7;
+        }
+
+        .flashcard-hint {
+            font-size: 0.85em;
+            color: var(--text-light);
+            font-style: italic;
+            margin-top: 10px;
+        }
+
+        /* Quiz Checklist */
+        .checklist {
+            background: white;
+            padding: 30px;
+            border-radius: 10px;
+            box-shadow: 0 3px 15px rgba(0,0,0,0.08);
+            margin: 30px 0;
+        }
+
+        .checklist-item {
+            display: flex;
+            align-items: flex-start;
+            padding: 12px 0;
+            border-bottom: 1px solid #e0e0e0;
+        }
+
+        .checklist-item:last-child {
+            border-bottom: none;
+        }
+
+        .checklist-item input[type="checkbox"] {
+            margin-right: 15px;
+            margin-top: 5px;
+            width: 20px;
+            height: 20px;
+            cursor: pointer;
+            accent-color: var(--verde-valori);
+        }
+
+        .checklist-item label {
+            cursor: pointer;
+            flex: 1;
+        }
+
+        .checklist-progress {
+            background: var(--cream);
+            padding: 20px;
+            border-radius: 8px;
+            margin-bottom: 20px;
+            text-align: center;
+        }
+
+        .progress-bar {
+            width: 100%;
+            height: 30px;
+            background: #e0e0e0;
+            border-radius: 15px;
+            overflow: hidden;
+            margin: 15px 0;
+        }
+
+        .progress-fill {
+            height: 100%;
+            background: linear-gradient(90deg, var(--verde-valori), var(--blu-teoria));
+            width: 0%;
+            transition: width 0.5s ease;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-weight: 600;
+        }
+
+        /* Acronimo Mnemonico */
+        .acronym-box {
+            background: linear-gradient(135deg, var(--verde-light) 0%, var(--blu-light) 100%);
+            padding: 30px;
+            border-radius: 12px;
+            border: 3px solid var(--verde-valori);
+            margin: 30px 0;
+        }
+
+        .acronym-title {
+            text-align: center;
+            font-size: 2em;
+            font-weight: 700;
+            color: var(--brown);
+            margin-bottom: 20px;
+            letter-spacing: 8px;
+        }
+
+        .acronym-list {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 15px;
+        }
+
+        .acronym-item {
+            background: white;
+            padding: 15px;
+            border-radius: 8px;
+            border-left: 4px solid;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+        }
+
+        .acronym-item.blu { border-left-color: var(--blu-teoria); }
+        .acronym-item.rosso { border-left-color: var(--rosso-conflitto); }
+        .acronym-item.verde { border-left-color: var(--verde-valori); }
+        .acronym-item.giallo { border-left-color: var(--giallo-sistema); }
+
+        .acronym-letter {
+            font-size: 1.8em;
+            font-weight: 700;
+            display: block;
+            margin-bottom: 5px;
+        }
+
+        .acronym-letter.blu { color: var(--blu-teoria); }
+        .acronym-letter.rosso { color: var(--rosso-conflitto); }
+        .acronym-letter.verde { color: var(--verde-valori); }
+        .acronym-letter.giallo { color: var(--giallo-sistema); }
+
+        /* Badge */
+        .badge {
+            display: inline-block;
+            padding: 5px 12px;
+            border-radius: 15px;
+            font-size: 0.85em;
+            font-weight: 600;
+            margin: 3px;
+        }
+
+        .badge.blu { background: var(--blu-light); color: var(--blu-teoria); }
+        .badge.rosso { background: var(--rosso-light); color: var(--rosso-conflitto); }
+        .badge.verde { background: var(--verde-light); color: var(--verde-valori); }
+        .badge.giallo { background: var(--giallo-light); color: var(--giallo-sistema); }
+
+        /* Blockquote */
+        blockquote {
+            background: var(--cream);
+            border-left: 5px solid var(--brown);
+            padding: 20px 25px;
+            margin: 20px 0;
+            font-style: italic;
+            border-radius: 0 8px 8px 0;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+        }
+
+        /* Button Home */
+        .btn-home {
+            position: fixed;
+            top: 20px;
+            left: 20px;
+            background: white;
+            color: var(--brown);
+            padding: 12px 24px;
+            border-radius: 25px;
+            text-decoration: none;
+            font-weight: 600;
+            box-shadow: 0 3px 15px rgba(0,0,0,0.15);
+            transition: all 0.3s;
+            z-index: 1000;
+        }
+
+        .btn-home:hover {
+            background: var(--brown);
+            color: white;
+            transform: translateY(-2px);
+            box-shadow: 0 5px 20px rgba(139, 69, 19, 0.3);
+        }
+
+        /* Scroll to Top */
+        .scroll-top {
+            position: fixed;
+            bottom: 30px;
+            right: 30px;
+            background: var(--brown);
+            color: white;
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            box-shadow: 0 4px 15px rgba(139, 69, 19, 0.3);
+            opacity: 0;
+            transition: all 0.3s;
+            z-index: 1000;
+        }
+
+        .scroll-top.visible {
+            opacity: 1;
+        }
+
+        .scroll-top:hover {
+            background: var(--dark-tan);
+            transform: translateY(-3px);
+        }
+
+        /* Sintesi Box */
+        .sintesi-box {
+            background: linear-gradient(135deg, #fff8e8 0%, #ffe8e8 100%);
+            border: 3px dashed var(--rosso-conflitto);
+            padding: 30px;
+            border-radius: 12px;
+            margin: 30px 0;
+        }
+
+        .sintesi-box h3 {
+            color: var(--rosso-conflitto);
+            font-size: 1.5em;
+            margin-bottom: 15px;
+            text-align: center;
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .header h1 {
+                font-size: 1.8em;
+            }
+
+            .container {
+                padding: 20px 10px;
+            }
+
+            .section-header h2 {
+                font-size: 1.3em;
+            }
+
+            .color-legend {
+                grid-template-columns: 1fr;
+            }
+
+            .acronym-title {
+                font-size: 1.5em;
+                letter-spacing: 4px;
+            }
+
+            .btn-home {
+                top: 10px;
+                left: 10px;
+                padding: 10px 18px;
+                font-size: 0.9em;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Button Home -->
+    <a href="../index.html" class="btn-home">🏠 Home</a>
+
+    <!-- Header -->
+    <div class="header">
+        <h1>🎭 IL ROMANTICISMO</h1>
+        <div class="subtitle">Movimento Letterario Europeo | 1780-1850</div>
+        <div class="metodo-tag">🧠 Metodo Neuroscienza Cognitiva • Chunking • Dual Coding • Active Recall</div>
+    </div>
+
+    <div class="container">
+
+        <!-- Info Box Essenziali -->
+        <div class="info-box">
+            <h2>📊 INFORMAZIONI ESSENZIALI</h2>
+            <table>
+                <tbody>
+                    <tr>
+                        <td><strong>Periodo</strong></td>
+                        <td>1780-1830 (Europa) • 1816-1850 (Italia)</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Luoghi origine</strong></td>
+                        <td>🇬🇧 Inghilterra • 🇩🇪 Germania</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Autori chiave Italia</strong></td>
+                        <td>Alessandro Manzoni • Giacomo Leopardi</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Opera principale</strong></td>
+                        <td>I Promessi Sposi (1827-1842)</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Movimento contro</strong></td>
+                        <td>Illuminismo razionale • Classicismo rigido</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Valori fondamentali</strong></td>
+                        <td>Sentimento • Fede • Libertà • Popolo • Nazione</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Generi letterari</strong></td>
+                        <td>Romanzo storico • Lirica breve</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+
+        <!-- Legenda Colori (Dual Coding) -->
+        <h2 style="text-align: center; color: var(--brown); margin: 40px 0 20px 0;">🎨 SISTEMA COLORI TEMATICI</h2>
+        <p style="text-align: center; color: var(--text-light); margin-bottom: 30px;">
+            <em>Teoria del Colore nella Cognizione (Elliot & Maier, 2014): i colori attivano memoria emotiva e facilitano categorizzazione</em>
+        </p>
+
+        <div class="color-legend">
+            <div class="color-card blu">
+                <h3>🔵 BLU - Teoria e Struttura</h3>
+                <p><strong>Significato:</strong> Razionalità, Stabilità, Fiducia</p>
+                <p><strong>Uso:</strong> Definizioni, Contesto storico, Biografie, Strutture narrative</p>
+            </div>
+            <div class="color-card rosso">
+                <h3>🔴 ROSSO - Conflitto e Opposizione</h3>
+                <p><strong>Significato:</strong> Attenzione, Urgenza, Emozione forte</p>
+                <p><strong>Uso:</strong> Polemiche, Contrasti, VS Illuminismo/Classicismo</p>
+            </div>
+            <div class="color-card verde">
+                <h3>🟢 VERDE - Valori Morali</h3>
+                <p><strong>Significato:</strong> Crescita, Speranza, Positività</p>
+                <p><strong>Uso:</strong> Fede, Popolo, Nazione, Provvidenza, Conversioni</p>
+            </div>
+            <div class="color-card giallo">
+                <h3>🟡 GIALLO - Sistema Letterario</h3>
+                <p><strong>Significato:</strong> Attenzione moderata, Pragmatismo</p>
+                <p><strong>Uso:</strong> Generi, Tecniche narrative, Lingua, Metodo</p>
+            </div>
+        </div>
+
+        <!-- SEZIONE 1: Definizione e Contesto (BLU) -->
+        <div class="section">
+            <div class="section-header blu" onclick="toggleSection(this)">
+                <h2>🔵 PARTE 1: IL ROMANTICISMO - Definizione e Contesto</h2>
+                <p>Cos'è, quando nasce, contro cosa reagisce</p>
+            </div>
+            <div class="section-content">
+                <blockquote>
+                    Il <strong>primo movimento letterario moderno</strong> europeo, basato su <strong>sentimento, fede e libertà individuale</strong>, in opposizione alla ragione illuminista e alle regole classiciste.
+                </blockquote>
+
+                <h3>📌 Caratteristiche Essenziali (Chunking 7±2)</h3>
+                <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 15px; margin: 20px 0;">
+                    <div style="background: var(--verde-light); padding: 20px; border-radius: 8px; border-left: 4px solid var(--verde-valori);">
+                        <strong>❤️ Sentimento</strong><br>
+                        Prevale sulla ragione fredda
+                    </div>
+                    <div style="background: var(--verde-light); padding: 20px; border-radius: 8px; border-left: 4px solid var(--verde-valori);">
+                        <strong>🙏 Fede religiosa</strong><br>
+                        Spiritualità e trascendenza
+                    </div>
+                    <div style="background: var(--verde-light); padding: 20px; border-radius: 8px; border-left: 4px solid var(--verde-valori);">
+                        <strong>🆓 Libertà individuale</strong><br>
+                        Scrittore come genio ispirato
+                    </div>
+                    <div style="background: var(--verde-light); padding: 20px; border-radius: 8px; border-left: 4px solid var(--verde-valori);">
+                        <strong>👥 Popolo</strong><br>
+                        Forza storica e spirituale
+                    </div>
+                    <div style="background: var(--verde-light); padding: 20px; border-radius: 8px; border-left: 4px solid var(--verde-valori);">
+                        <strong>🏰 Medioevo</strong><br>
+                        Epoca autentica (non "buia")
+                    </div>
+                    <div style="background: var(--verde-light); padding: 20px; border-radius: 8px; border-left: 4px solid var(--verde-valori);">
+                        <strong>🌍 Patriottismo</strong><br>
+                        Identità nazionale
+                    </div>
+                    <div style="background: var(--verde-light); padding: 20px; border-radius: 8px; border-left: 4px solid var(--verde-valori);">
+                        <strong>✨ Creatività originale</strong><br>
+                        No imitazione classici
+                    </div>
+                </div>
+
+                <h3>📅 Timeline Storica</h3>
+                <div class="timeline">
+                    <div class="timeline-item">
+                        <span class="timeline-year">1780-1790</span><br>
+                        🇬🇧🇩🇪 Nasce in Inghilterra e Germania<br>
+                        <em>Sturm und Drang</em> (Tempesta e Assalto)
+                    </div>
+                    <div class="timeline-item">
+                        <span class="timeline-year">1789-1815</span><br>
+                        ⚡ Rivoluzione Francese + Guerre Napoleoniche<br>
+                        Sconvolgimenti politici e sociali
+                    </div>
+                    <div class="timeline-item">
+                        <span class="timeline-year">1816</span><br>
+                        🇮🇹 Madame de Staël introduce Romanticismo in Italia<br>
+                        Articolo "Sulla maniera e utilità delle traduzioni"
+                    </div>
+                    <div class="timeline-item">
+                        <span class="timeline-year">1818-1823</span><br>
+                        🔥 Polemica Classicisti vs Romantici<br>
+                        Giornale "Il Conciliatore" (Milano)
+                    </div>
+                    <div class="timeline-item">
+                        <span class="timeline-year">1827-1842</span><br>
+                        📖 Manzoni scrive I Promessi Sposi<br>
+                        (3 versioni: 1827, 1840, 1842)
+                    </div>
+                    <div class="timeline-item">
+                        <span class="timeline-year">1830-1850</span><br>
+                        🌊 Diffusione piena in tutta Europa
+                    </div>
+                </div>
+
+                <h3>🔴 Contro Cosa Reagisce?</h3>
+                <table>
+                    <thead>
+                        <tr>
+                            <th>❌ VS Illuminismo</th>
+                            <th>❌ VS Classicismo</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>Esalta solo ragione</td>
+                            <td>Regole rigide (tre unità teatro)</td>
+                        </tr>
+                        <tr>
+                            <td>Spregia sentimenti</td>
+                            <td>Imitazione modelli greci/latini</td>
+                        </tr>
+                        <tr>
+                            <td>Disprezza Medioevo</td>
+                            <td>Forma sopra contenuto</td>
+                        </tr>
+                        <tr>
+                            <td>Approccio freddo</td>
+                            <td>Letteratura per élite colta</td>
+                        </tr>
+                        <tr>
+                            <td><span class="badge verde">✅ Romanticismo: intuizione + fede</span></td>
+                            <td><span class="badge verde">✅ Romanticismo: libertà + originalità</span></td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+
+        <!-- SEZIONE 2: I Tre Livelli (VERDE) -->
+        <div class="section">
+            <div class="section-header verde" onclick="toggleSection(this)">
+                <h2>🟢 PARTE 2: I TRE LIVELLI DEL ROMANTICISMO</h2>
+                <p>Storico-Sociale • Psicologico • Artistico-Letterario</p>
+            </div>
+            <div class="section-content">
+
+                <h3>👥 2.1 Livello Storico-Sociale (Il Popolo)</h3>
+                <blockquote>
+                    Il <strong>popolo</strong> è il depositario dell'energia spirituale e della forza storica. Non più solo re e nobili, ma la nazione intera.
+                </blockquote>
+
+                <div style="background: var(--verde-light); padding: 25px; border-radius: 8px; margin: 20px 0;">
+                    <strong>Principi fondamentali:</strong>
+                    <ul style="margin-top: 15px; line-height: 2;">
+                        <li>👥 <strong>Popolo = protagonista</strong> della storia</li>
+                        <li>📜 <strong>Storia = progresso</strong> verso verità e libertà</li>
+                        <li>🏰 <strong>Medioevo = epoca autentica</strong> (non "età buia")</li>
+                        <li>🇮🇹 <strong>Patriottismo = valore</strong> (unità nazionale)</li>
+                        <li>🗣️ <strong>Lingua popolare</strong> (non solo latino colto)</li>
+                    </ul>
+                    <p style="margin-top: 15px; font-style: italic;">
+                        <strong>Esempio:</strong> Manzoni sceglie Renzo e Lucia (popolani) come protagonisti e riscrive in fiorentino parlato.
+                    </p>
+                </div>
+
+                <h3>❤️ 2.2 Livello Psicologico (Sentimenti e Spiritualità)</h3>
+                <blockquote>
+                    L'uomo romantico è guidato da <strong>sentimenti irrazionali, fede religiosa e grandi ideali</strong>, ma anche segnato da solitudine e pessimismo.
+                </blockquote>
+
+                <table>
+                    <thead>
+                        <tr>
+                            <th>🟢 TITANISMO (ottimismo)</th>
+                            <th>🔴 VITTIMISMO (pessimismo)</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>✨ Grandi sogni e ideali</td>
+                            <td>😔 Solitudine esistenziale</td>
+                        </tr>
+                        <tr>
+                            <td>🦸 Eroe che sfida il destino</td>
+                            <td>💔 Sconfitta dalle difficoltà</td>
+                        </tr>
+                        <tr>
+                            <td>🔥 Ribellione prometeica</td>
+                            <td>⚫ Mal di vivere</td>
+                        </tr>
+                        <tr>
+                            <td>Es: Faust (Goethe)</td>
+                            <td>Es: Werther (Goethe)</td>
+                        </tr>
+                    </tbody>
+                </table>
+
+                <div style="margin: 25px 0;">
+                    <strong>Elementi psicologici chiave:</strong><br>
+                    <span class="badge verde">🙏 Spiritualità e religiosità</span>
+                    <span class="badge verde">❤️ Sentimenti > Ragione</span>
+                    <span class="badge verde">🆓 Libertà estrema</span>
+                    <span class="badge verde">🌊 Sensibilità acuta</span>
+                </div>
+
+                <h3>🟡 2.3 Livello Artistico-Letterario (Generi e Tecniche)</h3>
+                <blockquote>
+                    Lo scrittore è un <strong>genio libero</strong>, guidato dall'<strong>ispirazione</strong> (non da regole). La letteratura deve essere <strong>utile</strong> e <strong>autentica</strong>.
+                </blockquote>
+
+                <table>
+                    <thead>
+                        <tr>
+                            <th>❌ Classicismo (rifiutato)</th>
+                            <th>✅ Romanticismo (nuovo)</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>📏 Regole fisse (3 unità teatro)</td>
+                            <td>🆓 Libertà creativa totale</td>
+                        </tr>
+                        <tr>
+                            <td>📖 Imitazione modelli antichi</td>
+                            <td>✨ Originalità e autenticità</td>
+                        </tr>
+                        <tr>
+                            <td>🎭 Generi separati (tragedia≠commedia)</td>
+                            <td>🎭 Mescolanza sublime/comico</td>
+                        </tr>
+                        <tr>
+                            <td>🏛️ Forma perfetta = obiettivo</td>
+                            <td>❤️ Contenuto morale = obiettivo</td>
+                        </tr>
+                        <tr>
+                            <td>🎓 Per élite colta</td>
+                            <td>👥 Per popolo (democratica)</td>
+                        </tr>
+                    </tbody>
+                </table>
+
+                <div style="background: var(--giallo-light); padding: 25px; border-radius: 8px; margin: 20px 0; border-left: 5px solid var(--giallo-sistema);">
+                    <strong>📚 Generi letterari principali:</strong>
+                    <ol style="margin-top: 15px; line-height: 2;">
+                        <li><strong>Romanzo storico</strong> (nuovo genere dominante)<br>
+                            <em>Es: I Promessi Sposi, Ivanhoe (Scott)</em>
+                        </li>
+                        <li><strong>Lirica breve</strong> (poesia intima)<br>
+                            <em>Es: A Silvia (Leopardi), Cinque Maggio (Manzoni)</em>
+                        </li>
+                        <li><strong>Dramma romantico</strong> (no 3 unità)<br>
+                            <em>Es: Adelchi (Manzoni)</em>
+                        </li>
+                    </ol>
+                </div>
+
+                <blockquote style="background: var(--giallo-light); border-left-color: var(--giallo-sistema);">
+                    <strong>Funzione della letteratura (Manzoni):</strong><br>
+                    "Utile per lo scopo, Vera per l'oggetto, Interessante per il mezzo"<br>
+                    <em>— Lettera sul Romanticismo (1823)</em>
+                </blockquote>
+            </div>
+        </div>
+
+        <!-- SEZIONE 3: Polemica (ROSSO) -->
+        <div class="section">
+            <div class="section-header rosso" onclick="toggleSection(this)">
+                <h2>🔴 PARTE 3: POLEMICA CLASSICISTI VS ROMANTICI (1816-1823)</h2>
+                <p>Madame de Staël • Il Conciliatore • Manzoni • Leopardi</p>
+            </div>
+            <div class="section-content">
+
+                <h3>📅 Timeline del Conflitto</h3>
+                <div class="timeline">
+                    <div class="timeline-item">
+                        <span class="timeline-year">1816</span><br>
+                        Madame de Staël pubblica articolo<br>
+                        <em>"Gli italiani devono tradurre opere straniere moderne"</em><br>
+                        <span class="badge rosso">Classicisti: SCANDALO!</span>
+                    </div>
+                    <div class="timeline-item">
+                        <span class="timeline-year">1818</span><br>
+                        Nasce <strong>"Il Conciliatore"</strong> (giornale romantico milanese)<br>
+                        Redattori: Silvio Pellico, G. Berchet, E. Visconti<br>
+                        Durata: 1 anno (censurato dagli austriaci)
+                    </div>
+                    <div class="timeline-item">
+                        <span class="timeline-year">1818</span><br>
+                        Leopardi (20 anni) scrive <em>Discorso di un italiano...</em><br>
+                        <span class="badge blu">Pro-classicismo</span><br>
+                        "La realtà non è poetica. I classici ci fanno sognare."
+                    </div>
+                    <div class="timeline-item">
+                        <span class="timeline-year">1823</span><br>
+                        Manzoni scrive <em>Lettera sul Romanticismo</em><br>
+                        <span class="badge verde">Pro-romanticismo moderato</span><br>
+                        Definisce cosa deve essere la letteratura moderna
+                    </div>
+                </div>
+
+                <h3>⚖️ Posizioni a Confronto</h3>
+
+                <div style="background: var(--verde-light); padding: 25px; border-radius: 8px; margin: 20px 0; border: 3px solid var(--verde-valori);">
+                    <h4 style="color: var(--verde-valori); margin-bottom: 15px;">🟢 ALESSANDRO MANZONI (Romantico Moderato)</h4>
+                    <p><strong>Opera:</strong> Lettera sul Romanticismo (1823)</p>
+                    <blockquote style="margin: 15px 0;">
+                        La poesia deve essere:<br>
+                        1. <strong>Utile</strong> per lo scopo (educazione morale)<br>
+                        2. <strong>Vera</strong> per l'oggetto (fatti storici reali)<br>
+                        3. <strong>Interessante</strong> per il mezzo (linguaggio accessibile)
+                    </blockquote>
+                    <p><strong>Applicazione pratica:</strong></p>
+                    <ul style="line-height: 2;">
+                        <li>✅ Scrive romanzo storico (<em>I Promessi Sposi</em>)</li>
+                        <li>✅ Usa storia vera (carestia 1628, peste 1630)</li>
+                        <li>✅ Personaggi storici reali (Borromeo, Monaca di Monza)</li>
+                        <li>✅ Lingua fiorentina popolare (non latino)</li>
+                        <li>✅ Scopo: insegnare valori cristiani</li>
+                    </ul>
+                </div>
+
+                <div style="background: var(--blu-light); padding: 25px; border-radius: 8px; margin: 20px 0; border: 3px solid var(--blu-teoria);">
+                    <h4 style="color: var(--blu-teoria); margin-bottom: 15px;">🔵 GIACOMO LEOPARDI (Difensore del Classicismo)</h4>
+                    <p><strong>Opera:</strong> Discorso di un italiano sul Romanticismo (1818)</p>
+                    <blockquote style="margin: 15px 0;">
+                        <strong>"La realtà non è poetica."</strong><br>
+                        I classici greci/latini ci fanno sognare e illudere, distaccandoci dalla realtà dolorosa. Il Romanticismo, inseguendo il "vero", distrugge la poesia.
+                    </blockquote>
+                    <p><strong>⚠️ Apparente contraddizione:</strong></p>
+                    <ul style="line-height: 2;">
+                        <li>🤔 Leopardi <em>difende</em> i classici...</li>
+                        <li>🤔 ...ma <em>scrive</em> poesie moderne e soggettive (<em>A Silvia, L'Infinito</em>)</li>
+                        <li>✅ In realtà: usa <strong>forma classica</strong> (metrica, lingua) con <strong>contenuto romantico</strong> (sentimento, pessimismo)</li>
+                    </ul>
+                    <div style="background: white; padding: 15px; border-radius: 8px; margin-top: 15px;">
+                        <strong>Sintesi:</strong><br>
+                        <span class="badge blu">Forma → Classica</span> (endecasillabi, lingua elegante)<br>
+                        <span class="badge verde">Contenuto → Romantico</span> (emozioni, disillusione)
+                    </div>
+                </div>
+
+            </div>
+        </div>
+
+        <!-- SEZIONE 4: Acronimo ROMANTICO (MULTICOLORE) -->
+        <div class="section">
+            <div class="section-header" style="background: linear-gradient(135deg, var(--verde-light) 0%, var(--blu-light) 100%); border-left: 5px solid var(--brown);" onclick="toggleSection(this)">
+                <h2 style="color: var(--brown);">🎯 ACRONIMO MNEMONICO: R.O.M.A.N.T.I.C.O.</h2>
+                <p>Tecnica di memorizzazione rapida - 10 concetti chiave</p>
+            </div>
+            <div class="section-content">
+                <div class="acronym-box">
+                    <div class="acronym-title">R.O.M.A.N.T.I.C.O.</div>
+                    <div class="acronym-list">
+                        <div class="acronym-item rosso">
+                            <span class="acronym-letter rosso">R</span>
+                            <strong>Reazione</strong> vs Illuminismo
+                        </div>
+                        <div class="acronym-item giallo">
+                            <span class="acronym-letter giallo">O</span>
+                            <strong>Originalità</strong> vs imitazione
+                        </div>
+                        <div class="acronym-item verde">
+                            <span class="acronym-letter verde">M</span>
+                            <strong>Medioevo</strong> rivalutato
+                        </div>
+                        <div class="acronym-item blu">
+                            <span class="acronym-letter blu">A</span>
+                            <strong>Autore-genio</strong> libero
+                        </div>
+                        <div class="acronym-item verde">
+                            <span class="acronym-letter verde">N</span>
+                            <strong>Nazione</strong> e popolo
+                        </div>
+                        <div class="acronym-item rosso">
+                            <span class="acronym-letter rosso">T</span>
+                            <strong>Titanismo</strong> e vittimismo
+                        </div>
+                        <div class="acronym-item verde">
+                            <span class="acronym-letter verde">I</span>
+                            <strong>Intuizione</strong> e fede
+                        </div>
+                        <div class="acronym-item giallo">
+                            <span class="acronym-letter giallo">C</span>
+                            <strong>Creazione</strong> vs imitazione
+                        </div>
+                        <div class="acronym-item blu">
+                            <span class="acronym-letter blu">O</span>
+                            <strong>Opera</strong> utile e vera
+                        </div>
+                    </div>
+                    <p style="text-align: center; margin-top: 25px; font-size: 1.1em; font-style: italic;">
+                        📝 Frase memoria: <strong>"Ragazzi Oggi Memorizzano Argomenti Nuovi Tramite Immagini Colorate Ottimizzate"</strong>
+                    </p>
+                </div>
+            </div>
+        </div>
+
+        <!-- SEZIONE 5: Mappa Concettuale ASCII -->
+        <div class="section">
+            <div class="section-header blu" onclick="toggleSection(this)">
+                <h2>🔵 MAPPA CONCETTUALE - Struttura Gerarchica</h2>
+                <p>Visualizzazione collegamenti logici</p>
+            </div>
+            <div class="section-content">
+                <div class="mappa-ascii">                        ROMANTICISMO (1780-1850)
+                                 │
+                 ┌───────────────┼───────────────┐
+                 │               │               │
+           STORICO-SOCIALE   PSICOLOGICO   ARTISTICO-LETTERARIO
+                 │               │               │
+         ┌───────┴───────┐       │       ┌───────┴───────┐
+         │               │       │       │               │
+      POPOLO          NAZIONE    │    GENIO           GENERI
+    (energia)      (patriottismo) │   (libertà)      (romanzo)
+                                  │
+                  ┌───────────────┼───────────────┐
+                  │               │               │
+             SENTIMENTO      FEDE/SPIRITO    TITANISMO
+             (vs ragione)    (vs scetticismo) (vs pessimismo)
+                                  │
+                                  │
+                         MANZONI (1785-1873)
+                                  │
+                  ┌───────────────┼───────────────┐
+                  │               │               │
+            FEDE CATTOLICA   ILLUMINISMO    ROMANTICISMO
+            (Provvidenza)     (studio       (libertà
+                              razionale)     creativa)
+                                  │
+                                  │
+                         I PROMESSI SPOSI
+                                  │
+                  ┌───────────────┼───────────────┐
+                  │               │               │
+            PERSONAGGI        STORIA VERA      MESSAGGIO
+         (Renzo, Lucia,    (Seicento,       (Provvidenza,
+          Don Rodrigo,      peste 1630)      perdono,
+          Innominato)                        fede vera)</div>
+            </div>
+        </div>
+
+        <!-- SEZIONE 6: Flashcards Interattive -->
+        <div class="section">
+            <div class="section-header giallo" onclick="toggleSection(this)">
+                <h2>🟡 FLASHCARDS INTERATTIVE - Active Recall</h2>
+                <p>Click per rivelare risposta • 12 domande a difficoltà crescente</p>
+            </div>
+            <div class="section-content">
+                <p style="text-align: center; color: var(--text-light); margin-bottom: 30px;">
+                    <em>Tecnica Active Recall: +50% ritenzione (Roediger & Karpicke, 2006)</em>
+                </p>
+
+                <h3>⭐ Livello Facile</h3>
+                <div class="flashcards-container">
+                    <div class="flashcard" onclick="flipCard(this)">
+                        <div class="flashcard-level">⭐</div>
+                        <div class="flashcard-front">
+                            <div class="flashcard-question">1. Quando nasce il Romanticismo?</div>
+                            <div class="flashcard-hint">Click per risposta</div>
+                        </div>
+                        <div class="flashcard-back">
+                            <div class="flashcard-answer">
+                                <strong>Risposta:</strong> Fine '700 (1780-1830 Europa), in Italia dal 1816
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="flashcard" onclick="flipCard(this)">
+                        <div class="flashcard-level">⭐</div>
+                        <div class="flashcard-front">
+                            <div class="flashcard-question">2. Contro cosa reagisce il Romanticismo?</div>
+                            <div class="flashcard-hint">Click per risposta</div>
+                        </div>
+                        <div class="flashcard-back">
+                            <div class="flashcard-answer">
+                                <strong>Risposta:</strong> Contro Illuminismo (solo ragione) e Classicismo (regole rigide)
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="flashcard" onclick="flipCard(this)">
+                        <div class="flashcard-level">⭐</div>
+                        <div class="flashcard-front">
+                            <div class="flashcard-question">3. Chi è l'autore dei Promessi Sposi?</div>
+                            <div class="flashcard-hint">Click per risposta</div>
+                        </div>
+                        <div class="flashcard-back">
+                            <div class="flashcard-answer">
+                                <strong>Risposta:</strong> Alessandro Manzoni (1785-1873)
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="flashcard" onclick="flipCard(this)">
+                        <div class="flashcard-level">⭐</div>
+                        <div class="flashcard-front">
+                            <div class="flashcard-question">4. Chi sono i protagonisti dei Promessi Sposi?</div>
+                            <div class="flashcard-hint">Click per risposta</div>
+                        </div>
+                        <div class="flashcard-back">
+                            <div class="flashcard-answer">
+                                <strong>Risposta:</strong> Renzo Tramaglino e Lucia Mondella (popolani)
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <h3>⭐⭐ Livello Medio</h3>
+                <div class="flashcards-container">
+                    <div class="flashcard" onclick="flipCard(this)">
+                        <div class="flashcard-level">⭐⭐</div>
+                        <div class="flashcard-front">
+                            <div class="flashcard-question">5. Quali sono i 3 livelli del Romanticismo?</div>
+                            <div class="flashcard-hint">Click per risposta</div>
+                        </div>
+                        <div class="flashcard-back">
+                            <div class="flashcard-answer">
+                                <strong>Risposta:</strong> 1) Storico-sociale (popolo) 2) Psicologico (sentimenti) 3) Artistico-letterario (genio libero)
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="flashcard" onclick="flipCard(this)">
+                        <div class="flashcard-level">⭐⭐</div>
+                        <div class="flashcard-front">
+                            <div class="flashcard-question">6. Cosa dice Manzoni nella Lettera sul Romanticismo?</div>
+                            <div class="flashcard-hint">Click per risposta</div>
+                        </div>
+                        <div class="flashcard-back">
+                            <div class="flashcard-answer">
+                                <strong>Risposta:</strong> "Utile per lo scopo, Vera per l'oggetto, Interessante per il mezzo"
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="flashcard" onclick="flipCard(this)">
+                        <div class="flashcard-level">⭐⭐</div>
+                        <div class="flashcard-front">
+                            <div class="flashcard-question">7. Perché Manzoni riscrive 3 volte il romanzo?</div>
+                            <div class="flashcard-hint">Click per risposta</div>
+                        </div>
+                        <div class="flashcard-back">
+                            <div class="flashcard-answer">
+                                <strong>Risposta:</strong> Per trovare lingua italiana unitaria (sceglie fiorentino parlato colto)
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="flashcard" onclick="flipCard(this)">
+                        <div class="flashcard-level">⭐⭐</div>
+                        <div class="flashcard-front">
+                            <div class="flashcard-question">8. Chi è la Monaca di Monza?</div>
+                            <div class="flashcard-hint">Click per risposta</div>
+                        </div>
+                        <div class="flashcard-back">
+                            <div class="flashcard-answer">
+                                <strong>Risposta:</strong> Personaggio storico (Marianna De Leyva), suora forzata dalla famiglia
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <h3>⭐⭐⭐ Livello Difficile</h3>
+                <div class="flashcards-container">
+                    <div class="flashcard" onclick="flipCard(this)">
+                        <div class="flashcard-level">⭐⭐⭐</div>
+                        <div class="flashcard-front">
+                            <div class="flashcard-question">9. Differenza tra fede di Don Abbondio e Cardinal Borromeo?</div>
+                            <div class="flashcard-hint">Click per risposta</div>
+                        </div>
+                        <div class="flashcard-back">
+                            <div class="flashcard-answer">
+                                <strong>Risposta:</strong> Don Abbondio = fede superstiziosa/esteriore (paura). Borromeo = fede razionale/attiva (amore)
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="flashcard" onclick="flipCard(this)">
+                        <div class="flashcard-level">⭐⭐⭐</div>
+                        <div class="flashcard-front">
+                            <div class="flashcard-question">10. Perché Leopardi difende i Classici ma scrive opere romantiche?</div>
+                            <div class="flashcard-hint">Click per risposta</div>
+                        </div>
+                        <div class="flashcard-back">
+                            <div class="flashcard-answer">
+                                <strong>Risposta:</strong> Usa forma classica (metrica elegante) con contenuto romantico (sentimenti, pessimismo)
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="flashcard" onclick="flipCard(this)">
+                        <div class="flashcard-level">⭐⭐⭐</div>
+                        <div class="flashcard-front">
+                            <div class="flashcard-question">11. Cosa significa "narratore di secondo grado"?</div>
+                            <div class="flashcard-hint">Click per risposta</div>
+                        </div>
+                        <div class="flashcard-back">
+                            <div class="flashcard-answer">
+                                <strong>Risposta:</strong> Manzoni finge di tradurre manoscritto altrui, può ironizzare e selezionare contenuti
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="flashcard" onclick="flipCard(this)">
+                        <div class="flashcard-level">⭐⭐⭐</div>
+                        <div class="flashcard-front">
+                            <div class="flashcard-question">12. Come funziona la Provvidenza nei Promessi Sposi?</div>
+                            <div class="flashcard-hint">Click per risposta</div>
+                        </div>
+                        <div class="flashcard-back">
+                            <div class="flashcard-answer">
+                                <strong>Risposta:</strong> Dio usa anche eventi negativi (peste, rapimento) per portare bene maggiore (conversioni, maturazione)
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- SEZIONE 7: Sintesi Ultra-Rapida -->
+        <div class="section">
+            <div class="section-header rosso" onclick="toggleSection(this)">
+                <h2>🔴 SINTESI ULTRA-RAPIDA - 3 Minuti Prima dell'Esame</h2>
+                <p>Ripasso finale velocissimo</p>
+            </div>
+            <div class="section-content">
+                <div class="sintesi-box">
+                    <h3>⏱️ 3 MINUTI: Romanticismo in 10 punti</h3>
+                    <ol style="line-height: 2.2; font-size: 1.05em;">
+                        <li><strong>1780-1830</strong> (Europa), <strong>1816-1850</strong> (Italia)</li>
+                        <li><strong>VS</strong> Illuminismo (ragione) + Classicismo (regole)</li>
+                        <li><strong>Valori:</strong> Sentimento, Fede, Libertà, Popolo, Nazione, Medioevo</li>
+                        <li><strong>3 livelli:</strong> Storico (popolo), Psicologico (sentimenti), Artistico (genio)</li>
+                        <li><strong>1816:</strong> Madame de Staël introduce in Italia</li>
+                        <li><strong>Manzoni:</strong> utile-vera-interessante (Lettera 1823)</li>
+                        <li><strong>Leopardi:</strong> realtà non poetica (Discorso 1818), ma scrive opere romantiche</li>
+                        <li><strong>Promessi Sposi:</strong> 3 versioni (1827-1842), fiorentino parlato</li>
+                        <li><strong>Provvidenza:</strong> guida eventi, male→bene (conversione Innominato)</li>
+                        <li><strong>Messaggio:</strong> Fede vera (attiva) > fede falsa (superstiziosa)</li>
+                    </ol>
+                </div>
+
+                <div class="sintesi-box" style="background: linear-gradient(135deg, var(--blu-light) 0%, var(--verde-light) 100%); border-color: var(--blu-teoria);">
+                    <h3 style="color: var(--blu-teoria);">⏱️ 1 MINUTO: Manzoni in 5 punti</h3>
+                    <ol style="line-height: 2.2; font-size: 1.05em;">
+                        <li><strong>1785-1873</strong> Milano, madre Giulia Beccaria</li>
+                        <li><strong>1810</strong> conversione religiosa (Parigi)</li>
+                        <li><strong>Fede + Illuminismo + Romanticismo</strong> = letteratura impegnata</li>
+                        <li><strong>Promessi Sposi</strong> = romanzo storico, Seicento (peste 1630)</li>
+                        <li><strong>Lingua:</strong> fiorentino parlato (3 riscritture)</li>
+                    </ol>
+                </div>
+
+                <div class="sintesi-box" style="background: linear-gradient(135deg, var(--giallo-light) 0%, var(--rosso-light) 100%); border-color: var(--giallo-sistema);">
+                    <h3 style="color: var(--giallo-sistema);">⏱️ 30 SECONDI: Tutto in 4 frasi</h3>
+                    <p style="font-size: 1.1em; line-height: 2;">
+                        <strong>Romanticismo</strong> = sentimento+fede+libertà VS ragione.<br>
+                        <strong>Manzoni</strong> = Promessi Sposi (1827-1842), fiorentino, Provvidenza divina, fede vera.<br>
+                        <strong>Leopardi</strong> = difende classici ma scrive romantico.<br>
+                        <strong>1816</strong> polemica, <strong>1630</strong> peste, <strong>Renzo+Lucia</strong> protagonisti popolari.
+                    </p>
+                </div>
+            </div>
+        </div>
+
+        <!-- SEZIONE 8: Checklist Autovalutazione -->
+        <div class="section">
+            <div class="section-header verde" onclick="toggleSection(this)">
+                <h2>🟢 CHECKLIST AUTOVALUTAZIONE - 34 Punti</h2>
+                <p>Verifica la tua preparazione prima dell'esame</p>
+            </div>
+            <div class="section-content">
+                <div class="checklist">
+                    <div class="checklist-progress">
+                        <h3 style="color: var(--brown); margin-bottom: 15px;">📊 Progresso Preparazione</h3>
+                        <div class="progress-bar">
+                            <div class="progress-fill" id="progressFill">0%</div>
+                        </div>
+                        <p id="progressText" style="margin-top: 15px; font-size: 1.1em; font-weight: 600;">
+                            <span id="checkedCount">0</span> / 34 completati
+                        </p>
+                        <p style="margin-top: 10px; color: var(--text-light);">
+                            <em>✅ Obiettivo: almeno 28/34 (80%) per essere pronto!</em>
+                        </p>
+                    </div>
+
+                    <h3 style="color: var(--blu-teoria); margin: 30px 0 20px 0;">🔵 Teoria Generale (7 punti)</h3>
+                    <div class="checklist-item">
+                        <input type="checkbox" id="check1" onchange="updateProgress()">
+                        <label for="check1">Date periodo romantico (1780-1830 Europa, 1816-1850 Italia)</label>
+                    </div>
+                    <div class="checklist-item">
+                        <input type="checkbox" id="check2" onchange="updateProgress()">
+                        <label for="check2">Contro cosa reagisce (Illuminismo + Classicismo)</label>
+                    </div>
+                    <div class="checklist-item">
+                        <input type="checkbox" id="check3" onchange="updateProgress()">
+                        <label for="check3">3 livelli romanticismo (Storico-sociale, Psicologico, Artistico)</label>
+                    </div>
+                    <div class="checklist-item">
+                        <input type="checkbox" id="check4" onchange="updateProgress()">
+                        <label for="check4">Valori chiave (Sentimento, Fede, Libertà, Popolo, Nazione)</label>
+                    </div>
+                    <div class="checklist-item">
+                        <input type="checkbox" id="check5" onchange="updateProgress()">
+                        <label for="check5">Generi letterari (Romanzo storico, Lirica breve)</label>
+                    </div>
+                    <div class="checklist-item">
+                        <input type="checkbox" id="check6" onchange="updateProgress()">
+                        <label for="check6">Rivalutazione Medioevo (non più "età buia")</label>
+                    </div>
+                    <div class="checklist-item">
+                        <input type="checkbox" id="check7" onchange="updateProgress()">
+                        <label for="check7">Scrittore come genio libero (no regole classiciste)</label>
+                    </div>
+
+                    <h3 style="color: var(--rosso-conflitto); margin: 30px 0 20px 0;">🔴 Polemica Classicisti-Romantici (4 punti)</h3>
+                    <div class="checklist-item">
+                        <input type="checkbox" id="check8" onchange="updateProgress()">
+                        <label for="check8">1816: Madame de Staël introduce Romanticismo in Italia</label>
+                    </div>
+                    <div class="checklist-item">
+                        <input type="checkbox" id="check9" onchange="updateProgress()">
+                        <label for="check9">1818-1823: Polemica, giornale "Il Conciliatore" (Milano)</label>
+                    </div>
+                    <div class="checklist-item">
+                        <input type="checkbox" id="check10" onchange="updateProgress()">
+                        <label for="check10">Posizione Manzoni (Lettera 1823: utile, vera, interessante)</label>
+                    </div>
+                    <div class="checklist-item">
+                        <input type="checkbox" id="check11" onchange="updateProgress()">
+                        <label for="check11">Posizione Leopardi (Discorso 1818: realtà non poetica)</label>
+                    </div>
+
+                    <h3 style="color: var(--verde-valori); margin: 30px 0 20px 0;">🟢 Alessandro Manzoni (8 punti)</h3>
+                    <div class="checklist-item">
+                        <input type="checkbox" id="check12" onchange="updateProgress()">
+                        <label for="check12">Date vita (1785 Milano - 1873)</label>
+                    </div>
+                    <div class="checklist-item">
+                        <input type="checkbox" id="check13" onchange="updateProgress()">
+                        <label for="check13">Madre: Giulia Beccaria (figlia di Cesare Beccaria)</label>
+                    </div>
+                    <div class="checklist-item">
+                        <input type="checkbox" id="check14" onchange="updateProgress()">
+                        <label for="check14">Conversione religiosa (1810 a Parigi)</label>
+                    </div>
+                    <div class="checklist-item">
+                        <input type="checkbox" id="check15" onchange="updateProgress()">
+                        <label for="check15">Opere principali (Inni Sacri, Adelchi, Cinque Maggio, Promessi Sposi)</label>
+                    </div>
+                    <div class="checklist-item">
+                        <input type="checkbox" id="check16" onchange="updateProgress()">
+                        <label for="check16">Tre pilastri pensiero (Fede cattolica + Illuminismo + Romanticismo)</label>
+                    </div>
+                    <div class="checklist-item">
+                        <input type="checkbox" id="check17" onchange="updateProgress()">
+                        <label for="check17">Concetto "cattolicesimo liberale" (razionale, non superstizioso)</label>
+                    </div>
+                    <div class="checklist-item">
+                        <input type="checkbox" id="check18" onchange="updateProgress()">
+                        <label for="check18">Amicizia con Fauriel (Parigi) e conoscenza di Foscolo</label>
+                    </div>
+                    <div class="checklist-item">
+                        <input type="checkbox" id="check19" onchange="updateProgress()">
+                        <label for="check19">Morte 1873, Messa da Requiem di Verdi in suo onore</label>
+                    </div>
+
+                    <h3 style="color: var(--giallo-sistema); margin: 30px 0 20px 0;">🟡 I Promessi Sposi (12 punti)</h3>
+                    <div class="checklist-item">
+                        <input type="checkbox" id="check20" onchange="updateProgress()">
+                        <label for="check20">Tre versioni (1827 Fermo e Lucia, 1840, 1842 definitiva)</label>
+                    </div>
+                    <div class="checklist-item">
+                        <input type="checkbox" id="check21" onchange="updateProgress()">
+                        <label for="check21">Problema lingua → soluzione fiorentino parlato colto</label>
+                    </div>
+                    <div class="checklist-item">
+                        <input type="checkbox" id="check22" onchange="updateProgress()">
+                        <label for="check22">Espediente manoscritto ritrovato (finge di tradurre testo Seicento)</label>
+                    </div>
+                    <div class="checklist-item">
+                        <input type="checkbox" id="check23" onchange="updateProgress()">
+                        <label for="check23">Narratore onnisciente ma ironico e selettivo</label>
+                    </div>
+                    <div class="checklist-item">
+                        <input type="checkbox" id="check24" onchange="updateProgress()">
+                        <label for="check24">Personaggi principali (Renzo, Lucia, Don Rodrigo, Innominato, Don Abbondio, Fra Cristoforo)</label>
+                    </div>
+                    <div class="checklist-item">
+                        <input type="checkbox" id="check25" onchange="updateProgress()">
+                        <label for="check25">Personaggi storici reali (Cardinal Borromeo, Monaca di Monza)</label>
+                    </div>
+                    <div class="checklist-item">
+                        <input type="checkbox" id="check26" onchange="updateProgress()">
+                        <label for="check26">Eventi storici (Carestia 1628, Calata Lanzichenecchi 1629, Peste 1630)</label>
+                    </div>
+                    <div class="checklist-item">
+                        <input type="checkbox" id="check27" onchange="updateProgress()">
+                        <label for="check27">Concetto Provvidenza (Dio guida tutti gli eventi, anche negativi)</label>
+                    </div>
+                    <div class="checklist-item">
+                        <input type="checkbox" id="check28" onchange="updateProgress()">
+                        <label for="check28">Fede vera vs fede falsa (Borromeo attiva vs Don Abbondio superstiziosa)</label>
+                    </div>
+                    <div class="checklist-item">
+                        <input type="checkbox" id="check29" onchange="updateProgress()">
+                        <label for="check29">Conversione Innominato (rapisce Lucia, ma lei lo converte)</label>
+                    </div>
+                    <div class="checklist-item">
+                        <input type="checkbox" id="check30" onchange="updateProgress()">
+                        <label for="check30">Giustizia divina (morte Don Rodrigo nella peste)</label>
+                    </div>
+                    <div class="checklist-item">
+                        <input type="checkbox" id="check31" onchange="updateProgress()">
+                        <label for="check31">Messaggio finale (fede dà senso alla vita, perdono cristiano)</label>
+                    </div>
+
+                    <h3 style="color: var(--brown); margin: 30px 0 20px 0;">🎯 Memorizzazione (3 punti)</h3>
+                    <div class="checklist-item">
+                        <input type="checkbox" id="check32" onchange="updateProgress()">
+                        <label for="check32">Acronimo R.O.M.A.N.T.I.C.O. (9 concetti chiave)</label>
+                    </div>
+                    <div class="checklist-item">
+                        <input type="checkbox" id="check33" onchange="updateProgress()">
+                        <label for="check33">Mappa concettuale (gerarchia: Romanticismo → 3 livelli → Manzoni → Promessi Sposi)</label>
+                    </div>
+                    <div class="checklist-item">
+                        <input type="checkbox" id="check34" onchange="updateProgress()">
+                        <label for="check34">Timeline 1780-1873 (6 date fondamentali)</label>
+                    </div>
+
+                    <div style="background: var(--verde-light); padding: 25px; border-radius: 8px; margin-top: 30px; text-align: center; border: 3px solid var(--verde-valori);">
+                        <h3 style="color: var(--verde-valori); margin-bottom: 15px;">🎓 Valutazione Finale</h3>
+                        <p id="evaluationText" style="font-size: 1.2em; font-weight: 600; line-height: 1.8;">
+                            Completa la checklist per vedere la tua valutazione!
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+    <!-- Scroll to Top Button -->
+    <div class="scroll-top" onclick="scrollToTop()">
+        ↑
+    </div>
+
+    <!-- JavaScript -->
+    <script>
+        // Toggle Section
+        function toggleSection(header) {
+            const content = header.nextElementSibling;
+            header.classList.toggle('collapsed');
+            content.classList.toggle('collapsed');
+        }
+
+        // Flip Flashcard
+        function flipCard(card) {
+            card.classList.toggle('flipped');
+        }
+
+        // Scroll to Top
+        const scrollTopBtn = document.querySelector('.scroll-top');
+
+        window.addEventListener('scroll', () => {
+            if (window.pageYOffset > 300) {
+                scrollTopBtn.classList.add('visible');
+            } else {
+                scrollTopBtn.classList.remove('visible');
+            }
+        });
+
+        function scrollToTop() {
+            window.scrollTo({
+                top: 0,
+                behavior: 'smooth'
+            });
+        }
+
+        // Update Progress Checklist
+        function updateProgress() {
+            const total = 34;
+            const checkboxes = document.querySelectorAll('.checklist input[type="checkbox"]');
+            const checked = document.querySelectorAll('.checklist input[type="checkbox"]:checked').length;
+            const percentage = Math.round((checked / total) * 100);
+
+            // Update progress bar
+            const progressFill = document.getElementById('progressFill');
+            progressFill.style.width = percentage + '%';
+            progressFill.textContent = percentage + '%';
+
+            // Update count text
+            document.getElementById('checkedCount').textContent = checked;
+
+            // Update evaluation
+            const evaluationText = document.getElementById('evaluationText');
+            if (checked === 0) {
+                evaluationText.innerHTML = 'Completa la checklist per vedere la tua valutazione!';
+                evaluationText.style.color = 'var(--text)';
+            } else if (percentage < 50) {
+                evaluationText.innerHTML = '⚠️ <strong>' + percentage + '%</strong> - Devi studiare ancora! Rileggi il materiale.';
+                evaluationText.style.color = 'var(--rosso-conflitto)';
+            } else if (percentage < 70) {
+                evaluationText.innerHTML = '📚 <strong>' + percentage + '%</strong> - Buona base, ma approfondisci i punti mancanti.';
+                evaluationText.style.color = 'var(--giallo-sistema)';
+            } else if (percentage < 80) {
+                evaluationText.innerHTML = '👍 <strong>' + percentage + '%</strong> - Quasi pronto! Ripassa gli ultimi concetti.';
+                evaluationText.style.color = 'var(--blu-teoria)';
+            } else if (percentage < 100) {
+                evaluationText.innerHTML = '✅ <strong>' + percentage + '%</strong> - Ottima preparazione! Sei pronto per l\'esame!';
+                evaluationText.style.color = 'var(--verde-valori)';
+            } else {
+                evaluationText.innerHTML = '� <strong>100%</strong> - PERFETTO! Padroneggi completamente l\'argomento!';
+                evaluationText.style.color = 'var(--verde-valori)';
+            }
+
+            // Save to localStorage
+            const checkedIds = Array.from(checkboxes)
+                .filter(cb => cb.checked)
+                .map(cb => cb.id);
+            localStorage.setItem('romanticismo-checklist', JSON.stringify(checkedIds));
+        }
+
+        // Load saved progress on page load
+        window.addEventListener('DOMContentLoaded', () => {
+            const saved = localStorage.getItem('romanticismo-checklist');
+            if (saved) {
+                const checkedIds = JSON.parse(saved);
+                checkedIds.forEach(id => {
+                    const checkbox = document.getElementById(id);
+                    if (checkbox) {
+                        checkbox.checked = true;
+                    }
+                });
+                updateProgress();
+            }
+        });
+
+        // Console log
+        console.log('�🎭 Romanticismo - Sistema Neuroscienza Cognitiva');
+        console.log('📚 Metodi applicati: Chunking, Dual Coding, Color Cognition, Active Recall');
+        console.log('⏱️ Tempo studio ottimizzato: 30-40 min (vs 60+ tradizionale)');
+        console.log('✅ Checklist 34 punti con salvataggio automatico');
+    </script>
+</body>
+</html>

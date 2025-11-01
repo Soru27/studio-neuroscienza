@@ -1,0 +1,2416 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>01-immobilizzazioni-materiali.md</title>
+<meta http-equiv="Content-type" content="text/html;charset=UTF-8">
+
+<style>
+/* https://github.com/microsoft/vscode/blob/master/extensions/markdown-language-features/media/markdown.css */
+/*---------------------------------------------------------------------------------------------
+ *  Copyright (c) Microsoft Corporation. All rights reserved.
+ *  Licensed under the MIT License. See License.txt in the project root for license information.
+ *--------------------------------------------------------------------------------------------*/
+
+body {
+	font-family: var(--vscode-markdown-font-family, -apple-system, BlinkMacSystemFont, "Segoe WPC", "Segoe UI", "Ubuntu", "Droid Sans", sans-serif);
+	font-size: var(--vscode-markdown-font-size, 14px);
+	padding: 0 26px;
+	line-height: var(--vscode-markdown-line-height, 22px);
+	word-wrap: break-word;
+}
+
+#code-csp-warning {
+	position: fixed;
+	top: 0;
+	right: 0;
+	color: white;
+	margin: 16px;
+	text-align: center;
+	font-size: 12px;
+	font-family: sans-serif;
+	background-color:#444444;
+	cursor: pointer;
+	padding: 6px;
+	box-shadow: 1px 1px 1px rgba(0,0,0,.25);
+}
+
+#code-csp-warning:hover {
+	text-decoration: none;
+	background-color:#007acc;
+	box-shadow: 2px 2px 2px rgba(0,0,0,.25);
+}
+
+body.scrollBeyondLastLine {
+	margin-bottom: calc(100vh - 22px);
+}
+
+body.showEditorSelection .code-line {
+	position: relative;
+}
+
+body.showEditorSelection .code-active-line:before,
+body.showEditorSelection .code-line:hover:before {
+	content: "";
+	display: block;
+	position: absolute;
+	top: 0;
+	left: -12px;
+	height: 100%;
+}
+
+body.showEditorSelection li.code-active-line:before,
+body.showEditorSelection li.code-line:hover:before {
+	left: -30px;
+}
+
+.vscode-light.showEditorSelection .code-active-line:before {
+	border-left: 3px solid rgba(0, 0, 0, 0.15);
+}
+
+.vscode-light.showEditorSelection .code-line:hover:before {
+	border-left: 3px solid rgba(0, 0, 0, 0.40);
+}
+
+.vscode-light.showEditorSelection .code-line .code-line:hover:before {
+	border-left: none;
+}
+
+.vscode-dark.showEditorSelection .code-active-line:before {
+	border-left: 3px solid rgba(255, 255, 255, 0.4);
+}
+
+.vscode-dark.showEditorSelection .code-line:hover:before {
+	border-left: 3px solid rgba(255, 255, 255, 0.60);
+}
+
+.vscode-dark.showEditorSelection .code-line .code-line:hover:before {
+	border-left: none;
+}
+
+.vscode-high-contrast.showEditorSelection .code-active-line:before {
+	border-left: 3px solid rgba(255, 160, 0, 0.7);
+}
+
+.vscode-high-contrast.showEditorSelection .code-line:hover:before {
+	border-left: 3px solid rgba(255, 160, 0, 1);
+}
+
+.vscode-high-contrast.showEditorSelection .code-line .code-line:hover:before {
+	border-left: none;
+}
+
+img {
+	max-width: 100%;
+	max-height: 100%;
+}
+
+a {
+	text-decoration: none;
+}
+
+a:hover {
+	text-decoration: underline;
+}
+
+a:focus,
+input:focus,
+select:focus,
+textarea:focus {
+	outline: 1px solid -webkit-focus-ring-color;
+	outline-offset: -1px;
+}
+
+hr {
+	border: 0;
+	height: 2px;
+	border-bottom: 2px solid;
+}
+
+h1 {
+	padding-bottom: 0.3em;
+	line-height: 1.2;
+	border-bottom-width: 1px;
+	border-bottom-style: solid;
+}
+
+h1, h2, h3 {
+	font-weight: normal;
+}
+
+table {
+	border-collapse: collapse;
+}
+
+table > thead > tr > th {
+	text-align: left;
+	border-bottom: 1px solid;
+}
+
+table > thead > tr > th,
+table > thead > tr > td,
+table > tbody > tr > th,
+table > tbody > tr > td {
+	padding: 5px 10px;
+}
+
+table > tbody > tr + tr > td {
+	border-top: 1px solid;
+}
+
+blockquote {
+	margin: 0 7px 0 5px;
+	padding: 0 16px 0 10px;
+	border-left-width: 5px;
+	border-left-style: solid;
+}
+
+code {
+	font-family: Menlo, Monaco, Consolas, "Droid Sans Mono", "Courier New", monospace, "Droid Sans Fallback";
+	font-size: 1em;
+	line-height: 1.357em;
+}
+
+body.wordWrap pre {
+	white-space: pre-wrap;
+}
+
+pre:not(.hljs),
+pre.hljs code > div {
+	padding: 16px;
+	border-radius: 3px;
+	overflow: auto;
+}
+
+pre code {
+	color: var(--vscode-editor-foreground);
+	tab-size: 4;
+}
+
+/** Theming */
+
+.vscode-light pre {
+	background-color: rgba(220, 220, 220, 0.4);
+}
+
+.vscode-dark pre {
+	background-color: rgba(10, 10, 10, 0.4);
+}
+
+.vscode-high-contrast pre {
+	background-color: rgb(0, 0, 0);
+}
+
+.vscode-high-contrast h1 {
+	border-color: rgb(0, 0, 0);
+}
+
+.vscode-light table > thead > tr > th {
+	border-color: rgba(0, 0, 0, 0.69);
+}
+
+.vscode-dark table > thead > tr > th {
+	border-color: rgba(255, 255, 255, 0.69);
+}
+
+.vscode-light h1,
+.vscode-light hr,
+.vscode-light table > tbody > tr + tr > td {
+	border-color: rgba(0, 0, 0, 0.18);
+}
+
+.vscode-dark h1,
+.vscode-dark hr,
+.vscode-dark table > tbody > tr + tr > td {
+	border-color: rgba(255, 255, 255, 0.18);
+}
+
+</style>
+
+<style>
+/* Tomorrow Theme */
+/* http://jmblog.github.com/color-themes-for-google-code-highlightjs */
+/* Original theme - https://github.com/chriskempson/tomorrow-theme */
+
+/* Tomorrow Comment */
+.hljs-comment,
+.hljs-quote {
+	color: #8e908c;
+}
+
+/* Tomorrow Red */
+.hljs-variable,
+.hljs-template-variable,
+.hljs-tag,
+.hljs-name,
+.hljs-selector-id,
+.hljs-selector-class,
+.hljs-regexp,
+.hljs-deletion {
+	color: #c82829;
+}
+
+/* Tomorrow Orange */
+.hljs-number,
+.hljs-built_in,
+.hljs-builtin-name,
+.hljs-literal,
+.hljs-type,
+.hljs-params,
+.hljs-meta,
+.hljs-link {
+	color: #f5871f;
+}
+
+/* Tomorrow Yellow */
+.hljs-attribute {
+	color: #eab700;
+}
+
+/* Tomorrow Green */
+.hljs-string,
+.hljs-symbol,
+.hljs-bullet,
+.hljs-addition {
+	color: #718c00;
+}
+
+/* Tomorrow Blue */
+.hljs-title,
+.hljs-section {
+	color: #4271ae;
+}
+
+/* Tomorrow Purple */
+.hljs-keyword,
+.hljs-selector-tag {
+	color: #8959a8;
+}
+
+.hljs {
+	display: block;
+	overflow-x: auto;
+	color: #4d4d4c;
+	padding: 0.5em;
+}
+
+.hljs-emphasis {
+	font-style: italic;
+}
+
+.hljs-strong {
+	font-weight: bold;
+}
+</style>
+
+<style>
+/*
+ * Markdown PDF CSS
+ */
+
+ body {
+	font-family: -apple-system, BlinkMacSystemFont, "Segoe WPC", "Segoe UI", "Ubuntu", "Droid Sans", sans-serif, "Meiryo";
+	padding: 0 12px;
+}
+
+pre {
+	background-color: #f8f8f8;
+	border: 1px solid #cccccc;
+	border-radius: 3px;
+	overflow-x: auto;
+	white-space: pre-wrap;
+	overflow-wrap: break-word;
+}
+
+pre:not(.hljs) {
+	padding: 23px;
+	line-height: 19px;
+}
+
+blockquote {
+	background: rgba(127, 127, 127, 0.1);
+	border-color: rgba(0, 122, 204, 0.5);
+}
+
+.emoji {
+	height: 1.4em;
+}
+
+code {
+	font-size: 14px;
+	line-height: 19px;
+}
+
+/* for inline code */
+:not(pre):not(.hljs) > code {
+	color: #C9AE75; /* Change the old color so it seems less like an error */
+	font-size: inherit;
+}
+
+/* Page Break : use <div class="page"/> to insert page break
+-------------------------------------------------------- */
+.page {
+	page-break-after: always;
+}
+
+</style>
+
+<style>
+/* ========================================
+   🎨 NPI-LEARNING DESIGN SYSTEM
+   ======================================== */
+:root{
+  --bg: #0b0c10; --fg:#eceff4; --muted:#9aa4b2; --card:#111318; --border:#23262e;
+  --blue:#4da3ff; --red:#ff5964; --green:#3ad29f; --yellow:#ffd166;
+  --shadow: 0 6px 18px rgba(0,0,0,.25);
+  --radius:16px; --radius-sm:12px; --pad:16px; --gap:14px;
+  --font: Inter, system-ui, Segoe UI, Roboto, Ubuntu, Arial, sans-serif;
+}
+@media (prefers-color-scheme: light){
+  :root{
+    --bg:#f7f8fb; --fg:#0f172a; --muted:#475569; --card:#ffffff; --border:#e5e7eb;
+    --blue:#2563eb; --red:#ef4444; --green:#10b981; --yellow:#f59e0b;
+  }
+}
+html,body{background:var(--bg); color:var(--fg); font-family:var(--font);}
+.container{max-width:1100px; margin:32px auto; padding:0 16px;}
+.grid{display:grid; gap:var(--gap);}
+.grid-2{grid-template-columns: 1.2fr .8fr;}
+@media (max-width:960px){ .grid-2{grid-template-columns:1fr;} }
+
+.card{
+  background:var(--card);
+  border:1px solid var(--border);
+  border-radius:var(--radius);
+  padding:var(--pad);
+  box-shadow:var(--shadow);
+  margin-bottom: 18px;
+}
+.card h2, .card h3{margin-top:0}
+
+.badge{
+  display:inline-flex;
+  align-items:center;
+  gap:6px;
+  font-weight:600;
+  font-size:.85rem;
+  padding:6px 10px;
+  border-radius:999px;
+  border:1px solid var(--border);
+  background:linear-gradient(180deg, rgba(255,255,255,.04), transparent);
+}
+.b-blue{color:var(--blue); border-color:color-mix(in oklab, var(--blue), #000 70%);}
+.b-red{color:var(--red); border-color:color-mix(in oklab, var(--red), #000 70%);}
+.b-green{color:var(--green); border-color:color-mix(in oklab, var(--green), #000 70%);}
+.b-yellow{color:var(--yellow); border-color:color-mix(in oklab, var(--yellow), #000 70%);}
+
+.callout{
+  border-left:6px solid var(--border);
+  padding:14px 16px;
+  border-radius:12px;
+  background:linear-gradient(180deg, rgba(255,255,255,.03), transparent);
+  margin: 12px 0;
+}
+.co-blue{border-left-color:var(--blue)}
+.co-red{border-left-color:var(--red)}
+.co-green{border-left-color:var(--green)}
+.co-yellow{border-left-color:var(--yellow)}
+
+.kbd{
+  font:600 .85rem ui-monospace, SFMono-Regular, Menlo, monospace;
+  background:var(--border);
+  padding:2px 6px;
+  border-radius:6px;
+  border:1px solid color-mix(in oklab, var(--border), #000 35%);
+}
+
+.progress{
+  height:10px;
+  background:color-mix(in oklab, var(--border), #000 20%);
+  border-radius:999px;
+  overflow:hidden;
+}
+.progress > i{
+  display:block;
+  height:100%;
+  width:0%;
+  background:linear-gradient(90deg, var(--green), var(--blue));
+  transition:width .4s ease;
+}
+
+.separator{height:1px; background:var(--border); margin:18px 0;}
+
+.recall .hidden-answer{filter: blur(8px); transition:filter .2s; user-select: none;}
+.recall.reveal .hidden-answer{filter:none; user-select: auto;}
+
+.table{width:100%; border-collapse:separate; border-spacing:0 8px}
+.table th{font-weight:600; color:var(--muted); text-align:left; font-size:.9rem;}
+.table td,.table th{padding:10px 12px}
+.table tr{background:var(--card); border:1px solid var(--border); outline:1px solid var(--border)}
+.table tr td:first-child, .table tr th:first-child{border-top-left-radius:12px; border-bottom-left-radius:12px}
+.table tr td:last-child, .table tr th:last-child{border-top-right-radius:12px; border-bottom-right-radius:12px}
+
+.btn{
+  display:inline-flex;
+  align-items:center;
+  gap:10px;
+  padding:10px 14px;
+  border-radius:12px;
+  border:1px solid var(--border);
+  background:var(--card);
+  color:var(--fg);
+  cursor:pointer;
+  font-family: var(--font);
+}
+.btn:hover{border-color:color-mix(in oklab, var(--border), var(--fg) 30%);}
+
+.sticky{position:sticky; top:18px; align-self: start;}
+.small{font-size:.9rem; color:var(--muted)}
+
+input[type="text"], input[type="range"]{
+  width: 100%;
+  padding: 8px;
+  border-radius: 8px;
+  border: 1px solid var(--border);
+  background: var(--bg);
+  color: var(--fg);
+  font-family: var(--font);
+}
+
+label{
+  display: block;
+  font-size: 0.9rem;
+  color: var(--muted);
+  margin-bottom: 6px;
+}
+
+blockquote{
+  border-left: 4px solid var(--blue);
+  padding-left: 16px;
+  margin-left: 0;
+  background: linear-gradient(90deg, rgba(77, 163, 255, 0.1), transparent);
+  border-radius: 8px;
+  padding: 12px 16px;
+}
+
+details{
+  background: var(--card);
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  padding: 12px;
+  margin: 12px 0;
+}
+
+details summary{
+  cursor: pointer;
+  font-weight: 600;
+  padding: 8px;
+  border-radius: 8px;
+}
+
+details summary:hover{
+  background: color-mix(in oklab, var(--border), transparent 50%);
+}
+</style>
+
+<script src="https://unpkg.com/mermaid/dist/mermaid.min.js"></script>
+</head>
+<body>
+  <script>
+    mermaid.initialize({
+      startOnLoad: true,
+      theme: document.body.classList.contains('vscode-dark') || document.body.classList.contains('vscode-high-contrast')
+          ? 'dark'
+          : 'default'
+    });
+  </script>
+
+<style>
+.top-header {
+  position: sticky;
+  top: 0;
+  z-index: 1000;
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  color: #ffffff;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+  padding: 12px 20px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 12px;
+}
+.top-header .course-info {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  flex-wrap: wrap;
+}
+.top-header .home-icon {
+  font-size: 1.5rem;
+  cursor: pointer;
+  transition: transform 0.2s;
+  text-decoration: none;
+  color: #ffffff;
+}
+.top-header .home-icon:hover {
+  transform: scale(1.1);
+}
+.top-header .course-title {
+  font-weight: 700;
+  font-size: 1rem;
+  letter-spacing: 0.5px;
+}
+.top-header .course-meta {
+  font-size: 0.85rem;
+  opacity: 0.9;
+  display: flex;
+  gap: 8px;
+  flex-wrap: wrap;
+}
+.top-header .course-meta span {
+  background: rgba(255,255,255,0.2);
+  padding: 4px 10px;
+  border-radius: 12px;
+}
+.nav-horizontal {
+  display: flex;
+  gap: 8px;
+  flex-wrap: wrap;
+  align-items: center;
+}
+.nav-horizontal a {
+  background: rgba(255,255,255,0.15);
+  color: #ffffff;
+  padding: 8px 14px;
+  border-radius: 8px;
+  text-decoration: none;
+  font-size: 0.9rem;
+  font-weight: 500;
+  transition: all 0.2s;
+  border: 1px solid rgba(255,255,255,0.2);
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+}
+.nav-horizontal a:hover {
+  background: rgba(255,255,255,0.25);
+  border-color: rgba(255,255,255,0.4);
+  transform: translateY(-2px);
+}
+.nav-horizontal a.active {
+  background: rgba(255,255,255,0.95);
+  color: #667eea;
+  font-weight: 700;
+  border-color: rgba(255,255,255,0.5);
+}
+@media (max-width: 768px) {
+  .top-header {
+    padding: 10px 15px;
+  }
+  .top-header .course-title {
+    font-size: 0.9rem;
+  }
+  .top-header .course-meta {
+    font-size: 0.75rem;
+  }
+  .nav-horizontal a {
+    font-size: 0.8rem;
+    padding: 6px 10px;
+  }
+}
+</style>
+
+<header class="top-header">
+  <div class="course-info">
+    <a href="../index.html" class="home-icon" title="Home - Tutte le Materie">🏠</a>
+    <div>
+      <div class="course-title">📚 ECONOMIA AZIENDALE</div>
+      <div class="course-meta">
+        <span>A.S. 2025/2026</span>
+        <span>AFM Quinta Serale</span>
+      </div>
+    </div>
+  </div>
+  <nav class="nav-horizontal">
+    <a href="01-immobilizzazioni-materiali.html" class="active">🔵 Immobilizzazioni</a>
+    <a href="02-leasing-costruzioni.html">🔵 Leasing</a>
+    <a href="03-scritture-operative.html">🟡 Operative</a>
+    <a href="04-assestamenti-rettifiche.html">🟢 Assestamenti</a>
+    <a href="05-riepilogo-generale.html">📊 Riepilogo</a>
+    <a href="simulazioni/dashboard-simulazioni.html">🎯 Simulazioni</a>
+  </nav>
+</header>
+
+<div class="container">
+
+<h1 id="%F0%9F%A7%B1-immobilizzazioni-materiali">🧱 IMMOBILIZZAZIONI MATERIALI</h1>
+<blockquote>
+<p><strong>Tempo di studio consigliato:</strong> 40 minuti | <strong>Revisione:</strong> 10 minuti | <strong>Active Recall:</strong> 15 minuti</p>
+</blockquote>
+
+<!-- Widget NPI-Learning -->
+<div class="card" id="npi-widget" aria-live="polite">
+  <div style="display:flex; justify-content:space-between; align-items:center; gap:10px; flex-wrap:wrap">
+    <div class="badge b-blue">🧠 NPI-Learning</div>
+    <div class="small">Compila dopo ogni <b>chunk</b> (10–15′)</div>
+  </div>
+  <div class="separator"></div>
+  <div class="grid" style="grid-template-columns:1fr 1fr 1fr; gap:18px">
+    <label>Ritenzione R(t) %
+      <input id="npi-r" type="range" min="0" max="100" step="5" value="0">
+      <span id="npi-r-val" class="small" style="display:block; margin-top:4px">0%</span>
+    </label>
+    <label>Energia E(t) 1–5
+      <input id="npi-e" type="range" min="1" max="5" step="1" value="3">
+      <span id="npi-e-val" class="small" style="display:block; margin-top:4px">3/5</span>
+    </label>
+    <label>Coerenza C(t) 1–5
+      <input id="npi-c" type="range" min="1" max="5" step="1" value="3">
+      <span id="npi-c-val" class="small" style="display:block; margin-top:4px">3/5</span>
+    </label>
+  </div>
+  <div class="separator"></div>
+  <div class="grid" style="grid-template-columns:1fr auto; align-items:center">
+    <div class="progress"><i id="npi-bar"></i></div>
+    <div id="npi-chip" class="badge">Stato: —</div>
+  </div>
+  <div class="small" id="npi-tip" style="margin-top:8px"></div>
+</div>
+
+<script>
+(function(){
+  const id = (sel)=>document.querySelector(sel);
+  const r = id('#npi-r'), e = id('#npi-e'), c = id('#npi-c');
+  const rVal = id('#npi-r-val'), eVal = id('#npi-e-val'), cVal = id('#npi-c-val');
+  const bar = id('#npi-bar'), chip = id('#npi-chip'), tip = id('#npi-tip');
+  const KEY='npi-immobilizzazioni';
+  function load(){
+    try{ const v = JSON.parse(localStorage.getItem(KEY)||'{}');
+      if(v.r!=null){ r.value=v.r; e.value=v.e; c.value=v.c; }
+    }catch{}
+    update();
+  }
+  function save(){ localStorage.setItem(KEY, JSON.stringify({r:+r.value, e:+e.value, c:+c.value})); }
+  function compute(){
+    const R = +r.value/100, E = +e.value/5, C = +c.value/5;
+    return Math.max(0, Math.min(1, 0.5*R + 0.25*E + 0.25*C));
+  }
+  function label(score){
+    if(score>=0.75) return {txt:'🟢 Flow', tip:'Prosegui. Mantieni ritmo e micro-recall ogni 10′.'};
+    if(score>=0.40) return {txt:'🟡 Ristruttura', tip:'Pausa 5′ + schema visivo + 3 flashcard mirate.'};
+    return {txt:'🔴 Ricodifica', tip:'Riparti da esempio 🟢 + definizione 🔵 + procedura 🟡.'};
+  }
+  function update(){
+    const s = compute();
+    bar.style.width = (s*100).toFixed(0)+'%';
+    chip.className = 'badge ' + (s>=0.75?'b-green':(s>=0.4?'b-yellow':'b-red'));
+    chip.textContent = 'Stato: ' + label(s).txt + ' ('+(s*100|0)+'%)';
+    tip.textContent = label(s).tip;
+    rVal.textContent = r.value + '%';
+    eVal.textContent = e.value + '/5';
+    cVal.textContent = c.value + '/5';
+    save();
+  }
+  [r,e,c].forEach(x=>x.addEventListener('input', update));
+  load();
+})();
+</script>
+
+<!-- Active-Recall Toggle -->
+<div class="card" style="display:flex; align-items:center; justify-content:space-between; gap:10px; flex-wrap:wrap;">
+  <div>
+    <div class="badge b-yellow">🎯 Active-Recall Mode</div>
+    <div class="small" style="margin-top:6px">Premi <span class="kbd">R</span> per mostrare/nascondere le risposte</div>
+  </div>
+  <button id="recall-toggle" class="btn"><span>Mostra risposte</span> <span class="kbd">R</span></button>
+</div>
+
+<script>
+(function(){
+  const root=document.documentElement;
+  const btn=document.getElementById('recall-toggle');
+  function toggle(){
+    root.classList.toggle('reveal');
+    btn.firstElementChild.textContent = root.classList.contains('reveal')?'Nascondi risposte':'Mostra risposte';
+  }
+  btn.addEventListener('click', toggle);
+  document.addEventListener('keydown', (e)=>{
+    if(e.key.toLowerCase()==='r' && !e.ctrlKey && !e.altKey && !e.metaKey) {
+      if(!['INPUT','TEXTAREA'].includes(document.activeElement.tagName)){ toggle(); }
+    }
+  });
+  root.classList.add('recall');
+})();
+</script>
+
+<!-- Obiettivi -->
+<div class="card">
+  <h2 id="%F0%9F%8E%AF-obiettivi-di-apprendimento" style="margin-top:0">🎯 OBIETTIVI DI APPRENDIMENTO</h2>
+  <p>Dopo questo modulo saprai:</p>
+  <ul style="margin:0">
+    <li>✅ Registrare l'acquisto di immobilizzazioni con costi accessori</li>
+    <li>✅ Calcolare ammortamenti ordinari e parziali</li>
+    <li>✅ Gestire vendite con plusvalenze/minusvalenze</li>
+    <li>✅ Eliminare immobilizzazioni danneggiate</li>
+  </ul>
+</div>
+
+<div class="grid grid-2">
+  <main class="grid" style="gap:18px">
+
+<!-- CHUNK 1 -->
+<section class="card">
+  <div style="display:flex; align-items:center; justify-content:space-between; flex-wrap:wrap; gap:12px">
+    <h2 id="%F0%9F%93%A6-chunk-1-acquisto-e-iscrizione-15-min" style="margin:0">📦 CHUNK 1: Acquisto e Iscrizione</h2>
+    <div style="display:flex; gap:8px; align-items:center">
+      <span class="badge b-blue">🔵 Teoria</span>
+      <span class="small">15 min</span>
+    </div>
+  </div>
+  <div class="small" style="margin:6px 0 12px; color:var(--muted)">
+    <b>Obiettivo:</b> Calcolare il Costo Storico e registrare l'acquisto
+  </div>
+<h3 id="%F0%9F%94%B9-definizione">🔹 Definizione</h3>
+<p>Le <strong>immobilizzazioni materiali</strong> sono beni durevoli utilizzati nell'attività produttiva per più anni.</p>
+<p><strong>Classificazione Bilancio:</strong> B II (Immobilizzazioni materiali)</p>
+<ul>
+<li>B II 1: Terreni e fabbricati</li>
+<li>B II 2: Impianti e macchinari ⭐</li>
+<li>B II 3: Attrezzature industriali</li>
+<li>B II 4: Altri beni</li>
+</ul>
+<h3 id="%F0%9F%94%B9-costo-storico--base-di-valutazione">🔹 Costo Storico = Base di Valutazione</h3>
+<pre class="hljs"><code><div>🔵 Formula Fondamentale:
+Valore in Bilancio (VNC) = Costo Storico – Fondo Ammortamento
+</div></code></pre>
+<p><strong>🔵 Costo Storico include (TUTTO ciò che serve per rendere il bene utilizzabile):</strong></p>
+<ul>
+<li>✅ Prezzo d'acquisto</li>
+<li>✅ Trasporto</li>
+<li>✅ Installazione</li>
+<li>✅ Collaudo</li>
+<li>✅ Dazi e imposte non recuperabili</li>
+</ul>
+<p><strong>🔴 NON include:</strong></p>
+<ul>
+<li>❌ IVA (va a credito separato)</li>
+<li>❌ Interessi su finanziamento</li>
+<li>❌ Costi di formazione personale (costo d'esercizio)</li>
+</ul>
+
+<!-- 🃏 FLASHCARDS INTERATTIVE -->
+<div class="card" style="background: linear-gradient(135deg, rgba(156,39,176,0.08), rgba(233,30,99,0.05)); border-left: 4px solid #9c27b0; margin: 20px 0">
+  <div style="display:flex; align-items:center; gap:12px; margin-bottom:16px">
+    <div class="badge" style="background:#9c27b0; color:#fff">🃏 Flashcard Interattive</div>
+    <div class="small" style="color:var(--muted)">Clicca per rivelare · 5 termini chiave</div>
+  </div>
+
+  <p class="small" style="margin-bottom:16px; color:var(--muted)">💡 <strong>Tip:</strong> Prova a ricordare la definizione PRIMA di cliccare!</p>
+
+  <div style="display:grid; gap:12px">
+
+    <!-- Flashcard 1: VNC -->
+    <div class="flashcard-container" onclick="flipFlashcard('fc1')" style="cursor:pointer">
+      <div class="flashcard" id="fc1" style="background:rgba(156,39,176,0.05); border:2px solid rgba(156,39,176,0.3); border-radius:8px; padding:16px; transition:all 0.3s">
+        <div class="flashcard-front">
+          <div style="display:flex; justify-content:space-between; align-items:center">
+            <strong style="font-size:1.1em; color:#9c27b0">VNC</strong>
+            <span class="small" style="color:var(--muted)">🔄 Click per definizione</span>
+          </div>
+        </div>
+        <div class="flashcard-back" style="display:none">
+          <div style="display:flex; justify-content:space-between; align-items:start; margin-bottom:8px">
+            <strong style="color:#9c27b0">Valore Netto Contabile</strong>
+            <span class="small" style="color:var(--muted)">✅ Vista <span id="fc1-count">0</span> volte</span>
+          </div>
+          <p class="small" style="margin:0">Valore residuo del bene in bilancio = <strong>Costo Storico – Fondo Ammortamento</strong>. Rappresenta il valore contabile attuale dell'immobilizzazione.</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- Flashcard 2: Costo Storico -->
+    <div class="flashcard-container" onclick="flipFlashcard('fc2')" style="cursor:pointer">
+      <div class="flashcard" id="fc2" style="background:rgba(156,39,176,0.05); border:2px solid rgba(156,39,176,0.3); border-radius:8px; padding:16px; transition:all 0.3s">
+        <div class="flashcard-front">
+          <div style="display:flex; justify-content:space-between; align-items:center">
+            <strong style="font-size:1.1em; color:#9c27b0">Costo Storico</strong>
+            <span class="small" style="color:var(--muted)">🔄 Click per definizione</span>
+          </div>
+        </div>
+        <div class="flashcard-back" style="display:none">
+          <div style="display:flex; justify-content:space-between; align-items:start; margin-bottom:8px">
+            <strong style="color:#9c27b0">Base di valutazione iniziale</strong>
+            <span class="small" style="color:var(--muted)">✅ Vista <span id="fc2-count">0</span> volte</span>
+          </div>
+          <p class="small" style="margin:0">Prezzo d'acquisto + <strong>tutti i costi accessori</strong> necessari per rendere il bene utilizzabile (trasporto, installazione, collaudo). <strong>NON include l'IVA</strong>.</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- Flashcard 3: Fondo Ammortamento -->
+    <div class="flashcard-container" onclick="flipFlashcard('fc3')" style="cursor:pointer">
+      <div class="flashcard" id="fc3" style="background:rgba(156,39,176,0.05); border:2px solid rgba(156,39,176,0.3); border-radius:8px; padding:16px; transition:all 0.3s">
+        <div class="flashcard-front">
+          <div style="display:flex; justify-content:space-between; align-items:center">
+            <strong style="font-size:1.1em; color:#9c27b0">Fondo Ammortamento</strong>
+            <span class="small" style="color:var(--muted)">🔄 Click per definizione</span>
+          </div>
+        </div>
+        <div class="flashcard-back" style="display:none">
+          <div style="display:flex; justify-content:space-between; align-items:start; margin-bottom:8px">
+            <strong style="color:#9c27b0">Ammortamento accumulato</strong>
+            <span class="small" style="color:var(--muted)">✅ Vista <span id="fc3-count">0</span> volte</span>
+          </div>
+          <p class="small" style="margin:0">Somma di tutte le quote di ammortamento calcolate negli anni. Si accumula nel tempo e <strong>riduce il VNC</strong>. Va in Passivo dello SP come rettifica dell'Attivo.</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- Flashcard 4: Plusvalenza -->
+    <div class="flashcard-container" onclick="flipFlashcard('fc4')" style="cursor:pointer">
+      <div class="flashcard" id="fc4" style="background:rgba(156,39,176,0.05); border:2px solid rgba(156,39,176,0.3); border-radius:8px; padding:16px; transition:all 0.3s">
+        <div class="flashcard-front">
+          <div style="display:flex; justify-content:space-between; align-items:center">
+            <strong style="font-size:1.1em; color:#9c27b0">Plusvalenza</strong>
+            <span class="small" style="color:var(--muted)">🔄 Click per definizione</span>
+          </div>
+        </div>
+        <div class="flashcard-back" style="display:none">
+          <div style="display:flex; justify-content:space-between; align-items:start; margin-bottom:8px">
+            <strong style="color:#9c27b0">Ricavo straordinario (A5)</strong>
+            <span class="small" style="color:var(--muted)">✅ Vista <span id="fc4-count">0</span> volte</span>
+          </div>
+          <p class="small" style="margin:0">Si verifica quando <strong>Prezzo di vendita > VNC</strong>. È un ricavo straordinario che aumenta il risultato d'esercizio. Formula: <strong>Plusvalenza = Prezzo – VNC</strong>.</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- Flashcard 5: Minusvalenza -->
+    <div class="flashcard-container" onclick="flipFlashcard('fc5')" style="cursor:pointer">
+      <div class="flashcard" id="fc5" style="background:rgba(156,39,176,0.05); border:2px solid rgba(156,39,176,0.3); border-radius:8px; padding:16px; transition:all 0.3s">
+        <div class="flashcard-front">
+          <div style="display:flex; justify-content:space-between; align-items:center">
+            <strong style="font-size:1.1em; color:#9c27b0">Minusvalenza</strong>
+            <span class="small" style="color:var(--muted)">🔄 Click per definizione</span>
+          </div>
+        </div>
+        <div class="flashcard-back" style="display:none">
+          <div style="display:flex; justify-content:space-between; align-items:start; margin-bottom:8px">
+            <strong style="color:#9c27b0">Costo straordinario (E21)</strong>
+            <span class="small" style="color:var(--muted)">✅ Vista <span id="fc5-count">0</span> volte</span>
+          </div>
+          <p class="small" style="margin:0">Si verifica quando <strong>Prezzo di vendita < VNC</strong>. È un costo straordinario che riduce il risultato d'esercizio. Formula: <strong>Minusvalenza = VNC – Prezzo</strong>.</p>
+        </div>
+      </div>
+    </div>
+
+  </div>
+
+  <div id="flashcard-stats" class="small" style="margin-top:16px; padding:12px; background:rgba(156,39,176,0.08); border-radius:6px; text-align:center"></div>
+</div>
+
+<script>
+(function() {
+  const flashcards = ['fc1', 'fc2', 'fc3', 'fc4', 'fc5'];
+  const storageKey = 'flashcards-immobilizzazioni';
+
+  // Carica stats da localStorage
+  let stats = JSON.parse(localStorage.getItem(storageKey) || '{}');
+  flashcards.forEach(id => {
+    if (!stats[id]) stats[id] = { views: 0, lastView: null };
+    const countSpan = document.getElementById(id + '-count');
+    if (countSpan) countSpan.textContent = stats[id].views;
+  });
+
+  // Funzione flip
+  window.flipFlashcard = function(id) {
+    const card = document.getElementById(id);
+    const front = card.querySelector('.flashcard-front');
+    const back = card.querySelector('.flashcard-back');
+
+    if (back.style.display === 'none') {
+      // Mostra back
+      front.style.display = 'none';
+      back.style.display = 'block';
+      card.style.background = 'rgba(156,39,176,0.12)';
+      card.style.borderColor = '#9c27b0';
+
+      // Incrementa views
+      stats[id].views++;
+      stats[id].lastView = new Date().toISOString();
+      document.getElementById(id + '-count').textContent = stats[id].views;
+      localStorage.setItem(storageKey, JSON.stringify(stats));
+
+      updateFlashcardStats();
+    } else {
+      // Nascondi back
+      front.style.display = 'block';
+      back.style.display = 'none';
+      card.style.background = 'rgba(156,39,176,0.05)';
+      card.style.borderColor = 'rgba(156,39,176,0.3)';
+    }
+  };
+
+  function updateFlashcardStats() {
+    const totalViews = flashcards.reduce((sum, id) => sum + (stats[id].views || 0), 0);
+    const mastered = flashcards.filter(id => stats[id].views >= 5).length;
+    const avgViews = totalViews / flashcards.length;
+
+    const statsDiv = document.getElementById('flashcard-stats');
+    statsDiv.innerHTML = `
+      📊 <strong>Statistiche:</strong> ${totalViews} visualizzazioni totali ·
+      Media ${avgViews.toFixed(1)} per card ·
+      ${mastered}/5 masterate (5+ viste)
+      ${mastered === 5 ? ' · 🏆 <strong>Tutte masterate! +100 punti bonus</strong>' : ''}
+    `;
+  }
+
+  updateFlashcardStats();
+})();
+</script>
+
+<h3 id="%F0%9F%92%A1-esempio-pratico">💡 Esempio Pratico</h3>
+<p><strong>Situazione:</strong> Acquisto macchinario € 50.000 + trasporto € 2.000 + collaudo € 1.500 + IVA 22%</p>
+<table>
+<thead>
+<tr>
+<th>Fase</th>
+<th>Calcolo</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Prezzo base</td>
+<td>€ 50.000</td>
+</tr>
+<tr>
+<td>+ Trasporto</td>
+<td>€ 2.000</td>
+</tr>
+<tr>
+<td>+ Collaudo</td>
+<td>€ 1.500</td>
+</tr>
+<tr>
+<td><strong>= Costo Storico</strong></td>
+<td><strong>€ 53.500</strong></td>
+</tr>
+<tr>
+<td>IVA 22%</td>
+<td>€ 11.770</td>
+</tr>
+<tr>
+<td><strong>Totale da pagare</strong></td>
+<td><strong>€ 65.270</strong></td>
+</tr>
+</tbody>
+</table>
+<h3 id="%F0%9F%93%9D-scrittura-contabile">📝 Scrittura Contabile</h3>
+<pre class="hljs"><code><div>DARE: Impianti e macchinari         € 53.500
+DARE: IVA a credito                 € 11.770
+    AVERE: Debiti v/fornitori                € 65.270
+</div></code></pre>
+<p><strong>Effetto su SP:</strong></p>
+<ul>
+<li>⬆️ Attivo fisso (Impianti)</li>
+<li>⬆️ Attivo circolante (IVA credito)</li>
+<li>⬆️ Passivo (Debiti)</li>
+</ul>
+<h3 id="%F0%9F%A7%A0-mappa-mentale">🧠 Mappa Mentale</h3>
+<pre class="hljs"><code><div>ACQUISTO IMMOBILIZZAZIONE
+    ├─ Prezzo
+    ├─ + Costi accessori
+    ├─ = COSTO STORICO (Dare)
+    ├─ + IVA a credito (Dare)
+    └─ = Debito v/fornitori (Avere)
+</div></code></pre>
+
+  <div class="separator"></div>
+
+  <!-- 🎯 MINI-QUIZ #1: Calcolo Costo Storico -->
+  <div class="card" style="background: linear-gradient(135deg, rgba(255,215,0,0.08), rgba(255,165,0,0.05)); border-left: 4px solid var(--yellow); margin: 20px 0">
+    <div style="display:flex; align-items:center; gap:12px; margin-bottom:16px">
+      <div class="badge b-yellow">🎯 Mini-Quiz #1</div>
+      <div class="small" style="color:var(--muted)">Test pratico · 2 min</div>
+    </div>
+
+    <p><strong>Calcola il Costo Storico:</strong></p>
+    <p class="small" style="color:var(--muted); margin-bottom:12px">Acquisto tornio CNC: prezzo € 80.000 + trasporto € 3.500 + installazione € 2.500 + IVA 22%</p>
+
+    <div style="display:grid; grid-template-columns:auto 1fr auto; gap:12px; align-items:center; margin-bottom:12px">
+      <span style="font-size:1.1em">💶 Costo Storico =</span>
+      <input type="number" id="quiz1-input" placeholder="inserisci importo" style="padding:10px; border-radius:6px; border:2px solid var(--border); background:var(--card); color:var(--fg); font-size:1.1em; text-align:center">
+      <button onclick="validateQuiz1()" style="padding:10px 20px; background:var(--yellow); color:#000; border:none; border-radius:6px; font-weight:600; cursor:pointer">Verifica</button>
+    </div>
+
+    <div id="quiz1-feedback" style="margin-top:12px"></div>
+    <div id="quiz1-stats" class="small" style="margin-top:8px; color:var(--muted)"></div>
+  </div>
+
+  <script>
+  function validateQuiz1() {
+    const input = document.getElementById('quiz1-input');
+    const feedback = document.getElementById('quiz1-feedback');
+    const statsDiv = document.getElementById('quiz1-stats');
+    const userAnswer = parseFloat(input.value);
+    const correctAnswer = 86000; // 80000 + 3500 + 2500
+
+    // Recupera stats da localStorage
+    let stats = JSON.parse(localStorage.getItem('quiz-stats-immobilizzazioni') || '{}');
+    if (!stats.quiz1) stats.quiz1 = { attempts: 0, correct: 0, firstTryCorrect: false };
+    stats.quiz1.attempts++;
+
+    if (Math.abs(userAnswer - correctAnswer) < 0.01) {
+      // Risposta corretta ✅
+      stats.quiz1.correct++;
+      if (stats.quiz1.attempts === 1) stats.quiz1.firstTryCorrect = true;
+
+      feedback.innerHTML = `
+        <div style="padding:12px; background:rgba(46,204,113,0.15); border-left:4px solid var(--green); border-radius:6px">
+          <div style="font-size:1.2em; margin-bottom:8px">✅ <strong>Esatto!</strong></div>
+          <p class="small" style="margin:4px 0">€ 80.000 + € 3.500 + € 2.500 = <strong>€ 86.000</strong></p>
+          <p class="small" style="margin:4px 0; color:var(--muted)">⚠️ L'IVA (€ 18.920) NON entra nel Costo Storico → va a credito separato</p>
+          ${stats.quiz1.attempts === 1 ? '<div style="margin-top:8px; color:var(--yellow)">🏆 Perfetto al primo tentativo! +10 punti</div>' : ''}
+        </div>
+      `;
+      input.disabled = true;
+      input.style.borderColor = 'var(--green)';
+    } else {
+      // Risposta errata ❌
+      feedback.innerHTML = `
+        <div style="padding:12px; background:rgba(231,76,60,0.15); border-left:4px solid var(--red); border-radius:6px">
+          <div style="font-size:1.1em; margin-bottom:8px">❌ <strong>Non corretto</strong></div>
+          <p class="small" style="margin:4px 0">Ricorda: <strong>Costo Storico = Prezzo + Costi accessori</strong></p>
+          <p class="small" style="margin:4px 0; color:var(--muted)">Formula: € 80.000 + € 3.500 + € 2.500 = ?</p>
+          <p class="small" style="margin:8px 0; color:var(--yellow)">💡 Hint: L'IVA NON si include!</p>
+        </div>
+      `;
+      input.focus();
+    }
+
+    // Salva stats e mostra statistiche
+    localStorage.setItem('quiz-stats-immobilizzazioni', JSON.stringify(stats));
+    const percentage = ((stats.quiz1.correct / stats.quiz1.attempts) * 100).toFixed(0);
+    statsDiv.innerHTML = `📊 Tentativi: ${stats.quiz1.attempts} · Corretti: ${stats.quiz1.correct} · Precisione: ${percentage}%`;
+  }
+
+  // Carica stats all'avvio
+  (function() {
+    const stats = JSON.parse(localStorage.getItem('quiz-stats-immobilizzazioni') || '{}');
+    if (stats.quiz1 && stats.quiz1.correct > 0) {
+      const statsDiv = document.getElementById('quiz1-stats');
+      const percentage = ((stats.quiz1.correct / stats.quiz1.attempts) * 100).toFixed(0);
+      statsDiv.innerHTML = `📊 Tentativi: ${stats.quiz1.attempts} · Corretti: ${stats.quiz1.correct} · Precisione: ${percentage}%`;
+    }
+  })();
+  </script>
+
+  <!-- 🎯 SELF-ASSESSMENT CHUNK 1 -->
+  <div class="card" style="background: linear-gradient(135deg, rgba(66,135,245,0.08), rgba(46,204,113,0.05)); border-left: 4px solid var(--blue); margin: 20px 0">
+    <div style="display:flex; align-items:center; gap:12px; margin-bottom:16px">
+      <div class="badge b-blue">🧠 Auto-Valutazione</div>
+      <div class="small" style="color:var(--muted)">CHUNK 1 · 1 min</div>
+    </div>
+
+    <p style="margin-bottom:16px"><strong>Come ti senti dopo aver studiato questo CHUNK?</strong></p>
+
+    <div style="display:grid; gap:16px">
+      <!-- Domanda 1 -->
+      <div>
+        <label class="small" style="display:block; margin-bottom:8px; color:var(--muted)">💭 Quanto ricordi dei concetti? (1=Poco, 5=Tutto)</label>
+        <div style="display:flex; gap:12px; align-items:center">
+          <span class="small">1</span>
+          <input type="range" id="sa1-ricordo" min="1" max="5" value="3" style="flex:1; accent-color:var(--blue)">
+          <span class="small">5</span>
+          <span id="sa1-ricordo-val" style="font-weight:700; color:var(--blue); min-width:30px; text-align:center">3</span>
+        </div>
+      </div>
+
+      <!-- Domanda 2 -->
+      <div>
+        <label class="small" style="display:block; margin-bottom:8px; color:var(--muted)">💪 Quanto ti senti sicuro? (1=Insicuro, 5=Sicurissimo)</label>
+        <div style="display:flex; gap:12px; align-items:center">
+          <span class="small">1</span>
+          <input type="range" id="sa1-sicurezza" min="1" max="5" value="3" style="flex:1; accent-color:var(--green)">
+          <span class="small">5</span>
+          <span id="sa1-sicurezza-val" style="font-weight:700; color:var(--green); min-width:30px; text-align:center">3</span>
+        </div>
+      </div>
+
+      <!-- Domanda 3 -->
+      <div>
+        <label class="small" style="display:block; margin-bottom:8px; color:var(--muted)">🎯 Quanto puoi applicarlo in un esercizio? (1=Per niente, 5=Perfettamente)</label>
+        <div style="display:flex; gap:12px; align-items:center">
+          <span class="small">1</span>
+          <input type="range" id="sa1-applicazione" min="1" max="5" value="3" style="flex:1; accent-color:var(--yellow)">
+          <span class="small">5</span>
+          <span id="sa1-applicazione-val" style="font-weight:700; color:var(--yellow); min-width:30px; text-align:center">3</span>
+        </div>
+      </div>
+    </div>
+
+    <button onclick="saveSelfAssessment1()" style="width:100%; padding:12px; margin-top:16px; background:var(--blue); color:#fff; border:none; border-radius:6px; font-weight:600; cursor:pointer">💾 Salva Valutazione</button>
+
+    <div id="sa1-feedback" style="margin-top:12px"></div>
+    <div id="sa1-trend" class="small" style="margin-top:8px; color:var(--muted)"></div>
+  </div>
+
+  <script>
+  // Aggiorna valori real-time
+  ['ricordo', 'sicurezza', 'applicazione'].forEach(tipo => {
+    const slider = document.getElementById('sa1-' + tipo);
+    const label = document.getElementById('sa1-' + tipo + '-val');
+    slider.addEventListener('input', () => { label.textContent = slider.value; });
+  });
+
+  function saveSelfAssessment1() {
+    const ricordo = parseInt(document.getElementById('sa1-ricordo').value);
+    const sicurezza = parseInt(document.getElementById('sa1-sicurezza').value);
+    const applicazione = parseInt(document.getElementById('sa1-applicazione').value);
+    const media = ((ricordo + sicurezza + applicazione) / 3).toFixed(1);
+
+    const feedback = document.getElementById('sa1-feedback');
+    const trendDiv = document.getElementById('sa1-trend');
+
+    // Salva in localStorage
+    const key = 'self-assessment-immobilizzazioni-chunk1';
+    let history = JSON.parse(localStorage.getItem(key) || '[]');
+    const now = new Date().toISOString().split('T')[0]; // YYYY-MM-DD
+    history.push({ date: now, ricordo, sicurezza, applicazione, media: parseFloat(media) });
+    localStorage.setItem(key, JSON.stringify(history));
+
+    // Feedback basato su media
+    let icon = '✅';
+    let color = 'var(--green)';
+    let message = 'Ottimo! Continua così!';
+    let suggestion = '';
+
+    if (media < 3) {
+      icon = '⚠️';
+      color = 'var(--red)';
+      message = 'Attenzione: questo CHUNK richiede revisione';
+      suggestion = '<p class="small" style="margin-top:8px; color:var(--yellow)">💡 <strong>Suggerimento:</strong> Rileggi la sezione, rifai il mini-quiz, poi rivaluta tra 1 giorno</p>';
+    } else if (media < 4) {
+      icon = '👍';
+      color = 'var(--yellow)';
+      message = 'Buono! Potresti migliorare con pratica extra';
+      suggestion = '<p class="small" style="margin-top:8px; color:var(--yellow)">💡 <strong>Suggerimento:</strong> Fai un paio di esercizi aggiuntivi per consolidare</p>';
+    }
+
+    feedback.innerHTML = `
+      <div style="padding:12px; background:rgba(66,135,245,0.1); border-left:4px solid ${color}; border-radius:6px">
+        <div style="font-size:1.2em; margin-bottom:8px">${icon} <strong>Media: ${media}/5</strong></div>
+        <p class="small" style="margin:4px 0">${message}</p>
+        ${suggestion}
+      </div>
+    `;
+
+    // Mostra trend se ci sono valutazioni precedenti
+    if (history.length > 1) {
+      const prev = history[history.length - 2];
+      const diff = (parseFloat(media) - prev.media).toFixed(1);
+      const arrow = diff > 0 ? '📈' : (diff < 0 ? '📉' : '➡️');
+      const sign = diff > 0 ? '+' : '';
+      trendDiv.innerHTML = `${arrow} Trend: Ultima volta ${prev.media}/5 → Oggi ${media}/5 (${sign}${diff})`;
+    } else {
+      trendDiv.innerHTML = '📊 Prima valutazione salvata! Rivaluta tra qualche giorno per vedere il trend';
+    }
+  }
+
+  // Carica ultima valutazione all'avvio
+  (function() {
+    const key = 'self-assessment-immobilizzazioni-chunk1';
+    const history = JSON.parse(localStorage.getItem(key) || '[]');
+    if (history.length > 0) {
+      const last = history[history.length - 1];
+      document.getElementById('sa1-ricordo').value = last.ricordo;
+      document.getElementById('sa1-sicurezza').value = last.sicurezza;
+      document.getElementById('sa1-applicazione').value = last.applicazione;
+      document.getElementById('sa1-ricordo-val').textContent = last.ricordo;
+      document.getElementById('sa1-sicurezza-val').textContent = last.sicurezza;
+      document.getElementById('sa1-applicazione-val').textContent = last.applicazione;
+
+      const trendDiv = document.getElementById('sa1-trend');
+      trendDiv.innerHTML = `📅 Ultima valutazione: ${last.date} · Media: ${last.media}/5`;
+    }
+  })();
+  </script>
+
+  <label class="btn" style="width:100%; justify-content:space-between">
+    <span><input id="chk1done" type="checkbox" style="accent-color:var(--green); margin-right:8px"> Ho completato CHUNK 1 (Costo Storico + acquisto)</span>
+  </label>
+  <div class="progress" style="margin-top:8px"><i id="chunk1bar"></i></div>
+
+</section>
+
+<script>
+(function(){
+  const key='chunk1-immobilizzazioni';
+  const box=document.getElementById('chk1done');
+  const bar=document.getElementById('chunk1bar');
+  function load(){ const v=localStorage.getItem(key)==='1'; box.checked=v; bar.style.width=v?'100%':'0%'; }
+  function save(){ localStorage.setItem(key, box.checked?'1':'0'); bar.style.width=box.checked?'100%':'0%'; }
+  box.addEventListener('change', save); load();
+})();
+</script>
+
+<!-- ACC Loop CHUNK 1 -->
+<div class="card">
+  <div class="badge b-red">🔴 ACC loop — Meta-errore 60″</div>
+  <div class="small" style="margin:8px 0">Se hai fatto errori nel calcolo del Costo Storico, documentali:</div>
+  <div class="grid" style="grid-template-columns:1fr 1fr 1fr; gap:12px; margin-top:12px">
+    <label>Errore n.1
+      <input id="acc-err-ch1" type="text" placeholder="es. ho dimenticato costi accessori">
+    </label>
+    <label>Motivo
+      <input id="acc-why-ch1" type="text" placeholder="es. non ho letto tutti i dati">
+    </label>
+    <label>Cura
+      <input id="acc-fix-ch1" type="text" placeholder="es. usare schema Prezzo+Accessori">
+    </label>
+  </div>
+  <div class="callout co-yellow" style="margin-top:12px">
+    <b>💡 Suggerimento:</b> Crea uno schema visivo: Prezzo base + Trasporto + Installazione + IVA = Totale
+  </div>
+</div>
+
+<script>
+(function(){
+  const k='acc-chunk1-immob';
+  const el = {err:document.getElementById('acc-err-ch1'), why:document.getElementById('acc-why-ch1'), fix:document.getElementById('acc-fix-ch1')};
+  function load(){ try{ const v=JSON.parse(localStorage.getItem(k)||'{}'); for(const t in v){ if(el[t]) el[t].value=v[t]; } }catch{} }
+  function save(){ const v={err:el.err.value, why:el.why.value, fix:el.fix.value}; localStorage.setItem(k, JSON.stringify(v)); }
+  ['input','change'].forEach(ev=>Object.values(el).forEach(i=>i.addEventListener(ev, save)));
+  load();
+})();
+</script>
+
+<!-- CHUNK 2 -->
+<section class="card">
+  <div style="display:flex; align-items:center; justify-content:space-between; flex-wrap:wrap; gap:12px">
+    <h2 id="%F0%9F%93%A6-chunk-2-ammortamento-15-min" style="margin:0">📦 CHUNK 2: Ammortamento</h2>
+    <div style="display:flex; gap:8px; align-items:center">
+      <span class="badge b-yellow">🟡 Procedura</span>
+      <span class="small">15 min</span>
+    </div>
+  </div>
+  <div class="small" style="margin:6px 0 12px; color:var(--muted)">
+    <b>Obiettivo:</b> Calcolare quota ammortamento e aggiornare VNC
+  </div>
+<h3 id="%F0%9F%94%B9-cos%C3%A8-lammortamento">🔹 Cos'è l'Ammortamento?</h3>
+<p>Distribuzione del costo dell'immobilizzazione sulla sua <strong>vita utile</strong>.</p>
+<p><strong>Principio contabile:</strong> Il costo pluriennale deve essere ripartito negli anni di utilizzo.</p>
+<h3 id="%F0%9F%94%B9-formula-base">🔹 Formula Base</h3>
+<pre class="hljs"><code><div>Quota Annua = Costo Storico × Coefficiente %
+</div></code></pre>
+<p><strong>Coefficienti tipici:</strong></p>
+<ul>
+<li>Fabbricati: 3%</li>
+<li>Impianti: 10-15%</li>
+<li>Macchinari: 12%</li>
+<li>Attrezzature: 15-20%</li>
+<li>Automezzi: 20%</li>
+<li>Computer: 20%</li>
+</ul>
+<h3 id="%F0%9F%94%B9-ammortamento-ordinario">🔹 Ammortamento Ordinario</h3>
+<p><strong>Esempio:</strong> Macchinario costo € 60.000, coefficiente 12%</p>
+<pre class="hljs"><code><div>Quota annua = 60.000 × 12% = € 7.200
+</div></code></pre>
+<p><strong>Dopo 3 anni:</strong></p>
+<ul>
+<li>Costo storico: € 60.000</li>
+<li>Fondo ammortamento: € 21.600 (7.200 × 3)</li>
+<li><strong>Valore netto contabile: € 38.400</strong></li>
+</ul>
+<h3 id="%F0%9F%93%9D-scrittura-annuale">📝 Scrittura Annuale</h3>
+<pre class="hljs"><code><div>DARE: Ammortamento impianti          € 7.200
+    AVERE: Fondo amm.to impianti             € 7.200
+</div></code></pre>
+<h3 id="%F0%9F%94%B9-ammortamento-parziale-primoultimo-anno">🔹 Ammortamento Parziale (primo/ultimo anno)</h3>
+<p>Se il bene è acquistato durante l'anno, si ammortizza <strong>solo per i giorni di utilizzo</strong>.</p>
+<p><strong>Formula:</strong></p>
+<pre class="hljs"><code><div>Quota parziale = (Costo Storico × Coeff. %) × (Giorni utilizzo / 365)
+</div></code></pre>
+<h3 id="%F0%9F%92%A1-esempio">💡 Esempio</h3>
+<p>Macchinario € 40.000, coeff. 12%, acquistato il 15 aprile (n° giorni dal 15/04 al 31/12 = 261)</p>
+<pre class="hljs"><code><div>Quota = 40.000 × 12% × (261/365) = 4.800 × 0,715 = € 3.432
+</div></code></pre>
+<h3 id="%F0%9F%A7%A0-tabella-comparativa">🧠 Tabella Comparativa</h3>
+<table>
+<thead>
+<tr>
+<th>Tipo</th>
+<th>Formula</th>
+<th>Quando usarlo</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Ordinario</td>
+<td>Costo × %</td>
+<td>Anno completo di utilizzo</td>
+</tr>
+<tr>
+<td>Parziale</td>
+<td>(Costo × %) × (gg/365)</td>
+<td>Primo/ultimo anno</td>
+</tr>
+<tr>
+<td>Anticipato</td>
+<td>50% primo anno</td>
+<td>Beni con deperimento rapido</td>
+</tr>
+</tbody>
+</table>
+<h3 id="%F0%9F%8E%A8-schema-visivo">🎨 Schema Visivo</h3>
+<pre class="hljs"><code><div>COSTO STORICO: € 60.000
+│
+├─ Anno 1 → Amm. € 7.200 → VNC € 52.800
+├─ Anno 2 → Amm. € 7.200 → VNC € 45.600
+├─ Anno 3 → Amm. € 7.200 → VNC € 38.400
+└─ ...
+</div></code></pre>
+
+  <div class="separator"></div>
+
+  <!-- 🎯 MINI-QUIZ #2: Ammortamento Parziale -->
+  <div class="card" style="background: linear-gradient(135deg, rgba(255,215,0,0.08), rgba(255,165,0,0.05)); border-left: 4px solid var(--yellow); margin: 20px 0">
+    <div style="display:flex; align-items:center; gap:12px; margin-bottom:16px">
+      <div class="badge b-yellow">🎯 Mini-Quiz #2</div>
+      <div class="small" style="color:var(--muted)">Test pratico · 3 min</div>
+    </div>
+
+    <p><strong>Calcola l'ammortamento del primo anno:</strong></p>
+    <p class="small" style="color:var(--muted); margin-bottom:12px">Automezzo acquistato il 20 maggio (dal 20/05 al 31/12 = 226 giorni)<br>Costo storico € 25.000 · Coefficiente 20%</p>
+
+    <div style="display:grid; grid-template-columns:auto 1fr auto; gap:12px; align-items:center; margin-bottom:12px">
+      <span style="font-size:1.1em">📉 Quota ammort. =</span>
+      <input type="number" id="quiz2-input" placeholder="inserisci importo" style="padding:10px; border-radius:6px; border:2px solid var(--border); background:var(--card); color:var(--fg); font-size:1.1em; text-align:center">
+      <button onclick="validateQuiz2()" style="padding:10px 20px; background:var(--yellow); color:#000; border:none; border-radius:6px; font-weight:600; cursor:pointer">Verifica</button>
+    </div>
+
+    <details style="margin-bottom:12px">
+      <summary class="small" style="cursor:pointer; color:var(--blue); margin-top:8px">💡 Mostra formula</summary>
+      <div style="margin-top:8px; padding:12px; background:rgba(66,135,245,0.1); border-radius:6px">
+        <code style="color:var(--blue)">Quota = (Costo × Coeff. %) × (Giorni / 365)</code>
+      </div>
+    </details>
+
+    <div id="quiz2-feedback" style="margin-top:12px"></div>
+    <div id="quiz2-stats" class="small" style="margin-top:8px; color:var(--muted)"></div>
+  </div>
+
+  <script>
+  function validateQuiz2() {
+    const input = document.getElementById('quiz2-input');
+    const feedback = document.getElementById('quiz2-feedback');
+    const statsDiv = document.getElementById('quiz2-stats');
+    const userAnswer = parseFloat(input.value);
+    const correctAnswer = 3095.89; // 25000 × 20% × (226/365) = 5000 × 0.61918 = 3095.89
+
+    // Recupera stats da localStorage
+    let stats = JSON.parse(localStorage.getItem('quiz-stats-immobilizzazioni') || '{}');
+    if (!stats.quiz2) stats.quiz2 = { attempts: 0, correct: 0, firstTryCorrect: false };
+    stats.quiz2.attempts++;
+
+    // Tolleranza ±2 euro per arrotondamenti
+    if (Math.abs(userAnswer - correctAnswer) < 2) {
+      // Risposta corretta ✅
+      stats.quiz2.correct++;
+      if (stats.quiz2.attempts === 1) stats.quiz2.firstTryCorrect = true;
+
+      feedback.innerHTML = `
+        <div style="padding:12px; background:rgba(46,204,113,0.15); border-left:4px solid var(--green); border-radius:6px">
+          <div style="font-size:1.2em; margin-bottom:8px">✅ <strong>Corretto!</strong></div>
+          <p class="small" style="margin:4px 0"><strong>Passaggi:</strong></p>
+          <ul class="small" style="margin:8px 0; padding-left:20px">
+            <li>Quota annua ordinaria: € 25.000 × 20% = <strong>€ 5.000</strong></li>
+            <li>Proporzione giorni: 226 / 365 = <strong>0,6192</strong></li>
+            <li>Quota parziale: € 5.000 × 0,6192 = <strong>€ 3.096</strong></li>
+          </ul>
+          ${stats.quiz2.attempts === 1 ? '<div style="margin-top:8px; color:var(--yellow)">🏆 Perfetto al primo tentativo! +10 punti</div>' : ''}
+        </div>
+      `;
+      input.disabled = true;
+      input.style.borderColor = 'var(--green)';
+    } else {
+      // Risposta errata ❌
+      feedback.innerHTML = `
+        <div style="padding:12px; background:rgba(231,76,60,0.15); border-left:4px solid var(--red); border-radius:6px">
+          <div style="font-size:1.1em; margin-bottom:8px">❌ <strong>Riprova!</strong></div>
+          <p class="small" style="margin:4px 0">⚠️ Ricorda: per il primo anno si applica l'<strong>ammortamento parziale</strong></p>
+          <p class="small" style="margin:8px 0; color:var(--muted)">Formula: (Costo × Coeff. %) × (Giorni utilizzo / 365)</p>
+          <p class="small" style="margin:4px 0; color:var(--yellow)">💡 Hint: Prima calcola la quota annua, poi proporzionala</p>
+        </div>
+      `;
+      input.focus();
+    }
+
+    // Salva stats e mostra statistiche
+    localStorage.setItem('quiz-stats-immobilizzazioni', JSON.stringify(stats));
+    const percentage = ((stats.quiz2.correct / stats.quiz2.attempts) * 100).toFixed(0);
+    statsDiv.innerHTML = `📊 Tentativi: ${stats.quiz2.attempts} · Corretti: ${stats.quiz2.correct} · Precisione: ${percentage}%`;
+  }
+
+  // Carica stats all'avvio
+  (function() {
+    const stats = JSON.parse(localStorage.getItem('quiz-stats-immobilizzazioni') || '{}');
+    if (stats.quiz2 && stats.quiz2.correct > 0) {
+      const statsDiv = document.getElementById('quiz2-stats');
+      const percentage = ((stats.quiz2.correct / stats.quiz2.attempts) * 100).toFixed(0);
+      statsDiv.innerHTML = `📊 Tentativi: ${stats.quiz2.attempts} · Corretti: ${stats.quiz2.correct} · Precisione: ${percentage}%`;
+    }
+  })();
+  </script>
+
+  <!-- ======================== FEYNMAN MODE: Ammortamento ======================== -->
+  <div class="widget" style="background:rgba(103,58,183,0.08); border-left:4px solid #673ab7; padding:20px; margin:24px 0;">
+    <h4 style="margin:0 0 16px 0; color:#673ab7">🎤 FEYNMAN MODE: Spiega l'Ammortamento</h4>
+    <p class="small" style="margin:0 0 20px 0">
+      Leggi le 8 affermazioni e <strong>seleziona SOLO quelle corrette</strong>. Questo esercizio ti aiuta a consolidare la comprensione dell'ammortamento eliminando le misconceptions comuni.
+    </p>
+
+    <div style="background:white; padding:16px; border-radius:8px">
+      <div style="display:grid; gap:12px">
+
+        <!-- AFFERMAZIONE 1 (CORRETTA) -->
+        <label style="display:flex; gap:12px; padding:12px; background:rgba(0,0,0,0.02); border-radius:6px; cursor:pointer">
+          <input type="checkbox" id="amm-f1" style="margin-top:2px">
+          <span class="small">La quota di ammortamento si calcola: <strong>Costo Storico × Coefficiente %</strong></span>
+        </label>
+
+        <!-- AFFERMAZIONE 2 (ERRATA) -->
+        <label style="display:flex; gap:12px; padding:12px; background:rgba(0,0,0,0.02); border-radius:6px; cursor:pointer">
+          <input type="checkbox" id="amm-f2" style="margin-top:2px">
+          <span class="small">La quota di ammortamento si calcola: <strong>VNC × Coefficiente %</strong></span>
+        </label>
+
+        <!-- AFFERMAZIONE 3 (CORRETTA) -->
+        <label style="display:flex; gap:12px; padding:12px; background:rgba(0,0,0,0.02); border-radius:6px; cursor:pointer">
+          <input type="checkbox" id="amm-f3" style="margin-top:2px">
+          <span class="small">Il coefficiente varia per tipologia: <strong>Impianti 10-15%, Automezzi 20%, Computer 20%</strong></span>
+        </label>
+
+        <!-- AFFERMAZIONE 4 (ERRATA) -->
+        <label style="display:flex; gap:12px; padding:12px; background:rgba(0,0,0,0.02); border-radius:6px; cursor:pointer">
+          <input type="checkbox" id="amm-f4" style="margin-top:2px">
+          <span class="small">Il coefficiente è <strong>fisso al 10% per tutti i beni</strong></span>
+        </label>
+
+        <!-- AFFERMAZIONE 5 (CORRETTA) -->
+        <label style="display:flex; gap:12px; padding:12px; background:rgba(0,0,0,0.02); border-radius:6px; cursor:pointer">
+          <input type="checkbox" id="amm-f5" style="margin-top:2px">
+          <span class="small">Nel primo anno si applica <strong>ammortamento parziale proporzionale ai giorni di utilizzo</strong></span>
+        </label>
+
+        <!-- AFFERMAZIONE 6 (ERRATA) -->
+        <label style="display:flex; gap:12px; padding:12px; background:rgba(0,0,0,0.02); border-radius:6px; cursor:pointer">
+          <input type="checkbox" id="amm-f6" style="margin-top:2px">
+          <span class="small">Nel primo anno si <strong>ammortizza sempre l'anno intero</strong></span>
+        </label>
+
+        <!-- AFFERMAZIONE 7 (CORRETTA) -->
+        <label style="display:flex; gap:12px; padding:12px; background:rgba(0,0,0,0.02); border-radius:6px; cursor:pointer">
+          <input type="checkbox" id="amm-f7" style="margin-top:2px">
+          <span class="small">Il Fondo Ammortamento <strong>si accumula ogni anno e riduce il VNC</strong></span>
+        </label>
+
+        <!-- AFFERMAZIONE 8 (ERRATA) -->
+        <label style="display:flex; gap:12px; padding:12px; background:rgba(0,0,0,0.02); border-radius:6px; cursor:pointer">
+          <input type="checkbox" id="amm-f8" style="margin-top:2px">
+          <span class="small">Il Fondo Ammortamento va in <strong>Attivo dello Stato Patrimoniale</strong></span>
+        </label>
+
+      </div>
+
+      <button onclick="validateFeynmanAmmortamento()"
+              style="width:100%; margin-top:16px; padding:12px; background:#673ab7; color:white; border:none; border-radius:6px; font-weight:600; cursor:pointer">
+        Verifica Spiegazione
+      </button>
+
+      <div id="feynman-amm-result" style="margin-top:16px"></div>
+      <div id="feynman-amm-stats" class="small" style="margin-top:12px; color:var(--muted); text-align:center"></div>
+    </div>
+  </div>
+
+  <script>
+  window.validateFeynmanAmmortamento = function() {
+    const correctIds = ['amm-f1', 'amm-f3', 'amm-f5', 'amm-f7'];
+    const wrongIds = ['amm-f2', 'amm-f4', 'amm-f6', 'amm-f8'];
+
+    const selected = Array.from(document.querySelectorAll('#feynman-amm-result').parentElement.querySelectorAll('input[type="checkbox"]:checked'))
+      .map(cb => cb.id);
+
+    const wrongSelected = selected.filter(id => wrongIds.includes(id));
+    const correctMissing = correctIds.filter(id => !selected.includes(id));
+
+    const resultDiv = document.getElementById('feynman-amm-result');
+    const statsDiv = document.getElementById('feynman-amm-stats');
+
+    // Get localStorage stats
+    let stats = JSON.parse(localStorage.getItem('feynman-immobilizzazioni-ammortamento') || '{}');
+    if (!stats.attempts) stats.attempts = 0;
+    if (!stats.perfect) stats.perfect = 0;
+    stats.attempts++;
+
+    if (wrongSelected.length === 0 && correctMissing.length === 0) {
+      // PERFECT!
+      stats.perfect++;
+
+      // Award points
+      let currentPoints = parseInt(localStorage.getItem('gamification-total-points') || '0');
+      currentPoints += 15;
+      localStorage.setItem('gamification-total-points', currentPoints);
+
+      resultDiv.innerHTML = `
+        <div style="padding:16px; background:rgba(76,175,80,0.1); border:1px solid var(--success); border-radius:6px">
+          <p style="margin:0 0 8px 0; font-weight:600; color:var(--success)">🏆 PERFETTO! Hai spiegato l'ammortamento correttamente!</p>
+          <p class="small" style="margin:0">
+            ✅ Hai selezionato tutte e 4 le affermazioni corrette:<br>
+            • Quota = Costo Storico × Coefficiente %<br>
+            • Coefficienti variabili per tipologia bene<br>
+            • Ammortamento parziale nel primo anno<br>
+            • Fondo accumula e riduce VNC<br><br>
+            🎯 <strong>+15 punti</strong> per spiegazione perfetta! (Totale: ${currentPoints} pt)
+          </p>
+        </div>
+      `;
+
+      // Disable all checkboxes
+      document.querySelectorAll('[id^="amm-f"]').forEach(cb => cb.disabled = true);
+
+    } else {
+      // ERRORS FOUND
+      let feedback = '<ul style="margin:8px 0; padding-left:20px">';
+
+      if (wrongSelected.length > 0) {
+        feedback += '<li><strong>❌ Hai selezionato affermazioni ERRATE:</strong><br>';
+        wrongSelected.forEach(id => {
+          if (id === 'amm-f2') feedback += '→ Si usa <strong>Costo Storico</strong>, non VNC!<br>';
+          if (id === 'amm-f4') feedback += '→ Coefficienti <strong>variano</strong> per tipologia bene!<br>';
+          if (id === 'amm-f6') feedback += '→ Primo anno: <strong>ammortamento parziale</strong> (giorni utilizzati)!<br>';
+          if (id === 'amm-f8') feedback += '→ Fondo Ammortamento va in <strong>Attivo con segno MENO</strong> (rettifica)!<br>';
+        });
+        feedback += '</li>';
+      }
+
+      if (correctMissing.length > 0) {
+        feedback += '<li><strong>⚠️ Ti sono sfuggite affermazioni CORRETTE:</strong><br>';
+        correctMissing.forEach(id => {
+          if (id === 'amm-f1') feedback += '→ Formula base: Costo Storico × Coefficiente %<br>';
+          if (id === 'amm-f3') feedback += '→ Ogni tipologia ha coefficiente specifico<br>';
+          if (id === 'amm-f5') feedback += '→ Primo anno: proporzionale ai giorni<br>';
+          if (id === 'amm-f7') feedback += '→ Fondo accumula e riduce VNC progressivamente<br>';
+        });
+        feedback += '</li>';
+      }
+
+      feedback += '</ul><p class="small" style="margin:8px 0 0 0">💡 Rileggi il CHUNK 2 e riprova!</p>';
+
+      resultDiv.innerHTML = `
+        <div style="padding:16px; background:rgba(244,67,54,0.1); border:1px solid var(--error); border-radius:6px">
+          <p style="margin:0 0 8px 0; font-weight:600; color:var(--error)">❌ Non ancora perfetto</p>
+          ${feedback}
+        </div>
+      `;
+    }
+
+    localStorage.setItem('feynman-immobilizzazioni-ammortamento', JSON.stringify(stats));
+    const successRate = ((stats.perfect / stats.attempts) * 100).toFixed(0);
+    statsDiv.innerHTML = `📊 Tentativi: ${stats.attempts} · Perfetti: ${stats.perfect} · Tasso successo: ${successRate}%`;
+  };
+
+  // Load stats on page load
+  (function() {
+    const stats = JSON.parse(localStorage.getItem('feynman-immobilizzazioni-ammortamento') || '{}');
+    if (stats.attempts > 0) {
+      const statsDiv = document.getElementById('feynman-amm-stats');
+      const successRate = ((stats.perfect / stats.attempts) * 100).toFixed(0);
+      statsDiv.innerHTML = `📊 Tentativi: ${stats.attempts} · Perfetti: ${stats.perfect} · Tasso successo: ${successRate}%`;
+    }
+  })();
+  </script>
+
+  <!-- 🎯 SELF-ASSESSMENT CHUNK 2 -->
+  <div class="card" style="background: linear-gradient(135deg, rgba(66,135,245,0.08), rgba(46,204,113,0.05)); border-left: 4px solid var(--blue); margin: 20px 0">
+    <div style="display:flex; align-items:center; gap:12px; margin-bottom:16px">
+      <div class="badge b-blue">🧠 Auto-Valutazione</div>
+      <div class="small" style="color:var(--muted)">CHUNK 2 · 1 min</div>
+    </div>
+
+    <p style="margin-bottom:16px"><strong>Come ti senti dopo aver studiato questo CHUNK?</strong></p>
+
+    <div style="display:grid; gap:16px">
+      <div>
+        <label class="small" style="display:block; margin-bottom:8px; color:var(--muted)">💭 Quanto ricordi dei concetti? (1=Poco, 5=Tutto)</label>
+        <div style="display:flex; gap:12px; align-items:center">
+          <span class="small">1</span>
+          <input type="range" id="sa2-ricordo" min="1" max="5" value="3" style="flex:1; accent-color:var(--blue)">
+          <span class="small">5</span>
+          <span id="sa2-ricordo-val" style="font-weight:700; color:var(--blue); min-width:30px; text-align:center">3</span>
+        </div>
+      </div>
+
+      <div>
+        <label class="small" style="display:block; margin-bottom:8px; color:var(--muted)">💪 Quanto ti senti sicuro? (1=Insicuro, 5=Sicurissimo)</label>
+        <div style="display:flex; gap:12px; align-items:center">
+          <span class="small">1</span>
+          <input type="range" id="sa2-sicurezza" min="1" max="5" value="3" style="flex:1; accent-color:var(--green)">
+          <span class="small">5</span>
+          <span id="sa2-sicurezza-val" style="font-weight:700; color:var(--green); min-width:30px; text-align:center">3</span>
+        </div>
+      </div>
+
+      <div>
+        <label class="small" style="display:block; margin-bottom:8px; color:var(--muted)">🎯 Quanto puoi applicarlo in un esercizio? (1=Per niente, 5=Perfettamente)</label>
+        <div style="display:flex; gap:12px; align-items:center">
+          <span class="small">1</span>
+          <input type="range" id="sa2-applicazione" min="1" max="5" value="3" style="flex:1; accent-color:var(--yellow)">
+          <span class="small">5</span>
+          <span id="sa2-applicazione-val" style="font-weight:700; color:var(--yellow); min-width:30px; text-align:center">3</span>
+        </div>
+      </div>
+    </div>
+
+    <button onclick="saveSelfAssessment2()" style="width:100%; padding:12px; margin-top:16px; background:var(--blue); color:#fff; border:none; border-radius:6px; font-weight:600; cursor:pointer">💾 Salva Valutazione</button>
+
+    <div id="sa2-feedback" style="margin-top:12px"></div>
+    <div id="sa2-trend" class="small" style="margin-top:8px; color:var(--muted)"></div>
+  </div>
+
+  <script>
+  ['ricordo', 'sicurezza', 'applicazione'].forEach(tipo => {
+    const slider = document.getElementById('sa2-' + tipo);
+    const label = document.getElementById('sa2-' + tipo + '-val');
+    slider.addEventListener('input', () => { label.textContent = slider.value; });
+  });
+
+  function saveSelfAssessment2() {
+    const ricordo = parseInt(document.getElementById('sa2-ricordo').value);
+    const sicurezza = parseInt(document.getElementById('sa2-sicurezza').value);
+    const applicazione = parseInt(document.getElementById('sa2-applicazione').value);
+    const media = ((ricordo + sicurezza + applicazione) / 3).toFixed(1);
+
+    const feedback = document.getElementById('sa2-feedback');
+    const trendDiv = document.getElementById('sa2-trend');
+
+    const key = 'self-assessment-immobilizzazioni-chunk2';
+    let history = JSON.parse(localStorage.getItem(key) || '[]');
+    const now = new Date().toISOString().split('T')[0];
+    history.push({ date: now, ricordo, sicurezza, applicazione, media: parseFloat(media) });
+    localStorage.setItem(key, JSON.stringify(history));
+
+    let icon = '✅', color = 'var(--green)', message = 'Ottimo! Continua così!', suggestion = '';
+
+    if (media < 3) {
+      icon = '⚠️'; color = 'var(--red)'; message = 'Attenzione: questo CHUNK richiede revisione';
+      suggestion = '<p class="small" style="margin-top:8px; color:var(--yellow)">💡 <strong>Suggerimento:</strong> Rileggi la sezione, rifai il mini-quiz, poi rivaluta tra 1 giorno</p>';
+    } else if (media < 4) {
+      icon = '👍'; color = 'var(--yellow)'; message = 'Buono! Potresti migliorare con pratica extra';
+      suggestion = '<p class="small" style="margin-top:8px; color:var(--yellow)">💡 <strong>Suggerimento:</strong> Fai un paio di esercizi aggiuntivi per consolidare</p>';
+    }
+
+    feedback.innerHTML = `<div style="padding:12px; background:rgba(66,135,245,0.1); border-left:4px solid ${color}; border-radius:6px"><div style="font-size:1.2em; margin-bottom:8px">${icon} <strong>Media: ${media}/5</strong></div><p class="small" style="margin:4px 0">${message}</p>${suggestion}</div>`;
+
+    if (history.length > 1) {
+      const prev = history[history.length - 2];
+      const diff = (parseFloat(media) - prev.media).toFixed(1);
+      const arrow = diff > 0 ? '📈' : (diff < 0 ? '📉' : '➡️');
+      const sign = diff > 0 ? '+' : '';
+      trendDiv.innerHTML = `${arrow} Trend: Ultima volta ${prev.media}/5 → Oggi ${media}/5 (${sign}${diff})`;
+    } else {
+      trendDiv.innerHTML = '📊 Prima valutazione salvata! Rivaluta tra qualche giorno per vedere il trend';
+    }
+  }
+
+  (function() {
+    const key = 'self-assessment-immobilizzazioni-chunk2';
+    const history = JSON.parse(localStorage.getItem(key) || '[]');
+    if (history.length > 0) {
+      const last = history[history.length - 1];
+      document.getElementById('sa2-ricordo').value = last.ricordo;
+      document.getElementById('sa2-sicurezza').value = last.sicurezza;
+      document.getElementById('sa2-applicazione').value = last.applicazione;
+      document.getElementById('sa2-ricordo-val').textContent = last.ricordo;
+      document.getElementById('sa2-sicurezza-val').textContent = last.sicurezza;
+      document.getElementById('sa2-applicazione-val').textContent = last.applicazione;
+      const trendDiv = document.getElementById('sa2-trend');
+      trendDiv.innerHTML = `📅 Ultima valutazione: ${last.date} · Media: ${last.media}/5`;
+    }
+  })();
+  </script>
+
+  <label class="btn" style="width:100%; justify-content:space-between">
+    <span><input id="chk2done" type="checkbox" style="accent-color:var(--green); margin-right:8px"> Ho completato CHUNK 2 (Ammortamento + VNC)</span>
+  </label>
+  <div class="progress" style="margin-top:8px"><i id="chunk2bar"></i></div>
+
+</section>
+
+<script>
+(function(){
+  const key='chunk2-immobilizzazioni';
+  const box=document.getElementById('chk2done');
+  const bar=document.getElementById('chunk2bar');
+  function load(){ const v=localStorage.getItem(key)==='1'; box.checked=v; bar.style.width=v?'100%':'0%'; }
+  function save(){ localStorage.setItem(key, box.checked?'1':'0'); bar.style.width=box.checked?'100%':'0%'; }
+  box.addEventListener('change', save); load();
+})();
+</script>
+
+<!-- ACC Loop CHUNK 2 -->
+<div class="card">
+  <div class="badge b-red">🔴 ACC loop — Meta-errore 60″</div>
+  <div class="small" style="margin:8px 0">Se hai sbagliato il calcolo dell'ammortamento, documentalo:</div>
+  <div class="grid" style="grid-template-columns:1fr 1fr 1fr; gap:12px; margin-top:12px">
+    <label>Errore n.1
+      <input id="acc-err-ch2" type="text" placeholder="es. ho dimenticato ÷2 per primo anno">
+    </label>
+    <label>Motivo
+      <input id="acc-why-ch2" type="text" placeholder="es. non ho applicato 365 giorni">
+    </label>
+    <label>Cura
+      <input id="acc-fix-ch2" type="text" placeholder="es. usare formula giorni/365">
+    </label>
+  </div>
+  <div class="callout co-red" style="margin-top:12px">
+    <b>🔴 Errori comuni:</b> Dimenticare ÷2 primo anno, Non aggiornare VNC, Confondere Fondo con VNC
+  </div>
+</div>
+
+<script>
+(function(){
+  const k='acc-chunk2-immob';
+  const el = {err:document.getElementById('acc-err-ch2'), why:document.getElementById('acc-why-ch2'), fix:document.getElementById('acc-fix-ch2')};
+  function load(){ try{ const v=JSON.parse(localStorage.getItem(k)||'{}'); for(const t in v){ if(el[t]) el[t].value=v[t]; } }catch{} }
+  function save(){ const v={err:el.err.value, why:el.why.value, fix:el.fix.value}; localStorage.setItem(k, JSON.stringify(v)); }
+  ['input','change'].forEach(ev=>Object.values(el).forEach(i=>i.addEventListener(ev, save)));
+  load();
+})();
+</script>
+
+<!-- CHUNK 3 -->
+<section class="card">
+  <div style="display:flex; align-items:center; justify-content:space-between; flex-wrap:wrap; gap:12px">
+    <h2 id="%F0%9F%93%A6-chunk-3-vendita-dismissione-volontaria-15-min" style="margin:0">📦 CHUNK 3: Vendita (Dismissione)</h2>
+    <div style="display:flex; gap:8px; align-items:center">
+      <span class="badge b-green">🟢 Esempio</span>
+      <span class="small">15 min</span>
+    </div>
+  </div>
+  <div class="small" style="margin:6px 0 12px; color:var(--muted)">
+    <b>Obiettivo:</b> Calcolare plusvalenza/minusvalenza e registrare vendita
+  </div>
+<h3 id="%F0%9F%94%B9-logica-della-vendita">🔹 Logica della Vendita</h3>
+<p>Quando vendi un bene immobilizzato devi:</p>
+<ol>
+<li>Eliminare il <strong>costo storico</strong> (Avere)</li>
+<li>Eliminare il <strong>fondo ammortamento</strong> (Dare)</li>
+<li>Registrare il <strong>prezzo di vendita</strong> (Dare: Banca/Crediti)</li>
+<li>Calcolare <strong>plusvalenza</strong> o <strong>minusvalenza</strong></li>
+</ol>
+<h3 id="%F0%9F%94%B9-formule-chiave">🔹 Formule Chiave</h3>
+<pre class="hljs"><code><div>VNC (Valore Netto Contabile) = Costo Storico – Fondo Ammortamento
+
+Plusvalenza = Prezzo Vendita – VNC    (se positivo)
+Minusvalenza = VNC – Prezzo Vendita   (se positivo)
+</div></code></pre>
+<h3 id="%F0%9F%92%A1-esempio-completo">💡 Esempio Completo</h3>
+<p><strong>Dati:</strong></p>
+<ul>
+<li>Attrezzatura: costo storico € 40.000</li>
+<li>Fondo ammortamento: € 33.994,52</li>
+<li>Prezzo di vendita: € 6.000</li>
+</ul>
+<p><strong>Calcolo VNC:</strong></p>
+<pre class="hljs"><code><div>VNC = 40.000 – 33.994,52 = € 6.005,48
+</div></code></pre>
+<p><strong>Confronto:</strong></p>
+<pre class="hljs"><code><div>Prezzo vendita: € 6.000
+VNC:            € 6.005,48
+Differenza:     – € 5,48 → MINUSVALENZA
+</div></code></pre>
+<h3 id="%F0%9F%93%9D-scrittura-contabile">📝 Scrittura Contabile</h3>
+<pre class="hljs"><code><div>DARE: Fondo amm.to attrezzature     € 33.994,52
+DARE: Banca c/c                     €  6.000,00
+DARE: Minusvalenza                  €      5,48
+    AVERE: Attrezzature industriali          € 40.000,00
+</div></code></pre>
+<h3 id="%F0%9F%94%B9-plusvalenza-caso-alternativo">🔹 Plusvalenza (Caso Alternativo)</h3>
+<p>Se il prezzo fosse stato € 7.000:</p>
+<pre class="hljs"><code><div>Plusvalenza = 7.000 – 6.005,48 = € 994,52
+</div></code></pre>
+<p><strong>Scrittura:</strong></p>
+<pre class="hljs"><code><div>DARE: Fondo amm.to attrezzature     € 33.994,52
+DARE: Banca c/c                     €  7.000,00
+    AVERE: Attrezzature industriali          € 40.000,00
+    AVERE: Plusvalenza                       €    994,52
+</div></code></pre>
+<h3 id="%F0%9F%8E%A8-schema-decisionale">🎨 Schema Decisionale</h3>
+<pre class="hljs"><code><div>VENDITA IMMOBILIZZAZIONE
+│
+├─ Calcola VNC = Costo – Fondo
+│
+├─ Confronta con Prezzo Vendita
+│
+├─ Se Prezzo &gt; VNC → PLUSVALENZA (Ricavo CE)
+│
+└─ Se Prezzo &lt; VNC → MINUSVALENZA (Costo CE)
+</div></code></pre>
+<h3 id="%F0%9F%A7%A0-effetti-su-ce-e-sp">🧠 Effetti su CE e SP</h3>
+<table>
+<thead>
+<tr>
+<th>Voce</th>
+<th>Conto Economico</th>
+<th>Stato Patrimoniale</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Plusvalenza</td>
+<td>+ Ricavo straordinario (A5)</td>
+<td>–</td>
+</tr>
+<tr>
+<td>Minusvalenza</td>
+<td>+ Costo straordinario (E21)</td>
+<td>–</td>
+</tr>
+<tr>
+<td>Eliminazione bene</td>
+<td>–</td>
+<td>– Attivo fisso</td>
+</tr>
+<tr>
+<td>Prezzo incassato</td>
+<td>–</td>
+<td>+ Attivo circolante (Banca)</td>
+</tr>
+</tbody>
+</table>
+<hr>
+<h2 id="%F0%9F%93%A6-chunk-4-eliminazione-involontaria-10-min">📦 CHUNK 4: Eliminazione Involontaria (10 min)</h2>
+<h3 id="%F0%9F%94%B9-quando-si-verifica">🔹 Quando si Verifica?</h3>
+<p>Quando un bene viene distrutto, rubato, o diventa inutilizzabile <strong>senza vendita</strong>.</p>
+<p><strong>Esempi:</strong></p>
+<ul>
+<li>Incendio</li>
+<li>Guasto irreparabile</li>
+<li>Furto</li>
+<li>Obsolescenza totale</li>
+</ul>
+<h3 id="%F0%9F%94%B9-processo">🔹 Processo</h3>
+<ol>
+<li>Calcolare ammortamento fino alla data di eliminazione</li>
+<li>Eliminare il fondo ammortamento (Dare)</li>
+<li>Eliminare il costo storico (Avere)</li>
+<li>Registrare la perdita come <strong>Insussistenze passive</strong></li>
+</ol>
+<h3 id="%F0%9F%92%A1-esempio">💡 Esempio</h3>
+<p><strong>Dati:</strong></p>
+<ul>
+<li>Macchinario acquistato 01/01/n-1 a € 25.000</li>
+<li>Coefficiente: 12%</li>
+<li>Guasto irreparabile il 01/09/n</li>
+</ul>
+<p><strong>Step 1: Ammortamento parziale fino al 01/09/n</strong></p>
+<pre class="hljs"><code><div>Giorni dal 01/01 al 01/09 = 244 giorni
+Quota parziale = 25.000 × 12% × (244/365) = € 2.005,48
+</div></code></pre>
+<p><strong>Scrittura ammortamento:</strong></p>
+<pre class="hljs"><code><div>DARE: Ammortamento impianti          € 2.005,48
+    AVERE: Fondo amm.to impianti             € 2.005,48
+</div></code></pre>
+<p><strong>Step 2: Calcolo fondo totale</strong></p>
+<pre class="hljs"><code><div>Anno n-1: 25.000 × 12% × (365/365) = € 3.000
+Anno n:                               € 2.005,48
+Fondo totale:                         € 5.005,48
+</div></code></pre>
+<p><strong>Step 3: Eliminazione</strong></p>
+<pre class="hljs"><code><div>VNC residuo = 25.000 – 5.005,48 = € 19.994,52
+</div></code></pre>
+<h3 id="%F0%9F%93%9D-scrittura-di-eliminazione">📝 Scrittura di Eliminazione</h3>
+<pre class="hljs"><code><div>DARE: Fondo amm.to impianti          € 5.005,48
+DARE: Insussistenze passive          € 19.994,52
+    AVERE: Impianti e macchinari             € 25.000,00
+</div></code></pre>
+<h3 id="%F0%9F%A7%A0-confronto-vendita-vs-eliminazione">🧠 Confronto: Vendita vs Eliminazione</h3>
+<table>
+<thead>
+<tr>
+<th>Aspetto</th>
+<th>Vendita</th>
+<th>Eliminazione</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>C'è incasso?</td>
+<td>✅ Sì</td>
+<td>❌ No</td>
+</tr>
+<tr>
+<td>Perdita</td>
+<td>Minusvalenza</td>
+<td>Insussistenze passive</td>
+</tr>
+<tr>
+<td>Voce CE</td>
+<td>E21 (straordinari)</td>
+<td>E21 (straordinari)</td>
+</tr>
+<tr>
+<td>Fondo amm.</td>
+<td>Eliminato (Dare)</td>
+<td>Eliminato (Dare)</td>
+</tr>
+<tr>
+<td>Costo storico</td>
+<td>Eliminato (Avere)</td>
+<td>Eliminato (Avere)</td>
+</tr>
+</tbody>
+</table>
+<hr>
+<h2 id="%F0%9F%A7%A0-mappa-mentale-completa">🧠 MAPPA MENTALE COMPLETA</h2>
+<pre class="hljs"><code><div>IMMOBILIZZAZIONI MATERIALI
+│
+├─ ACQUISTO
+│  ├─ Costo storico + accessori
+│  ├─ + IVA a credito
+│  └─ = Debito v/fornitori
+│
+├─ AMMORTAMENTO
+│  ├─ Ordinario: Costo × %
+│  ├─ Parziale: (Costo × %) × (gg/365)
+│  └─ Riduce VNC ogni anno
+│
+├─ VENDITA (volontaria)
+│  ├─ VNC = Costo – Fondo
+│  ├─ Prezzo &gt; VNC → Plusvalenza
+│  └─ Prezzo &lt; VNC → Minusvalenza
+│
+└─ ELIMINAZIONE (involontaria)
+   ├─ Ammortamento fino alla data
+   ├─ Elimina Fondo + Costo
+   └─ Perdita = Insussistenze passive
+</div></code></pre>
+  <div class="separator"></div>
+
+  <!-- 🎯 MINI-QUIZ #3: Plusvalenza o Minusvalenza? -->
+  <div class="card" style="background: linear-gradient(135deg, rgba(255,215,0,0.08), rgba(255,165,0,0.05)); border-left: 4px solid var(--yellow); margin: 20px 0">
+    <div style="display:flex; align-items:center; gap:12px; margin-bottom:16px">
+      <div class="badge b-yellow">🎯 Mini-Quiz #3</div>
+      <div class="small" style="color:var(--muted)">Test pratico · 3 min</div>
+    </div>
+
+    <p><strong>Determina l'importo e il tipo di risultato:</strong></p>
+    <p class="small" style="color:var(--muted); margin-bottom:12px">Computer portatile venduto a € 800<br>Costo storico: € 2.500 · Fondo ammortamento: € 1.950</p>
+
+    <div style="display:grid; gap:16px; margin-bottom:12px">
+      <div>
+        <label class="small" style="display:block; margin-bottom:6px; color:var(--muted)">1️⃣ Prima calcola il VNC:</label>
+        <div style="display:grid; grid-template-columns:auto 1fr auto; gap:8px; align-items:center">
+          <span>VNC =</span>
+          <input type="number" id="quiz3-vnc" placeholder="?" style="padding:8px; border-radius:6px; border:2px solid var(--border); background:var(--card); color:var(--fg); text-align:center">
+          <span>€</span>
+        </div>
+      </div>
+
+      <div>
+        <label class="small" style="display:block; margin-bottom:6px; color:var(--muted)">2️⃣ Poi identifica il risultato:</label>
+        <select id="quiz3-tipo" style="width:100%; padding:10px; border-radius:6px; border:2px solid var(--border); background:var(--card); color:var(--fg); font-size:1em">
+          <option value="">-- Seleziona --</option>
+          <option value="plusvalenza">📈 Plusvalenza (Prezzo > VNC)</option>
+          <option value="minusvalenza">📉 Minusvalenza (Prezzo < VNC)</option>
+        </select>
+      </div>
+
+      <div>
+        <label class="small" style="display:block; margin-bottom:6px; color:var(--muted)">3️⃣ Infine calcola l'importo:</label>
+        <div style="display:grid; grid-template-columns:auto 1fr auto; gap:8px; align-items:center">
+          <span>Importo =</span>
+          <input type="number" id="quiz3-importo" placeholder="?" style="padding:8px; border-radius:6px; border:2px solid var(--border); background:var(--card); color:var(--fg); text-align:center">
+          <span>€</span>
+        </div>
+      </div>
+    </div>
+
+    <button onclick="validateQuiz3()" style="width:100%; padding:12px; background:var(--yellow); color:#000; border:none; border-radius:6px; font-weight:600; cursor:pointer; font-size:1.1em">🔍 Verifica Soluzione Completa</button>
+
+    <details style="margin-top:12px">
+      <summary class="small" style="cursor:pointer; color:var(--blue)">💡 Mostra formule</summary>
+      <div style="margin-top:8px; padding:12px; background:rgba(66,135,245,0.1); border-radius:6px">
+        <code style="color:var(--blue); display:block; margin:4px 0">VNC = Costo Storico – Fondo Ammortamento</code>
+        <code style="color:var(--green); display:block; margin:4px 0">Plusvalenza = Prezzo Vendita – VNC</code>
+        <code style="color:var(--red); display:block; margin:4px 0">Minusvalenza = VNC – Prezzo Vendita</code>
+      </div>
+    </details>
+
+    <div id="quiz3-feedback" style="margin-top:12px"></div>
+    <div id="quiz3-stats" class="small" style="margin-top:8px; color:var(--muted)"></div>
+  </div>
+
+  <script>
+  function validateQuiz3() {
+    const vncInput = document.getElementById('quiz3-vnc');
+    const tipoSelect = document.getElementById('quiz3-tipo');
+    const importoInput = document.getElementById('quiz3-importo');
+    const feedback = document.getElementById('quiz3-feedback');
+    const statsDiv = document.getElementById('quiz3-stats');
+
+    const userVNC = parseFloat(vncInput.value);
+    const userTipo = tipoSelect.value;
+    const userImporto = parseFloat(importoInput.value);
+
+    const correctVNC = 550; // 2500 - 1950
+    const correctTipo = 'plusvalenza'; // 800 > 550
+    const correctImporto = 250; // 800 - 550
+
+    // Verifica completamento
+    if (!userVNC || !userTipo || !userImporto) {
+      feedback.innerHTML = `
+        <div style="padding:12px; background:rgba(255,193,7,0.15); border-left:4px solid var(--yellow); border-radius:6px">
+          <p class="small">⚠️ Compila tutti e 3 i campi prima di verificare</p>
+        </div>
+      `;
+      return;
+    }
+
+    // Recupera stats da localStorage
+    let stats = JSON.parse(localStorage.getItem('quiz-stats-immobilizzazioni') || '{}');
+    if (!stats.quiz3) stats.quiz3 = { attempts: 0, correct: 0, firstTryCorrect: false };
+    stats.quiz3.attempts++;
+
+    // Verifica correttezza
+    const vncCorrect = Math.abs(userVNC - correctVNC) < 1;
+    const tipoCorrect = userTipo === correctTipo;
+    const importoCorrect = Math.abs(userImporto - correctImporto) < 1;
+
+    if (vncCorrect && tipoCorrect && importoCorrect) {
+      // Tutto corretto ✅
+      stats.quiz3.correct++;
+      if (stats.quiz3.attempts === 1) stats.quiz3.firstTryCorrect = true;
+
+      feedback.innerHTML = `
+        <div style="padding:12px; background:rgba(46,204,113,0.15); border-left:4px solid var(--green); border-radius:6px">
+          <div style="font-size:1.2em; margin-bottom:8px">✅ <strong>Perfetto! Soluzione completa corretta!</strong></div>
+          <p class="small" style="margin:8px 0"><strong>Passaggi:</strong></p>
+          <ul class="small" style="margin:8px 0; padding-left:20px">
+            <li>VNC = € 2.500 – € 1.950 = <strong>€ 550</strong> ✅</li>
+            <li>Prezzo vendita (€ 800) > VNC (€ 550) → <strong>PLUSVALENZA</strong> ✅</li>
+            <li>Importo plusvalenza = € 800 – € 550 = <strong>€ 250</strong> ✅</li>
+          </ul>
+          <p class="small" style="margin:8px 0; padding:8px; background:rgba(66,135,245,0.1); border-radius:4px">
+            📝 <strong>Scrittura contabile:</strong><br>
+            <code style="display:block; margin-top:4px">DARE: Fondo amm.to computer € 1.950</code>
+            <code style="display:block">DARE: Banca c/c € 800</code>
+            <code style="display:block; margin-left:20px">AVERE: Computer € 2.500</code>
+            <code style="display:block; margin-left:20px">AVERE: Plusvalenza € 250</code>
+          </p>
+          ${stats.quiz3.attempts === 1 ? '<div style="margin-top:8px; color:var(--yellow)">🏆 Perfetto al primo tentativo! +10 punti</div>' : ''}
+        </div>
+      `;
+      vncInput.disabled = true;
+      tipoSelect.disabled = true;
+      importoInput.disabled = true;
+      vncInput.style.borderColor = 'var(--green)';
+      importoInput.style.borderColor = 'var(--green)';
+    } else {
+      // Errore: fornisci feedback dettagliato ❌
+      let errors = [];
+      if (!vncCorrect) errors.push('❌ VNC errato (ricontrolla: Costo – Fondo)');
+      if (!tipoCorrect) errors.push('❌ Tipo errato (confronta Prezzo vendita con VNC)');
+      if (!importoCorrect) errors.push('❌ Importo errato (calcola la differenza)');
+
+      feedback.innerHTML = `
+        <div style="padding:12px; background:rgba(231,76,60,0.15); border-left:4px solid var(--red); border-radius:6px">
+          <div style="font-size:1.1em; margin-bottom:8px">❌ <strong>Ricontrolla:</strong></div>
+          <ul class="small" style="margin:8px 0; padding-left:20px">
+            ${errors.map(e => `<li>${e}</li>`).join('')}
+          </ul>
+          <p class="small" style="margin:8px 0; color:var(--yellow)">💡 Hint: Procedi per passi: prima calcola il VNC, poi confrontalo con il prezzo di vendita (€ 800)</p>
+        </div>
+      `;
+    }
+
+    // Salva stats e mostra statistiche
+    localStorage.setItem('quiz-stats-immobilizzazioni', JSON.stringify(stats));
+    const percentage = ((stats.quiz3.correct / stats.quiz3.attempts) * 100).toFixed(0);
+    statsDiv.innerHTML = `📊 Tentativi: ${stats.quiz3.attempts} · Corretti: ${stats.quiz3.correct} · Precisione: ${percentage}%`;
+  }
+
+  // Carica stats all'avvio
+  (function() {
+    const stats = JSON.parse(localStorage.getItem('quiz-stats-immobilizzazioni') || '{}');
+    if (stats.quiz3 && stats.quiz3.correct > 0) {
+      const statsDiv = document.getElementById('quiz3-stats');
+      const percentage = ((stats.quiz3.correct / stats.quiz3.attempts) * 100).toFixed(0);
+      statsDiv.innerHTML = `📊 Tentativi: ${stats.quiz3.attempts} · Corretti: ${stats.quiz3.correct} · Precisione: ${percentage}%`;
+    }
+  })();
+  </script>
+
+  <!-- 🎯 SELF-ASSESSMENT CHUNK 3 -->
+  <div class="card" style="background: linear-gradient(135deg, rgba(66,135,245,0.08), rgba(46,204,113,0.05)); border-left: 4px solid var(--blue); margin: 20px 0">
+    <div style="display:flex; align-items:center; gap:12px; margin-bottom:16px">
+      <div class="badge b-blue">🧠 Auto-Valutazione</div>
+      <div class="small" style="color:var(--muted)">CHUNK 3 · 1 min</div>
+    </div>
+
+    <p style="margin-bottom:16px"><strong>Come ti senti dopo aver studiato questo CHUNK?</strong></p>
+
+    <div style="display:grid; gap:16px">
+      <div>
+        <label class="small" style="display:block; margin-bottom:8px; color:var(--muted)">💭 Quanto ricordi dei concetti? (1=Poco, 5=Tutto)</label>
+        <div style="display:flex; gap:12px; align-items:center">
+          <span class="small">1</span>
+          <input type="range" id="sa3-ricordo" min="1" max="5" value="3" style="flex:1; accent-color:var(--blue)">
+          <span class="small">5</span>
+          <span id="sa3-ricordo-val" style="font-weight:700; color:var(--blue); min-width:30px; text-align:center">3</span>
+        </div>
+      </div>
+
+      <div>
+        <label class="small" style="display:block; margin-bottom:8px; color:var(--muted)">💪 Quanto ti senti sicuro? (1=Insicuro, 5=Sicurissimo)</label>
+        <div style="display:flex; gap:12px; align-items:center">
+          <span class="small">1</span>
+          <input type="range" id="sa3-sicurezza" min="1" max="5" value="3" style="flex:1; accent-color:var(--green)">
+          <span class="small">5</span>
+          <span id="sa3-sicurezza-val" style="font-weight:700; color:var(--green); min-width:30px; text-align:center">3</span>
+        </div>
+      </div>
+
+      <div>
+        <label class="small" style="display:block; margin-bottom:8px; color:var(--muted)">🎯 Quanto puoi applicarlo in un esercizio? (1=Per niente, 5=Perfettamente)</label>
+        <div style="display:flex; gap:12px; align-items:center">
+          <span class="small">1</span>
+          <input type="range" id="sa3-applicazione" min="1" max="5" value="3" style="flex:1; accent-color:var(--yellow)">
+          <span class="small">5</span>
+          <span id="sa3-applicazione-val" style="font-weight:700; color:var(--yellow); min-width:30px; text-align:center">3</span>
+        </div>
+      </div>
+    </div>
+
+    <button onclick="saveSelfAssessment3()" style="width:100%; padding:12px; margin-top:16px; background:var(--blue); color:#fff; border:none; border-radius:6px; font-weight:600; cursor:pointer">💾 Salva Valutazione</button>
+
+    <div id="sa3-feedback" style="margin-top:12px"></div>
+    <div id="sa3-trend" class="small" style="margin-top:8px; color:var(--muted)"></div>
+  </div>
+
+  <script>
+  ['ricordo', 'sicurezza', 'applicazione'].forEach(tipo => {
+    const slider = document.getElementById('sa3-' + tipo);
+    const label = document.getElementById('sa3-' + tipo + '-val');
+    slider.addEventListener('input', () => { label.textContent = slider.value; });
+  });
+
+  function saveSelfAssessment3() {
+    const ricordo = parseInt(document.getElementById('sa3-ricordo').value);
+    const sicurezza = parseInt(document.getElementById('sa3-sicurezza').value);
+    const applicazione = parseInt(document.getElementById('sa3-applicazione').value);
+    const media = ((ricordo + sicurezza + applicazione) / 3).toFixed(1);
+
+    const feedback = document.getElementById('sa3-feedback');
+    const trendDiv = document.getElementById('sa3-trend');
+
+    const key = 'self-assessment-immobilizzazioni-chunk3';
+    let history = JSON.parse(localStorage.getItem(key) || '[]');
+    const now = new Date().toISOString().split('T')[0];
+    history.push({ date: now, ricordo, sicurezza, applicazione, media: parseFloat(media) });
+    localStorage.setItem(key, JSON.stringify(history));
+
+    let icon = '✅', color = 'var(--green)', message = 'Ottimo! Continua così!', suggestion = '';
+
+    if (media < 3) {
+      icon = '⚠️'; color = 'var(--red)'; message = 'Attenzione: questo CHUNK richiede revisione';
+      suggestion = '<p class="small" style="margin-top:8px; color:var(--yellow)">💡 <strong>Suggerimento:</strong> Rileggi la sezione, rifai il mini-quiz, poi rivaluta tra 1 giorno</p>';
+    } else if (media < 4) {
+      icon = '👍'; color = 'var(--yellow)'; message = 'Buono! Potresti migliorare con pratica extra';
+      suggestion = '<p class="small" style="margin-top:8px; color:var(--yellow)">💡 <strong>Suggerimento:</strong> Fai un paio di esercizi aggiuntivi per consolidare</p>';
+    }
+
+    feedback.innerHTML = `<div style="padding:12px; background:rgba(66,135,245,0.1); border-left:4px solid ${color}; border-radius:6px"><div style="font-size:1.2em; margin-bottom:8px">${icon} <strong>Media: ${media}/5</strong></div><p class="small" style="margin:4px 0">${message}</p>${suggestion}</div>`;
+
+    if (history.length > 1) {
+      const prev = history[history.length - 2];
+      const diff = (parseFloat(media) - prev.media).toFixed(1);
+      const arrow = diff > 0 ? '📈' : (diff < 0 ? '📉' : '➡️');
+      const sign = diff > 0 ? '+' : '';
+      trendDiv.innerHTML = `${arrow} Trend: Ultima volta ${prev.media}/5 → Oggi ${media}/5 (${sign}${diff})`;
+    } else {
+      trendDiv.innerHTML = '📊 Prima valutazione salvata! Rivaluta tra qualche giorno per vedere il trend';
+    }
+  }
+
+  (function() {
+    const key = 'self-assessment-immobilizzazioni-chunk3';
+    const history = JSON.parse(localStorage.getItem(key) || '[]');
+    if (history.length > 0) {
+      const last = history[history.length - 1];
+      document.getElementById('sa3-ricordo').value = last.ricordo;
+      document.getElementById('sa3-sicurezza').value = last.sicurezza;
+      document.getElementById('sa3-applicazione').value = last.applicazione;
+      document.getElementById('sa3-ricordo-val').textContent = last.ricordo;
+      document.getElementById('sa3-sicurezza-val').textContent = last.sicurezza;
+      document.getElementById('sa3-applicazione-val').textContent = last.applicazione;
+      const trendDiv = document.getElementById('sa3-trend');
+      trendDiv.innerHTML = `📅 Ultima valutazione: ${last.date} · Media: ${last.media}/5`;
+    }
+  })();
+  </script>
+
+  <label class="btn" style="width:100%; justify-content:space-between">
+    <span><input id="chk3done" type="checkbox" style="accent-color:var(--green); margin-right:8px"> Ho completato CHUNK 3 (Vendita + Plus/Minus)</span>
+  </label>
+  <div class="progress" style="margin-top:8px"><i id="chunk3bar"></i></div>
+
+</section>
+
+<script>
+(function(){
+  const key='chunk3-immobilizzazioni';
+  const box=document.getElementById('chk3done');
+  const bar=document.getElementById('chunk3bar');
+  function load(){ const v=localStorage.getItem(key)==='1'; box.checked=v; bar.style.width=v?'100%':'0%'; }
+  function save(){ localStorage.setItem(key, box.checked?'1':'0'); bar.style.width=box.checked?'100%':'0%'; }
+  box.addEventListener('change', save); load();
+})();
+</script>
+
+  </main>
+
+  <!-- SIDEBAR STICKY -->
+  <aside class="grid sticky" style="gap:18px">
+
+    <div class="card">
+      <div class="badge b-green">✅ Checklist modulo</div>
+      <ul style="list-style:none; padding:0; margin:12px 0 0; display:grid; gap:8px">
+        <li><label><input type="checkbox" id="check-costo" style="accent-color:var(--green); margin-right:8px"> Costo storico + accessori</label></li>
+        <li><label><input type="checkbox" id="check-ammort" style="accent-color:var(--green); margin-right:8px"> Ammortamento ordinario</label></li>
+        <li><label><input type="checkbox" id="check-parziale" style="accent-color:var(--green); margin-right:8px"> Ammortamento parziale</label></li>
+        <li><label><input type="checkbox" id="check-vnc" style="accent-color:var(--green); margin-right:8px"> Calcolo VNC</label></li>
+        <li><label><input type="checkbox" id="check-plus" style="accent-color:var(--green); margin-right:8px"> Plusvalenza/Minusvalenza</label></li>
+        <li><label><input type="checkbox" id="check-vendita" style="accent-color:var(--green); margin-right:8px"> Registrazione vendita</label></li>
+        <li><label><input type="checkbox" id="check-eliminaz" style="accent-color:var(--green); margin-right:8px"> Eliminazione involontaria</label></li>
+      </ul>
+      <div class="separator"></div>
+      <div class="progress"><i id="checklist-bar"></i></div>
+      <div class="small" style="margin-top:6px; text-align:center">
+        <span id="checklist-count">0</span>/7 completati
+      </div>
+    </div>
+
+    <script>
+    (function(){
+      const checks = ['costo','ammort','parziale','vnc','plus','vendita','eliminaz'].map(id=>'check-'+id);
+      const bar = document.getElementById('checklist-bar');
+      const count = document.getElementById('checklist-count');
+      const key = 'checklist-immobilizzazioni';
+      function load(){
+        try{ const v = JSON.parse(localStorage.getItem(key)||'{}');
+          checks.forEach(id=>{ const el = document.getElementById(id); if(el && v[id]) el.checked=true; });
+        }catch{}
+        update();
+      }
+      function save(){
+        const v = {};
+        checks.forEach(id=>{ const el = document.getElementById(id); if(el) v[id]=el.checked; });
+        localStorage.setItem(key, JSON.stringify(v));
+      }
+      function update(){
+        const checked = checks.filter(id=>document.getElementById(id)?.checked).length;
+        const perc = (checked/7*100)|0;
+        bar.style.width = perc+'%';
+        count.textContent = checked;
+        save();
+      }
+      checks.forEach(id=>document.getElementById(id)?.addEventListener('change', update));
+      load();
+    })();
+    </script>
+
+    <div class="card">
+      <div class="badge b-blue">🔵 Formule chiave</div>
+      <div style="margin-top:12px; font-size:0.9rem; display:grid; gap:10px">
+        <div class="callout co-blue" style="padding:10px">
+          <b>VNC</b><br>
+          <code style="font-size:0.85rem">Costo Storico – Fondo Amm.</code>
+        </div>
+        <div class="callout co-yellow" style="padding:10px">
+          <b>Ammortamento</b><br>
+          <code style="font-size:0.85rem">Costo × Coeff. % × giorni/365</code>
+        </div>
+        <div class="callout co-green" style="padding:10px">
+          <b>Plusvalenza</b><br>
+          <code style="font-size:0.85rem">Prezzo Vendita – VNC</code>
+        </div>
+      </div>
+    </div>
+
+    <div class="card">
+      <div class="badge b-yellow">🔄 Prossimi passi</div>
+      <ol class="small" style="margin:12px 0 0; padding-left:20px">
+        <li><b>Active Recall</b><br><code style="font-size:0.8rem">quiz-active-recall/01-quiz-immobilizzazioni.md</code></li>
+        <li><b>Spaced Repetition</b><br>Rivedi tra 24h, 3gg, 7gg</li>
+        <li><b>Prossimo modulo</b><br><code style="font-size:0.8rem">02-leasing-costruzioni.md</code></li>
+      </ol>
+    </div>
+
+    <div class="callout co-blue">
+      <b>💡 Tip Neuroscienza:</b>
+      <p class="small" style="margin:8px 0 0">Dopo aver studiato, fai 5 minuti di pausa attiva (camminata, stretching). L'ossigenazione migliora la consolidazione memoria del 30%.</p>
+    </div>
+
+  </aside>
+</div>
+
+<div class="separator" style="margin:32px 0"></div>
+
+<style>
+.footer-copyright {
+  text-align: center;
+  margin-top: 50px;
+  padding: 30px 25px;
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  color: #ffffff;
+  border-radius: 16px;
+  box-shadow: 0 8px 20px rgba(0,0,0,0.2);
+  font-size: 0.95em;
+  line-height: 1.8;
+}
+.footer-copyright strong {
+  color: #ffffff !important;
+  font-weight: 700;
+  font-size: 1.1em;
+}
+.footer-copyright em {
+  color: #f0f0f0;
+  font-style: italic;
+}
+.footer-copyright .warning {
+  margin-top: 15px;
+  padding: 12px;
+  background: rgba(255,255,255,0.15);
+  border-radius: 8px;
+  font-size: 0.85em;
+  border: 1px solid rgba(255,255,255,0.3);
+}
+</style>
+
+<div class="footer-copyright">
+  <strong>📚 Sistema NPI-Learning per Economia Aziendale</strong><br>
+  Creato da <strong>Jeffrey Minaya</strong> | AFM Quinta Serale | © 2025<br>
+  <em>Documento didattico ottimizzato con tecniche di neuroscienza applicata</em>
+  <div class="warning">
+    ⚠️ <strong>Uso Riservato:</strong> Questo materiale è protetto da copyright.<br>
+    La distribuzione, riproduzione o uso commerciale non autorizzato è vietato.<br>
+    Per richieste di utilizzo: contattare l'autore.
+  </div>
+</div>
+
+</div> <!-- chiusura container -->
+
+</body>
+</html>

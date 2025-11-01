@@ -1,0 +1,721 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Dashboard Simulazioni | NPI-Learning</title>
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+:root {
+  --primary: #667eea;
+  --secondary: #764ba2;
+  --success: #4caf50;
+  --error: #f44336;
+  --warning: #ff9800;
+  --blue: #0055a5;
+  --green: #2a9d8f;
+  --yellow: #f59e0b;
+  --red: #dc2626;
+  --fg: #2c3e50;
+  --muted: #64748b;
+  --bg: #f5f7fa;
+  --card: #ffffff;
+  --border: #e2e8f0;
+  --radius: 12px;
+}
+
+* { margin: 0; padding: 0; box-sizing: border-box; }
+
+body {
+  font-family: 'Inter', 'Poppins', sans-serif;
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  color: var(--fg);
+  line-height: 1.7;
+  padding: 20px;
+  min-height: 100vh;
+}
+
+.container {
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.header {
+  background: white;
+  border-radius: var(--radius);
+  padding: 30px;
+  margin-bottom: 30px;
+  box-shadow: 0 4px 20px rgba(0,0,0,0.1);
+  text-align: center;
+}
+
+.header h1 {
+  font-size: 2.5em;
+  background: linear-gradient(135deg, var(--primary), var(--secondary));
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  margin-bottom: 10px;
+}
+
+.header p {
+  color: var(--muted);
+  font-size: 1.1em;
+}
+
+.nav-bar {
+  background: rgba(255,255,255,0.95);
+  backdrop-filter: blur(10px);
+  padding: 15px;
+  border-radius: var(--radius);
+  margin-bottom: 30px;
+  display: flex;
+  justify-content: center;
+  gap: 10px;
+  flex-wrap: wrap;
+  box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+}
+
+.nav-bar a {
+  padding: 10px 20px;
+  background: var(--bg);
+  color: var(--fg);
+  text-decoration: none;
+  border-radius: 8px;
+  font-weight: 600;
+  transition: all 0.3s;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.nav-bar a:hover {
+  background: var(--primary);
+  color: white;
+  transform: translateY(-2px);
+}
+
+.stats-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 20px;
+  margin-bottom: 30px;
+}
+
+.stat-card {
+  background: white;
+  padding: 25px;
+  border-radius: var(--radius);
+  box-shadow: 0 4px 20px rgba(0,0,0,0.1);
+  position: relative;
+  overflow: hidden;
+}
+
+.stat-card::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 4px;
+  background: linear-gradient(90deg, var(--primary), var(--secondary));
+}
+
+.stat-card.level-1::before {
+  background: linear-gradient(90deg, #4caf50, #2a9d8f);
+}
+
+.stat-card.level-2::before {
+  background: linear-gradient(90deg, #f59e0b, #d97706);
+}
+
+.stat-card.level-3::before {
+  background: linear-gradient(90deg, #dc2626, #991b1b);
+}
+
+.stat-icon {
+  font-size: 3em;
+  margin-bottom: 15px;
+}
+
+.stat-title {
+  font-size: 1.3em;
+  font-weight: 700;
+  margin-bottom: 10px;
+  color: var(--fg);
+}
+
+.stat-value {
+  font-size: 2.5em;
+  font-weight: 700;
+  margin: 10px 0;
+}
+
+.stat-label {
+  color: var(--muted);
+  font-size: 0.9em;
+}
+
+.progress-section {
+  background: white;
+  padding: 30px;
+  border-radius: var(--radius);
+  box-shadow: 0 4px 20px rgba(0,0,0,0.1);
+  margin-bottom: 30px;
+}
+
+.progress-item {
+  margin: 20px 0;
+}
+
+.progress-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 10px;
+}
+
+.progress-header h3 {
+  font-size: 1.2em;
+  color: var(--fg);
+}
+
+.progress-percentage {
+  font-size: 1.5em;
+  font-weight: 700;
+}
+
+.progress-bar {
+  background: var(--bg);
+  border-radius: 20px;
+  height: 30px;
+  overflow: hidden;
+  position: relative;
+}
+
+.progress-fill {
+  height: 100%;
+  border-radius: 20px;
+  transition: width 0.5s ease;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: white;
+  font-weight: 600;
+  font-size: 0.9em;
+}
+
+.progress-fill.level-1 {
+  background: linear-gradient(90deg, #4caf50, #2a9d8f);
+}
+
+.progress-fill.level-2 {
+  background: linear-gradient(90deg, #f59e0b, #d97706);
+}
+
+.progress-fill.level-3 {
+  background: linear-gradient(90deg, #dc2626, #991b1b);
+}
+
+.badge {
+  display: inline-block;
+  padding: 6px 12px;
+  border-radius: 6px;
+  font-size: 0.85em;
+  font-weight: 600;
+  margin: 5px 5px 5px 0;
+}
+
+.badge.success {
+  background: #d1fae5;
+  color: #065f46;
+}
+
+.badge.warning {
+  background: #fef3c7;
+  color: #92400e;
+}
+
+.badge.error {
+  background: #fee2e2;
+  color: #991b1b;
+}
+
+.badge.info {
+  background: #dbeafe;
+  color: #1e40af;
+}
+
+.levels-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+  gap: 25px;
+  margin-top: 30px;
+}
+
+.level-card {
+  background: white;
+  padding: 25px;
+  border-radius: var(--radius);
+  box-shadow: 0 4px 20px rgba(0,0,0,0.1);
+  transition: all 0.3s;
+  cursor: pointer;
+}
+
+.level-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 8px 30px rgba(0,0,0,0.15);
+}
+
+.level-card h2 {
+  font-size: 1.8em;
+  margin-bottom: 15px;
+}
+
+.level-card .details {
+  margin: 15px 0;
+}
+
+.level-card .details p {
+  margin: 8px 0;
+  color: var(--muted);
+}
+
+.level-card .btn {
+  width: 100%;
+  padding: 15px;
+  background: linear-gradient(135deg, var(--primary), var(--secondary));
+  color: white;
+  border: none;
+  border-radius: 8px;
+  font-size: 1.1em;
+  font-weight: 600;
+  cursor: pointer;
+  margin-top: 15px;
+  transition: all 0.3s;
+}
+
+.level-card .btn:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(102,126,234,0.3);
+}
+
+.level-card.level-1 .btn {
+  background: linear-gradient(135deg, #4caf50, #2a9d8f);
+}
+
+.level-card.level-2 .btn {
+  background: linear-gradient(135deg, #f59e0b, #d97706);
+}
+
+.level-card.level-3 .btn {
+  background: linear-gradient(135deg, #dc2626, #991b1b);
+}
+
+.history-section {
+  background: white;
+  padding: 30px;
+  border-radius: var(--radius);
+  box-shadow: 0 4px 20px rgba(0,0,0,0.1);
+  margin-top: 30px;
+}
+
+.history-table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-top: 20px;
+}
+
+.history-table th {
+  background: var(--bg);
+  padding: 12px;
+  text-align: left;
+  font-weight: 600;
+  border-bottom: 2px solid var(--border);
+}
+
+.history-table td {
+  padding: 12px;
+  border-bottom: 1px solid var(--border);
+}
+
+.history-table tr:hover {
+  background: var(--bg);
+}
+
+.empty-state {
+  text-align: center;
+  padding: 40px;
+  color: var(--muted);
+}
+
+.empty-state .icon {
+  font-size: 4em;
+  margin-bottom: 15px;
+  opacity: 0.5;
+}
+
+.btn-reset {
+  background: var(--error);
+  color: white;
+  border: none;
+  padding: 10px 20px;
+  border-radius: 8px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.3s;
+}
+
+.btn-reset:hover {
+  background: #b91c1c;
+}
+
+@media (max-width: 768px) {
+  .header h1 { font-size: 2em; }
+  .stats-grid { grid-template-columns: 1fr; }
+  .levels-grid { grid-template-columns: 1fr; }
+  .history-table { font-size: 0.85em; }
+}
+</style>
+</head>
+<body>
+
+<div class="container">
+  <!-- HEADER -->
+  <div class="header">
+    <h1>📊 Dashboard Simulazioni</h1>
+    <p>Monitora i tuoi progressi e accedi alle simulazioni interattive</p>
+  </div>
+
+  <!-- NAVIGATION -->
+  <div class="nav-bar">
+    <a href="../05-riepilogo-generale.html">
+      <span>🏠</span> Dashboard Principale
+    </a>
+    <a href="01-livello-base-INTERATTIVO.html">
+      <span>🟢</span> Livello 1
+    </a>
+    <a href="02-livello-intermedio-INTERATTIVO.html">
+      <span>🟡</span> Livello 2
+    </a>
+    <a href="03-livello-avanzato-INTERATTIVO.html">
+      <span>🔴</span> Livello 3
+    </a>
+  </div>
+
+  <!-- STATISTICHE GLOBALI -->
+  <div class="stats-grid">
+    <div class="stat-card">
+      <div class="stat-icon">🎯</div>
+      <div class="stat-title">Simulazioni Completate</div>
+      <div class="stat-value" id="totalSimulazioni">0</div>
+      <div class="stat-label">su 3 disponibili</div>
+    </div>
+
+    <div class="stat-card">
+      <div class="stat-icon">📈</div>
+      <div class="stat-title">Media Punteggi</div>
+      <div class="stat-value" id="mediaPunteggi">—</div>
+      <div class="stat-label">percentuale media</div>
+    </div>
+
+    <div class="stat-card">
+      <div class="stat-icon">⏱️</div>
+      <div class="stat-title">Tempo Totale Studio</div>
+      <div class="stat-value" id="tempoTotale">—</div>
+      <div class="stat-label">minuti impiegati</div>
+    </div>
+
+    <div class="stat-card">
+      <div class="stat-icon">🏆</div>
+      <div class="stat-title">Miglior Risultato</div>
+      <div class="stat-value" id="migliorRisultato">—</div>
+      <div class="stat-label">punteggio più alto</div>
+    </div>
+  </div>
+
+  <!-- PROGRESSI PER LIVELLO -->
+  <div class="progress-section">
+    <h2 style="margin-bottom: 20px;">📊 Progressi per Livello</h2>
+
+    <div class="progress-item">
+      <div class="progress-header">
+        <h3>🟢 Livello 1 - BASE</h3>
+        <span class="progress-percentage" id="progress1">—</span>
+      </div>
+      <div class="progress-bar">
+        <div class="progress-fill level-1" id="progressBar1" style="width: 0%"></div>
+      </div>
+      <div style="margin-top: 10px;">
+        <span class="badge info" id="badge1">Non completato</span>
+        <span id="data1" style="color: var(--muted); font-size: 0.9em; margin-left: 10px;"></span>
+      </div>
+    </div>
+
+    <div class="progress-item">
+      <div class="progress-header">
+        <h3>🟡 Livello 2 - INTERMEDIO</h3>
+        <span class="progress-percentage" id="progress2">—</span>
+      </div>
+      <div class="progress-bar">
+        <div class="progress-fill level-2" id="progressBar2" style="width: 0%"></div>
+      </div>
+      <div style="margin-top: 10px;">
+        <span class="badge info" id="badge2">Non completato</span>
+        <span id="data2" style="color: var(--muted); font-size: 0.9em; margin-left: 10px;"></span>
+      </div>
+    </div>
+
+    <div class="progress-item">
+      <div class="progress-header">
+        <h3>🔴 Livello 3 - AVANZATO</h3>
+        <span class="progress-percentage" id="progress3">—</span>
+      </div>
+      <div class="progress-bar">
+        <div class="progress-fill level-3" id="progressBar3" style="width: 0%"></div>
+      </div>
+      <div style="margin-top: 10px;">
+        <span class="badge info" id="badge3">Non completato</span>
+        <span id="data3" style="color: var(--muted); font-size: 0.9em; margin-left: 10px;"></span>
+      </div>
+    </div>
+  </div>
+
+  <!-- CARDS LIVELLI -->
+  <div class="levels-grid">
+    <div class="level-card level-1" onclick="location.href='01-livello-base-INTERATTIVO.html'">
+      <h2>🟢 Livello 1 - BASE</h2>
+      <div class="details">
+        <p>⏱️ <strong>Durata:</strong> 60 minuti</p>
+        <p>📊 <strong>Difficoltà:</strong> Principiante</p>
+        <p>🎯 <strong>Target:</strong> 70%+</p>
+        <p>💡 <strong>Contenuti:</strong></p>
+        <ul style="margin-left: 20px; color: var(--muted);">
+          <li>Domande rapide (20 punti)</li>
+          <li>Esercizi guidati (80 punti)</li>
+          <li>Tabelle partita doppia</li>
+          <li>Suggerimenti inclusi</li>
+        </ul>
+      </div>
+      <button class="btn">▶️ Inizia Livello 1</button>
+    </div>
+
+    <div class="level-card level-2" onclick="location.href='02-livello-intermedio-INTERATTIVO.html'">
+      <h2>🟡 Livello 2 - INTERMEDIO</h2>
+      <div class="details">
+        <p>⏱️ <strong>Durata:</strong> 90 minuti</p>
+        <p>📊 <strong>Difficoltà:</strong> Intermedio</p>
+        <p>🎯 <strong>Target:</strong> 75%+ (90 punti)</p>
+        <p>💡 <strong>Contenuti:</strong></p>
+        <ul style="margin-left: 20px; color: var(--muted);">
+          <li>Teoria applicata (25 punti)</li>
+          <li>Esercizi complessi (75 punti + 20 bonus)</li>
+          <li>Multi-step operations</li>
+          <li>Zero formule fornite</li>
+        </ul>
+      </div>
+      <button class="btn">▶️ Inizia Livello 2</button>
+    </div>
+
+    <div class="level-card level-3" onclick="location.href='03-livello-avanzato-INTERATTIVO.html'">
+      <h2>🔴 Livello 3 - AVANZATO</h2>
+      <div class="details">
+        <p>⏱️ <strong>Durata:</strong> 120 minuti</p>
+        <p>📊 <strong>Difficoltà:</strong> Esame Reale</p>
+        <p>🎯 <strong>Target:</strong> 80%+ (24/30)</p>
+        <p>💡 <strong>Contenuti:</strong></p>
+        <ul style="margin-left: 20px; color: var(--muted);">
+          <li>Teoria professionale (30 punti)</li>
+          <li>Casi integrati (70 punti)</li>
+          <li>Timer obbligatorio</li>
+          <li>Zero hint, zero formule</li>
+        </ul>
+      </div>
+      <button class="btn">▶️ Inizia Livello 3</button>
+    </div>
+  </div>
+
+  <!-- STORICO TENTATIVI -->
+  <div class="history-section">
+    <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 20px;">
+      <h2>📜 Storico Tentativi</h2>
+      <button class="btn-reset" onclick="resetHistory()">🗑️ Cancella Storico</button>
+    </div>
+
+    <div id="historyContent">
+      <div class="empty-state">
+        <div class="icon">📭</div>
+        <p>Nessuna simulazione completata ancora.</p>
+        <p style="margin-top: 10px; font-size: 0.9em;">Inizia una simulazione per vedere i tuoi progressi qui!</p>
+      </div>
+    </div>
+  </div>
+
+</div>
+
+<script>
+// Carica dati da localStorage
+function loadData() {
+  const livello1 = JSON.parse(localStorage.getItem('simulazione-livello1-base') || 'null');
+  const livello2 = JSON.parse(localStorage.getItem('simulazione-livello2-intermedio') || 'null');
+  const livello3 = JSON.parse(localStorage.getItem('simulazione-livello3-avanzato') || 'null');
+
+  // Statistiche globali
+  let completate = 0;
+  let sommaPunteggi = 0;
+  let tempoTotale = 0;
+  let miglior = 0;
+
+  // Livello 1
+  if (livello1) {
+    completate++;
+    sommaPunteggi += parseFloat(livello1.percentuale);
+    miglior = Math.max(miglior, parseFloat(livello1.percentuale));
+
+    document.getElementById('progress1').textContent = livello1.percentuale + '%';
+    document.getElementById('progressBar1').style.width = livello1.percentuale + '%';
+    document.getElementById('progressBar1').textContent = livello1.percentuale + '%';
+
+    const perc = parseFloat(livello1.percentuale);
+    let badge = document.getElementById('badge1');
+    if (perc >= 90) {
+      badge.textContent = '🏆 Eccellente';
+      badge.className = 'badge success';
+    } else if (perc >= 70) {
+      badge.textContent = '✅ Buono';
+      badge.className = 'badge success';
+    } else if (perc >= 60) {
+      badge.textContent = '⚠️ Sufficiente';
+      badge.className = 'badge warning';
+    } else {
+      badge.textContent = '❌ Insufficiente';
+      badge.className = 'badge error';
+    }
+
+    document.getElementById('data1').textContent = '📅 ' + livello1.data;
+  }
+
+  // Livello 2
+  if (livello2) {
+    completate++;
+    sommaPunteggi += parseFloat(livello2.percentuale);
+    miglior = Math.max(miglior, parseFloat(livello2.percentuale));
+
+    document.getElementById('progress2').textContent = livello2.percentuale + '%';
+    document.getElementById('progressBar2').style.width = livello2.percentuale + '%';
+    document.getElementById('progressBar2').textContent = livello2.percentuale + '%';
+
+    const perc = parseFloat(livello2.percentuale);
+    let badge = document.getElementById('badge2');
+    if (perc >= 90) {
+      badge.textContent = '🏆 Eccellente';
+      badge.className = 'badge success';
+    } else if (perc >= 75) {
+      badge.textContent = '✅ Ottimo';
+      badge.className = 'badge success';
+    } else if (perc >= 60) {
+      badge.textContent = '⚠️ Buono';
+      badge.className = 'badge warning';
+    } else {
+      badge.textContent = '❌ Insufficiente';
+      badge.className = 'badge error';
+    }
+
+    document.getElementById('data2').textContent = '📅 ' + livello2.data;
+  }
+
+  // Livello 3
+  if (livello3) {
+    completate++;
+    sommaPunteggi += parseFloat(livello3.percentuale);
+    miglior = Math.max(miglior, parseFloat(livello3.percentuale));
+
+    if (livello3.tempoUsato) {
+      tempoTotale += Math.round(livello3.tempoUsato / 60);
+    }
+
+    document.getElementById('progress3').textContent = livello3.percentuale + '%';
+    document.getElementById('progressBar3').style.width = livello3.percentuale + '%';
+    document.getElementById('progressBar3').textContent = livello3.voto30 + '/30';
+
+    const perc = parseFloat(livello3.percentuale);
+    let badge = document.getElementById('badge3');
+    if (perc >= 90) {
+      badge.textContent = '🏆 27-30/30';
+      badge.className = 'badge success';
+    } else if (perc >= 80) {
+      badge.textContent = '✅ 24-26/30';
+      badge.className = 'badge success';
+    } else if (perc >= 70) {
+      badge.textContent = '⚠️ 21-23/30';
+      badge.className = 'badge warning';
+    } else if (perc >= 60) {
+      badge.textContent = '⚠️ 18-20/30';
+      badge.className = 'badge warning';
+    } else {
+      badge.textContent = '❌ < 18/30';
+      badge.className = 'badge error';
+    }
+
+    document.getElementById('data3').textContent = '📅 ' + livello3.data + ' ⏱️ ' + Math.round(livello3.tempoUsato / 60) + ' min';
+  }
+
+  // Aggiorna statistiche globali
+  document.getElementById('totalSimulazioni').textContent = completate;
+
+  if (completate > 0) {
+    const media = (sommaPunteggi / completate).toFixed(1);
+    document.getElementById('mediaPunteggi').textContent = media + '%';
+    document.getElementById('migliorRisultato').textContent = miglior.toFixed(1) + '%';
+  }
+
+  if (tempoTotale > 0) {
+    document.getElementById('tempoTotale').textContent = tempoTotale;
+  }
+
+  // Genera storico
+  if (completate > 0) {
+    let html = '<table class="history-table"><thead><tr><th>Livello</th><th>Data</th><th>Punteggio</th><th>Percentuale</th><th>Valutazione</th></tr></thead><tbody>';
+
+    if (livello1) {
+      const perc = parseFloat(livello1.percentuale);
+      const val = perc >= 90 ? '🏆 Eccellente' : (perc >= 70 ? '✅ Buono' : (perc >= 60 ? '⚠️ Sufficiente' : '❌ Insufficiente'));
+      html += `<tr><td>🟢 Livello 1</td><td>${livello1.data}</td><td>${livello1.punteggio.toFixed(1)}/100</td><td>${livello1.percentuale}%</td><td>${val}</td></tr>`;
+    }
+
+    if (livello2) {
+      const perc = parseFloat(livello2.percentuale);
+      const val = perc >= 90 ? '🏆 Eccellente' : (perc >= 75 ? '✅ Ottimo' : (perc >= 60 ? '⚠️ Buono' : '❌ Insufficiente'));
+      html += `<tr><td>🟡 Livello 2</td><td>${livello2.data}</td><td>${livello2.punteggio.toFixed(1)}/120</td><td>${livello2.percentuale}%</td><td>${val}</td></tr>`;
+    }
+
+    if (livello3) {
+      const perc = parseFloat(livello3.percentuale);
+      const val = perc >= 90 ? '🏆 27-30/30' : (perc >= 80 ? '✅ 24-26/30' : (perc >= 70 ? '⚠️ 21-23/30' : (perc >= 60 ? '⚠️ 18-20/30' : '❌ < 18/30')));
+      html += `<tr><td>🔴 Livello 3</td><td>${livello3.data}</td><td>${livello3.punteggio}/100 (${livello3.voto30}/30)</td><td>${livello3.percentuale}%</td><td>${val}</td></tr>`;
+    }
+
+    html += '</tbody></table>';
+    document.getElementById('historyContent').innerHTML = html;
+  }
+}
+
+function resetHistory() {
+  if (!confirm('⚠️ Sei sicuro di voler cancellare TUTTO lo storico delle simulazioni?\n\nQuesta azione è irreversibile!')) {
+    return;
+  }
+
+  localStorage.removeItem('simulazione-livello1-base');
+  localStorage.removeItem('simulazione-livello2-intermedio');
+  localStorage.removeItem('simulazione-livello3-avanzato');
+
+  alert('✅ Storico cancellato con successo!');
+  location.reload();
+}
+
+// Carica dati all'avvio
+window.addEventListener('DOMContentLoaded', loadData);
+</script>
+
+</body>
+</html>

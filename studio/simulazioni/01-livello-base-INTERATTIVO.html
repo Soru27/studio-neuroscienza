@@ -1,0 +1,1186 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Simulazione Livello 1 - BASE | NPI-Learning</title>
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+:root {
+  --primary: #4287f5;
+  --success: #4caf50;
+  --error: #f44336;
+  --warning: #ff9800;
+  --blue: #0055a5;
+  --green: #2a9d8f;
+  --yellow: #f59e0b;
+  --fg: #2c3e50;
+  --muted: #64748b;
+  --bg: #f5f7fa;
+  --card: #ffffff;
+  --border: #e2e8f0;
+  --radius: 12px;
+}
+
+* { margin: 0; padding: 0; box-sizing: border-box; }
+
+body {
+  font-family: 'Inter', 'Poppins', sans-serif;
+  background: linear-gradient(135deg, #f5f7fa 0%, #e2e8f0 100%);
+  color: var(--fg);
+  line-height: 1.7;
+  padding: 20px;
+}
+
+.container {
+  max-width: 900px;
+  margin: 0 auto;
+  background: var(--card);
+  border-radius: var(--radius);
+  padding: 30px;
+  box-shadow: 0 4px 20px rgba(0,0,0,0.1);
+}
+
+.header {
+  text-align: center;
+  margin-bottom: 30px;
+  padding-bottom: 20px;
+  border-bottom: 3px solid var(--success);
+}
+
+.header h1 {
+  font-size: 2.2em;
+  color: var(--fg);
+  margin-bottom: 10px;
+}
+
+.header .meta {
+  font-size: 0.95em;
+  color: var(--muted);
+  display: flex;
+  justify-content: center;
+  gap: 20px;
+  flex-wrap: wrap;
+}
+
+.question-block {
+  background: #f8f9fa;
+  border-left: 4px solid var(--primary);
+  padding: 20px;
+  margin: 20px 0;
+  border-radius: 8px;
+}
+
+.question-title {
+  font-size: 1.3em;
+  font-weight: 700;
+  color: var(--fg);
+  margin-bottom: 15px;
+}
+
+.input-group {
+  margin: 15px 0;
+}
+
+.input-group label {
+  display: block;
+  font-weight: 600;
+  margin-bottom: 8px;
+  color: var(--fg);
+}
+
+.input-group input[type="text"],
+.input-group input[type="number"],
+.input-group textarea {
+  width: 100%;
+  padding: 12px;
+  border: 2px solid var(--border);
+  border-radius: 8px;
+  font-size: 1em;
+  font-family: 'Courier New', monospace;
+  transition: border 0.3s;
+}
+
+.input-group input:focus,
+.input-group textarea:focus {
+  outline: none;
+  border-color: var(--primary);
+}
+
+.inline-inputs {
+  display: grid;
+  grid-template-columns: 2fr 1fr;
+  gap: 12px;
+  align-items: center;
+}
+
+.radio-group, .checkbox-group {
+  margin: 10px 0;
+}
+
+.radio-group label, .checkbox-group label {
+  display: block;
+  padding: 10px;
+  margin: 8px 0;
+  background: white;
+  border: 2px solid var(--border);
+  border-radius: 6px;
+  cursor: pointer;
+  transition: all 0.3s;
+}
+
+.radio-group label:hover, .checkbox-group label:hover {
+  border-color: var(--primary);
+  background: #f0f7ff;
+}
+
+.radio-group input, .checkbox-group input {
+  margin-right: 10px;
+  transform: scale(1.3);
+  cursor: pointer;
+}
+
+.hint-box {
+  background: linear-gradient(135deg, #fff3cd 0%, #ffe69c 100%);
+  border-left: 4px solid var(--warning);
+  padding: 15px;
+  margin: 15px 0;
+  border-radius: 8px;
+  font-size: 0.95em;
+}
+
+.formula-box {
+  background: #e7f3ff;
+  padding: 15px;
+  border-radius: 8px;
+  font-family: 'Courier New', monospace;
+  font-size: 1.1em;
+  text-align: center;
+  margin: 15px 0;
+  border: 2px dashed var(--primary);
+}
+
+.btn {
+  padding: 15px 30px;
+  background: var(--primary);
+  color: white;
+  border: none;
+  border-radius: 8px;
+  font-size: 1.1em;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.3s;
+  width: 100%;
+  margin-top: 20px;
+}
+
+.btn:hover {
+  background: #2c6bd8;
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(66,135,245,0.3);
+}
+
+.btn-reset {
+  background: var(--muted);
+  margin-top: 10px;
+}
+
+.btn-reset:hover {
+  background: #475569;
+}
+
+.feedback {
+  margin: 20px 0;
+  padding: 20px;
+  border-radius: 8px;
+  display: none;
+}
+
+.feedback.show {
+  display: block;
+}
+
+.feedback.correct {
+  background: #d1fae5;
+  border-left: 4px solid var(--success);
+  color: #065f46;
+}
+
+.feedback.incorrect {
+  background: #fee2e2;
+  border-left: 4px solid var(--error);
+  color: #991b1b;
+}
+
+.feedback.partial {
+  background: #fef3c7;
+  border-left: 4px solid var(--warning);
+  color: #92400e;
+}
+
+.score-panel {
+  position: sticky;
+  top: 20px;
+  background: linear-gradient(135deg, var(--blue), var(--primary));
+  color: white;
+  padding: 20px;
+  border-radius: 12px;
+  text-align: center;
+  margin-bottom: 30px;
+  box-shadow: 0 4px 20px rgba(0,0,0,0.2);
+}
+
+.score-panel h3 {
+  margin-bottom: 15px;
+  font-size: 1.5em;
+}
+
+.score-display {
+  font-size: 2.5em;
+  font-weight: 700;
+  margin: 10px 0;
+}
+
+.progress-bar {
+  background: rgba(255,255,255,0.3);
+  border-radius: 20px;
+  height: 30px;
+  overflow: hidden;
+  margin-top: 15px;
+}
+
+.progress-fill {
+  background: linear-gradient(90deg, var(--success), var(--green));
+  height: 100%;
+  width: 0%;
+  transition: width 0.5s ease;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: white;
+  font-weight: 600;
+}
+
+.section-title {
+  background: linear-gradient(135deg, var(--primary), var(--blue));
+  color: white;
+  padding: 15px 25px;
+  border-radius: 12px;
+  font-size: 1.5em;
+  font-weight: 700;
+  margin: 30px 0 20px;
+  text-align: center;
+}
+
+.exercise-header {
+  background: #f0f7ff;
+  padding: 20px;
+  border-radius: 12px;
+  margin-bottom: 20px;
+  border-left: 6px solid var(--blue);
+}
+
+.exercise-header h3 {
+  font-size: 1.4em;
+  color: var(--blue);
+  margin-bottom: 10px;
+}
+
+.partita-doppia-table {
+  width: 100%;
+  margin: 20px 0;
+  border-collapse: collapse;
+  background: white;
+  border-radius: 8px;
+  overflow: hidden;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+}
+
+.partita-doppia-table thead {
+  background: linear-gradient(135deg, var(--blue), var(--primary));
+  color: white;
+}
+
+.partita-doppia-table th {
+  padding: 12px;
+  text-align: left;
+  font-weight: 600;
+  font-size: 0.95em;
+}
+
+.partita-doppia-table td {
+  padding: 10px;
+  border-bottom: 1px solid var(--border);
+}
+
+.partita-doppia-table tbody tr:hover {
+  background: #f8f9fa;
+}
+
+.partita-doppia-table input {
+  width: 100%;
+  padding: 8px;
+  border: 2px solid var(--border);
+  border-radius: 6px;
+  font-family: 'Courier New', monospace;
+  font-size: 0.95em;
+}
+
+.partita-doppia-table input:focus {
+  outline: none;
+  border-color: var(--primary);
+}
+
+.table-total {
+  background: #f0f7ff !important;
+  font-weight: 700;
+  border-top: 3px solid var(--primary);
+}
+
+.table-balance-ok {
+  background: #d1fae5 !important;
+  color: var(--success);
+}
+
+.table-balance-error {
+  background: #fee2e2 !important;
+  color: var(--error);
+}
+
+@media (max-width: 768px) {
+  body { padding: 10px; }
+  .container { padding: 20px; }
+  .header h1 { font-size: 1.8em; }
+  .inline-inputs { grid-template-columns: 1fr; }
+  .score-display { font-size: 2em; }
+  .partita-doppia-table { font-size: 0.85em; }
+  .partita-doppia-table th, .partita-doppia-table td { padding: 8px; }
+}
+</style>
+</head>
+<body>
+
+<div class="container">
+  <!-- NAVIGATION BAR -->
+  <div style="background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); padding: 15px; border-radius: 12px; margin-bottom: 20px; display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 10px;">
+    <a href="../05-riepilogo-generale.html" style="color: white; text-decoration: none; font-weight: 600; display: flex; align-items: center; gap: 8px;">
+      <span style="font-size: 1.5em">🏠</span> Dashboard
+    </a>
+    <div style="display: flex; gap: 10px; flex-wrap: wrap;">
+      <span style="background: rgba(255,255,255,0.3); padding: 8px 16px; border-radius: 8px; color: white; font-weight: 600; border: 2px solid white;">🟢 Livello 1</span>
+      <a href="02-livello-intermedio-INTERATTIVO.html" style="background: rgba(255,255,255,0.2); padding: 8px 16px; border-radius: 8px; color: white; text-decoration: none; font-weight: 600; transition: all 0.3s;" onmouseover="this.style.background='rgba(255,255,255,0.4)'" onmouseout="this.style.background='rgba(255,255,255,0.2)'">🟡 Livello 2</a>
+      <a href="03-livello-avanzato-INTERATTIVO.html" style="background: rgba(255,255,255,0.2); padding: 8px 16px; border-radius: 8px; color: white; text-decoration: none; font-weight: 600; transition: all 0.3s;" onmouseover="this.style.background='rgba(255,255,255,0.4)'" onmouseout="this.style.background='rgba(255,255,255,0.2)'">🔴 Livello 3</a>
+    </div>
+  </div>
+
+  <!-- HEADER -->
+  <div class="header">
+    <h1>🟢 SIMULAZIONE LIVELLO 1 - BASE</h1>
+    <div class="meta">
+      <span>⏱️ Tempo: 60 minuti</span>
+      <span>📊 Difficoltà: Principiante</span>
+      <span>🎯 Target: 70%+</span>
+    </div>
+  </div>
+
+  <!-- SCORE PANEL -->
+  <div class="score-panel">
+    <h3>📊 Punteggio Attuale</h3>
+    <div class="score-display" id="scoreDisplay">0 / 100</div>
+    <div class="progress-bar">
+      <div class="progress-fill" id="progressFill">0%</div>
+    </div>
+    <p style="margin-top:15px; font-size:0.9em">Completa tutte le domande e clicca "Correggi Simulazione"</p>
+  </div>
+
+  <!-- PARTE A: DOMANDE RAPIDE -->
+  <div class="section-title">📝 PARTE A - DOMANDE RAPIDE (20 punti)</div>
+
+  <!-- DOMANDA 1 -->
+  <div class="question-block" id="q1">
+    <div class="question-title">Domanda 1 (4 punti)</div>
+    <p><strong>Completa la scrittura di acquisto merci:</strong></p>
+    <p>Acquisto merci per € 10.000 + IVA 22%</p>
+
+    <div class="input-group">
+      <div class="inline-inputs">
+        <label>DARE:</label>
+        <input type="text" id="q1_dare1" placeholder="Nome conto">
+        <input type="number" id="q1_dare1_val" placeholder="Importo €">
+      </div>
+      <div class="inline-inputs">
+        <label>DARE:</label>
+        <input type="text" id="q1_dare2" placeholder="Nome conto">
+        <input type="number" id="q1_dare2_val" placeholder="Importo €">
+      </div>
+      <div class="inline-inputs">
+        <label>AVERE:</label>
+        <input type="text" id="q1_avere" placeholder="Nome conto">
+        <input type="number" id="q1_avere_val" placeholder="Importo €">
+      </div>
+    </div>
+
+    <div class="hint-box">
+      💡 <strong>Suggerimento:</strong> I conti sono: Merci c/acquisti, IVA a credito, Debiti v/fornitori
+    </div>
+
+    <div class="feedback" id="q1_feedback"></div>
+  </div>
+
+  <!-- DOMANDA 2 -->
+  <div class="question-block" id="q2">
+    <div class="question-title">Domanda 2 (4 punti)</div>
+    <p><strong>Calcola l'ammortamento ordinario:</strong></p>
+    <ul style="margin-left:25px; margin-top:10px">
+      <li>Costo: € 50.000</li>
+      <li>Coefficiente: 12%</li>
+    </ul>
+
+    <div class="formula-box">
+      Quota = Costo × Coefficiente %
+    </div>
+
+    <div class="input-group">
+      <label>Quota ammortamento:</label>
+      <input type="number" id="q2_quota" placeholder="Inserisci importo in €">
+    </div>
+
+    <div class="feedback" id="q2_feedback"></div>
+  </div>
+
+  <!-- DOMANDA 3 -->
+  <div class="question-block" id="q3">
+    <div class="question-title">Domanda 3 (4 punti)</div>
+    <p><strong>Vero o Falso?</strong></p>
+
+    <div class="checkbox-group">
+      <p style="margin:15px 0 10px; font-weight:600">a) Il TFR si calcola dividendo gli stipendi per 13,5</p>
+      <label><input type="radio" name="q3a" value="V"> Vero</label>
+      <label><input type="radio" name="q3a" value="F"> Falso</label>
+    </div>
+
+    <div class="checkbox-group">
+      <p style="margin:15px 0 10px; font-weight:600">b) Una plusvalenza è un costo</p>
+      <label><input type="radio" name="q3b" value="V"> Vero</label>
+      <label><input type="radio" name="q3b" value="F"> Falso</label>
+    </div>
+
+    <div class="checkbox-group">
+      <p style="margin:15px 0 10px; font-weight:600">c) L'IVA a credito va nel passivo</p>
+      <label><input type="radio" name="q3c" value="V"> Vero</label>
+      <label><input type="radio" name="q3c" value="F"> Falso</label>
+    </div>
+
+    <div class="checkbox-group">
+      <p style="margin:15px 0 10px; font-weight:600">d) Il fondo ammortamento riduce il VNC</p>
+      <label><input type="radio" name="q3d" value="V"> Vero</label>
+      <label><input type="radio" name="q3d" value="F"> Falso</label>
+    </div>
+
+    <div class="feedback" id="q3_feedback"></div>
+  </div>
+
+  <!-- DOMANDA 4 -->
+  <div class="question-block" id="q4">
+    <div class="question-title">Domanda 4 (4 punti)</div>
+    <p><strong>Cos'è il VNC e come si calcola?</strong></p>
+
+    <div class="input-group">
+      <label>Definizione VNC:</label>
+      <textarea id="q4_def" rows="3" placeholder="Es: Il VNC (Valore Netto Contabile) rappresenta..."></textarea>
+    </div>
+
+    <div class="formula-box">
+      VNC = ? – ?
+    </div>
+
+    <div class="input-group">
+      <label>Formula completa:</label>
+      <input type="text" id="q4_formula" placeholder="VNC = ...">
+    </div>
+
+    <div class="feedback" id="q4_feedback"></div>
+  </div>
+
+  <!-- DOMANDA 5 -->
+  <div class="question-block" id="q5">
+    <div class="question-title">Domanda 5 (4 punti)</div>
+    <p><strong>Classifica questi come RATEO o RISCONTO:</strong></p>
+
+    <div class="input-group">
+      <label>a) Affitto pagato anticipatamente:</label>
+      <div class="radio-group">
+        <label><input type="radio" name="q5a" value="RATEO"> RATEO</label>
+        <label><input type="radio" name="q5a" value="RISCONTO"> RISCONTO</label>
+      </div>
+    </div>
+
+    <div class="input-group">
+      <label>b) Interessi maturati ma non incassati:</label>
+      <div class="radio-group">
+        <label><input type="radio" name="q5b" value="RATEO"> RATEO</label>
+        <label><input type="radio" name="q5b" value="RISCONTO"> RISCONTO</label>
+      </div>
+    </div>
+
+    <div class="feedback" id="q5_feedback"></div>
+  </div>
+
+  <!-- PARTE B: ESERCIZI GUIDATI -->
+  <div class="section-title">🧮 PARTE B - ESERCIZI GUIDATI (80 punti)</div>
+
+  <!-- ESERCIZIO 1 -->
+  <div class="exercise-header">
+    <h3>ESERCIZIO 1 - ACQUISTO IMMOBILIZZAZIONE (20 punti)</h3>
+    <p><strong>Operazione:</strong> 01/04/n: Acquisto macchinario € 40.000 + IVA 22%</p>
+  </div>
+
+  <div class="question-block" id="ex1">
+    <div class="question-title">a) Calcola totale da pagare (10 punti)</div>
+
+    <div class="input-group">
+      <label>Prezzo base:</label>
+      <input type="number" id="ex1_base" value="40000" readonly style="background:#f0f0f0">
+    </div>
+
+    <div class="input-group">
+      <label>IVA 22% (40.000 × 0,22):</label>
+      <input type="number" id="ex1_iva" placeholder="Calcola IVA">
+    </div>
+
+    <div class="input-group">
+      <label>Totale da pagare:</label>
+      <input type="number" id="ex1_totale" placeholder="Base + IVA">
+    </div>
+
+    <div class="question-title" style="margin-top:30px">b) Scrivi la scrittura di acquisto (10 punti)</div>
+
+    <p style="margin: 15px 0; font-weight: 600; color: var(--blue);">📊 Metodo 1: Input separati</p>
+    <div class="input-group">
+      <div class="inline-inputs">
+        <label>DARE:</label>
+        <input type="text" id="ex1_dare1" placeholder="Nome conto">
+        <input type="number" id="ex1_dare1_val" placeholder="Importo €">
+      </div>
+      <div class="inline-inputs">
+        <label>DARE:</label>
+        <input type="text" id="ex1_dare2" placeholder="Nome conto">
+        <input type="number" id="ex1_dare2_val" placeholder="Importo €">
+      </div>
+      <div class="inline-inputs">
+        <label>AVERE:</label>
+        <input type="text" id="ex1_avere" placeholder="Nome conto">
+        <input type="number" id="ex1_avere_val" placeholder="Importo €">
+      </div>
+    </div>
+
+    <p style="margin: 25px 0 15px; font-weight: 600; color: var(--blue);">📊 Metodo 2: Tabella Partita Doppia (OPZIONALE)</p>
+    <table class="partita-doppia-table">
+      <thead>
+        <tr>
+          <th style="width: 50%">DARE</th>
+          <th style="width: 25%">Importo €</th>
+          <th style="width: 25%">Importo €</th>
+          <th style="width: 50%">AVERE</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td><input type="text" id="ex1_table_d1" placeholder="Es: Impianti e macchinari"></td>
+          <td><input type="number" id="ex1_table_d1_val" placeholder="40000"></td>
+          <td></td>
+          <td></td>
+        </tr>
+        <tr>
+          <td><input type="text" id="ex1_table_d2" placeholder="Es: IVA a credito"></td>
+          <td><input type="number" id="ex1_table_d2_val" placeholder="8800"></td>
+          <td></td>
+          <td></td>
+        </tr>
+        <tr>
+          <td></td>
+          <td></td>
+          <td><input type="number" id="ex1_table_a1_val" placeholder="48800"></td>
+          <td><input type="text" id="ex1_table_a1" placeholder="Es: Debiti v/fornitori"></td>
+        </tr>
+        <tr class="table-total">
+          <td>TOTALE DARE</td>
+          <td id="ex1_table_dare_total">0,00</td>
+          <td id="ex1_table_avere_total">0,00</td>
+          <td>TOTALE AVERE</td>
+        </tr>
+        <tr id="ex1_table_balance" class="table-balance-ok">
+          <td colspan="4" style="text-align: center; font-weight: 600; padding: 12px;">
+            ⚖️ Pareggio: <span id="ex1_table_balance_text">Da compilare</span>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+
+    <div class="hint-box">
+      💡 <strong>Suggerimento:</strong> Conti: Impianti e macchinari, IVA a credito, Debiti v/fornitori. Puoi usare uno dei due metodi (o entrambi per verifica).
+    </div>    <div class="feedback" id="ex1_feedback"></div>
+  </div>
+
+  <!-- ESERCIZIO 2 -->
+  <div class="exercise-header">
+    <h3>ESERCIZIO 2 - AMMORTAMENTO SEMPLICE (20 punti)</h3>
+    <p><strong>Dati:</strong> Attrezzatura acquistata 01/01/n: € 30.000, Coefficiente: 15%</p>
+  </div>
+
+  <div class="question-block" id="ex2">
+    <div class="question-title">a) Calcola quota ammortamento annuo (10 punti)</div>
+
+    <div class="formula-box">
+      Quota = Costo × Coefficiente %
+    </div>
+
+    <div class="input-group">
+      <label>Quota = 30.000 × 15% =</label>
+      <input type="number" id="ex2_quota" placeholder="Inserisci risultato">
+    </div>
+
+    <div class="question-title" style="margin-top:30px">b) Scrivi la scrittura al 31/12/n (10 punti)</div>
+
+    <div class="input-group">
+      <div class="inline-inputs">
+        <label>DARE:</label>
+        <input type="text" id="ex2_dare" placeholder="Nome conto">
+        <input type="number" id="ex2_dare_val" placeholder="Importo €">
+      </div>
+      <div class="inline-inputs">
+        <label>AVERE:</label>
+        <input type="text" id="ex2_avere" placeholder="Nome conto">
+        <input type="number" id="ex2_avere_val" placeholder="Importo €">
+      </div>
+    </div>
+
+    <div class="hint-box">
+      💡 <strong>Suggerimento:</strong> Conti: Ammortamento attrezzature, Fondo amm.to attrezzature
+    </div>
+
+    <div class="feedback" id="ex2_feedback"></div>
+  </div>
+
+  <!-- ESERCIZIO 3 -->
+  <div class="exercise-header">
+    <h3>ESERCIZIO 3 - TFR BASE (20 punti)</h3>
+    <p><strong>Dati:</strong> Stipendi lordi anno n: € 120.000</p>
+  </div>
+
+  <div class="question-block" id="ex3">
+    <div class="question-title">a) Calcola quota TFR (10 punti)</div>
+
+    <div class="formula-box">
+      Quota TFR = Stipendi / 13,5
+    </div>
+
+    <div class="input-group">
+      <label>Quota = 120.000 / 13,5 =</label>
+      <input type="number" id="ex3_quota" placeholder="Inserisci risultato" step="0.01">
+    </div>
+
+    <div class="question-title" style="margin-top:30px">b) Scrivi la scrittura (10 punti)</div>
+
+    <div class="input-group">
+      <div class="inline-inputs">
+        <label>DARE:</label>
+        <input type="text" id="ex3_dare" placeholder="Nome conto">
+        <input type="number" id="ex3_dare_val" placeholder="Importo €" step="0.01">
+      </div>
+      <div class="inline-inputs">
+        <label>AVERE:</label>
+        <input type="text" id="ex3_avere" placeholder="Nome conto">
+        <input type="number" id="ex3_avere_val" placeholder="Importo €" step="0.01">
+      </div>
+    </div>
+
+    <div class="hint-box">
+      💡 <strong>Suggerimento:</strong> Conti: TFR (costo), Debiti per TFR
+    </div>
+
+    <div class="feedback" id="ex3_feedback"></div>
+  </div>
+
+  <!-- ESERCIZIO 4 -->
+  <div class="exercise-header">
+    <h3>ESERCIZIO 4 - RISCONTO ATTIVO (20 punti)</h3>
+    <p><strong>Operazione:</strong> 01/11/n: Pagato affitto € 6.000 per 6 mesi (fino 30/04/n+1)</p>
+  </div>
+
+  <div class="question-block" id="ex4">
+    <div class="question-title">a) Calcola risconto attivo al 31/12/n (10 punti)</div>
+
+    <div class="input-group">
+      <label>Mesi competenza anno n (nov, dic):</label>
+      <input type="number" id="ex4_mesi_n" placeholder="Numero mesi">
+    </div>
+
+    <div class="input-group">
+      <label>Mesi competenza anno n+1 (gen-apr):</label>
+      <input type="number" id="ex4_mesi_n1" placeholder="Numero mesi">
+    </div>
+
+    <div class="formula-box">
+      Risconto = Costo × (mesi futuri / mesi totali)
+    </div>
+
+    <div class="input-group">
+      <label>Risconto = 6.000 × (? / 6) =</label>
+      <input type="number" id="ex4_risconto" placeholder="Inserisci risultato">
+    </div>
+
+    <div class="question-title" style="margin-top:30px">b) Scrivi la scrittura al 31/12/n (10 punti)</div>
+
+    <div class="input-group">
+      <div class="inline-inputs">
+        <label>DARE:</label>
+        <input type="text" id="ex4_dare" placeholder="Nome conto">
+        <input type="number" id="ex4_dare_val" placeholder="Importo €">
+      </div>
+      <div class="inline-inputs">
+        <label>AVERE:</label>
+        <input type="text" id="ex4_avere" placeholder="Nome conto">
+        <input type="number" id="ex4_avere_val" placeholder="Importo €">
+      </div>
+    </div>
+
+    <div class="hint-box">
+      💡 <strong>Suggerimento:</strong> Rinvii al futuro un costo già pagato → Risconto attivo. Conti: Risconti attivi, Fitti passivi
+    </div>
+
+    <div class="feedback" id="ex4_feedback"></div>
+  </div>
+
+  <!-- BUTTONS -->
+  <button class="btn" onclick="correzioneCompleta()">✅ Correggi Simulazione</button>
+  <button class="btn btn-reset" onclick="resetSimulazione()">🔄 Reset Simulazione</button>
+
+  <!-- RISULTATO FINALE -->
+  <div class="feedback" id="risultatoFinale" style="margin-top:30px; font-size:1.1em"></div>
+
+</div>
+
+<script>
+// Risposte corrette
+const risposte = {
+  q1: {
+    dare1: ['merci', 'acquisti', 'merci c/acquisti'],
+    dare1_val: 10000,
+    dare2: ['iva', 'credito', 'iva a credito', 'iva credito'],
+    dare2_val: 2200,
+    avere: ['debiti', 'fornitori', 'debiti v/fornitori', 'debiti fornitori'],
+    avere_val: 12200,
+    punti: 4
+  },
+  q2: {
+    quota: 6000,
+    punti: 4
+  },
+  q3: {
+    a: 'V',
+    b: 'F',
+    c: 'F',
+    d: 'V',
+    punti: 4
+  },
+  q4: {
+    keywords: ['valore', 'netto', 'contabile', 'residuo', 'immobilizzazione'],
+    formula: ['costo', 'fondo', 'ammortamento'],
+    punti: 4
+  },
+  q5: {
+    a: 'RISCONTO',
+    b: 'RATEO',
+    punti: 4
+  },
+  ex1: {
+    iva: 8800,
+    totale: 48800,
+    dare1: ['impianti', 'macchinari', 'impianti e macchinari'],
+    dare1_val: 40000,
+    dare2: ['iva', 'credito', 'iva a credito'],
+    dare2_val: 8800,
+    avere: ['debiti', 'fornitori', 'debiti v/fornitori'],
+    avere_val: 48800,
+    punti: 20
+  },
+  ex2: {
+    quota: 4500,
+    dare: ['ammortamento', 'attrezzature', 'ammortamento attrezzature'],
+    dare_val: 4500,
+    avere: ['fondo', 'ammortamento', 'fondo amm', 'fondo ammortamento attrezzature'],
+    avere_val: 4500,
+    punti: 20
+  },
+  ex3: {
+    quota: 8888.89,
+    tolleranza: 1,
+    dare: ['tfr', 'costo'],
+    dare_val: 8888.89,
+    avere: ['debiti', 'tfr', 'debiti per tfr'],
+    avere_val: 8888.89,
+    punti: 20
+  },
+  ex4: {
+    mesi_n: 2,
+    mesi_n1: 4,
+    risconto: 4000,
+    dare: ['risconti', 'attivi', 'risconti attivi'],
+    dare_val: 4000,
+    avere: ['fitti', 'passivi', 'fitti passivi', 'affitti'],
+    avere_val: 4000,
+    punti: 20
+  }
+};
+
+let punteggioTotale = 0;
+const punteggioMassimo = 100;
+
+function normalizza(str) {
+  return str.toLowerCase().trim().replace(/[^a-z]/g, '');
+}
+
+function confrontaArray(input, array) {
+  const norm = normalizza(input);
+  return array.some(opt => normalizza(opt) === norm || norm.includes(normalizza(opt)));
+}
+
+function confrontaNumero(input, target, tolleranza = 0.5) {
+  const val = parseFloat(input);
+  return Math.abs(val - target) <= tolleranza;
+}
+
+function correzioneCompleta() {
+  punteggioTotale = 0;
+
+  // Q1
+  let puntiQ1 = 0;
+  const q1_d1 = document.getElementById('q1_dare1').value;
+  const q1_d1v = document.getElementById('q1_dare1_val').value;
+  const q1_d2 = document.getElementById('q1_dare2').value;
+  const q1_d2v = document.getElementById('q1_dare2_val').value;
+  const q1_av = document.getElementById('q1_avere').value;
+  const q1_avv = document.getElementById('q1_avere_val').value;
+
+  if (confrontaArray(q1_d1, risposte.q1.dare1)) puntiQ1 += 0.67;
+  if (confrontaNumero(q1_d1v, risposte.q1.dare1_val)) puntiQ1 += 0.67;
+  if (confrontaArray(q1_d2, risposte.q1.dare2)) puntiQ1 += 0.67;
+  if (confrontaNumero(q1_d2v, risposte.q1.dare2_val)) puntiQ1 += 0.67;
+  if (confrontaArray(q1_av, risposte.q1.avere)) puntiQ1 += 0.66;
+  if (confrontaNumero(q1_avv, risposte.q1.avere_val)) puntiQ1 += 0.66;
+
+  puntiQ1 = Math.round(puntiQ1);
+  mostraFeedback('q1', puntiQ1, risposte.q1.punti,
+    `✅ Corretto! Merci c/acquisti 10.000, IVA credito 2.200, Debiti fornitori 12.200`,
+    `❌ Errore: Merci c/acquisti € 10.000 (DARE), IVA a credito € 2.200 (DARE), Debiti v/fornitori € 12.200 (AVERE)`
+  );
+  punteggioTotale += puntiQ1;
+
+  // Q2
+  const q2_quota = document.getElementById('q2_quota').value;
+  const puntiQ2 = confrontaNumero(q2_quota, risposte.q2.quota) ? risposte.q2.punti : 0;
+  mostraFeedback('q2', puntiQ2, risposte.q2.punti,
+    `✅ Esatto! 50.000 × 12% = € 6.000`,
+    `❌ Errore: 50.000 × 0,12 = € 6.000`
+  );
+  punteggioTotale += puntiQ2;
+
+  // Q3
+  let puntiQ3 = 0;
+  const q3a = document.querySelector('input[name="q3a"]:checked')?.value;
+  const q3b = document.querySelector('input[name="q3b"]:checked')?.value;
+  const q3c = document.querySelector('input[name="q3c"]:checked')?.value;
+  const q3d = document.querySelector('input[name="q3d"]:checked')?.value;
+
+  if (q3a === risposte.q3.a) puntiQ3 += 1;
+  if (q3b === risposte.q3.b) puntiQ3 += 1;
+  if (q3c === risposte.q3.c) puntiQ3 += 1;
+  if (q3d === risposte.q3.d) puntiQ3 += 1;
+
+  mostraFeedback('q3', puntiQ3, risposte.q3.punti,
+    `✅ ${puntiQ3}/4 corrette! a) Vero, b) Falso (è un ricavo), c) Falso (va nell'attivo), d) Vero`,
+    `❌ Risposte corrette: a) Vero, b) Falso, c) Falso, d) Vero`
+  );
+  punteggioTotale += puntiQ3;
+
+  // Q4
+  const q4_def = document.getElementById('q4_def').value;
+  const q4_form = document.getElementById('q4_formula').value;
+  let puntiQ4 = 0;
+
+  if (risposte.q4.keywords.some(kw => normalizza(q4_def).includes(normalizza(kw)))) puntiQ4 += 2;
+  if (risposte.q4.formula.every(kw => normalizza(q4_form).includes(normalizza(kw)))) puntiQ4 += 2;
+
+  mostraFeedback('q4', puntiQ4, risposte.q4.punti,
+    `✅ Corretto! VNC = Costo storico – Fondo ammortamento`,
+    `❌ VNC (Valore Netto Contabile) = Costo storico – Fondo ammortamento. Rappresenta il valore residuo dell'immobilizzazione.`
+  );
+  punteggioTotale += puntiQ4;
+
+  // Q5
+  let puntiQ5 = 0;
+  const q5a = document.querySelector('input[name="q5a"]:checked')?.value;
+  const q5b = document.querySelector('input[name="q5b"]:checked')?.value;
+
+  if (q5a === risposte.q5.a) puntiQ5 += 2;
+  if (q5b === risposte.q5.b) puntiQ5 += 2;
+
+  mostraFeedback('q5', puntiQ5, risposte.q5.punti,
+    `✅ Corretto! a) RISCONTO (costo pagato ma non ancora maturato), b) RATEO (ricavo maturato ma non incassato)`,
+    `❌ a) RISCONTO (pagato in anticipo), b) RATEO (maturato ma non ancora manifestato finanziariamente)`
+  );
+  punteggioTotale += puntiQ5;
+
+  // EX1
+  let puntiEx1 = 0;
+  const ex1_iva = document.getElementById('ex1_iva').value;
+  const ex1_tot = document.getElementById('ex1_totale').value;
+  const ex1_d1 = document.getElementById('ex1_dare1').value;
+  const ex1_d1v = document.getElementById('ex1_dare1_val').value;
+  const ex1_d2 = document.getElementById('ex1_dare2').value;
+  const ex1_d2v = document.getElementById('ex1_dare2_val').value;
+  const ex1_av = document.getElementById('ex1_avere').value;
+  const ex1_avv = document.getElementById('ex1_avere_val').value;
+
+  if (confrontaNumero(ex1_iva, risposte.ex1.iva)) puntiEx1 += 3;
+  if (confrontaNumero(ex1_tot, risposte.ex1.totale)) puntiEx1 += 3;
+  if (confrontaArray(ex1_d1, risposte.ex1.dare1)) puntiEx1 += 2;
+  if (confrontaNumero(ex1_d1v, risposte.ex1.dare1_val)) puntiEx1 += 2;
+  if (confrontaArray(ex1_d2, risposte.ex1.dare2)) puntiEx1 += 2;
+  if (confrontaNumero(ex1_d2v, risposte.ex1.dare2_val)) puntiEx1 += 2;
+  if (confrontaArray(ex1_av, risposte.ex1.avere)) puntiEx1 += 2;
+  if (confrontaNumero(ex1_avv, risposte.ex1.avere_val)) puntiEx1 += 2;
+
+  puntiEx1 = Math.round(puntiEx1 * 10) / 10;
+  mostraFeedback('ex1', puntiEx1, risposte.ex1.punti,
+    `✅ Ottimo! IVA € 8.800, Totale € 48.800. Scrittura: Impianti 40.000 (D), IVA 8.800 (D), Debiti 48.800 (A)`,
+    `❌ Calcoli: IVA = 40.000 × 0,22 = € 8.800. Totale = 40.000 + 8.800 = € 48.800`
+  );
+  punteggioTotale += puntiEx1;
+
+  // EX2
+  let puntiEx2 = 0;
+  const ex2_q = document.getElementById('ex2_quota').value;
+  const ex2_d = document.getElementById('ex2_dare').value;
+  const ex2_dv = document.getElementById('ex2_dare_val').value;
+  const ex2_a = document.getElementById('ex2_avere').value;
+  const ex2_av = document.getElementById('ex2_avere_val').value;
+
+  if (confrontaNumero(ex2_q, risposte.ex2.quota)) puntiEx2 += 5;
+  if (confrontaArray(ex2_d, risposte.ex2.dare)) puntiEx2 += 2.5;
+  if (confrontaNumero(ex2_dv, risposte.ex2.dare_val)) puntiEx2 += 2.5;
+  if (confrontaArray(ex2_a, risposte.ex2.avere)) puntiEx2 += 2.5;
+  if (confrontaNumero(ex2_av, risposte.ex2.avere_val)) puntiEx2 += 2.5;
+
+  puntiEx2 = Math.round(puntiEx2 * 10) / 10;
+  mostraFeedback('ex2', puntiEx2, risposte.ex2.punti,
+    `✅ Perfetto! Quota € 4.500. Scrittura: Ammortamento attrezzature (D) / Fondo amm.to attrezzature (A)`,
+    `❌ Calcolo: 30.000 × 15% = € 4.500`
+  );
+  punteggioTotale += puntiEx2;
+
+  // EX3
+  let puntiEx3 = 0;
+  const ex3_q = document.getElementById('ex3_quota').value;
+  const ex3_d = document.getElementById('ex3_dare').value;
+  const ex3_dv = document.getElementById('ex3_dare_val').value;
+  const ex3_a = document.getElementById('ex3_avere').value;
+  const ex3_av = document.getElementById('ex3_avere_val').value;
+
+  if (confrontaNumero(ex3_q, risposte.ex3.quota, risposte.ex3.tolleranza)) puntiEx3 += 5;
+  if (confrontaArray(ex3_d, risposte.ex3.dare)) puntiEx3 += 2.5;
+  if (confrontaNumero(ex3_dv, risposte.ex3.quota, risposte.ex3.tolleranza)) puntiEx3 += 2.5;
+  if (confrontaArray(ex3_a, risposte.ex3.avere)) puntiEx3 += 2.5;
+  if (confrontaNumero(ex3_av, risposte.ex3.quota, risposte.ex3.tolleranza)) puntiEx3 += 2.5;
+
+  puntiEx3 = Math.round(puntiEx3 * 10) / 10;
+  mostraFeedback('ex3', puntiEx3, risposte.ex3.punti,
+    `✅ Corretto! Quota € 8.888,89. Scrittura: TFR (costo) (D) / Debiti per TFR (A)`,
+    `❌ Calcolo: 120.000 / 13,5 = € 8.888,89`
+  );
+  punteggioTotale += puntiEx3;
+
+  // EX4
+  let puntiEx4 = 0;
+  const ex4_mn = document.getElementById('ex4_mesi_n').value;
+  const ex4_mn1 = document.getElementById('ex4_mesi_n1').value;
+  const ex4_risc = document.getElementById('ex4_risconto').value;
+  const ex4_d = document.getElementById('ex4_dare').value;
+  const ex4_dv = document.getElementById('ex4_dare_val').value;
+  const ex4_a = document.getElementById('ex4_avere').value;
+  const ex4_av = document.getElementById('ex4_avere_val').value;
+
+  if (confrontaNumero(ex4_mn, risposte.ex4.mesi_n)) puntiEx4 += 2;
+  if (confrontaNumero(ex4_mn1, risposte.ex4.mesi_n1)) puntiEx4 += 2;
+  if (confrontaNumero(ex4_risc, risposte.ex4.risconto)) puntiEx4 += 3;
+  if (confrontaArray(ex4_d, risposte.ex4.dare)) puntiEx4 += 2;
+  if (confrontaNumero(ex4_dv, risposte.ex4.risconto)) puntiEx4 += 2;
+  if (confrontaArray(ex4_a, risposte.ex4.avere)) puntiEx4 += 2;
+  if (confrontaNumero(ex4_av, risposte.ex4.risconto)) puntiEx4 += 2;
+
+  puntiEx4 = Math.round(puntiEx4 * 10) / 10;
+  mostraFeedback('ex4', puntiEx4, risposte.ex4.punti,
+    `✅ Ottimo! Mesi anno n: 2, Mesi n+1: 4. Risconto € 4.000. Scrittura: Risconti attivi (D) / Fitti passivi (A)`,
+    `❌ Calcolo: 6.000 × (4/6) = € 4.000 (rinvii 4 mesi al futuro)`
+  );
+  punteggioTotale += puntiEx4;
+
+  // Aggiorna visualizzazione
+  aggiornaScore();
+
+  // Risultato finale
+  const percentuale = (punteggioTotale / punteggioMassimo * 100).toFixed(1);
+  const risultato = document.getElementById('risultatoFinale');
+  risultato.classList.add('show');
+
+  let valutazione, classe, messaggio;
+  if (percentuale >= 90) {
+    valutazione = '🏆 ECCELLENTE';
+    classe = 'correct';
+    messaggio = 'Sei prontissimo per il Livello 2! Ottima padronanza dei concetti base!';
+  } else if (percentuale >= 70) {
+    valutazione = '✅ BUONO';
+    classe = 'correct';
+    messaggio = 'Hai raggiunto il target! Rivedi gli errori e passa al Livello 2.';
+  } else if (percentuale >= 60) {
+    valutazione = '⚠️ SUFFICIENTE';
+    classe = 'partial';
+    messaggio = 'Quasi! Rivedi gli argomenti dove hai perso punti e riprova.';
+  } else {
+    valutazione = '❌ INSUFFICIENTE';
+    classe = 'incorrect';
+    messaggio = 'Serve più studio. Torna ai moduli teorici e riprova tra qualche giorno.';
+  }
+
+  risultato.className = `feedback show ${classe}`;
+  risultato.innerHTML = `
+    <h2 style="font-size:2em; margin-bottom:15px">${valutazione}</h2>
+    <p style="font-size:1.5em; font-weight:700; margin:15px 0">
+      Punteggio: ${punteggioTotale.toFixed(1)} / ${punteggioMassimo} (${percentuale}%)
+    </p>
+    <p style="font-size:1.1em; margin-top:15px">${messaggio}</p>
+    <p style="margin-top:20px; font-size:0.95em; color:var(--muted)">
+      💾 Il risultato è stato salvato in localStorage. Rivedi gli errori sopra per migliorare.
+    </p>
+  `;
+
+  // Salva in localStorage
+  const storageKey = 'simulazione-livello1-base';
+  const data = {
+    punteggio: punteggioTotale,
+    percentuale: percentuale,
+    data: new Date().toLocaleDateString('it-IT'),
+    timestamp: new Date().toISOString()
+  };
+  localStorage.setItem(storageKey, JSON.stringify(data));
+
+  // Scroll al risultato
+  risultato.scrollIntoView({ behavior: 'smooth', block: 'center' });
+}
+
+function mostraFeedback(id, puntiOttenuti, puntiMax, testoCorretto, testoErrato) {
+  const feedback = document.getElementById(id + '_feedback');
+  feedback.classList.add('show');
+
+  if (puntiOttenuti === puntiMax) {
+    feedback.className = 'feedback show correct';
+    feedback.innerHTML = `<strong>${puntiOttenuti}/${puntiMax} punti</strong><br>${testoCorretto}`;
+  } else if (puntiOttenuti > 0) {
+    feedback.className = 'feedback show partial';
+    feedback.innerHTML = `<strong>${puntiOttenuti}/${puntiMax} punti</strong><br>⚠️ Parzialmente corretto. ${testoErrato}`;
+  } else {
+    feedback.className = 'feedback show incorrect';
+    feedback.innerHTML = `<strong>${puntiOttenuti}/${puntiMax} punti</strong><br>${testoErrato}`;
+  }
+}
+
+function aggiornaScore() {
+  const percentuale = (punteggioTotale / punteggioMassimo * 100).toFixed(0);
+  document.getElementById('scoreDisplay').textContent = `${punteggioTotale.toFixed(1)} / ${punteggioMassimo}`;
+  const progressFill = document.getElementById('progressFill');
+  progressFill.style.width = percentuale + '%';
+  progressFill.textContent = percentuale + '%';
+}
+
+function resetSimulazione() {
+  if (!confirm('Sei sicuro di voler resettare tutta la simulazione? Tutti i dati inseriti andranno persi.')) {
+    return;
+  }
+
+  // Reset tutti gli input
+  document.querySelectorAll('input[type="text"], input[type="number"], textarea').forEach(input => {
+    if (!input.hasAttribute('readonly')) {
+      input.value = '';
+    }
+  });
+
+  // Reset radio buttons
+  document.querySelectorAll('input[type="radio"]').forEach(radio => {
+    radio.checked = false;
+  });
+
+  // Nascondi feedback
+  document.querySelectorAll('.feedback').forEach(fb => {
+    fb.classList.remove('show');
+  });
+
+  // Reset score
+  punteggioTotale = 0;
+  aggiornaScore();
+
+  // Scroll to top
+  window.scrollTo({ top: 0, behavior: 'smooth' });
+}
+
+// Calcola totali tabella partita doppia
+function calcolaTotaliTabella(prefix) {
+  const d1 = parseFloat(document.getElementById(`${prefix}_table_d1_val`)?.value || 0);
+  const d2 = parseFloat(document.getElementById(`${prefix}_table_d2_val`)?.value || 0);
+  const a1 = parseFloat(document.getElementById(`${prefix}_table_a1_val`)?.value || 0);
+
+  const totaleDare = d1 + d2;
+  const totaleAvere = a1;
+
+  document.getElementById(`${prefix}_table_dare_total`).textContent = totaleDare.toFixed(2);
+  document.getElementById(`${prefix}_table_avere_total`).textContent = totaleAvere.toFixed(2);
+
+  const balanceRow = document.getElementById(`${prefix}_table_balance`);
+  const balanceText = document.getElementById(`${prefix}_table_balance_text`);
+
+  if (totaleDare === 0 && totaleAvere === 0) {
+    balanceText.textContent = 'Da compilare';
+    balanceRow.className = 'table-balance-ok';
+  } else if (Math.abs(totaleDare - totaleAvere) < 0.01) {
+    balanceText.textContent = '✅ Pareggio corretto! (' + totaleDare.toFixed(2) + ' = ' + totaleAvere.toFixed(2) + ')';
+    balanceRow.className = 'table-balance-ok';
+  } else {
+    balanceText.textContent = '❌ Non in pareggio! (DARE: ' + totaleDare.toFixed(2) + ' ≠ AVERE: ' + totaleAvere.toFixed(2) + ')';
+    balanceRow.className = 'table-balance-error';
+  }
+}
+
+// Carica dati salvati all'avvio
+window.addEventListener('DOMContentLoaded', () => {
+  const storageKey = 'simulazione-livello1-base';
+  const saved = localStorage.getItem(storageKey);
+  if (saved) {
+    const data = JSON.parse(saved);
+    console.log('📊 Ultimo tentativo:', data);
+  }
+
+  // Aggiungi listener per calcolo automatico tabelle
+  const tabelleIds = ['ex1'];
+  tabelleIds.forEach(prefix => {
+    ['d1_val', 'd2_val', 'a1_val'].forEach(suffix => {
+      const elem = document.getElementById(`${prefix}_table_${suffix}`);
+      if (elem) {
+        elem.addEventListener('input', () => calcolaTotaliTabella(prefix));
+      }
+    });
+  });
+});
+</script>
+
+</body>
+</html>

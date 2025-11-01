@@ -1,0 +1,2466 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>📚 Leopardi - A Silvia | Lezione 30 Ottobre 2025</title>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --primary: #8b4513;
+            --secondary: #d4a574;
+            --accent: #c19a6b;
+            --success: #4caf50;
+            --info: #2196f3;
+            --warning: #ff9800;
+            --danger: #f44336;
+            --dark: #2c1810;
+            --light: #f5f1ed;
+            --shadow: rgba(139, 69, 19, 0.15);
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            background: linear-gradient(135deg, #f5f1ed 0%, #e8dfd2 100%);
+            color: var(--dark);
+            line-height: 1.6;
+            min-height: 100vh;
+        }
+
+        .header {
+            background: linear-gradient(135deg, var(--primary) 0%, var(--accent) 100%);
+            color: white;
+            padding: 2rem;
+            box-shadow: 0 4px 6px var(--shadow);
+            margin-bottom: 2rem;
+        }
+
+        .header h1 {
+            font-family: 'Playfair Display', serif;
+            font-size: 2.5rem;
+            margin-bottom: 0.5rem;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+        }
+
+        .header .subtitle {
+            font-size: 1.1rem;
+            opacity: 0.95;
+            font-weight: 300;
+        }
+
+        .container {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 0 1.5rem 3rem;
+        }
+
+        /* Info Card */
+        .info-card {
+            background: white;
+            border-radius: 12px;
+            padding: 1.5rem;
+            margin-bottom: 2rem;
+            box-shadow: 0 4px 6px var(--shadow);
+            border-left: 5px solid var(--primary);
+        }
+
+        .info-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 1rem;
+            margin-top: 1rem;
+        }
+
+        .info-item {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .info-item .icon {
+            font-size: 1.5rem;
+        }
+
+        .info-item .label {
+            font-weight: 600;
+            color: var(--primary);
+        }
+
+        /* Controls */
+        .controls {
+            background: white;
+            border-radius: 12px;
+            padding: 1rem;
+            margin-bottom: 1.5rem;
+            box-shadow: 0 2px 4px var(--shadow);
+            display: flex;
+            gap: 1rem;
+            flex-wrap: wrap;
+            align-items: center;
+        }
+
+        .controls input {
+            flex: 1;
+            min-width: 250px;
+            padding: 0.7rem 1rem;
+            border: 2px solid var(--secondary);
+            border-radius: 8px;
+            font-size: 1rem;
+            transition: all 0.3s;
+        }
+
+        .controls input:focus {
+            outline: none;
+            border-color: var(--primary);
+            box-shadow: 0 0 0 3px rgba(139, 69, 19, 0.1);
+        }
+
+        .filter-group {
+            display: flex;
+            gap: 0.5rem;
+            flex-wrap: wrap;
+        }
+
+        .filter-btn {
+            padding: 0.5rem 1rem;
+            border: 2px solid var(--secondary);
+            background: white;
+            border-radius: 20px;
+            cursor: pointer;
+            transition: all 0.3s;
+            font-size: 0.9rem;
+            font-weight: 500;
+        }
+
+        .filter-btn:hover {
+            background: var(--light);
+        }
+
+        .filter-btn.active {
+            background: var(--primary);
+            color: white;
+            border-color: var(--primary);
+        }
+
+        /* Main Table */
+        .table-wrapper {
+            background: white;
+            border-radius: 12px;
+            box-shadow: 0 4px 6px var(--shadow);
+            overflow: hidden;
+        }
+
+        .table-responsive {
+            overflow-x: auto;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+
+        thead {
+            background: linear-gradient(135deg, var(--primary) 0%, var(--accent) 100%);
+            color: white;
+        }
+
+        thead th {
+            padding: 1rem;
+            text-align: left;
+            font-weight: 600;
+            font-size: 0.95rem;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+
+        tbody tr {
+            border-bottom: 1px solid #e0e0e0;
+            transition: all 0.3s;
+            cursor: pointer;
+        }
+
+        tbody tr:hover {
+            background: var(--light);
+        }
+
+        tbody tr.highlighted {
+            background: #fff9e6 !important;
+            box-shadow: inset 0 0 0 2px var(--warning);
+        }
+
+        tbody td {
+            padding: 1rem;
+            vertical-align: top;
+        }
+
+        .verso-num {
+            font-weight: 700;
+            color: var(--primary);
+            font-size: 1.1rem;
+            min-width: 40px;
+            text-align: center;
+        }
+
+        .testo-originale {
+            font-family: 'Playfair Display', serif;
+            font-size: 1.05rem;
+            font-style: italic;
+            color: var(--dark);
+            line-height: 1.8;
+        }
+
+        .parafrasi {
+            color: #555;
+            font-size: 0.95rem;
+        }
+
+        .concetti {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.4rem;
+        }
+
+        /* Badges */
+        .badge {
+            display: inline-block;
+            padding: 0.3rem 0.7rem;
+            border-radius: 15px;
+            font-size: 0.75rem;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 0.3px;
+        }
+
+        .badge-retorica {
+            background: #e3f2fd;
+            color: #1565c0;
+        }
+
+        .badge-tema {
+            background: #f3e5f5;
+            color: #6a1b9a;
+        }
+
+        .badge-metrica {
+            background: #e8f5e9;
+            color: #2e7d32;
+        }
+
+        .badge-simbolo {
+            background: #fff3e0;
+            color: #e65100;
+        }
+
+        /* Dettagli Espandibili */
+        .dettaglio-row {
+            display: none;
+            background: #fafafa;
+        }
+
+        .dettaglio-row.show {
+            display: table-row;
+        }
+
+        .dettaglio-content {
+            padding: 2rem;
+            border-left: 4px solid var(--primary);
+        }
+
+        .dettaglio-content h4 {
+            color: var(--primary);
+            margin-bottom: 1rem;
+            font-size: 1.2rem;
+        }
+
+        .dettaglio-section {
+            margin-bottom: 1.5rem;
+        }
+
+        .dettaglio-section strong {
+            color: var(--primary);
+            display: block;
+            margin-bottom: 0.5rem;
+        }
+
+        .dettaglio-section p {
+            color: #555;
+            line-height: 1.8;
+        }
+
+        /* Action Buttons */
+        .action-btn {
+            padding: 0.4rem 0.8rem;
+            border: none;
+            border-radius: 6px;
+            background: var(--primary);
+            color: white;
+            cursor: pointer;
+            font-size: 0.85rem;
+            transition: all 0.3s;
+        }
+
+        .action-btn:hover {
+            background: var(--dark);
+            transform: translateY(-2px);
+            box-shadow: 0 4px 8px var(--shadow);
+        }
+
+        /* Strofe Sections */
+        .strofa-header {
+            background: linear-gradient(90deg, var(--primary) 0%, var(--accent) 100%);
+            color: white;
+            padding: 0.8rem 1rem;
+            font-weight: 600;
+            font-size: 1.1rem;
+            cursor: pointer;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            transition: all 0.3s;
+        }
+
+        .strofa-header:hover {
+            background: linear-gradient(90deg, var(--dark) 0%, var(--primary) 100%);
+        }
+
+        .strofa-header .icon {
+            transition: transform 0.3s;
+        }
+
+        .strofa-header.collapsed .icon {
+            transform: rotate(-90deg);
+        }
+
+        /* Summary Cards */
+        .summary-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 1.5rem;
+            margin: 2rem 0;
+        }
+
+        .summary-card {
+            background: white;
+            border-radius: 12px;
+            padding: 1.5rem;
+            box-shadow: 0 4px 6px var(--shadow);
+            border-top: 4px solid var(--primary);
+        }
+
+        .summary-card h3 {
+            color: var(--primary);
+            margin-bottom: 1rem;
+            font-size: 1.3rem;
+        }
+
+        .summary-card ul {
+            list-style: none;
+        }
+
+        .summary-card li {
+            padding: 0.5rem 0;
+            border-bottom: 1px solid #f0f0f0;
+        }
+
+        .summary-card li:last-child {
+            border-bottom: none;
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .header h1 {
+                font-size: 1.8rem;
+            }
+
+            .controls {
+                flex-direction: column;
+            }
+
+            .controls input {
+                width: 100%;
+            }
+
+            table {
+                font-size: 0.9rem;
+            }
+
+            thead th,
+            tbody td {
+                padding: 0.7rem 0.5rem;
+            }
+
+            .testo-originale {
+                font-size: 0.95rem;
+            }
+        }
+
+        /* Scroll to top */
+        .scroll-top {
+            position: fixed;
+            bottom: 2rem;
+            right: 2rem;
+            width: 50px;
+            height: 50px;
+            background: var(--primary);
+            color: white;
+            border: none;
+            border-radius: 50%;
+            font-size: 1.5rem;
+            cursor: pointer;
+            box-shadow: 0 4px 8px var(--shadow);
+            display: none;
+            align-items: center;
+            justify-content: center;
+            transition: all 0.3s;
+        }
+
+        .scroll-top:hover {
+            background: var(--dark);
+            transform: translateY(-5px);
+        }
+
+        .scroll-top.show {
+            display: flex;
+        }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <div class="header">
+        <h1>📚 Giacomo Leopardi - "A Silvia"</h1>
+        <div class="subtitle">Lezione del 30 Ottobre 2025 | Analisi Verso per Verso</div>
+    </div>
+
+    <div class="container">
+        <!-- Info Card -->
+        <div class="info-card">
+            <h2 style="color: var(--primary); margin-bottom: 1rem;">ℹ️ Informazioni Rapide</h2>
+            <div class="info-grid">
+                <div class="info-item">
+                    <span class="icon">📅</span>
+                    <div>
+                        <div class="label">Anno</div>
+                        <div>1828 (Pisa)</div>
+                    </div>
+                </div>
+                <div class="info-item">
+                    <span class="icon">📜</span>
+                    <div>
+                        <div class="label">Opera</div>
+                        <div>Canti (XXXI)</div>
+                    </div>
+                </div>
+                <div class="info-item">
+                    <span class="icon">🎭</span>
+                    <div>
+                        <div class="label">Genere</div>
+                        <div>Canzone libera</div>
+                    </div>
+                </div>
+                <div class="info-item">
+                    <span class="icon">🎯</span>
+                    <div>
+                        <div class="label">Tema</div>
+                        <div>Giovinezza perduta e illusioni</div>
+                    </div>
+                </div>
+                <div class="info-item">
+                    <span class="icon">👤</span>
+                    <div>
+                        <div class="label">Silvia</div>
+                        <div>Teresa Fattorini (1797-1818)</div>
+                    </div>
+                </div>
+                <div class="info-item">
+                    <span class="icon">⚰️</span>
+                    <div>
+                        <div class="label">Morte</div>
+                        <div>Tisi (tubercolosi) - 21 anni</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Controls -->
+        <div class="controls">
+            <input type="text" id="searchInput" placeholder="🔍 Cerca verso, parola, concetto...">
+            <div class="filter-group">
+                <button class="filter-btn active" onclick="filterByType('all')">Tutti</button>
+                <button class="filter-btn" onclick="filterByType('retorica')">Figure Retoriche</button>
+                <button class="filter-btn" onclick="filterByType('tema')">Temi</button>
+                <button class="filter-btn" onclick="filterByType('metrica')">Metrica</button>
+            </div>
+        </div>
+
+        <!-- Tabella Interattiva -->
+        <div class="table-wrapper">
+            <div class="strofa-header" onclick="toggleStrofa(1)">
+                <span>📖 STROFA 1 (vv. 1-6) - Ricordo di Silvia</span>
+                <span class="icon">▼</span>
+            </div>
+            <div id="strofa-1" class="table-responsive">
+                <table>
+                    <thead>
+                        <tr>
+                            <th style="width: 50px;">#</th>
+                            <th style="width: 30%;">Testo Originale</th>
+                            <th style="width: 30%;">Parafrasi / Significato</th>
+                            <th style="width: 25%;">Concetti Chiave</th>
+                            <th style="width: 15%;">Azione</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr onclick="toggleDettaglio(1)">
+                            <td class="verso-num">1</td>
+                            <td class="testo-originale">Silvia, rimembri ancora</td>
+                            <td class="parafrasi">Silvia, ricordi ancora</td>
+                            <td class="concetti">
+                                <span class="badge badge-retorica">Apostrofe</span>
+                                <span class="badge badge-tema">Memoria</span>
+                            </td>
+                            <td><button class="action-btn">📖 Dettagli</button></td>
+                        </tr>
+                        <tr id="dettaglio-1" class="dettaglio-row">
+                            <td colspan="5">
+                                <div class="dettaglio-content">
+                                    <h4>🔍 Analisi Approfondita - Verso 1</h4>
+                                    <div class="dettaglio-section">
+                                        <strong>📝 Figura retorica:</strong>
+                                        <p><strong>APOSTROFE</strong> - Il poeta si rivolge direttamente a Silvia, una figura del passato ormai morta. Questo crea un dialogo immaginario e intensifica il tono emotivo.</p>
+                                    </div>
+                                    <div class="dettaglio-section">
+                                        <strong>📚 Arcaismo:</strong>
+                                        <p>"rimembri" è una forma arcaica (antica) del verbo "ricordare". Leopardi usa spesso termini del passato per dare solennità al linguaggio poetico.</p>
+                                    </div>
+                                    <div class="dettaglio-section">
+                                        <strong>💡 Significato profondo:</strong>
+                                        <p>Il poeta apre con una domanda retorica rivolta a Silvia, evocando il ricordo di un tempo passato. L'uso dell'apostrofe rende Silvia presente, come se fosse ancora viva.</p>
+                                    </div>
+                                    <div class="dettaglio-section">
+                                        <strong>🎯 Tema:</strong>
+                                        <p><strong>MEMORIA</strong> - Tutto il componimento si basa sul ricordo. Il poeta rievoca il passato per confrontarlo con la disillusione del presente.</p>
+                                    </div>
+                                </div>
+                            </td>
+                        </tr>
+
+                        <tr onclick="toggleDettaglio(2)">
+                            <td class="verso-num">2</td>
+                            <td class="testo-originale">quel tempo della tua vita mortale,</td>
+                            <td class="parafrasi">quel periodo della tua breve vita,</td>
+                            <td class="concetti">
+                                <span class="badge badge-tema">Mortalità</span>
+                                <span class="badge badge-simbolo">Tempo</span>
+                            </td>
+                            <td><button class="action-btn">📖 Dettagli</button></td>
+                        </tr>
+                        <tr id="dettaglio-2" class="dettaglio-row">
+                            <td colspan="5">
+                                <div class="dettaglio-content">
+                                    <h4>🔍 Analisi Approfondita - Verso 2</h4>
+                                    <div class="dettaglio-section">
+                                        <strong>💀 "Vita mortale":</strong>
+                                        <p>L'aggettivo "mortale" anticipa già il destino tragico di Silvia. La vita è definita dalla sua fine, dalla sua caducità. Non è solo "vita", ma "vita destinata a finire".</p>
+                                    </div>
+                                    <div class="dettaglio-section">
+                                        <strong>📏 Metrica:</strong>
+                                        <p><strong>ENJAMBEMENT</strong> (v.1→v.2): La frase iniziata al verso 1 continua al verso 2, creando un effetto di continuità e fluidità tipico della canzone libera leopardiana.</p>
+                                    </div>
+                                    <div class="dettaglio-section">
+                                        <strong>🎯 Tema:</strong>
+                                        <p><strong>CADUCITÀ</strong> - Tutto è destinato a finire. La vita umana è breve e fragile, specialmente quella di Silvia che morirà prematuramente.</p>
+                                    </div>
+                                </div>
+                            </td>
+                        </tr>
+
+                        <tr onclick="toggleDettaglio(3)">
+                            <td class="verso-num">3</td>
+                            <td class="testo-originale">quando beltà splendea</td>
+                            <td class="parafrasi">quando la bellezza risplendeva</td>
+                            <td class="concetti">
+                                <span class="badge badge-tema">Bellezza</span>
+                                <span class="badge badge-simbolo">Luce</span>
+                            </td>
+                            <td><button class="action-btn">📖 Dettagli</button></td>
+                        </tr>
+                        <tr id="dettaglio-3" class="dettaglio-row">
+                            <td colspan="5">
+                                <div class="dettaglio-content">
+                                    <h4>🔍 Analisi Approfondita - Verso 3</h4>
+                                    <div class="dettaglio-section">
+                                        <strong>✨ "Splendea":</strong>
+                                        <p>Il verbo all'<strong>imperfetto</strong> indica un'azione continuata nel passato. La bellezza di Silvia "risplendeva" continuamente, era una caratteristica costante della sua adolescenza.</p>
+                                    </div>
+                                    <div class="dettaglio-section">
+                                        <strong>🌟 Metafora della luce:</strong>
+                                        <p>La bellezza è associata alla luce ("splendea"). Questo crea un'immagine visiva potente: Silvia era luminosa, radiosa. La luce è anche simbolo di vita, che contrasta con l'oscurità della morte.</p>
+                                    </div>
+                                    <div class="dettaglio-section">
+                                        <strong>🎯 Tema:</strong>
+                                        <p><strong>GIOVINEZZA</strong> - La bellezza di Silvia rappresenta la giovinezza nel suo momento più intenso, prima che venga distrutta dalla malattia e dalla morte.</p>
+                                    </div>
+                                </div>
+                            </td>
+                        </tr>
+
+                        <tr onclick="toggleDettaglio(4)">
+                            <td class="verso-num">4</td>
+                            <td class="testo-originale">negli occhi tuoi ridenti e fuggitivi,</td>
+                            <td class="parafrasi">nei tuoi occhi sorridenti e sfuggenti,</td>
+                            <td class="concetti">
+                                <span class="badge badge-retorica">Ossimoro</span>
+                                <span class="badge badge-tema">Vivacità</span>
+                            </td>
+                            <td><button class="action-btn">📖 Dettagli</button></td>
+                        </tr>
+                        <tr id="dettaglio-4" class="dettaglio-row">
+                            <td colspan="5">
+                                <div class="dettaglio-content">
+                                    <h4>🔍 Analisi Approfondita - Verso 4</h4>
+                                    <div class="dettaglio-section">
+                                        <strong>👁️ "Ridenti e fuggitivi":</strong>
+                                        <p><strong>OSSIMORO</strong> - Due qualità contraddittorie convivono: gli occhi sono "ridenti" (allegri, sorridenti) ma anche "fuggitivi" (sfuggenti, timidi). Questo rappresenta la vivacità giovanile unita alla pudicizia tipica di una giovane donna dell'800.</p>
+                                    </div>
+                                    <div class="dettaglio-section">
+                                        <strong>🎭 Caratterizzazione:</strong>
+                                        <p>Leopardi descrive Silvia attraverso i suoi occhi, che rivelano la sua personalità: era allegra ma anche riservata, vivace ma non sfacciata. Questa descrizione rende Silvia un personaggio reale e tridimensionale.</p>
+                                    </div>
+                                    <div class="dettaglio-section">
+                                        <strong>🎯 Simbolo:</strong>
+                                        <p>Gli occhi sono lo "specchio dell'anima". Gli occhi di Silvia riflettono la sua giovinezza piena di vita ("ridenti") ma anche la sua fragilità e transitorietà ("fuggitivi").</p>
+                                    </div>
+                                </div>
+                            </td>
+                        </tr>
+
+                        <tr onclick="toggleDettaglio(5)">
+                            <td class="verso-num">5</td>
+                            <td class="testo-originale">e tu, lieta e pensosa, il limitare</td>
+                            <td class="parafrasi">e tu, felice e pensierosa, la soglia</td>
+                            <td class="concetti">
+                                <span class="badge badge-retorica">Metafora</span>
+                                <span class="badge badge-tema">Transizione</span>
+                            </td>
+                            <td><button class="action-btn">📖 Dettagli</button></td>
+                        </tr>
+                        <tr id="dettaglio-5" class="dettaglio-row">
+                            <td colspan="5">
+                                <div class="dettaglio-content">
+                                    <h4>🔍 Analisi Approfondita - Verso 5</h4>
+                                    <div class="dettaglio-section">
+                                        <strong>🚪 "Il limitare":</strong>
+                                        <p><strong>METAFORA FONDAMENTALE</strong> - "Limitare" significa "soglia", confine tra due spazi. È la soglia che separa l'adolescenza dall'età adulta. Silvia è sulla soglia della giovinezza piena, ma non la attraverserà mai perché morirà prima.</p>
+                                    </div>
+                                    <div class="dettaglio-section">
+                                        <strong>😊🤔 "Lieta e pensosa":</strong>
+                                        <p>Altro <strong>OSSIMORO</strong>: Silvia è contemporaneamente felice (lieta) e riflessiva (pensosa). Questa duplicità rappresenta la complessità dell'età di passaggio: gioia per il presente e pensieri sul futuro.</p>
+                                    </div>
+                                    <div class="dettaglio-section">
+                                        <strong>🎯 Significato:</strong>
+                                        <p>Silvia è nel momento più delicato e bello della vita: ha già lasciato l'infanzia ma non è ancora entrata nella maturità. È sospesa in un momento di pura possibilità.</p>
+                                    </div>
+                                </div>
+                            </td>
+                        </tr>
+
+                        <tr onclick="toggleDettaglio(6)">
+                            <td class="verso-num">6</td>
+                            <td class="testo-originale">di gioventù salivi?</td>
+                            <td class="parafrasi">della giovinezza oltrepassavi?</td>
+                            <td class="concetti">
+                                <span class="badge badge-retorica">Domanda retorica</span>
+                                <span class="badge badge-metrica">Chiusura strofa</span>
+                            </td>
+                            <td><button class="action-btn">📖 Dettagli</button></td>
+                        </tr>
+                        <tr id="dettaglio-6" class="dettaglio-row">
+                            <td colspan="5">
+                                <div class="dettaglio-content">
+                                    <h4>🔍 Analisi Approfondita - Verso 6</h4>
+                                    <div class="dettaglio-section">
+                                        <strong>❓ Domanda retorica:</strong>
+                                        <p>Il poeta non si aspetta una risposta. La domanda serve a coinvolgere emotivamente il lettore e a evocare con forza quel momento del passato. "Ricordi quando stavi per diventare adulta?"</p>
+                                    </div>
+                                    <div class="dettaglio-section">
+                                        <strong>⬆️ "Salivi":</strong>
+                                        <p>Il verbo "salire" suggerisce un movimento verso l'alto, una progressione positiva. La giovinezza è vista come un'ascesa, un miglioramento. Ma sappiamo che Silvia non completerà mai questa salita.</p>
+                                    </div>
+                                    <div class="dettaglio-section">
+                                        <strong>📏 Metrica:</strong>
+                                        <p><strong>ENJAMBEMENT</strong> (v.5→v.6): La frase "il limitare di gioventù salivi" è spezzata in due versi, creando suspense e enfasi sulla parola "salivi".</p>
+                                    </div>
+                                    <div class="dettaglio-section">
+                                        <strong>💡 Concetto della Strofa 1:</strong>
+                                        <p>Leopardi ricorda Silvia nel momento più bello della sua vita: l'adolescenza, quando era bella, felice e piena di speranze, sulla soglia della giovinezza. Ma questa è una domanda che rimane sospesa, perché Silvia non ha mai attraversato quella soglia.</p>
+                                    </div>
+                                </div>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+
+        <div class="table-wrapper" style="margin-top: 1.5rem;">
+            <div class="strofa-header" onclick="toggleStrofa(2)">
+                <span>🎵 STROFA 2 (vv. 7-14) - Il canto di Silvia</span>
+                <span class="icon">▼</span>
+            </div>
+            <div id="strofa-2" class="table-responsive">
+                <table>
+                    <thead>
+                        <tr>
+                            <th style="width: 50px;">#</th>
+                            <th style="width: 30%;">Testo Originale</th>
+                            <th style="width: 30%;">Parafrasi / Significato</th>
+                            <th style="width: 25%;">Concetti Chiave</th>
+                            <th style="width: 15%;">Azione</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr onclick="toggleDettaglio(7)">
+                            <td class="verso-num">7</td>
+                            <td class="testo-originale">Sonavan le quiete</td>
+                            <td class="parafrasi">Risuonavano le silenziose</td>
+                            <td class="concetti">
+                                <span class="badge badge-tema">Suono</span>
+                                <span class="badge badge-retorica">Ossimoro</span>
+                            </td>
+                            <td><button class="action-btn">📖 Dettagli</button></td>
+                        </tr>
+                        <tr id="dettaglio-7" class="dettaglio-row">
+                            <td colspan="5">
+                                <div class="dettaglio-content">
+                                    <h4>🔍 Analisi Approfondita - Verso 7</h4>
+                                    <div class="dettaglio-section">
+                                        <strong>🔇🔊 "Quiete" + "Sonavan":</strong>
+                                        <p><strong>OSSIMORO IMPLICITO</strong> - Le stanze sono "quiete" (silenziose, tranquille) ma "sonavan" (risuonavano). Il silenzio è interrotto dal canto di Silvia, che diventa l'unico suono in un ambiente pacifico.</p>
+                                    </div>
+                                    <div class="dettaglio-section">
+                                        <strong>🏠 Ambiente domestico:</strong>
+                                        <p>Il poeta descrive lo spazio intimo della casa, delle stanze familiari. Questo crea un'atmosfera di intimità e quotidianità.</p>
+                                    </div>
+                                </div>
+                            </td>
+                        </tr>
+
+                        <tr onclick="toggleDettaglio(8)">
+                            <td class="verso-num">8</td>
+                            <td class="testo-originale">stanze, e le vie dintorno,</td>
+                            <td class="parafrasi">stanze, e le strade intorno,</td>
+                            <td class="concetti">
+                                <span class="badge badge-simbolo">Spazio</span>
+                            </td>
+                            <td><button class="action-btn">📖 Dettagli</button></td>
+                        </tr>
+                        <tr id="dettaglio-8" class="dettaglio-row">
+                            <td colspan="5">
+                                <div class="dettaglio-content">
+                                    <h4>🔍 Analisi Approfondita - Verso 8</h4>
+                                    <div class="dettaglio-section">
+                                        <strong>🌍 Espansione spaziale:</strong>
+                                        <p>Il suono del canto di Silvia si espande dallo spazio interno (le stanze) allo spazio esterno (le vie dintorno). Questo amplifica l'importanza del suo canto, che riempie l'intero ambiente.</p>
+                                    </div>
+                                </div>
+                            </td>
+                        </tr>
+
+                        <tr onclick="toggleDettaglio(9)">
+                            <td class="verso-num">9</td>
+                            <td class="testo-originale">al tuo perpetuo canto,</td>
+                            <td class="parafrasi">del tuo canto continuo,</td>
+                            <td class="concetti">
+                                <span class="badge badge-tema">Canto</span>
+                                <span class="badge badge-simbolo">Continuità</span>
+                            </td>
+                            <td><button class="action-btn">📖 Dettagli</button></td>
+                        </tr>
+                        <tr id="dettaglio-9" class="dettaglio-row">
+                            <td colspan="5">
+                                <div class="dettaglio-content">
+                                    <h4>🔍 Analisi Approfondita - Verso 9</h4>
+                                    <div class="dettaglio-section">
+                                        <strong>🎵 "Perpetuo":</strong>
+                                        <p>Il canto di Silvia è "perpetuo" = continuo, incessante, senza fine. Silvia cantava sempre mentre lavorava. Questo sottolinea la sua felicità e serenità costanti.</p>
+                                    </div>
+                                    <div class="dettaglio-section">
+                                        <strong>🎶 Simbolo del canto:</strong>
+                                        <p>Il canto rappresenta la GIOIA DI VIVERE, la spensieratezza della giovinezza. È l'espressione spontanea della felicità di Silvia.</p>
+                                    </div>
+                                </div>
+                            </td>
+                        </tr>
+
+                        <tr onclick="toggleDettaglio(10)">
+                            <td class="verso-num">10</td>
+                            <td class="testo-originale">allor che all'opre femminili intenta</td>
+                            <td class="parafrasi">quando, concentrata nei lavori femminili,</td>
+                            <td class="concetti">
+                                <span class="badge badge-tema">Lavoro</span>
+                                <span class="badge badge-simbolo">Ruolo femminile</span>
+                            </td>
+                            <td><button class="action-btn">📖 Dettagli</button></td>
+                        </tr>
+                        <tr id="dettaglio-10" class="dettaglio-row">
+                            <td colspan="5">
+                                <div class="dettaglio-content">
+                                    <h4>🔍 Analisi Approfondita - Verso 10</h4>
+                                    <div class="dettaglio-section">
+                                        <strong>🧵 "Opre femminili":</strong>
+                                        <p>I lavori domestici tipici delle donne nell'Ottocento: cucito, ricamo, tessitura. Silvia era di umili origini (figlia del cocchiere) e doveva lavorare manualmente.</p>
+                                    </div>
+                                    <div class="dettaglio-section">
+                                        <strong>🎯 Contesto storico:</strong>
+                                        <p>Nell'800 le donne di ceto popolare contribuivano al sostentamento familiare con lavori manuali in casa. Leopardi descrive realisticamente la condizione sociale di Silvia/Teresa.</p>
+                                    </div>
+                                </div>
+                            </td>
+                        </tr>
+
+                        <tr onclick="toggleDettaglio(11)">
+                            <td class="verso-num">11</td>
+                            <td class="testo-originale">sedevi, assai contenta</td>
+                            <td class="parafrasi">stavi seduta, molto felice</td>
+                            <td class="concetti">
+                                <span class="badge badge-tema">Felicità</span>
+                            </td>
+                            <td><button class="action-btn">📖 Dettagli</button></td>
+                        </tr>
+                        <tr id="dettaglio-11" class="dettaglio-row">
+                            <td colspan="5">
+                                <div class="dettaglio-content">
+                                    <h4>🔍 Analisi Approfondita - Verso 11</h4>
+                                    <div class="dettaglio-section">
+                                        <strong>😊 "Assai contenta":</strong>
+                                        <p>Silvia non era solo contenta, ma "assai contenta" = molto felice. L'avverbio "assai" intensifica lo stato d'animo positivo. La sua felicità era profonda e autentica.</p>
+                                    </div>
+                                </div>
+                            </td>
+                        </tr>
+
+                        <tr onclick="toggleDettaglio(12)">
+                            <td class="verso-num">12</td>
+                            <td class="testo-originale">di quel vago avvenir che in mente avevi.</td>
+                            <td class="parafrasi">di quel futuro incerto che immaginavi.</td>
+                            <td class="concetti">
+                                <span class="badge badge-tema">Illusione</span>
+                                <span class="badge badge-tema">Speranza</span>
+                            </td>
+                            <td><button class="action-btn">📖 Dettagli</button></td>
+                        </tr>
+                        <tr id="dettaglio-12" class="dettaglio-row">
+                            <td colspan="5">
+                                <div class="dettaglio-content">
+                                    <h4>🔍 Analisi Approfondita - Verso 12</h4>
+                                    <div class="dettaglio-section">
+                                        <strong>🌈 "Vago avvenir":</strong>
+                                        <p><strong>CHIAVE INTERPRETATIVA</strong> - "Vago" significa "indefinito, incerto, sognato". Il futuro che Silvia immaginava era bello proprio perché non era definito: poteva essere qualsiasi cosa. Era un futuro fatto di speranze e sogni, non di realtà concrete.</p>
+                                    </div>
+                                    <div class="dettaglio-section">
+                                        <strong>💭 Tema centrale:</strong>
+                                        <p><strong>ILLUSIONE</strong> - Silvia era felice non per ciò che aveva, ma per ciò che credeva di avere nel futuro. La giovinezza è il tempo delle illusioni, quando tutto sembra possibile.</p>
+                                    </div>
+                                    <div class="dettaglio-section">
+                                        <strong>⚠️ Tragedia implicita:</strong>
+                                        <p>Il lettore sa già che quel "vago avvenir" non si realizzerà mai. Silvia morirà giovane. Questo crea un effetto di IRONIA TRAGICA: la sua felicità è basata su speranze destinate a essere deluse.</p>
+                                    </div>
+                                </div>
+                            </td>
+                        </tr>
+
+                        <tr onclick="toggleDettaglio(13)">
+                            <td class="verso-num">13</td>
+                            <td class="testo-originale">Era il maggio odoroso: e tu solevi</td>
+                            <td class="parafrasi">Era la primavera profumata: e tu eri solita</td>
+                            <td class="concetti">
+                                <span class="badge badge-retorica">Sinestesia</span>
+                                <span class="badge badge-tema">Primavera</span>
+                            </td>
+                            <td><button class="action-btn">📖 Dettagli</button></td>
+                        </tr>
+                        <tr id="dettaglio-13" class="dettaglio-row">
+                            <td colspan="5">
+                                <div class="dettaglio-content">
+                                    <h4>🔍 Analisi Approfondita - Verso 13</h4>
+                                    <div class="dettaglio-section">
+                                        <strong>🌸 "Maggio odoroso":</strong>
+                                        <p><strong>SINESTESIA</strong> - Figura retorica che unisce due sensi diversi: vista (maggio) + olfatto (odoroso). Leopardi crea un'immagine sensoriale completa della primavera.</p>
+                                    </div>
+                                    <div class="dettaglio-section">
+                                        <strong>🌺 Simbolismo della primavera:</strong>
+                                        <p>Maggio/primavera = GIOVINEZZA, RINASCITA, VITA. È la stagione in cui la natura rinasce, proprio come Silvia è nel pieno della sua giovinezza. Ma sappiamo che questa primavera sarà seguita da un inverno precoce (la morte).</p>
+                                    </div>
+                                    <div class="dettaglio-section">
+                                        <strong>🔄 "Solevi":</strong>
+                                        <p>Verbo "solere" = essere solito, avere l'abitudine. Indica un'azione ripetuta, abituale. Silvia cantava sempre, ogni giorno. Era parte della sua routine quotidiana.</p>
+                                    </div>
+                                </div>
+                            </td>
+                        </tr>
+
+                        <tr onclick="toggleDettaglio(14)">
+                            <td class="verso-num">14</td>
+                            <td class="testo-originale">così menare il giorno.</td>
+                            <td class="parafrasi">passare così la giornata.</td>
+                            <td class="concetti">
+                                <span class="badge badge-tema">Quotidianità</span>
+                                <span class="badge badge-metrica">Chiusura strofa</span>
+                            </td>
+                            <td><button class="action-btn">📖 Dettagli</button></td>
+                        </tr>
+                        <tr id="dettaglio-14" class="dettaglio-row">
+                            <td colspan="5">
+                                <div class="dettaglio-content">
+                                    <h4>🔍 Analisi Approfondita - Verso 14</h4>
+                                    <div class="dettaglio-section">
+                                        <strong>⏰ "Menare il giorno":</strong>
+                                        <p>Espressione idiomatica = "passare la giornata". Silvia trascorreva le sue giornate così: cantando mentre lavorava, felice e piena di speranze.</p>
+                                    </div>
+                                    <div class="dettaglio-section">
+                                        <strong>💡 Concetto della Strofa 2:</strong>
+                                        <p>Silvia cantava continuamente mentre lavorava al telaio, piena di speranze per il futuro. Era primavera, stagione di rinascita (simbolo della giovinezza). La sua felicità derivava dai sogni e dalle illusioni che nutriva per l'avvenire.</p>
+                                    </div>
+                                </div>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+
+        <!-- STROFA 3 -->
+        <div class="table-wrapper" style="margin-top: 1.5rem;">
+            <div class="strofa-header" onclick="toggleStrofa(3)">
+                <span>📚 STROFA 3 (vv. 15-28) - Il poeta adolescente e contemplazione</span>
+                <span class="icon">▼</span>
+            </div>
+            <div id="strofa-3" class="table-responsive">
+                <table>
+                    <thead>
+                        <tr>
+                            <th style="width: 50px;">#</th>
+                            <th style="width: 30%;">Testo Originale</th>
+                            <th style="width: 30%;">Parafrasi / Significato</th>
+                            <th style="width: 25%;">Concetti Chiave</th>
+                            <th style="width: 15%;">Azione</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr onclick="toggleDettaglio(15)">
+                            <td class="verso-num">15</td>
+                            <td class="testo-originale">Io, gli studi leggiadri</td>
+                            <td class="parafrasi">Io, gli studi affascinanti</td>
+                            <td class="concetti">
+                                <span class="badge badge-tema">Studio</span>
+                                <span class="badge badge-tema">Formazione</span>
+                            </td>
+                            <td><button class="action-btn">📖 Dettagli</button></td>
+                        </tr>
+                        <tr id="dettaglio-15" class="dettaglio-row">
+                            <td colspan="5">
+                                <div class="dettaglio-content">
+                                    <h4>🔍 Analisi Approfondita - Verso 15</h4>
+                                    <div class="dettaglio-section">
+                                        <strong>👤 Cambio di prospettiva:</strong>
+                                        <p>Da Silvia si passa al POETA. Ora Leopardi parla di sé adolescente, creando un parallelismo tra la sua vita e quella di Silvia.</p>
+                                    </div>
+                                    <div class="dettaglio-section">
+                                        <strong>📚 "Studi leggiadri":</strong>
+                                        <p>"Leggiadri" = graziosi, piacevoli. Gli studi per il giovane Leopardi erano fonte di piacere, non di fatica (almeno inizialmente).</p>
+                                    </div>
+                                </div>
+                            </td>
+                        </tr>
+
+                        <tr onclick="toggleDettaglio(16)">
+                            <td class="verso-num">16</td>
+                            <td class="testo-originale">talor lasciando e le sudate carte,</td>
+                            <td class="parafrasi">a volte lasciando e le pagine studiate con fatica,</td>
+                            <td class="concetti">
+                                <span class="badge badge-retorica">Metafora</span>
+                                <span class="badge badge-tema">Fatica</span>
+                            </td>
+                            <td><button class="action-btn">📖 Dettagli</button></td>
+                        </tr>
+                        <tr id="dettaglio-16" class="dettaglio-row">
+                            <td colspan="5">
+                                <div class="dettaglio-content">
+                                    <h4>🔍 Analisi Approfondita - Verso 16</h4>
+                                    <div class="dettaglio-section">
+                                        <strong>💦 "Sudate carte":</strong>
+                                        <p><strong>METAFORA</strong> - Le carte (libri) sono "sudate" = studiate con grande sforzo e fatica. Il sudore rappresenta il duro lavoro intellettuale.</p>
+                                    </div>
+                                    <div class="dettaglio-section">
+                                        <strong>🎯 Contrasto:</strong>
+                                        <p>Contraddizione tra v.15 ("studi leggiadri") e v.16 ("sudate carte"). Gli studi erano piacevoli ma anche faticosi. Leopardi studiava moltissimo, rovinandosi la salute.</p>
+                                    </div>
+                                </div>
+                            </td>
+                        </tr>
+
+                        <tr onclick="toggleDettaglio(17)">
+                            <td class="verso-num">17</td>
+                            <td class="testo-originale">ove il tempo mio primo</td>
+                            <td class="parafrasi">nelle quali il mio tempo giovanile</td>
+                            <td class="concetti">
+                                <span class="badge badge-tema">Adolescenza</span>
+                            </td>
+                            <td><button class="action-btn">📖 Dettagli</button></td>
+                        </tr>
+                        <tr id="dettaglio-17" class="dettaglio-row">
+                            <td colspan="5">
+                                <div class="dettaglio-content">
+                                    <h4>🔍 Analisi Approfondita - Verso 17</h4>
+                                    <div class="dettaglio-section">
+                                        <strong>⏰ "Tempo mio primo":</strong>
+                                        <p>Perifrasi per "giovinezza", "adolescenza". Il "tempo primo" = l'inizio della vita, gli anni formativi.</p>
+                                    </div>
+                                </div>
+                            </td>
+                        </tr>
+
+                        <tr onclick="toggleDettaglio(18)">
+                            <td class="verso-num">18</td>
+                            <td class="testo-originale">e di me si spendea la miglior parte,</td>
+                            <td class="parafrasi">e la parte migliore di me veniva consumata,</td>
+                            <td class="concetti">
+                                <span class="badge badge-tema">Sacrificio</span>
+                                <span class="badge badge-retorica">Riflessione</span>
+                            </td>
+                            <td><button class="action-btn">📖 Dettagli</button></td>
+                        </tr>
+                        <tr id="dettaglio-18" class="dettaglio-row">
+                            <td colspan="5">
+                                <div class="dettaglio-content">
+                                    <h4>🔍 Analisi Approfondita - Verso 18</h4>
+                                    <div class="dettaglio-section">
+                                        <strong>💪 "La miglior parte":</strong>
+                                        <p>Leopardi dedicava la parte MIGLIORE di sé (energie, giovinezza, salute) allo studio. Questo è un sacrificio enorme: ha speso la sua giovinezza sui libri invece di viverla.</p>
+                                    </div>
+                                    <div class="dettaglio-section">
+                                        <strong>😔 Rimpianto:</strong>
+                                        <p>C'è già un tono di rimpianto. Il poeta riconosce che ha "speso" (consumato, sacrificato) la sua giovinezza. Lo studio lo ha privato delle gioie della sua età.</p>
+                                    </div>
+                                </div>
+                            </td>
+                        </tr>
+
+                        <tr onclick="toggleDettaglio(19)">
+                            <td class="verso-num">19</td>
+                            <td class="testo-originale">d'in su i veroni del paterno ostello</td>
+                            <td class="parafrasi">dai balconi della casa paterna</td>
+                            <td class="concetti">
+                                <span class="badge badge-simbolo">Casa Leopardi</span>
+                                <span class="badge badge-tema">Recanati</span>
+                            </td>
+                            <td><button class="action-btn">📖 Dettagli</button></td>
+                        </tr>
+                        <tr id="dettaglio-19" class="dettaglio-row">
+                            <td colspan="5">
+                                <div class="dettaglio-content">
+                                    <h4>🔍 Analisi Approfondita - Verso 19</h4>
+                                    <div class="dettaglio-section">
+                                        <strong>🏛️ "Paterno ostello":</strong>
+                                        <p>Palazzo Leopardi a Recanati. "Ostello" = dimora, casa (termine letterario). "Paterno" = del padre, ma anche simbolo di protezione e oppressione (Monaldo Leopardi era molto severo).</p>
+                                    </div>
+                                    <div class="dettaglio-section">
+                                        <strong>🌍 Spazio fisico:</strong>
+                                        <p>I "veroni" (balconi) sono il punto di contatto tra interno ed esterno. Il poeta è dentro casa (studio) ma guarda fuori (vita, natura). È sulla soglia, come Silvia.</p>
+                                    </div>
+                                </div>
+                            </td>
+                        </tr>
+
+                        <tr onclick="toggleDettaglio(20)">
+                            <td class="verso-num">20</td>
+                            <td class="testo-originale">porgea gli orecchi al suon della tua voce,</td>
+                            <td class="parafrasi">tendevo le orecchie al suono della tua voce,</td>
+                            <td class="concetti">
+                                <span class="badge badge-tema">Ascolto</span>
+                                <span class="badge badge-tema">Voce Silvia</span>
+                            </td>
+                            <td><button class="action-btn">📖 Dettagli</button></td>
+                        </tr>
+                        <tr id="dettaglio-20" class="dettaglio-row">
+                            <td colspan="5">
+                                <div class="dettaglio-content">
+                                    <h4>🔍 Analisi Approfondita - Verso 20</h4>
+                                    <div class="dettaglio-section">
+                                        <strong>👂 "Porgea gli orecchi":</strong>
+                                        <p>Espressione antica = "tendere l'orecchio", ascoltare con attenzione. Il poeta si fermava dallo studio per ascoltare il canto di Silvia che arrivava da fuori.</p>
+                                    </div>
+                                    <div class="dettaglio-section">
+                                        <strong>🎵 Significato simbolico:</strong>
+                                        <p>Il canto di Silvia rappresenta la VITA che il poeta non vive direttamente. Lui è chiuso nei libri, lei vive. Il canto è ciò che lo collega al mondo esterno.</p>
+                                    </div>
+                                </div>
+                            </td>
+                        </tr>
+
+                        <tr onclick="toggleDettaglio(21)">
+                            <td class="verso-num">21</td>
+                            <td class="testo-originale">ed alla man veloce</td>
+                            <td class="parafrasi">e alla mano veloce</td>
+                            <td class="concetti">
+                                <span class="badge badge-metrica">Enjambement</span>
+                            </td>
+                            <td><button class="action-btn">📖 Dettagli</button></td>
+                        </tr>
+                        <tr id="dettaglio-21" class="dettaglio-row">
+                            <td colspan="5">
+                                <div class="dettaglio-content">
+                                    <h4>🔍 Analisi Approfondita - Verso 21</h4>
+                                    <div class="dettaglio-section">
+                                        <strong>✋ "Man veloce":</strong>
+                                        <p>La mano di Silvia che lavora velocemente al telaio. Abilità e pratica nel lavoro manuale.</p>
+                                    </div>
+                                    <div class="dettaglio-section">
+                                        <strong>📏 Enjambement:</strong>
+                                        <p>Il verso si interrompe su "veloce", creando suspense. La velocità della mano è enfatizzata dalla posizione metrica.</p>
+                                    </div>
+                                </div>
+                            </td>
+                        </tr>
+
+                        <tr onclick="toggleDettaglio(22)">
+                            <td class="verso-num">22</td>
+                            <td class="testo-originale">che percorrea la faticosa tela.</td>
+                            <td class="parafrasi">che percorreva il telaio faticoso.</td>
+                            <td class="concetti">
+                                <span class="badge badge-tema">Lavoro manuale</span>
+                                <span class="badge badge-retorica">Metafora</span>
+                            </td>
+                            <td><button class="action-btn">📖 Dettagli</button></td>
+                        </tr>
+                        <tr id="dettaglio-22" class="dettaglio-row">
+                            <td colspan="5">
+                                <div class="dettaglio-content">
+                                    <h4>🔍 Analisi Approfondita - Verso 22</h4>
+                                    <div class="dettaglio-section">
+                                        <strong>🧵 "Faticosa tela":</strong>
+                                        <p>Metonimia: "tela" = telaio (strumento di lavoro). "Faticosa" perché richiede sforzo fisico. Parallelismo con le "sudate carte" del poeta (v.16): entrambi lavorano duramente.</p>
+                                    </div>
+                                    <div class="dettaglio-section">
+                                        <strong>⚖️ Contrasto:</strong>
+                                        <p>Silvia: lavoro MANUALE (tela) + FELICITÀ (canto). Poeta: lavoro INTELLETTUALE (studio) + ISOLAMENTO. Due modi diversi di vivere la giovinezza.</p>
+                                    </div>
+                                </div>
+                            </td>
+                        </tr>
+
+                        <tr onclick="toggleDettaglio(23)">
+                            <td class="verso-num">23</td>
+                            <td class="testo-originale">Mirava il ciel sereno,</td>
+                            <td class="parafrasi">Guardavo il cielo sereno,</td>
+                            <td class="concetti">
+                                <span class="badge badge-tema">Contemplazione</span>
+                                <span class="badge badge-tema">Natura</span>
+                            </td>
+                            <td><button class="action-btn">📖 Dettagli</button></td>
+                        </tr>
+                        <tr id="dettaglio-23" class="dettaglio-row">
+                            <td colspan="5">
+                                <div class="dettaglio-content">
+                                    <h4>🔍 Analisi Approfondita - Verso 23</h4>
+                                    <div class="dettaglio-section">
+                                        <strong>🌤️ "Mirava":</strong>
+                                        <p>Verbo "mirare" = guardare con attenzione, contemplare. Il poeta osserva la natura con intensità.</p>
+                                    </div>
+                                    <div class="dettaglio-section">
+                                        <strong>☀️ "Ciel sereno":</strong>
+                                        <p>Il cielo sereno rappresenta la PACE, la SERENITÀ della natura. Contrasta con il tumulto interiore del poeta che verrà dopo.</p>
+                                    </div>
+                                </div>
+                            </td>
+                        </tr>
+
+                        <tr onclick="toggleDettaglio(24)">
+                            <td class="verso-num">24</td>
+                            <td class="testo-originale">le vie dorate e gli orti,</td>
+                            <td class="parafrasi">le strade illuminate dal sole e i giardini,</td>
+                            <td class="concetti">
+                                <span class="badge badge-retorica">Metafora</span>
+                                <span class="badge badge-tema">Luce</span>
+                            </td>
+                            <td><button class="action-btn">📖 Dettagli</button></td>
+                        </tr>
+                        <tr id="dettaglio-24" class="dettaglio-row">
+                            <td colspan="5">
+                                <div class="dettaglio-content">
+                                    <h4>🔍 Analisi Approfondita - Verso 24</h4>
+                                    <div class="dettaglio-section">
+                                        <strong>🌅 "Vie dorate":</strong>
+                                        <p><strong>METAFORA</strong> - Le strade sono "dorate" dalla luce del sole. Immagine visiva potente che trasmette calore e bellezza.</p>
+                                    </div>
+                                    <div class="dettaglio-section">
+                                        <strong>🌳 Paesaggio marchigiano:</strong>
+                                        <p>Descrizione del paesaggio di Recanati: strade, orti (giardini coltivati), tipici della campagna marchigiana.</p>
+                                    </div>
+                                </div>
+                            </td>
+                        </tr>
+
+                        <tr onclick="toggleDettaglio(25)">
+                            <td class="verso-num">25</td>
+                            <td class="testo-originale">e quinci il mar da lungi, e quindi il monte.</td>
+                            <td class="parafrasi">e da una parte il mare lontano, dall'altra il monte.</td>
+                            <td class="concetti">
+                                <span class="badge badge-tema">Panorama</span>
+                                <span class="badge badge-simbolo">Infinito</span>
+                            </td>
+                            <td><button class="action-btn">📖 Dettagli</button></td>
+                        </tr>
+                        <tr id="dettaglio-25" class="dettaglio-row">
+                            <td colspan="5">
+                                <div class="dettaglio-content">
+                                    <h4>🔍 Analisi Approfondita - Verso 25</h4>
+                                    <div class="dettaglio-section">
+                                        <strong>🌊⛰️ "Quinci...quindi":</strong>
+                                        <p>Struttura simmetrica: "quinci" (da qui, da una parte) e "quindi" (da lì, dall'altra parte). Crea equilibrio visivo.</p>
+                                    </div>
+                                    <div class="dettaglio-section">
+                                        <strong>🗺️ Geografia reale:</strong>
+                                        <p>Da Recanati si vedono realmente il mare Adriatico ("da lungi" = lontano) e il monte Conero. Leopardi descrive il panorama che vedeva davvero dalla sua casa.</p>
+                                    </div>
+                                    <div class="dettaglio-section">
+                                        <strong>♾️ Simbolismo:</strong>
+                                        <p>Mare e monte rappresentano l'INFINITO, l'OLTRE, ciò che sta al di là della "prigione" di Recanati. Tema ricorrente in Leopardi (cfr. "L'infinito").</p>
+                                    </div>
+                                </div>
+                            </td>
+                        </tr>
+
+                        <tr onclick="toggleDettaglio(26)">
+                            <td class="verso-num">26</td>
+                            <td class="testo-originale">Lingua mortal non dice</td>
+                            <td class="parafrasi">Parole umane non possono esprimere</td>
+                            <td class="concetti">
+                                <span class="badge badge-tema">Ineffabilità</span>
+                                <span class="badge badge-retorica">Topos letterario</span>
+                            </td>
+                            <td><button class="action-btn">📖 Dettagli</button></td>
+                        </tr>
+                        <tr id="dettaglio-26" class="dettaglio-row">
+                            <td colspan="5">
+                                <div class="dettaglio-content">
+                                    <h4>🔍 Analisi Approfondita - Verso 26</h4>
+                                    <div class="dettaglio-section">
+                                        <strong>🙊 TOPOS DELL'INEFFABILE:</strong>
+                                        <p>Tema letterario classico: le emozioni più profonde non possono essere espresse a parole. Il linguaggio umano ("lingua mortal") è insufficiente.</p>
+                                    </div>
+                                    <div class="dettaglio-section">
+                                        <strong>📖 Funzione retorica:</strong>
+                                        <p>Paradossalmente, dicendo "non posso dire", il poeta ENFATIZZA l'intensità dell'emozione. Se fosse dicibile, sarebbe meno potente.</p>
+                                    </div>
+                                </div>
+                            </td>
+                        </tr>
+
+                        <tr onclick="toggleDettaglio(27)">
+                            <td class="verso-num">27</td>
+                            <td class="testo-originale">quel ch'io sentiva in seno.</td>
+                            <td class="parafrasi">quello che provavo nel cuore.</td>
+                            <td class="concetti">
+                                <span class="badge badge-tema">Emozioni</span>
+                                <span class="badge badge-tema">Felicità</span>
+                            </td>
+                            <td><button class="action-btn">📖 Dettagli</button></td>
+                        </tr>
+                        <tr id="dettaglio-27" class="dettaglio-row">
+                            <td colspan="5">
+                                <div class="dettaglio-content">
+                                    <h4>🔍 Analisi Approfondita - Verso 27</h4>
+                                    <div class="dettaglio-section">
+                                        <strong>❤️ "In seno":</strong>
+                                        <p>Antico modo di dire = "nel petto", "nel cuore". Il "seno" è il centro delle emozioni, dell'interiorità.</p>
+                                    </div>
+                                    <div class="dettaglio-section">
+                                        <strong>💡 Concetto:</strong>
+                                        <p>Il poeta adolescente provava emozioni così intense (felicità, speranza, pienezza) che non è possibile descriverle. Era un momento di perfetta unione con la natura e con la vita.</p>
+                                    </div>
+                                </div>
+                            </td>
+                        </tr>
+
+                        <tr onclick="toggleDettaglio(28)">
+                            <td class="verso-num">28</td>
+                            <td class="testo-originale">Che pensieri soavi,</td>
+                            <td class="parafrasi">Che pensieri dolci,</td>
+                            <td class="concetti">
+                                <span class="badge badge-retorica">Esclamazione</span>
+                                <span class="badge badge-tema">Ricordo</span>
+                            </td>
+                            <td><button class="action-btn">📖 Dettagli</button></td>
+                        </tr>
+                        <tr id="dettaglio-28" class="dettaglio-row">
+                            <td colspan="5">
+                                <div class="dettaglio-content">
+                                    <h4>🔍 Analisi Approfondita - Verso 28</h4>
+                                    <div class="dettaglio-section">
+                                        <strong>💭 TRANSIZIONE:</strong>
+                                        <p>Da questo verso inizia la STROFA 4. Il poeta passa dalla descrizione alla RIFLESSIONE. Esclamazione nostalgica: "Che...!" = "Quanto erano dolci..."</p>
+                                    </div>
+                                    <div class="dettaglio-section">
+                                        <strong>🌺 "Soavi":</strong>
+                                        <p>"Soavi" = dolci, piacevoli, delicati. I pensieri della giovinezza erano dolci perché pieni di illusioni positive.</p>
+                                    </div>
+                                </div>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+
+        <!-- STROFA 4 -->
+        <div class="table-wrapper" style="margin-top: 1.5rem;">
+            <div class="strofa-header" onclick="toggleStrofa(4)">
+                <span>💔 STROFA 4 (vv. 29-39) - Speranze e disillusione</span>
+                <span class="icon">▼</span>
+            </div>
+            <div id="strofa-4" class="table-responsive">
+                <table>
+                    <thead>
+                        <tr>
+                            <th style="width: 50px;">#</th>
+                            <th style="width: 30%;">Testo Originale</th>
+                            <th style="width: 30%;">Parafrasi / Significato</th>
+                            <th style="width: 25%;">Concetti Chiave</th>
+                            <th style="width: 15%;">Azione</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr onclick="toggleDettaglio(29)">
+                            <td class="verso-num">29</td>
+                            <td class="testo-originale">che speranze, che cori, o Silvia mia!</td>
+                            <td class="parafrasi">che speranze, che sentimenti, o mia Silvia!</td>
+                            <td class="concetti">
+                                <span class="badge badge-retorica">Climax</span>
+                                <span class="badge badge-tema">Illusioni</span>
+                            </td>
+                            <td><button class="action-btn">📖 Dettagli</button></td>
+                        </tr>
+                        <tr id="dettaglio-29" class="dettaglio-row">
+                            <td colspan="5">
+                                <div class="dettaglio-content">
+                                    <h4>🔍 Analisi Approfondita - Verso 29</h4>
+                                    <div class="dettaglio-section">
+                                        <strong>📈 CLIMAX ASCENDENTE:</strong>
+                                        <p>Sequenza crescente: "pensieri → speranze → cori (sentimenti)". Intensificazione emotiva attraverso l'enumerazione.</p>
+                                    </div>
+                                    <div class="dettaglio-section">
+                                        <strong>🎭 "O Silvia mia":</strong>
+                                        <p>Seconda APOSTROFE diretta a Silvia. L'aggettivo possessivo "mia" crea intimità. Silvia diventa simbolo delle illusioni del poeta stesso.</p>
+                                    </div>
+                                </div>
+                            </td>
+                        </tr>
+
+                        <tr onclick="toggleDettaglio(30)">
+                            <td class="verso-num">30</td>
+                            <td class="testo-originale">Quale allor ci apparia</td>
+                            <td class="parafrasi">Come allora ci appariva</td>
+                            <td class="concetti">
+                                <span class="badge badge-tema">Percezione</span>
+                                <span class="badge badge-tema">Passato</span>
+                            </td>
+                            <td><button class="action-btn">📖 Dettagli</button></td>
+                        </tr>
+                        <tr id="dettaglio-30" class="dettaglio-row">
+                            <td colspan="5">
+                                <div class="dettaglio-content">
+                                    <h4>🔍 Analisi Approfondita - Verso 30</h4>
+                                    <div class="dettaglio-section">
+                                        <strong>👥 "Ci":</strong>
+                                        <p>Pronome plurale: "a noi". Include sia Silvia che il poeta. Destino comune: entrambi hanno avuto le stesse illusioni.</p>
+                                    </div>
+                                    <div class="dettaglio-section">
+                                        <strong>👀 "Apparia":</strong>
+                                        <p>Imperfetto di "apparire". La vita SEMBRAVA bella, ma era solo apparenza. Contrasto tra apparenza (illusione) e realtà (disillusione).</p>
+                                    </div>
+                                </div>
+                            </td>
+                        </tr>
+
+                        <tr onclick="toggleDettaglio(31)">
+                            <td class="verso-num">31</td>
+                            <td class="testo-originale">la vita umana e il fato!</td>
+                            <td class="parafrasi">la vita e il destino!</td>
+                            <td class="concetti">
+                                <span class="badge badge-tema">Esistenza</span>
+                                <span class="badge badge-tema">Destino</span>
+                            </td>
+                            <td><button class="action-btn">📖 Dettagli</button></td>
+                        </tr>
+                        <tr id="dettaglio-31" class="dettaglio-row">
+                            <td colspan="5">
+                                <div class="dettaglio-content">
+                                    <h4>🔍 Analisi Approfondita - Verso 31</h4>
+                                    <div class="dettaglio-section">
+                                        <strong>🎭 Due concetti fondamentali:</strong>
+                                        <p>"Vita umana" = l'esistenza in generale. "Fato" = il destino, la sorte predeterminata. In gioventù tutto sembrava positivo e pieno di possibilità.</p>
+                                    </div>
+                                    <div class="dettaglio-section">
+                                        <strong>❗ Esclamazione:</strong>
+                                        <p>Il punto esclamativo enfatizza lo stupore retrospettivo. "Com'era diversa la nostra percezione!"</p>
+                                    </div>
+                                </div>
+                            </td>
+                        </tr>
+
+                        <tr onclick="toggleDettaglio(32)">
+                            <td class="verso-num">32</td>
+                            <td class="testo-originale">Quando sovviemmi di cotanta speme,</td>
+                            <td class="parafrasi">Quando mi ricordo di tanta speranza,</td>
+                            <td class="concetti">
+                                <span class="badge badge-tema">Memoria</span>
+                                <span class="badge badge-tema">Speranza</span>
+                            </td>
+                            <td><button class="action-btn">📖 Dettagli</button></td>
+                        </tr>
+                        <tr id="dettaglio-32" class="dettaglio-row">
+                            <td colspan="5">
+                                <div class="dettaglio-content">
+                                    <h4>🔍 Analisi Approfondita - Verso 32</h4>
+                                    <div class="dettaglio-section">
+                                        <strong>🔄 RITORNO AL PRESENTE:</strong>
+                                        <p>"Quando sovviemmi" = quando mi viene in mente, quando ricordo. Dopo l'evocazione del passato, il poeta torna al presente doloroso.</p>
+                                    </div>
+                                    <div class="dettaglio-section">
+                                        <strong>🌈 "Cotanta speme":</strong>
+                                        <p>"Cotanta" = tanta, così grande. "Speme" = speranza (forma poetica). La speranza giovanile era IMMENSA, e proprio per questo il suo fallimento è ancora più doloroso.</p>
+                                    </div>
+                                </div>
+                            </td>
+                        </tr>
+
+                        <tr onclick="toggleDettaglio(33)">
+                            <td class="verso-num">33</td>
+                            <td class="testo-originale">un affetto mi preme</td>
+                            <td class="parafrasi">un sentimento mi opprime</td>
+                            <td class="concetti">
+                                <span class="badge badge-tema">Dolore</span>
+                                <span class="badge badge-tema">Oppressione</span>
+                            </td>
+                            <td><button class="action-btn">📖 Dettagli</button></td>
+                        </tr>
+                        <tr id="dettaglio-33" class="dettaglio-row">
+                            <td colspan="5">
+                                <div class="dettaglio-content">
+                                    <h4>🔍 Analisi Approfondita - Verso 33</h4>
+                                    <div class="dettaglio-section">
+                                        <strong>😢 "Mi preme":</strong>
+                                        <p>"Premere" = schiacciare, opprimere. Il sentimento non è solo triste, è OPPRESSIVO, schiacciante. Peso fisico del dolore.</p>
+                                    </div>
+                                    <div class="dettaglio-section">
+                                        <strong>💔 "Affetto":</strong>
+                                        <p>Nel senso antico = "sentimento", "emozione". Qui: sentimento di dolore, rimpianto, nostalgia.</p>
+                                    </div>
+                                </div>
+                            </td>
+                        </tr>
+
+                        <tr onclick="toggleDettaglio(34)">
+                            <td class="verso-num">34</td>
+                            <td class="testo-originale">acerbo e sconsolato,</td>
+                            <td class="parafrasi">amaro e privo di consolazione,</td>
+                            <td class="concetti">
+                                <span class="badge badge-tema">Amarezza</span>
+                                <span class="badge badge-tema">Disperazione</span>
+                            </td>
+                            <td><button class="action-btn">📖 Dettagli</button></td>
+                        </tr>
+                        <tr id="dettaglio-34" class="dettaglio-row">
+                            <td colspan="5">
+                                <div class="dettaglio-content">
+                                    <h4>🔍 Analisi Approfondita - Verso 34</h4>
+                                    <div class="dettaglio-section">
+                                        <strong>😞 Due aggettivi intensi:</strong>
+                                        <p>"Acerbo" = amaro, aspro, doloroso. "Sconsolato" = senza consolazione, inconsolabile. Doppia negazione: è un dolore ASSOLUTO.</p>
+                                    </div>
+                                </div>
+                            </td>
+                        </tr>
+
+                        <tr onclick="toggleDettaglio(35)">
+                            <td class="verso-num">35</td>
+                            <td class="testo-originale">e tornami a doler di mia sventura.</td>
+                            <td class="parafrasi">e torno a soffrire per la mia sfortuna.</td>
+                            <td class="concetti">
+                                <span class="badge badge-tema">Sofferenza</span>
+                                <span class="badge badge-tema">Sventura</span>
+                            </td>
+                            <td><button class="action-btn">📖 Dettagli</button></td>
+                        </tr>
+                        <tr id="dettaglio-35" class="dettaglio-row">
+                            <td colspan="5">
+                                <div class="dettaglio-content">
+                                    <h4>🔍 Analisi Approfondita - Verso 35</h4>
+                                    <div class="dettaglio-section">
+                                        <strong>🔄 "Tornami a doler":</strong>
+                                        <p>"Tornare a" = ripetere un'azione. Il poeta soffre di nuovo, ANCORA. È un dolore ricorrente, che torna ogni volta che ricorda.</p>
+                                    </div>
+                                    <div class="dettaglio-section">
+                                        <strong>⚰️ "Mia sventura":</strong>
+                                        <p>La sventura (destino negativo) del poeta: come Silvia, anche lui ha visto le sue speranze morire. La sua vita non è stata come la immaginava.</p>
+                                    </div>
+                                </div>
+                            </td>
+                        </tr>
+
+                        <tr onclick="toggleDettaglio(36)">
+                            <td class="verso-num">36</td>
+                            <td class="testo-originale">O natura, o natura,</td>
+                            <td class="parafrasi">O natura, o natura,</td>
+                            <td class="concetti">
+                                <span class="badge badge-retorica">Anafora</span>
+                                <span class="badge badge-tema">Natura matrigna</span>
+                            </td>
+                            <td><button class="action-btn">📖 Dettagli</button></td>
+                        </tr>
+                        <tr id="dettaglio-36" class="dettaglio-row">
+                            <td colspan="5">
+                                <div class="dettaglio-content">
+                                    <h4>🔍 Analisi Approfondita - Verso 36</h4>
+                                    <div class="dettaglio-section">
+                                        <strong>🎭 ANAFORA POTENTISSIMA:</strong>
+                                        <p>Ripetizione di "o natura" all'inizio del verso. Figura retorica che enfatizza l'ACCUSA. È un grido disperato, un'invocazione/denuncia.</p>
+                                    </div>
+                                    <div class="dettaglio-section">
+                                        <strong>🌿 Natura personificata:</strong>
+                                        <p>La natura diventa un'entità con volontà propria, capace di ingannare. Non è più la natura benevola e idilliaca, ma una MATRIGNA crudele.</p>
+                                    </div>
+                                    <div class="dettaglio-section">
+                                        <strong>💡 CUORE DEL PESSIMISMO LEOPARDIANO:</strong>
+                                        <p>Questo verso segna il passaggio dalla descrizione alla DENUNCIA FILOSOFICA. La natura è responsabile della sofferenza umana.</p>
+                                    </div>
+                                </div>
+                            </td>
+                        </tr>
+
+                        <tr onclick="toggleDettaglio(37)">
+                            <td class="verso-num">37</td>
+                            <td class="testo-originale">perché non rendi poi</td>
+                            <td class="parafrasi">perché poi non restituisci</td>
+                            <td class="concetti">
+                                <span class="badge badge-retorica">Domanda retorica</span>
+                                <span class="badge badge-tema">Accusa</span>
+                            </td>
+                            <td><button class="action-btn">📖 Dettagli</button></td>
+                        </tr>
+                        <tr id="dettaglio-37" class="dettaglio-row">
+                            <td colspan="5">
+                                <div class="dettaglio-content">
+                                    <h4>🔍 Analisi Approfondita - Verso 37</h4>
+                                    <div class="dettaglio-section">
+                                        <strong>❓ Domanda retorica:</strong>
+                                        <p>Serie di domande che non attendono risposta. Servono a ACCUSARE la natura di inganno.</p>
+                                    </div>
+                                    <div class="dettaglio-section">
+                                        <strong>💸 "Rendi":</strong>
+                                        <p>Verbo "rendere" = restituire ciò che si è promesso. La natura ha fatto una PROMESSA (felicità) ma non la mantiene.</p>
+                                    </div>
+                                </div>
+                            </td>
+                        </tr>
+
+                        <tr onclick="toggleDettaglio(38)">
+                            <td class="verso-num">38</td>
+                            <td class="testo-originale">quel che prometti allor? perché di tanto</td>
+                            <td class="parafrasi">quello che prometti in gioventù? perché tanto</td>
+                            <td class="concetti">
+                                <span class="badge badge-tema">Promessa tradita</span>
+                                <span class="badge badge-tema">Inganno</span>
+                            </td>
+                            <td><button class="action-btn">📖 Dettagli</button></td>
+                        </tr>
+                        <tr id="dettaglio-38" class="dettaglio-row">
+                            <td colspan="5">
+                                <div class="dettaglio-content">
+                                    <h4>🔍 Analisi Approfondita - Verso 38</h4>
+                                    <div class="dettaglio-section">
+                                        <strong>🤝 "Prometti allor":</strong>
+                                        <p>"Allor" = allora, in gioventù. La natura promette felicità SOLO in gioventù, quando siamo pieni di illusioni. È una promessa falsa.</p>
+                                    </div>
+                                    <div class="dettaglio-section">
+                                        <strong>📏 Enjambement:</strong>
+                                        <p>Il verso si interrompe su "di tanto", creando suspense. Cosa fa la natura "di tanto" (così tanto)? → inganna (v.39).</p>
+                                    </div>
+                                </div>
+                            </td>
+                        </tr>
+
+                        <tr onclick="toggleDettaglio(39)">
+                            <td class="verso-num">39</td>
+                            <td class="testo-originale">inganni i figli tuoi?</td>
+                            <td class="parafrasi">inganni i tuoi figli (gli esseri umani)?</td>
+                            <td class="concetti">
+                                <span class="badge badge-retorica">Metafora</span>
+                                <span class="badge badge-tema">Umanità</span>
+                            </td>
+                            <td><button class="action-btn">📖 Dettagli</button></td>
+                        </tr>
+                        <tr id="dettaglio-39" class="dettaglio-row">
+                            <td colspan="5">
+                                <div class="dettaglio-content">
+                                    <h4>🔍 Analisi Approfondita - Verso 39</h4>
+                                    <div class="dettaglio-section">
+                                        <strong>👶 "Figli tuoi":</strong>
+                                        <p><strong>METAFORA FONDAMENTALE</strong> - Gli esseri umani sono "figli" della natura. Ma la natura non è una madre amorevole, è una MATRIGNA che inganna i suoi stessi figli.</p>
+                                    </div>
+                                    <div class="dettaglio-section">
+                                        <strong>🤥 "Inganni":</strong>
+                                        <p>Verbo chiave. La natura INGANNA = crea false aspettative, illude, promette ciò che non darà mai. L'inganno è volontario e crudele.</p>
+                                    </div>
+                                    <div class="dettaglio-section">
+                                        <strong>💡 PESSIMISMO COSMICO:</strong>
+                                        <p>La sofferenza non dipende dalla storia, dalla società o dall'individuo. È COSMICA, universale, inscritta nella natura stessa. Tutti gli esseri umani sono destinati a essere ingannati.</p>
+                                    </div>
+                                </div>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+
+        <!-- STROFA 5 -->
+        <div class="table-wrapper" style="margin-top: 1.5rem;">
+            <div class="strofa-header" onclick="toggleStrofa(5)">
+                <span>⚰️ STROFA 5 (vv. 40-48) - Morte prematura di Silvia</span>
+                <span class="icon">▼</span>
+            </div>
+            <div id="strofa-5" class="table-responsive">
+                <table>
+                    <thead>
+                        <tr>
+                            <th style="width: 50px;">#</th>
+                            <th style="width: 30%;">Testo Originale</th>
+                            <th style="width: 30%;">Parafrasi / Significato</th>
+                            <th style="width: 25%;">Concetti Chiave</th>
+                            <th style="width: 15%;">Azione</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr onclick="toggleDettaglio(40)">
+                            <td class="verso-num">40</td>
+                            <td class="testo-originale">Tu, pria che l'erbe inaridisse il verno,</td>
+                            <td class="parafrasi">Tu, prima che l'inverno seccasse l'erba,</td>
+                            <td class="concetti">
+                                <span class="badge badge-retorica">Metafora stagionale</span>
+                                <span class="badge badge-tema">Morte prematura</span>
+                            </td>
+                            <td><button class="action-btn">📖 Dettagli</button></td>
+                        </tr>
+                        <tr id="dettaglio-40" class="dettaglio-row">
+                            <td colspan="5">
+                                <div class="dettaglio-content">
+                                    <h4>🔍 Analisi Approfondita - Verso 40</h4>
+                                    <div class="dettaglio-section">
+                                        <strong>🍂 METAFORA DELLE STAGIONI:</strong>
+                                        <p>"Erbe" = vita, giovinezza. "Inverno" = vecchiaia, morte naturale. Silvia è morta PRIMA che arrivasse il suo inverno naturale. È morta in primavera (giovinezza).</p>
+                                    </div>
+                                    <div class="dettaglio-section">
+                                        <strong>⏰ "Pria che":</strong>
+                                        <p>"Prima che" = prematuramente. La morte di Silvia è stata precoce, innaturale. Non ha vissuto il ciclo completo della vita.</p>
+                                    </div>
+                                </div>
+                            </td>
+                        </tr>
+
+                        <tr onclick="toggleDettaglio(41)">
+                            <td class="verso-num">41</td>
+                            <td class="testo-originale">da chiuso morbo combattuta e vinta,</td>
+                            <td class="parafrasi">combattuta e sconfitta da malattia nascosta,</td>
+                            <td class="concetti">
+                                <span class="badge badge-tema">Malattia</span>
+                                <span class="badge badge-retorica">Metafora bellica</span>
+                            </td>
+                            <td><button class="action-btn">📖 Dettagli</button></td>
+                        </tr>
+                        <tr id="dettaglio-41" class="dettaglio-row">
+                            <td colspan="5">
+                                <div class="dettaglio-content">
+                                    <h4>🔍 Analisi Approfondita - Verso 41</h4>
+                                    <div class="dettaglio-section">
+                                        <strong>🦠 "Chiuso morbo":</strong>
+                                        <p>"Chiuso" = nascosto, interno, invisibile dall'esterno. "Morbo" = malattia grave. Teresa Fattorini morì di TISI (tubercolosi), malattia che consumava dall'interno.</p>
+                                    </div>
+                                    <div class="dettaglio-section">
+                                        <strong>⚔️ METAFORA BELLICA:</strong>
+                                        <p>"Combattuta e vinta" = linguaggio di guerra. La malattia è un nemico che ha combattuto contro Silvia e ha VINTO. Silvia ha perso la battaglia.</p>
+                                    </div>
+                                </div>
+                            </td>
+                        </tr>
+
+                        <tr onclick="toggleDettaglio(42)">
+                            <td class="verso-num">42</td>
+                            <td class="testo-originale">perivi, o tenerella. E non vedevi</td>
+                            <td class="parafrasi">morivi, o giovane fragile. E non vedesti</td>
+                            <td class="concetti">
+                                <span class="badge badge-tema">Morte</span>
+                                <span class="badge badge-retorica">Apostrofe</span>
+                            </td>
+                            <td><button class="action-btn">📖 Dettagli</button></td>
+                        </tr>
+                        <tr id="dettaglio-42" class="dettaglio-row">
+                            <td colspan="5">
+                                <div class="dettaglio-content">
+                                    <h4>🔍 Analisi Approfondita - Verso 42</h4>
+                                    <div class="dettaglio-section">
+                                        <strong>💀 "Perivi":</strong>
+                                        <p>Verbo "perire" = morire. Imperfetto narrativo, racconta un fatto del passato. Tono definitivo e tragico.</p>
+                                    </div>
+                                    <div class="dettaglio-section">
+                                        <strong>🌸 "O tenerella":</strong>
+                                        <p>Vezzeggiativo di "tenera" = giovane, fragile, delicata. Esprime affetto e pietà. Silvia era troppo giovane e fragile per morire.</p>
+                                    </div>
+                                    <div class="dettaglio-section">
+                                        <strong>👁️ "Non vedevi":</strong>
+                                        <p>Inizio di una lunga serie di negazioni (ANAFORA NEGATIVA vv. 42-47). Tutto ciò che Silvia NON ha vissuto, NON ha visto, NON ha provato.</p>
+                                    </div>
+                                </div>
+                            </td>
+                        </tr>
+
+                        <tr onclick="toggleDettaglio(43)">
+                            <td class="verso-num">43</td>
+                            <td class="testo-originale">il fior degli anni tuoi;</td>
+                            <td class="parafrasi">il fiore dei tuoi anni (giovinezza piena);</td>
+                            <td class="concetti">
+                                <span class="badge badge-retorica">Metafora floreale</span>
+                                <span class="badge badge-tema">Giovinezza negata</span>
+                            </td>
+                            <td><button class="action-btn">📖 Dettagli</button></td>
+                        </tr>
+                        <tr id="dettaglio-43" class="dettaglio-row">
+                            <td colspan="5">
+                                <div class="dettaglio-content">
+                                    <h4>🔍 Analisi Approfondita - Verso 43</h4>
+                                    <div class="dettaglio-section">
+                                        <strong>🌹 "Il fior":</strong>
+                                        <p><strong>METAFORA</strong> - "Fior" = fiore = apice, momento migliore. Il "fior degli anni" è la GIOVINEZZA PIENA (20-30 anni), quando si è nel pieno delle forze e della bellezza.</p>
+                                    </div>
+                                    <div class="dettaglio-section">
+                                        <strong>⚰️ Tragedia:</strong>
+                                        <p>Silvia è morta a 21 anni, proprio all'inizio del "fior degli anni". Non ha vissuto il periodo più bello della vita.</p>
+                                    </div>
+                                </div>
+                            </td>
+                        </tr>
+
+                        <tr onclick="toggleDettaglio(44)">
+                            <td class="verso-num">44</td>
+                            <td class="testo-originale">non ti molceva il core</td>
+                            <td class="parafrasi">non ti addolciva il cuore</td>
+                            <td class="concetti">
+                                <span class="badge badge-tema">Mancanza</span>
+                            </td>
+                            <td><button class="action-btn">📖 Dettagli</button></td>
+                        </tr>
+                        <tr id="dettaglio-44" class="dettaglio-row">
+                            <td colspan="5">
+                                <div class="dettaglio-content">
+                                    <h4>🔍 Analisi Approfondita - Verso 44</h4>
+                                    <div class="dettaglio-section">
+                                        <strong>💔 "Molceva":</strong>
+                                        <p>Verbo "molcere" (antico) = accarezzare, addolcire, consolare. Silvia non ha provato le dolcezze della giovinezza.</p>
+                                    </div>
+                                </div>
+                            </td>
+                        </tr>
+
+                        <tr onclick="toggleDettaglio(45)">
+                            <td class="verso-num">45</td>
+                            <td class="testo-originale">la dolce lode or delle negre chiome,</td>
+                            <td class="parafrasi">la dolce lode ora dei capelli neri,</td>
+                            <td class="concetti">
+                                <span class="badge badge-tema">Bellezza</span>
+                                <span class="badge badge-tema">Corteggiamento</span>
+                            </td>
+                            <td><button class="action-btn">📖 Dettagli</button></td>
+                        </tr>
+                        <tr id="dettaglio-45" class="dettaglio-row">
+                            <td colspan="5">
+                                <div class="dettaglio-content">
+                                    <h4>🔍 Analisi Approfondita - Verso 45</h4>
+                                    <div class="dettaglio-section">
+                                        <strong>💇 "Negre chiome":</strong>
+                                        <p>"Negre" (arcaico) = nere. "Chiome" = capelli. I capelli neri erano segno di bellezza nell'Ottocento.</p>
+                                    </div>
+                                    <div class="dettaglio-section">
+                                        <strong>🗣️ "Dolce lode":</strong>
+                                        <p>I complimenti degli uomini, le lodi per la bellezza fisica. Parte del corteggiamento e della vita sociale giovanile.</p>
+                                    </div>
+                                    <div class="dettaglio-section">
+                                        <strong>📏 "Or...or" (v.45-46):</strong>
+                                        <p>Struttura parallela: "ora...ora" = "a volte...altre volte". Indica alternanza, varietà di complimenti.</p>
+                                    </div>
+                                </div>
+                            </td>
+                        </tr>
+
+                        <tr onclick="toggleDettaglio(46)">
+                            <td class="verso-num">46</td>
+                            <td class="testo-originale">or degli sguardi innamorati e schivi;</td>
+                            <td class="parafrasi">ora degli sguardi innamorati e timidi;</td>
+                            <td class="concetti">
+                                <span class="badge badge-retorica">Ossimoro</span>
+                                <span class="badge badge-tema">Seduzione</span>
+                            </td>
+                            <td><button class="action-btn">📖 Dettagli</button></td>
+                        </tr>
+                        <tr id="dettaglio-46" class="dettaglio-row">
+                            <td colspan="5">
+                                <div class="dettaglio-content">
+                                    <h4>🔍 Analisi Approfondita - Verso 46</h4>
+                                    <div class="dettaglio-section">
+                                        <strong>👀 "Innamorati e schivi":</strong>
+                                        <p><strong>OSSIMORO</strong> (come v.4). "Innamorati" = pieni d'amore. "Schivi" = timidi, riservati, pudichi. Contraddizione tipica del corteggiamento femminile nell'800.</p>
+                                    </div>
+                                    <div class="dettaglio-section">
+                                        <strong>💘 Vita sociale negata:</strong>
+                                        <p>Silvia non ha vissuto l'esperienza dell'amore, del corteggiamento, della seduzione. È morta vergine e sola.</p>
+                                    </div>
+                                </div>
+                            </td>
+                        </tr>
+
+                        <tr onclick="toggleDettaglio(47)">
+                            <td class="verso-num">47</td>
+                            <td class="testo-originale">né teco le compagne ai dì festivi</td>
+                            <td class="parafrasi">né con te le amiche nei giorni di festa</td>
+                            <td class="concetti">
+                                <span class="badge badge-tema">Amicizia</span>
+                                <span class="badge badge-tema">Vita sociale</span>
+                            </td>
+                            <td><button class="action-btn">📖 Dettagli</button></td>
+                        </tr>
+                        <tr id="dettaglio-47" class="dettaglio-row">
+                            <td colspan="5">
+                                <div class="dettaglio-content">
+                                    <h4>🔍 Analisi Approfondita - Verso 47</h4>
+                                    <div class="dettaglio-section">
+                                        <strong>👭 "Le compagne":</strong>
+                                        <p>Le amiche, le coetanee. La vita sociale femminile nell'800 si basava molto sulle amicizie tra donne.</p>
+                                    </div>
+                                    <div class="dettaglio-section">
+                                        <strong>🎉 "Dì festivi":</strong>
+                                        <p>I giorni di festa (domeniche, feste religiose) erano gli unici momenti di svago e socialità per le giovani donne.</p>
+                                    </div>
+                                </div>
+                            </td>
+                        </tr>
+
+                        <tr onclick="toggleDettaglio(48)">
+                            <td class="verso-num">48</td>
+                            <td class="testo-originale">ragionavan d'amore.</td>
+                            <td class="parafrasi">parlavano d'amore.</td>
+                            <td class="concetti">
+                                <span class="badge badge-tema">Amore</span>
+                                <span class="badge badge-tema">Conversazioni negate</span>
+                            </td>
+                            <td><button class="action-btn">📖 Dettagli</button></td>
+                        </tr>
+                        <tr id="dettaglio-48" class="dettaglio-row">
+                            <td colspan="5">
+                                <div class="dettaglio-content">
+                                    <h4>🔍 Analisi Approfondita - Verso 48</h4>
+                                    <div class="dettaglio-section">
+                                        <strong>💘 "Ragionavan d'amore":</strong>
+                                        <p>"Ragionare" = parlare, discutere. Le conversazioni sull'amore erano tipiche delle giovani donne: confidenze, sogni, speranze romantiche.</p>
+                                    </div>
+                                    <div class="dettaglio-section">
+                                        <strong>💡 Concetto della Strofa 5:</strong>
+                                        <p>Silvia morì giovane (inverno=morte prematura). Non visse le esperienze tipiche della giovinezza: corteggiamento, complimenti, amore, amicizie, conversazioni d'amore. La malattia (tisi) le ha rubato tutto.</p>
+                                    </div>
+                                </div>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+
+        <!-- STROFA 6 -->
+        <div class="table-wrapper" style="margin-top: 1.5rem;">
+            <div class="strofa-header" onclick="toggleStrofa(6)">
+                <span>🪦 STROFA 6 (vv. 49-63) - Disillusione del poeta e conclusione</span>
+                <span class="icon">▼</span>
+            </div>
+            <div id="strofa-6" class="table-responsive">
+                <table>
+                    <thead>
+                        <tr>
+                            <th style="width: 50px;">#</th>
+                            <th style="width: 30%;">Testo Originale</th>
+                            <th style="width: 30%;">Parafrasi / Significato</th>
+                            <th style="width: 25%;">Concetti Chiave</th>
+                            <th style="width: 15%;">Azione</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr onclick="toggleDettaglio(49)">
+                            <td class="verso-num">49</td>
+                            <td class="testo-originale">Anche peria fra poco</td>
+                            <td class="parafrasi">Anche moriva poco dopo</td>
+                            <td class="concetti">
+                                <span class="badge badge-tema">Parallelismo</span>
+                                <span class="badge badge-tema">Speranza morta</span>
+                            </td>
+                            <td><button class="action-btn">📖 Dettagli</button></td>
+                        </tr>
+                        <tr id="dettaglio-49" class="dettaglio-row">
+                            <td colspan="5">
+                                <div class="dettaglio-content">
+                                    <h4>🔍 Analisi Approfondita - Verso 49</h4>
+                                    <div class="dettaglio-section">
+                                        <strong>🔄 PARALLELISMO:</strong>
+                                        <p>"Anche" = come Silvia è morta fisicamente, anche la speranza del poeta è morta. Due morti parallele: fisica (Silvia) e spirituale (speranza).</p>
+                                    </div>
+                                    <div class="dettaglio-section">
+                                        <strong>⏰ "Fra poco":</strong>
+                                        <p>Poco tempo dopo la giovinezza. Le speranze del poeta sono morte presto, come Silvia.</p>
+                                    </div>
+                                </div>
+                            </td>
+                        </tr>
+
+                        <tr onclick="toggleDettaglio(50)">
+                            <td class="verso-num">50</td>
+                            <td class="testo-originale">la speranza mia dolce: agli anni miei</td>
+                            <td class="parafrasi">la mia dolce speranza: ai miei anni</td>
+                            <td class="concetti">
+                                <span class="badge badge-retorica">Personificazione</span>
+                                <span class="badge badge-tema">Illusioni perdute</span>
+                            </td>
+                            <td><button class="action-btn">📖 Dettagli</button></td>
+                        </tr>
+                        <tr id="dettaglio-50" class="dettaglio-row">
+                            <td colspan="5">
+                                <div class="dettaglio-content">
+                                    <h4>🔍 Analisi Approfondita - Verso 50</h4>
+                                    <div class="dettaglio-section">
+                                        <strong>🌈 "Speranza mia dolce":</strong>
+                                        <p><strong>PERSONIFICAZIONE</strong> - La speranza diventa una persona, quasi una compagna del poeta (cfr. v.54 "cara compagna"). È l'illusione giovanile di una vita felice.</p>
+                                    </div>
+                                    <div class="dettaglio-section">
+                                        <strong>💔 Possessivo "mia":</strong>
+                                        <p>Sottolinea il rapporto personale, intimo con la speranza. Non è la speranza in generale, è LA SUA speranza specifica.</p>
+                                    </div>
+                                </div>
+                            </td>
+                        </tr>
+
+                        <tr onclick="toggleDettaglio(51)">
+                            <td class="verso-num">51</td>
+                            <td class="testo-originale">anche negaro i fati</td>
+                            <td class="parafrasi">anche negarono i destini</td>
+                            <td class="concetti">
+                                <span class="badge badge-tema">Fato avverso</span>
+                                <span class="badge badge-tema">Negazione</span>
+                            </td>
+                            <td><button class="action-btn">📖 Dettagli</button></td>
+                        </tr>
+                        <tr id="dettaglio-51" class="dettaglio-row">
+                            <td colspan="5">
+                                <div class="dettaglio-content">
+                                    <h4>🔍 Analisi Approfondita - Verso 51</h4>
+                                    <div class="dettaglio-section">
+                                        <strong>🎲 "I fati":</strong>
+                                        <p>Plurale di "fato" = i destini, le forze del destino. Entità impersonali che decidono la sorte umana.</p>
+                                    </div>
+                                    <div class="dettaglio-section">
+                                        <strong>❌ "Negaro":</strong>
+                                        <p>Verbo "negare" = rifiutare, non concedere. I destini hanno NEGATO al poeta ciò che la natura gli aveva promesso.</p>
+                                    </div>
+                                </div>
+                            </td>
+                        </tr>
+
+                        <tr onclick="toggleDettaglio(52)">
+                            <td class="verso-num">52</td>
+                            <td class="testo-originale">la giovanezza. Ahi come,</td>
+                            <td class="parafrasi">la giovinezza. Ahi come,</td>
+                            <td class="concetti">
+                                <span class="badge badge-retorica">Interiezione</span>
+                                <span class="badge badge-tema">Lamento</span>
+                            </td>
+                            <td><button class="action-btn">📖 Dettagli</button></td>
+                        </tr>
+                        <tr id="dettaglio-52" class="dettaglio-row">
+                            <td colspan="5">
+                                <div class="dettaglio-content">
+                                    <h4>🔍 Analisi Approfondita - Verso 52</h4>
+                                    <div class="dettaglio-section">
+                                        <strong>😢 "Ahi":</strong>
+                                        <p><strong>INTERIEZIONE</strong> di dolore, lamento. Grido disperato che esprime sofferenza profonda.</p>
+                                    </div>
+                                    <div class="dettaglio-section">
+                                        <strong>⚰️ "La giovanezza":</strong>
+                                        <p>Non solo la giovinezza fisica (età), ma anche lo spirito giovanile fatto di speranze e illusioni. Il poeta è morto spiritualmente.</p>
+                                    </div>
+                                </div>
+                            </td>
+                        </tr>
+
+                        <tr onclick="toggleDettaglio(53)">
+                            <td class="verso-num">53</td>
+                            <td class="testo-originale">come passata sei,</td>
+                            <td class="parafrasi">come sei passata (velocemente),</td>
+                            <td class="concetti">
+                                <span class="badge badge-tema">Fugacità</span>
+                                <span class="badge badge-retorica">Apostrofe</span>
+                            </td>
+                            <td><button class="action-btn">📖 Dettagli</button></td>
+                        </tr>
+                        <tr id="dettaglio-53" class="dettaglio-row">
+                            <td colspan="5">
+                                <div class="dettaglio-content">
+                                    <h4>🔍 Analisi Approfondita - Verso 53</h4>
+                                    <div class="dettaglio-section">
+                                        <strong>🎭 APOSTROFE:</strong>
+                                        <p>Il poeta si rivolge direttamente alla SPERANZA (personificata). "Sei" = tu (speranza).</p>
+                                    </div>
+                                    <div class="dettaglio-section">
+                                        <strong>⏰ "Passata":</strong>
+                                        <p>La speranza è "passata" = finita, svanita, volata via. Enfasi sulla RAPIDITÀ: "come" (quanto velocemente!).</p>
+                                    </div>
+                                </div>
+                            </td>
+                        </tr>
+
+                        <tr onclick="toggleDettaglio(54)">
+                            <td class="verso-num">54</td>
+                            <td class="testo-originale">cara compagna dell'età mia nova,</td>
+                            <td class="parafrasi">cara compagna della mia giovane età,</td>
+                            <td class="concetti">
+                                <span class="badge badge-retorica">Personificazione</span>
+                                <span class="badge badge-tema">Affetto</span>
+                            </td>
+                            <td><button class="action-btn">📖 Dettagli</button></td>
+                        </tr>
+                        <tr id="dettaglio-54" class="dettaglio-row">
+                            <td colspan="5">
+                                <div class="dettaglio-content">
+                                    <h4>🔍 Analisi Approfondita - Verso 54</h4>
+                                    <div class="dettaglio-section">
+                                        <strong>👫 "Cara compagna":</strong>
+                                        <p>La speranza come COMPAGNA di vita. "Cara" = amata, preziosa. C'è affetto sincero per questa speranza perduta.</p>
+                                    </div>
+                                    <div class="dettaglio-section">
+                                        <strong>🌟 "Età mia nova":</strong>
+                                        <p>"Nova" = nuova, giovane. Perifrasi per "giovinezza", "adolescenza". La speranza accompagnava il poeta nella sua età nuova.</p>
+                                    </div>
+                                </div>
+                            </td>
+                        </tr>
+
+                        <tr onclick="toggleDettaglio(55)">
+                            <td class="verso-num">55</td>
+                            <td class="testo-originale">mia lacrimata speme!</td>
+                            <td class="parafrasi">mia speranza pianta!</td>
+                            <td class="concetti">
+                                <span class="badge badge-tema">Pianto</span>
+                                <span class="badge badge-tema">Lutto</span>
+                            </td>
+                            <td><button class="action-btn">📖 Dettagli</button></td>
+                        </tr>
+                        <tr id="dettaglio-55" class="dettaglio-row">
+                            <td colspan="5">
+                                <div class="dettaglio-content">
+                                    <h4>🔍 Analisi Approfondita - Verso 55</h4>
+                                    <div class="dettaglio-section">
+                                        <strong>😭 "Lacrimata":</strong>
+                                        <p>Participio di "lacrimare" = piangere. "Lacrimata" = pianta, per cui si versano lacrime. Il poeta è in LUTTO per la speranza morta.</p>
+                                    </div>
+                                    <div class="dettaglio-section">
+                                        <strong>💧 "Speme":</strong>
+                                        <p>Forma poetica di "speranza". Il punto esclamativo enfatizza il dolore. È un grido disperato.</p>
+                                    </div>
+                                </div>
+                            </td>
+                        </tr>
+
+                        <tr onclick="toggleDettaglio(56)">
+                            <td class="verso-num">56</td>
+                            <td class="testo-originale">Questo è quel mondo? questi</td>
+                            <td class="parafrasi">Questo è quel mondo (promesso)? questi</td>
+                            <td class="concetti">
+                                <span class="badge badge-retorica">Domande retoriche</span>
+                                <span class="badge badge-tema">Disillusione</span>
+                            </td>
+                            <td><button class="action-btn">📖 Dettagli</button></td>
+                        </tr>
+                        <tr id="dettaglio-56" class="dettaglio-row">
+                            <td colspan="5">
+                                <div class="dettaglio-content">
+                                    <h4>🔍 Analisi Approfondita - Verso 56</h4>
+                                    <div class="dettaglio-section">
+                                        <strong>❓ SERIE DI DOMANDE RETORICHE:</strong>
+                                        <p>Inizia una sequenza di domande (vv. 56-59) che esprimono DELUSIONE totale. Il poeta confronta realtà vs aspettative.</p>
+                                    </div>
+                                    <div class="dettaglio-section">
+                                        <strong>🌍 "Questo...quel":</strong>
+                                        <p>"Questo" = il mondo REALE (presente, deludente). "Quel" = il mondo IMMAGINATO (passato, illusorio). Contrasto stridente.</p>
+                                    </div>
+                                </div>
+                            </td>
+                        </tr>
+
+                        <tr onclick="toggleDettaglio(57)">
+                            <td class="verso-num">57</td>
+                            <td class="testo-originale">i diletti, l'amor, l'opre, gli eventi</td>
+                            <td class="parafrasi">i piaceri, l'amore, le opere, gli eventi</td>
+                            <td class="concetti">
+                                <span class="badge badge-retorica">Polisindeto</span>
+                                <span class="badge badge-tema">Aspettative tradite</span>
+                            </td>
+                            <td><button class="action-btn">📖 Dettagli</button></td>
+                        </tr>
+                        <tr id="dettaglio-57" class="dettaglio-row">
+                            <td colspan="5">
+                                <div class="dettaglio-content">
+                                    <h4>🔍 Analisi Approfondita - Verso 57</h4>
+                                    <div class="dettaglio-section">
+                                        <strong>📜 ELENCO:</strong>
+                                        <p>Lista di tutto ciò che il poeta si aspettava dalla vita: "diletti" (piaceri), "amor" (amore), "opre" (realizzazioni), "eventi" (esperienze).</p>
+                                    </div>
+                                    <div class="dettaglio-section">
+                                        <strong>💔 Delusione totale:</strong>
+                                        <p>Niente di tutto questo si è realizzato. La vita reale è vuota di tutto ciò che era stato promesso.</p>
+                                    </div>
+                                </div>
+                            </td>
+                        </tr>
+
+                        <tr onclick="toggleDettaglio(58)">
+                            <td class="verso-num">58</td>
+                            <td class="testo-originale">onde cotanto ragionammo insieme?</td>
+                            <td class="parafrasi">di cui tanto parlammo insieme?</td>
+                            <td class="concetti">
+                                <span class="badge badge-tema">Dialogo interiore</span>
+                                <span class="badge badge-tema">Complicità</span>
+                            </td>
+                            <td><button class="action-btn">📖 Dettagli</button></td>
+                        </tr>
+                        <tr id="dettaglio-58" class="dettaglio-row">
+                            <td colspan="5">
+                                <div class="dettaglio-content">
+                                    <h4>🔍 Analisi Approfondita - Verso 58</h4>
+                                    <div class="dettaglio-section">
+                                        <strong>💬 "Ragionammo insieme":</strong>
+                                        <p>Il poeta "parlava" con la sua speranza personificata. Dialogo immaginario tra il poeta e le sue illusioni giovanili.</p>
+                                    </div>
+                                    <div class="dettaglio-section">
+                                        <strong>🤝 "Insieme":</strong>
+                                        <p>Complicità, intimità. Il poeta e la speranza erano uniti, parlavano "insieme" di un futuro che non si è mai realizzato.</p>
+                                    </div>
+                                </div>
+                            </td>
+                        </tr>
+
+                        <tr onclick="toggleDettaglio(59)">
+                            <td class="verso-num">59</td>
+                            <td class="testo-originale">questa la sorte dell'umane genti?</td>
+                            <td class="parafrasi">questo è il destino degli esseri umani?</td>
+                            <td class="concetti">
+                                <span class="badge badge-tema">Condizione umana</span>
+                                <span class="badge badge-tema">Pessimismo cosmico</span>
+                            </td>
+                            <td><button class="action-btn">📖 Dettagli</button></td>
+                        </tr>
+                        <tr id="dettaglio-59" class="dettaglio-row">
+                            <td colspan="5">
+                                <div class="dettaglio-content">
+                                    <h4>🔍 Analisi Approfondita - Verso 59</h4>
+                                    <div class="dettaglio-section">
+                                        <strong>🌍 UNIVERSALIZZAZIONE:</strong>
+                                        <p>"Umane genti" = tutti gli esseri umani. Il poeta passa dal caso personale (suo e di Silvia) al DESTINO UNIVERSALE. Tutti gli uomini sono condannati alla stessa disillusione.</p>
+                                    </div>
+                                    <div class="dettaglio-section">
+                                        <strong>💡 PESSIMISMO COSMICO:</strong>
+                                        <p>La sofferenza non è individuale, è la CONDIZIONE UMANA. Non c'è via d'uscita: è il destino ("sorte") di tutti.</p>
+                                    </div>
+                                </div>
+                            </td>
+                        </tr>
+
+                        <tr onclick="toggleDettaglio(60)">
+                            <td class="verso-num">60</td>
+                            <td class="testo-originale">All'apparir del vero</td>
+                            <td class="parafrasi">All'apparire della verità (realtà)</td>
+                            <td class="concetti">
+                                <span class="badge badge-tema">Verità</span>
+                                <span class="badge badge-tema">Rivelazione</span>
+                            </td>
+                            <td><button class="action-btn">📖 Dettagli</button></td>
+                        </tr>
+                        <tr id="dettaglio-60" class="dettaglio-row">
+                            <td colspan="5">
+                                <div class="dettaglio-content">
+                                    <h4>🔍 Analisi Approfondita - Verso 60</h4>
+                                    <div class="dettaglio-section">
+                                        <strong>💡 "Il vero":</strong>
+                                        <p>"Vero" = verità, realtà oggettiva. Contrapposto all'illusione giovanile. La verità è cruda e dolorosa.</p>
+                                    </div>
+                                    <div class="dettaglio-section">
+                                        <strong>👁️ "Apparir":</strong>
+                                        <p>Il momento in cui la verità si RIVELA, si mostra. È il momento della presa di coscienza, della disillusione.</p>
+                                    </div>
+                                </div>
+                            </td>
+                        </tr>
+
+                        <tr onclick="toggleDettaglio(61)">
+                            <td class="verso-num">61</td>
+                            <td class="testo-originale">tu, misera, cadesti: e con la mano</td>
+                            <td class="parafrasi">tu, povera (speranza), cadesti: e con la mano</td>
+                            <td class="concetti">
+                                <span class="badge badge-retorica">Personificazione</span>
+                                <span class="badge badge-tema">Caduta</span>
+                            </td>
+                            <td><button class="action-btn">📖 Dettagli</button></td>
+                        </tr>
+                        <tr id="dettaglio-61" class="dettaglio-row">
+                            <td colspan="5">
+                                <div class="dettaglio-content">
+                                    <h4>🔍 Analisi Approfondita - Verso 61</h4>
+                                    <div class="dettaglio-section">
+                                        <strong>💔 "Cadesti":</strong>
+                                        <p>Verbo "cadere" = crollare, morire. La speranza è CADUTA come una persona che viene abbattuta. Immagine di crollo, fine.</p>
+                                    </div>
+                                    <div class="dettaglio-section">
+                                        <strong>😢 "Misera":</strong>
+                                        <p>Aggettivo di pietà. La speranza è "misera" = povera, infelice, degna di compassione. Il poeta prova pietà per la propria speranza morta.</p>
+                                    </div>
+                                    <div class="dettaglio-section">
+                                        <strong>👋 "Con la mano":</strong>
+                                        <p>La speranza personificata ha una MANO. Con questa mano compie un gesto (vv. 62-63): indica qualcosa.</p>
+                                    </div>
+                                </div>
+                            </td>
+                        </tr>
+
+                        <tr onclick="toggleDettaglio(62)">
+                            <td class="verso-num">62</td>
+                            <td class="testo-originale">la fredda morte ed una tomba ignuda</td>
+                            <td class="parafrasi">la fredda morte e una tomba spoglia</td>
+                            <td class="concetti">
+                                <span class="badge badge-tema">Morte</span>
+                                <span class="badge badge-tema">Tomba</span>
+                            </td>
+                            <td><button class="action-btn">📖 Dettagli</button></td>
+                        </tr>
+                        <tr id="dettaglio-62" class="dettaglio-row">
+                            <td colspan="5">
+                                <div class="dettaglio-content">
+                                    <h4>🔍 Analisi Approfondita - Verso 62</h4>
+                                    <div class="dettaglio-section">
+                                        <strong>❄️ "Fredda morte":</strong>
+                                        <p>"Fredda" = gelo della morte, assenza di vita. La morte è rappresentata con il freddo (opposto al calore della vita).</p>
+                                    </div>
+                                    <div class="dettaglio-section">
+                                        <strong>🪦 "Tomba ignuda":</strong>
+                                        <p>"Ignuda" = nuda, spoglia, priva di ornamenti. Tomba povera, semplice. Immagine desolante: non c'è nemmeno la consolazione di una bella sepoltura.</p>
+                                    </div>
+                                    <div class="dettaglio-section">
+                                        <strong>💀 Immagini finali:</strong>
+                                        <p>Le ultime immagini del componimento sono di MORTE e DESOLAZIONE. Non c'è speranza, non c'è consolazione. Solo morte e tomba.</p>
+                                    </div>
+                                </div>
+                            </td>
+                        </tr>
+
+                        <tr onclick="toggleDettaglio(63)">
+                            <td class="verso-num">63</td>
+                            <td class="testo-originale">mostravi di lontano.</td>
+                            <td class="parafrasi">indicavi da lontano.</td>
+                            <td class="concetti">
+                                <span class="badge badge-tema">Profezia</span>
+                                <span class="badge badge-tema">Fine</span>
+                            </td>
+                            <td><button class="action-btn">📖 Dettagli</button></td>
+                        </tr>
+                        <tr id="dettaglio-63" class="dettaglio-row">
+                            <td colspan="5">
+                                <div class="dettaglio-content">
+                                    <h4>🔍 Analisi Approfondita - Verso 63</h4>
+                                    <div class="dettaglio-section">
+                                        <strong>👉 "Mostravi":</strong>
+                                        <p>Verbo "mostrare" = indicare, far vedere. La speranza, morendo, INDICA con la mano ciò che resta: morte e tomba.</p>
+                                    </div>
+                                    <div class="dettaglio-section">
+                                        <strong>📍 "Di lontano":</strong>
+                                        <p>Da lontano, in prospettiva. La speranza indicava già da allora (in gioventù) quale sarebbe stato il destino finale. Era una PROFEZIA che si è avverata.</p>
+                                    </div>
+                                    <div class="dettaglio-section">
+                                        <strong>💡 CHIUSURA DEL COMPONIMENTO:</strong>
+                                        <p>Fine tragica e definitiva. L'ultima parola è "lontano", che lascia un senso di distanza, separazione, desolazione. Non c'è riscatto, non c'è consolazione. Solo la consapevolezza che la vita è inganno e la morte è l'unica certezza.</p>
+                                    </div>
+                                    <div class="dettaglio-section">
+                                        <strong>🎯 Concetto della Strofa 6:</strong>
+                                        <p>Anche le speranze del poeta sono morte (come Silvia). La vita reale non è stata come l'aveva immaginata. Quando è apparsa la verità, la speranza è caduta, indicando solo morte e tomba. Questo è il destino tragico di tutta l'umanità: essere ingannati dalla natura in gioventù e scoprire la verità dolorosa troppo tardi.</p>
+                                    </div>
+                                </div>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+
+        <!-- Summary Cards -->
+        <div class="summary-grid" style="margin-top: 3rem;">
+            <div class="summary-card">
+                <h3>🎭 Figure Retoriche Principali</h3>
+                <ul>
+                    <li><strong>Apostrofe</strong> (vv. 1, 29, 36) - Rivolgersi direttamente a qualcuno</li>
+                    <li><strong>Metafora</strong> (v. 6 "limitare di gioventù") - Soglia = passaggio età</li>
+                    <li><strong>Sinestesia</strong> (v. 13 "maggio odoroso") - Unione sensi diversi</li>
+                    <li><strong>Anafora</strong> (v. 36 "o natura, o natura") - Ripetizione inizio verso</li>
+                    <li><strong>Ossimoro</strong> (v. 4 "ridenti e fuggitivi") - Concetti opposti</li>
+                </ul>
+            </div>
+
+            <div class="summary-card">
+                <h3>🎯 Temi Fondamentali</h3>
+                <ul>
+                    <li><strong>Giovinezza perduta</strong> - Silvia muore a 21 anni</li>
+                    <li><strong>Illusione giovanile</strong> - Speranze destinate a essere deluse</li>
+                    <li><strong>Natura matrigna</strong> - Promette felicità ma inganna</li>
+                    <li><strong>Caducità</strong> - Tutto passa velocemente</li>
+                    <li><strong>Pessimismo cosmico</strong> - Destino tragico per tutti</li>
+                </ul>
+            </div>
+
+            <div class="summary-card">
+                <h3>📚 Info per Interrogazione</h3>
+                <ul>
+                    <li><strong>Anno:</strong> 1828 (Pisa)</li>
+                    <li><strong>Opera:</strong> Canti (componimento XXXI)</li>
+                    <li><strong>Silvia reale:</strong> Teresa Fattorini (1797-1818)</li>
+                    <li><strong>Metrica:</strong> Canzone libera</li>
+                    <li><strong>Versi:</strong> 63 totali in 6 strofe</li>
+                </ul>
+            </div>
+        </div>
+    </div>
+
+    <!-- Scroll to Top Button -->
+    <button class="scroll-top" id="scrollTopBtn" onclick="scrollToTop()">↑</button>
+
+    <script>
+        // Toggle dettagli riga
+        function toggleDettaglio(num) {
+            const dettaglioRow = document.getElementById('dettaglio-' + num);
+            if (dettaglioRow.classList.contains('show')) {
+                dettaglioRow.classList.remove('show');
+            } else {
+                // Chiudi tutti gli altri dettagli
+                document.querySelectorAll('.dettaglio-row').forEach(row => {
+                    row.classList.remove('show');
+                });
+                dettaglioRow.classList.add('show');
+            }
+
+            // Highlight riga principale
+            const mainRow = dettaglioRow.previousElementSibling;
+            mainRow.classList.toggle('highlighted');
+        }
+
+        // Toggle strofa
+        function toggleStrofa(num) {
+            const strofaContent = document.getElementById('strofa-' + num);
+            const strofaHeader = event.currentTarget;
+
+            if (strofaContent.style.display === 'none') {
+                strofaContent.style.display = 'block';
+                strofaHeader.classList.remove('collapsed');
+            } else {
+                strofaContent.style.display = 'none';
+                strofaHeader.classList.add('collapsed');
+            }
+        }
+
+        // Search functionality
+        document.getElementById('searchInput').addEventListener('input', function(e) {
+            const searchTerm = e.target.value.toLowerCase();
+            const rows = document.querySelectorAll('tbody tr:not(.dettaglio-row)');
+
+            rows.forEach(row => {
+                const text = row.textContent.toLowerCase();
+                if (text.includes(searchTerm)) {
+                    row.style.display = '';
+                    row.classList.add('highlighted');
+                } else {
+                    row.style.display = 'none';
+                    row.classList.remove('highlighted');
+                }
+            });
+        });
+
+        // Filter by type
+        let currentFilter = 'all';
+        function filterByType(type) {
+            currentFilter = type;
+
+            // Update button states
+            document.querySelectorAll('.filter-btn').forEach(btn => {
+                btn.classList.remove('active');
+            });
+            event.target.classList.add('active');
+
+            // Filter rows
+            const rows = document.querySelectorAll('tbody tr:not(.dettaglio-row)');
+            rows.forEach(row => {
+                if (type === 'all') {
+                    row.style.display = '';
+                } else {
+                    const badges = row.querySelectorAll('.badge');
+                    let hasType = false;
+                    badges.forEach(badge => {
+                        if (badge.classList.contains('badge-' + type)) {
+                            hasType = true;
+                        }
+                    });
+                    row.style.display = hasType ? '' : 'none';
+                }
+            });
+        }
+
+        // Scroll to top
+        window.addEventListener('scroll', function() {
+            const scrollTopBtn = document.getElementById('scrollTopBtn');
+            if (window.pageYOffset > 300) {
+                scrollTopBtn.classList.add('show');
+            } else {
+                scrollTopBtn.classList.remove('show');
+            }
+        });
+
+        function scrollToTop() {
+            window.scrollTo({
+                top: 0,
+                behavior: 'smooth'
+            });
+        }
+
+        // Initialize: show all strofe by default
+        document.addEventListener('DOMContentLoaded', function() {
+            // Mostra tutte le strofe all'inizio
+            document.querySelectorAll('[id^="strofa-"]').forEach(strofa => {
+                strofa.style.display = 'block';
+            });
+        });
+    </script>
+</body>
+</html>

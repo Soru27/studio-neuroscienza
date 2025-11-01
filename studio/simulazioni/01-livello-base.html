@@ -1,0 +1,849 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>01-livello-base.md</title>
+<meta http-equiv="Content-type" content="text/html;charset=UTF-8">
+
+<style>
+/* https://github.com/microsoft/vscode/blob/master/extensions/markdown-language-features/media/markdown.css */
+/*---------------------------------------------------------------------------------------------
+ *  Copyright (c) Microsoft Corporation. All rights reserved.
+ *  Licensed under the MIT License. See License.txt in the project root for license information.
+ *--------------------------------------------------------------------------------------------*/
+
+body {
+	font-family: var(--vscode-markdown-font-family, -apple-system, BlinkMacSystemFont, "Segoe WPC", "Segoe UI", "Ubuntu", "Droid Sans", sans-serif);
+	font-size: var(--vscode-markdown-font-size, 14px);
+	padding: 0 26px;
+	line-height: var(--vscode-markdown-line-height, 22px);
+	word-wrap: break-word;
+}
+
+#code-csp-warning {
+	position: fixed;
+	top: 0;
+	right: 0;
+	color: white;
+	margin: 16px;
+	text-align: center;
+	font-size: 12px;
+	font-family: sans-serif;
+	background-color:#444444;
+	cursor: pointer;
+	padding: 6px;
+	box-shadow: 1px 1px 1px rgba(0,0,0,.25);
+}
+
+#code-csp-warning:hover {
+	text-decoration: none;
+	background-color:#007acc;
+	box-shadow: 2px 2px 2px rgba(0,0,0,.25);
+}
+
+body.scrollBeyondLastLine {
+	margin-bottom: calc(100vh - 22px);
+}
+
+body.showEditorSelection .code-line {
+	position: relative;
+}
+
+body.showEditorSelection .code-active-line:before,
+body.showEditorSelection .code-line:hover:before {
+	content: "";
+	display: block;
+	position: absolute;
+	top: 0;
+	left: -12px;
+	height: 100%;
+}
+
+body.showEditorSelection li.code-active-line:before,
+body.showEditorSelection li.code-line:hover:before {
+	left: -30px;
+}
+
+.vscode-light.showEditorSelection .code-active-line:before {
+	border-left: 3px solid rgba(0, 0, 0, 0.15);
+}
+
+.vscode-light.showEditorSelection .code-line:hover:before {
+	border-left: 3px solid rgba(0, 0, 0, 0.40);
+}
+
+.vscode-light.showEditorSelection .code-line .code-line:hover:before {
+	border-left: none;
+}
+
+.vscode-dark.showEditorSelection .code-active-line:before {
+	border-left: 3px solid rgba(255, 255, 255, 0.4);
+}
+
+.vscode-dark.showEditorSelection .code-line:hover:before {
+	border-left: 3px solid rgba(255, 255, 255, 0.60);
+}
+
+.vscode-dark.showEditorSelection .code-line .code-line:hover:before {
+	border-left: none;
+}
+
+.vscode-high-contrast.showEditorSelection .code-active-line:before {
+	border-left: 3px solid rgba(255, 160, 0, 0.7);
+}
+
+.vscode-high-contrast.showEditorSelection .code-line:hover:before {
+	border-left: 3px solid rgba(255, 160, 0, 1);
+}
+
+.vscode-high-contrast.showEditorSelection .code-line .code-line:hover:before {
+	border-left: none;
+}
+
+img {
+	max-width: 100%;
+	max-height: 100%;
+}
+
+a {
+	text-decoration: none;
+}
+
+a:hover {
+	text-decoration: underline;
+}
+
+a:focus,
+input:focus,
+select:focus,
+textarea:focus {
+	outline: 1px solid -webkit-focus-ring-color;
+	outline-offset: -1px;
+}
+
+hr {
+	border: 0;
+	height: 2px;
+	border-bottom: 2px solid;
+}
+
+h1 {
+	padding-bottom: 0.3em;
+	line-height: 1.2;
+	border-bottom-width: 1px;
+	border-bottom-style: solid;
+}
+
+h1, h2, h3 {
+	font-weight: normal;
+}
+
+table {
+	border-collapse: collapse;
+}
+
+table > thead > tr > th {
+	text-align: left;
+	border-bottom: 1px solid;
+}
+
+table > thead > tr > th,
+table > thead > tr > td,
+table > tbody > tr > th,
+table > tbody > tr > td {
+	padding: 5px 10px;
+}
+
+table > tbody > tr + tr > td {
+	border-top: 1px solid;
+}
+
+blockquote {
+	margin: 0 7px 0 5px;
+	padding: 0 16px 0 10px;
+	border-left-width: 5px;
+	border-left-style: solid;
+}
+
+code {
+	font-family: Menlo, Monaco, Consolas, "Droid Sans Mono", "Courier New", monospace, "Droid Sans Fallback";
+	font-size: 1em;
+	line-height: 1.357em;
+}
+
+body.wordWrap pre {
+	white-space: pre-wrap;
+}
+
+pre:not(.hljs),
+pre.hljs code > div {
+	padding: 16px;
+	border-radius: 3px;
+	overflow: auto;
+}
+
+pre code {
+	color: var(--vscode-editor-foreground);
+	tab-size: 4;
+}
+
+/** Theming */
+
+.vscode-light pre {
+	background-color: rgba(220, 220, 220, 0.4);
+}
+
+.vscode-dark pre {
+	background-color: rgba(10, 10, 10, 0.4);
+}
+
+.vscode-high-contrast pre {
+	background-color: rgb(0, 0, 0);
+}
+
+.vscode-high-contrast h1 {
+	border-color: rgb(0, 0, 0);
+}
+
+.vscode-light table > thead > tr > th {
+	border-color: rgba(0, 0, 0, 0.69);
+}
+
+.vscode-dark table > thead > tr > th {
+	border-color: rgba(255, 255, 255, 0.69);
+}
+
+.vscode-light h1,
+.vscode-light hr,
+.vscode-light table > tbody > tr + tr > td {
+	border-color: rgba(0, 0, 0, 0.18);
+}
+
+.vscode-dark h1,
+.vscode-dark hr,
+.vscode-dark table > tbody > tr + tr > td {
+	border-color: rgba(255, 255, 255, 0.18);
+}
+
+</style>
+
+<style>
+/* Tomorrow Theme */
+/* http://jmblog.github.com/color-themes-for-google-code-highlightjs */
+/* Original theme - https://github.com/chriskempson/tomorrow-theme */
+
+/* Tomorrow Comment */
+.hljs-comment,
+.hljs-quote {
+	color: #8e908c;
+}
+
+/* Tomorrow Red */
+.hljs-variable,
+.hljs-template-variable,
+.hljs-tag,
+.hljs-name,
+.hljs-selector-id,
+.hljs-selector-class,
+.hljs-regexp,
+.hljs-deletion {
+	color: #c82829;
+}
+
+/* Tomorrow Orange */
+.hljs-number,
+.hljs-built_in,
+.hljs-builtin-name,
+.hljs-literal,
+.hljs-type,
+.hljs-params,
+.hljs-meta,
+.hljs-link {
+	color: #f5871f;
+}
+
+/* Tomorrow Yellow */
+.hljs-attribute {
+	color: #eab700;
+}
+
+/* Tomorrow Green */
+.hljs-string,
+.hljs-symbol,
+.hljs-bullet,
+.hljs-addition {
+	color: #718c00;
+}
+
+/* Tomorrow Blue */
+.hljs-title,
+.hljs-section {
+	color: #4271ae;
+}
+
+/* Tomorrow Purple */
+.hljs-keyword,
+.hljs-selector-tag {
+	color: #8959a8;
+}
+
+.hljs {
+	display: block;
+	overflow-x: auto;
+	color: #4d4d4c;
+	padding: 0.5em;
+}
+
+.hljs-emphasis {
+	font-style: italic;
+}
+
+.hljs-strong {
+	font-weight: bold;
+}
+</style>
+
+<style>
+/*
+ * Markdown PDF CSS
+ */
+
+ body {
+	font-family: -apple-system, BlinkMacSystemFont, "Segoe WPC", "Segoe UI", "Ubuntu", "Droid Sans", sans-serif, "Meiryo";
+	padding: 0 12px;
+}
+
+pre {
+	background-color: #f8f8f8;
+	border: 1px solid #cccccc;
+	border-radius: 3px;
+	overflow-x: auto;
+	white-space: pre-wrap;
+	overflow-wrap: break-word;
+}
+
+pre:not(.hljs) {
+	padding: 23px;
+	line-height: 19px;
+}
+
+blockquote {
+	background: rgba(127, 127, 127, 0.1);
+	border-color: rgba(0, 122, 204, 0.5);
+}
+
+.emoji {
+	height: 1.4em;
+}
+
+code {
+	font-size: 14px;
+	line-height: 19px;
+}
+
+/* for inline code */
+:not(pre):not(.hljs) > code {
+	color: #C9AE75; /* Change the old color so it seems less like an error */
+	font-size: inherit;
+}
+
+/* Page Break : use <div class="page"/> to insert page break
+-------------------------------------------------------- */
+.page {
+	page-break-after: always;
+}
+
+</style>
+
+<style>:root{--bg: #0b0c10; --fg:#eceff4; --muted:#9aa4b2; --card:#111318; --border:#23262e;--blue:#4da3ff; --red:#ff5964; --green:#3ad29f; --yellow:#ffd166;--shadow: 0 6px 18px rgba(0,0,0,.25);--radius:16px; --pad:16px; --gap:14px; --font: Inter, system-ui, Segoe UI, Roboto, Arial, sans-serif;}@media (prefers-color-scheme: light){:root{ --bg:#f7f8fb; --fg:#0f172a; --muted:#475569; --card:#ffffff; --border:#e5e7eb;--blue:#2563eb; --red:#ef4444; --green:#10b981; --yellow:#f59e0b; }}html,body{background:var(--bg); color:var(--fg); font-family:var(--font);}.container{max-width:1200px; margin:32px auto; padding:0 16px;}.grid{display:grid; gap:var(--gap);}.grid-2{grid-template-columns: 1.2fr .8fr;}@media (max-width:960px){ .grid-2{grid-template-columns:1fr;} }.card{background:var(--card); border:1px solid var(--border); border-radius:var(--radius); padding:var(--pad); box-shadow:var(--shadow);margin-bottom: 18px;}.card h2, .card h3{margin-top:0}.badge{display:inline-flex; align-items:center; gap:6px; font-weight:600; font-size:.85rem; padding:6px 10px; border-radius:999px; border:1px solid var(--border); background:linear-gradient(180deg, rgba(255,255,255,.04), transparent);}.b-blue{color:var(--blue); border-color:color-mix(in oklab, var(--blue), #000 70%);}.b-red{color:var(--red); border-color:color-mix(in oklab, var(--red), #000 70%);}.b-green{color:var(--green); border-color:color-mix(in oklab, var(--green), #000 70%);}.b-yellow{color:var(--yellow); border-color:color-mix(in oklab, var(--yellow), #000 70%);}.callout{border-left:6px solid var(--border); padding:14px 16px; border-radius:12px; background:linear-gradient(180deg, rgba(255,255,255,.03), transparent);margin: 12px 0;}.co-blue{border-left-color:var(--blue)}.co-red{border-left-color:var(--red)}.co-green{border-left-color:var(--green)}.co-yellow{border-left-color:var(--yellow)}.kbd{font:600 .85rem ui-monospace, SFMono-Regular, Menlo, monospace; background:var(--border); padding:2px 6px; border-radius:6px; border:1px solid color-mix(in oklab, var(--border), #000 35%);}.progress{height:10px; background:color-mix(in oklab, var(--border), #000 20%); border-radius:999px; overflow:hidden;}.progress > i{display:block; height:100%; width:0%; background:linear-gradient(90deg, var(--green), var(--blue)); transition:width .4s ease;}.separator{height:1px; background:var(--border); margin:18px 0;}.btn{display:inline-flex; align-items:center; gap:10px; padding:10px 14px; border-radius:12px; border:1px solid var(--border); background:var(--card); color:var(--fg); cursor:pointer;font-family: var(--font);}.btn:hover{border-color:color-mix(in oklab, var(--border), var(--fg) 30%);}.sticky{position:sticky; top:18px; align-self: start;}.small{font-size:.9rem; color:var(--muted)}input[type="text"], input[type="number"], input[type="range"]{width: 100%;padding: 8px;border-radius: 8px;border: 1px solid var(--border);background: var(--bg);color: var(--fg);font-family: var(--font);}label{display: block;font-size: 0.9rem;color: var(--muted);margin-bottom: 6px;}blockquote{border-left: 4px solid var(--green);padding-left: 16px;margin-left: 0;background: linear-gradient(90deg, rgba(61, 210, 159, 0.1), transparent);border-radius: 8px;padding: 12px 16px;}details{background: var(--card);border: 1px solid var(--border);border-radius: 12px;padding: 12px;margin: 12px 0;}details summary{cursor: pointer;font-weight: 600;padding: 8px;border-radius: 8px;}details summary:hover{background: color-mix(in oklab, var(--border), transparent 50%);}.exercise{border: 2px solid var(--border);border-radius: 12px;padding: 16px;margin: 16px 0;}.exercise.correct{border-color: var(--green);}.exercise.wrong{border-color: var(--red);}</style>
+
+<script src="https://unpkg.com/mermaid/dist/mermaid.min.js"></script>
+</head>
+<body>
+  <script>
+    mermaid.initialize({
+      startOnLoad: true,
+      theme: document.body.classList.contains('vscode-dark') || document.body.classList.contains('vscode-high-contrast')
+          ? 'dark'
+          : 'default'
+    });
+  </script>
+
+<style>
+.top-header {
+  position: sticky;
+  top: 0;
+  z-index: 1000;
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  color: #ffffff;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+  padding: 12px 20px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 12px;
+}
+.top-header .course-info {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  flex-wrap: wrap;
+}
+.top-header .home-icon {
+  font-size: 1.5rem;
+  cursor: pointer;
+  transition: transform 0.2s;
+  text-decoration: none;
+  color: #ffffff;
+}
+.top-header .home-icon:hover {
+  transform: scale(1.1);
+}
+.top-header .course-title {
+  font-weight: 700;
+  font-size: 1rem;
+  letter-spacing: 0.5px;
+}
+.top-header .course-meta {
+  font-size: 0.85rem;
+  opacity: 0.9;
+  display: flex;
+  gap: 8px;
+  flex-wrap: wrap;
+}
+.top-header .course-meta span {
+  background: rgba(255,255,255,0.2);
+  padding: 4px 10px;
+  border-radius: 12px;
+}
+.nav-horizontal {
+  display: flex;
+  gap: 8px;
+  flex-wrap: wrap;
+  align-items: center;
+}
+.nav-horizontal a {
+  background: rgba(255,255,255,0.15);
+  color: #ffffff;
+  padding: 8px 14px;
+  border-radius: 8px;
+  text-decoration: none;
+  font-size: 0.9rem;
+  font-weight: 500;
+  transition: all 0.2s;
+  border: 1px solid rgba(255,255,255,0.2);
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+}
+.nav-horizontal a:hover {
+  background: rgba(255,255,255,0.25);
+  border-color: rgba(255,255,255,0.4);
+  transform: translateY(-2px);
+}
+.nav-horizontal a.active {
+  background: rgba(255,255,255,0.95);
+  color: #667eea;
+  font-weight: 700;
+  border-color: rgba(255,255,255,0.5);
+}
+@media (max-width: 768px) {
+  .top-header {
+    padding: 10px 15px;
+  }
+  .top-header .course-title {
+    font-size: 0.9rem;
+  }
+  .top-header .course-meta {
+    font-size: 0.75rem;
+  }
+  .nav-horizontal a {
+    font-size: 0.8rem;
+    padding: 6px 10px;
+  }
+}
+</style>
+
+<header class="top-header">
+  <div class="course-info">
+    <a href="../05-riepilogo-generale.html" class="home-icon" title="Torna al Riepilogo Generale">🏠</a>
+    <div>
+      <div class="course-title">📚 ECONOMIA AZIENDALE</div>
+      <div class="course-meta">
+        <span>A.S. 2025/2026</span>
+        <span>AFM Quinta Serale</span>
+      </div>
+    </div>
+  </div>
+  <nav class="nav-horizontal">
+    <a href="../01-immobilizzazioni-materiali.html">🔵 Immobilizzazioni</a>
+    <a href="../02-leasing-costruzioni.html">🔵 Leasing</a>
+    <a href="../03-scritture-operative.html">🟡 Operative</a>
+    <a href="../04-assestamenti-rettifiche.html">🟢 Assestamenti</a>
+    <a href="../05-riepilogo-generale.html">📊 Riepilogo</a>
+    <a href="01-livello-base.html" class="active">🎯 Simulazioni</a>
+  </nav>
+</header>
+
+<div class="container">
+
+<h1 id="%F0%9F%9F%A2-simulazione-livello-1---base">🟢 SIMULAZIONE LIVELLO 1 - BASE</h1>
+<blockquote>
+<p><strong>Difficoltà:</strong> Principiante | <strong>Tempo:</strong> 60 minuti | <strong>Argomenti:</strong> Base con guida</p>
+</blockquote>
+
+<div class="card" style="display:grid; grid-template-columns:1fr 1fr auto; gap:14px; align-items:center"><div><div class="badge b-yellow">⏱️ Timer Simulazione</div><div id="timer-display" style="font-size:2rem; font-weight:700; margin-top:8px; font-variant-numeric: tabular-nums;">60:00</div></div><div><div class="badge b-blue">📊 Progresso</div><div style="margin-top:8px"><div class="progress"><i id="ex-progress"></i></div><div class="small" style="margin-top:6px" id="ex-count">0 / 8 esercizi completati</div></div></div><div class="grid" style="gap:8px"><button id="timer-start" class="btn">▶️ Avvia</button><button id="timer-pause" class="btn" disabled>⏸️ Pausa</button><button id="timer-reset" class="btn">🔄 Reset</button></div></div>
+
+<script>(function(){const display=document.getElementById('timer-display');const startBtn=document.getElementById('timer-start');const pauseBtn=document.getElementById('timer-pause');const resetBtn=document.getElementById('timer-reset');const KEY='sim-timer';let seconds=3600,running=false,interval;function load(){try{const v=JSON.parse(localStorage.getItem(KEY)||'{}');if(v.seconds!=null){seconds=v.seconds;}}catch{}update();}function save(){localStorage.setItem(KEY,JSON.stringify({seconds}));}function update(){const m=Math.floor(seconds/60),s=seconds%60;display.textContent=(m<10?'0':'')+m+':'+(s<10?'0':'')+s;save();}function tick(){if(seconds>0){seconds--;update();}else{stop();}}function start(){if(!running){running=true;interval=setInterval(tick,1000);startBtn.disabled=true;pauseBtn.disabled=false;}}function stop(){running=false;clearInterval(interval);startBtn.disabled=false;pauseBtn.disabled=true;}function reset(){stop();seconds=3600;update();}startBtn.addEventListener('click',start);pauseBtn.addEventListener('click',stop);resetBtn.addEventListener('click',reset);load();})();</script>
+
+<div class="grid grid-2">
+  <main class="grid" style="gap:18px">
+<hr>
+<h2 id="%F0%9F%8E%AF-caratteristiche">🎯 CARATTERISTICHE</h2>
+<ul>
+<li>✅ Esercizi guidati step-by-step</li>
+<li>✅ Suggerimenti inclusi</li>
+<li>✅ Formule fornite</li>
+<li>✅ 1-2 operazioni per esercizio</li>
+<li>✅ Ideale per prime 48h di studio</li>
+</ul>
+<p><strong>Target:</strong> 70%+ di risposte corrette</p>
+<hr>
+<h2 id="%F0%9F%93%9D-parte-a---domande-rapide-20-punti">📝 PARTE A - DOMANDE RAPIDE (20 punti)</h2>
+<h3 id="domanda-1-4-punti">Domanda 1 (4 punti)</h3>
+<p>Completa la scrittura di <strong>acquisto merci</strong>:</p>
+<p>Acquisto merci per € 10.000 + IVA 22%</p>
+<pre class="hljs"><code><div>DARE: ______________ € ______
+DARE: ______________ € ______
+    AVERE: ______________ € ______
+</div></code></pre>
+<details>
+<summary>💡 Suggerimento</summary>
+I conti sono: Merci c/acquisti, IVA a credito, Debiti v/fornitori
+</details>
+<hr>
+<h3 id="domanda-2-4-punti">Domanda 2 (4 punti)</h3>
+<p>Calcola l'<strong>ammortamento ordinario</strong>:</p>
+<ul>
+<li>Costo: € 50.000</li>
+<li>Coefficiente: 12%</li>
+</ul>
+<p><strong>Formula fornita:</strong> Quota = Costo × Coefficiente %</p>
+<p>Quota = __________</p>
+<hr>
+<h3 id="domanda-3-4-punti">Domanda 3 (4 punti)</h3>
+<p><strong>Vero o Falso?</strong></p>
+<p>a) Il TFR si calcola dividendo gli stipendi per 13,5 <strong>(V/F)</strong>
+b) Una plusvalenza è un costo <strong>(V/F)</strong>
+c) L'IVA a credito va nel passivo <strong>(V/F)</strong>
+d) Il fondo ammortamento riduce il VNC <strong>(V/F)</strong></p>
+<hr>
+<h3 id="domanda-4-4-punti">Domanda 4 (4 punti)</h3>
+<p>Cos'è il <strong>VNC</strong> e come si calcola?</p>
+<p><strong>Formula fornita:</strong> VNC = ? – ?</p>
+<hr>
+<h3 id="domanda-5-4-punti">Domanda 5 (4 punti)</h3>
+<p>Classifica questi come <strong>RATEO</strong> o <strong>RISCONTO</strong>:</p>
+<p>a) Affitto pagato anticipatamente: __________
+b) Interessi maturati ma non incassati: __________</p>
+<hr>
+<h2 id="%F0%9F%A7%AE-parte-b---esercizi-guidati-80-punti">🧮 PARTE B - ESERCIZI GUIDATI (80 punti)</h2>
+<hr>
+<h2 id="esercizio-1---acquisto-immobilizzazione-20-punti">ESERCIZIO 1 - ACQUISTO IMMOBILIZZAZIONE (20 punti)</h2>
+<p><strong>Operazione:</strong>
+01/04/n: Acquisto macchinario € 40.000 + IVA 22%</p>
+<p><strong>RICHIESTO:</strong></p>
+<h3 id="a-10-punti-calcola-totale-da-pagare">a) (10 punti) Calcola totale da pagare</h3>
+<p><strong>Passaggi:</strong></p>
+<pre class="hljs"><code><div>Prezzo base:  € ______
+IVA (22%):    € ______ (40.000 × 0,22)
+──────────────────
+Totale:       € ______
+</div></code></pre>
+<h3 id="b-10-punti-scrivi-la-scrittura-di-acquisto">b) (10 punti) Scrivi la scrittura di acquisto</h3>
+<pre class="hljs"><code><div>DARE: _________________________ € ______
+DARE: _________________________ € ______
+    AVERE: _________________________ € ______
+</div></code></pre>
+<details>
+<summary>💡 Suggerimento</summary>
+Conti: Impianti e macchinari, IVA a credito, Debiti v/fornitori
+</details>
+<hr>
+<h2 id="esercizio-2---ammortamento-semplice-20-punti">ESERCIZIO 2 - AMMORTAMENTO SEMPLICE (20 punti)</h2>
+<p><strong>Dati:</strong></p>
+<ul>
+<li>Attrezzatura acquistata 01/01/n: € 30.000</li>
+<li>Coefficiente: 15%</li>
+</ul>
+<p><strong>RICHIESTO:</strong></p>
+<h3 id="a-10-punti-calcola-quota-ammortamento-annuo">a) (10 punti) Calcola quota ammortamento annuo</h3>
+<p><strong>Formula:</strong> Quota = Costo × Coefficiente %</p>
+<pre class="hljs"><code><div>Quota = 30.000 × ___% = € ______
+</div></code></pre>
+<h3 id="b-10-punti-scrivi-la-scrittura-al-3112n">b) (10 punti) Scrivi la scrittura al 31/12/n</h3>
+<pre class="hljs"><code><div>DARE: _________________________ € ______
+    AVERE: _________________________ € ______
+</div></code></pre>
+<details>
+<summary>💡 Suggerimento</summary>
+Conti: Ammortamento attrezzature, Fondo amm.to attrezzature
+</details>
+<hr>
+<h2 id="esercizio-3---tfr-base-20-punti">ESERCIZIO 3 - TFR BASE (20 punti)</h2>
+<p><strong>Dati:</strong>
+Stipendi lordi anno n: € 120.000</p>
+<p><strong>RICHIESTO:</strong></p>
+<h3 id="a-10-punti-calcola-quota-tfr">a) (10 punti) Calcola quota TFR</h3>
+<p><strong>Formula fornita:</strong> Quota TFR = Stipendi / 13,5</p>
+<pre class="hljs"><code><div>Quota = 120.000 / 13,5 = € ______
+</div></code></pre>
+<h3 id="b-10-punti-scrivi-la-scrittura">b) (10 punti) Scrivi la scrittura</h3>
+<pre class="hljs"><code><div>DARE: _________________________ € ______
+    AVERE: _________________________ € ______
+</div></code></pre>
+<details>
+<summary>💡 Suggerimento</summary>
+Conti: TFR (costo), Debiti per TFR
+</details>
+<hr>
+<h2 id="esercizio-4---risconto-attivo-20-punti">ESERCIZIO 4 - RISCONTO ATTIVO (20 punti)</h2>
+<p><strong>Operazione:</strong>
+01/11/n: Pagato affitto € 6.000 per 6 mesi (fino 30/04/n+1)</p>
+<p><strong>RICHIESTO:</strong></p>
+<h3 id="a-10-punti-calcola-risconto-attivo-al-3112n">a) (10 punti) Calcola risconto attivo al 31/12/n</h3>
+<p><strong>Ragionamento guidato:</strong></p>
+<pre class="hljs"><code><div>Periodo totale: 6 mesi
+Competenza anno n: ___ mesi (nov, dic)
+Competenza anno n+1: ___ mesi (gen, feb, mar, apr)
+
+Formula: Risconto = Costo × (mesi futuri / mesi totali)
+Risconto = 6.000 × (___/6) = € ______
+</div></code></pre>
+<h3 id="b-10-punti-scrivi-la-scrittura-al-3112n">b) (10 punti) Scrivi la scrittura al 31/12/n</h3>
+<pre class="hljs"><code><div>DARE: _________________________ € ______
+    AVERE: _________________________ € ______
+</div></code></pre>
+<details>
+<summary>💡 Suggerimento</summary>
+Rinvii al futuro un costo già pagato → Risconto attivo
+Conti: Risconti attivi, Fitti passivi
+</details>
+<hr>
+<h2 id="%E2%9C%85-griglia-correzione-rapida">✅ GRIGLIA CORREZIONE RAPIDA</h2>
+<table>
+<thead>
+<tr>
+<th>Parte</th>
+<th>Punti</th>
+<th>Mio Punteggio</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Domande (5 × 4)</td>
+<td>20</td>
+<td>___</td>
+</tr>
+<tr>
+<td>Es. 1 Acquisto</td>
+<td>20</td>
+<td>___</td>
+</tr>
+<tr>
+<td>Es. 2 Ammort.</td>
+<td>20</td>
+<td>___</td>
+</tr>
+<tr>
+<td>Es. 3 TFR</td>
+<td>20</td>
+<td>___</td>
+</tr>
+<tr>
+<td>Es. 4 Risconto</td>
+<td>20</td>
+<td>___</td>
+</tr>
+<tr>
+<td><strong>TOTALE</strong></td>
+<td><strong>100</strong></td>
+<td><strong>___</strong></td>
+</tr>
+</tbody>
+</table>
+<h3 id="valutazione">Valutazione</h3>
+<ul>
+<li><strong>85-100:</strong> 🏆 Eccellente - Pronto per livello 2</li>
+<li><strong>70-84:</strong> ✅ Buono - Ripassa punti deboli</li>
+<li><strong>60-69:</strong> ⚠️ Sufficiente - Rivedi teoria</li>
+<li><strong>&lt; 60:</strong> 🔄 Insufficiente - Ristudia moduli base</li>
+</ul>
+<hr>
+<h2 id="%F0%9F%94%97-prossimi-passi">🔗 PROSSIMI PASSI</h2>
+<p><strong>Se punteggio ≥ 70:</strong></p>
+<ul>
+<li><input type="checkbox" id="checkbox0"><label for="checkbox0">Passa a </label><strong>Simulazione Livello 2 - Intermedio</strong></li>
+<li><input type="checkbox" id="checkbox1"><label for="checkbox1">Rivedi velocemente errori commessi</label></li>
+</ul>
+<p><strong>Se punteggio &lt; 70:</strong></p>
+<ul>
+<li><input type="checkbox" id="checkbox2"><label for="checkbox2">Rivedi moduli:</label>
+<ul>
+<li><code>01-immobilizzazioni-materiali.md</code></li>
+<li><code>03-scritture-operative.md</code></li>
+<li><code>04-assestamenti-rettifiche.md</code> (risconti)</li>
+</ul>
+</li>
+<li><input type="checkbox" id="checkbox3"><label for="checkbox3">Rifai questa simulazione tra 2 giorni</label></li>
+</ul>
+<hr>
+<h2 id="%F0%9F%93%8A-autovalutazione">📊 AUTOVALUTAZIONE</h2>
+<h3 id="tempo-impiegato---60-minuti">Tempo impiegato: _____ / 60 minuti</h3>
+<h3 id="difficolt%C3%A0-percepita-1-5">Difficoltà percepita (1-5):</h3>
+<p>☐ ☐ ☐ ☐ ☐</p>
+<h3 id="argomenti-da-rivedere">Argomenti da rivedere:</h3>
+<ol>
+<li>
+<hr>
+</li>
+<li>
+<hr>
+</li>
+<li>
+<hr>
+</li>
+</ol>
+<hr>
+<blockquote>
+<p>💡 <strong>Tip:</strong> Questa simulazione copre le basi. Se la superi facilmente, sei pronto per complessità maggiori!</p>
+</blockquote>
+<p><strong>Data:</strong> <em><strong>/</strong></em>/___
+<strong>Punteggio:</strong> ___/100</p>
+
+<div class="card">
+<div class="badge b-red">🔴 ACC Loop Post-Simulazione</div>
+<div class="separator"></div>
+<div class="small" style="margin-bottom:12px">Dopo aver completato la simulazione, analizza i tuoi errori per consolidare l'apprendimento</div>
+<div class="grid" style="gap:12px">
+<label>❌ Errore commesso:<input type="text" id="acc-err-sim" placeholder="es. ho confuso Dare/Avere nell'acquisto merci"></label>
+<label>🔍 Motivo dell'errore:<input type="text" id="acc-mot-sim" placeholder="es. non ho pensato a chi deve ricevere il pagamento"></label>
+<label>✅ Come correggere:<input type="text" id="acc-cur-sim" placeholder="es. rivedere schema D.A.R.E. da modulo 03"></label>
+</div>
+<button id="acc-save-sim" class="btn" style="margin-top:12px">💾 Salva nel diario errori</button>
+<div class="small" id="acc-status-sim" style="margin-top:8px"></div>
+</div>
+
+<script>(function(){const KEY='acc-sim';const errInput=document.getElementById('acc-err-sim');const motInput=document.getElementById('acc-mot-sim');const curInput=document.getElementById('acc-cur-sim');const saveBtn=document.getElementById('acc-save-sim');const status=document.getElementById('acc-status-sim');function load(){try{const v=JSON.parse(localStorage.getItem(KEY)||'{}');errInput.value=v.err||'';motInput.value=v.mot||'';curInput.value=v.cur||'';}catch{}}function save(){const data={err:errInput.value,mot:motInput.value,cur:curInput.value,date:new Date().toLocaleDateString('it-IT')};localStorage.setItem(KEY,JSON.stringify(data));status.textContent='✅ Salvato '+data.date;setTimeout(()=>{status.textContent='';},3000);}saveBtn.addEventListener('click',save);load();})();</script>
+
+</main>
+
+<aside class="sticky">
+
+<div class="card">
+<div class="badge b-green">📈 Calcolo Punteggio</div>
+<div class="separator"></div>
+<div class="grid" style="gap:10px">
+<label>Parte A - Domande (5×4=20):<input type="number" id="score-a" min="0" max="20" value="0"></label>
+<label>Parte B - Scritture (2×20=40):<input type="number" id="score-b" min="0" max="40" value="0"></label>
+<label>Parte C - Calcoli (2×20=40):<input type="number" id="score-c" min="0" max="40" value="0"></label>
+</div>
+<div class="separator"></div>
+<div style="display:flex; justify-content:space-between; align-items:center">
+<div class="badge b-blue">Totale</div>
+<div id="score-total" style="font-size:2rem; font-weight:700">0/100</div>
+</div>
+<div id="score-badge" class="badge" style="margin-top:12px; width:100%; justify-content:center"></div>
+</div>
+
+<script>(function(){const a=document.getElementById('score-a');const b=document.getElementById('score-b');const c=document.getElementById('score-c');const total=document.getElementById('score-total');const badge=document.getElementById('score-badge');const KEY='sim-score';function load(){try{const v=JSON.parse(localStorage.getItem(KEY)||'{}');a.value=v.a||0;b.value=v.b||0;c.value=v.c||0;}catch{}calc();}function save(){localStorage.setItem(KEY,JSON.stringify({a:+a.value,b:+b.value,c:+c.value}));}function calc(){const sum=+a.value + +b.value + +c.value;total.textContent=sum+'/100';if(sum>=90){badge.className='badge b-green';badge.textContent='🏆 Eccellente';}else if(sum>=80){badge.className='badge b-green';badge.textContent='✅ Ottimo';}else if(sum>=70){badge.className='badge b-yellow';badge.textContent='👍 Buono';}else if(sum>=60){badge.className='badge b-yellow';badge.textContent='⚠️ Sufficiente';}else{badge.className='badge b-red';badge.textContent='🔄 Insufficiente';}save();}[a,b,c].forEach(x=>x.addEventListener('input',calc));load();})();</script>
+
+<div class="card">
+<div class="badge b-yellow">⏰ Gestione Tempo</div>
+<div class="separator"></div>
+<div class="small" style="line-height:1.8">
+<strong>Strategia consigliata:</strong><br>
+• Parte A: 15 min (3 min/domanda)<br>
+• Parte B: 25 min (12.5 min/caso)<br>
+• Parte C: 20 min (10 min/esercizio)<br>
+<br>
+<strong>Tip:</strong> Se sei bloccato &gt;5 min, passa avanti e torna dopo
+</div>
+</div>
+
+<div class="card">
+<details>
+<summary>📐 Formule Rapide</summary>
+<div class="separator"></div>
+<div class="small" style="line-height:1.8">
+<strong>IVA 22%:</strong> Imponibile × 1.22<br>
+<strong>Ammort:</strong> Costo × Coeff% × (gg/365)<br>
+<strong>VNC:</strong> Costo – Fondo Ammortamento<br>
+<strong>Risconti:</strong> Pagato × (gg residui/365)
+</div>
+</details>
+</div>
+
+<div class="card">
+<div class="badge b-blue">🔗 Link Utili</div>
+<div class="separator"></div>
+<div class="grid" style="gap:8px">
+<a href="../01-immobilizzazioni-materiali.html" class="btn small">📘 Immobilizzazioni</a>
+<a href="../03-scritture-operative.html" class="btn small">📗 Scritture Operative</a>
+<a href="../04-assestamenti-rettifiche.html" class="btn small">📙 Assestamenti</a>
+<a href="../05-riepilogo-generale.html" class="btn small">📊 Riepilogo</a>
+</div>
+</div>
+
+</aside>
+
+</div>
+
+</div>
+
+<script>(function(){const KEY='ex-progress';const bar=document.getElementById('ex-progress');const count=document.getElementById('ex-count');const total=8;function load(){try{const v=JSON.parse(localStorage.getItem(KEY)||'{}');const done=v.done||0;bar.style.width=((done/total)*100)+'%';count.textContent=done+' / '+total+' esercizi completati';}catch{}}load();window.updateExProgress=function(done){localStorage.setItem(KEY,JSON.stringify({done}));load();};})();</script>
+
+<style>
+.footer-copyright {
+  text-align: center;
+  margin-top: 50px;
+  padding: 30px 25px;
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  color: #ffffff;
+  border-radius: 16px;
+  box-shadow: 0 8px 20px rgba(0,0,0,0.2);
+  font-size: 0.95em;
+  line-height: 1.8;
+}
+.footer-copyright strong {
+  color: #ffffff !important;
+  font-weight: 700;
+  font-size: 1.1em;
+}
+.footer-copyright em {
+  color: #f0f0f0;
+  font-style: italic;
+}
+.footer-copyright .warning {
+  margin-top: 15px;
+  padding: 12px;
+  background: rgba(255,255,255,0.15);
+  border-radius: 8px;
+  font-size: 0.85em;
+  border: 1px solid rgba(255,255,255,0.3);
+}
+</style>
+
+<div class="footer-copyright">
+  <strong>📚 Sistema NPI-Learning per Economia Aziendale</strong><br>
+  Creato da <strong>Jeffrey Minaya</strong> | AFM Quinta Serale | © 2025<br>
+  <em>Documento didattico ottimizzato con tecniche di neuroscienza applicata</em>
+  <div class="warning">
+    ⚠️ <strong>Uso Riservato:</strong> Questo materiale è protetto da copyright.<br>
+    La distribuzione, riproduzione o uso commerciale non autorizzato è vietato.<br>
+    Per richieste di utilizzo: contattare l'autore.
+  </div>
+</div>
+
+</body>
+</html>

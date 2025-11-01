@@ -1,0 +1,1253 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>03-livello-avanzato.md</title>
+<meta http-equiv="Content-type" content="text/html;charset=UTF-8">
+
+<style>
+/* https://github.com/microsoft/vscode/blob/master/extensions/markdown-language-features/media/markdown.css */
+/*---------------------------------------------------------------------------------------------
+ *  Copyright (c) Microsoft Corporation. All rights reserved.
+ *  Licensed under the MIT License. See License.txt in the project root for license information.
+ *--------------------------------------------------------------------------------------------*/
+
+body {
+	font-family: var(--vscode-markdown-font-family, -apple-system, BlinkMacSystemFont, "Segoe WPC", "Segoe UI", "Ubuntu", "Droid Sans", sans-serif);
+	font-size: var(--vscode-markdown-font-size, 14px);
+	padding: 0 26px;
+	line-height: var(--vscode-markdown-line-height, 22px);
+	word-wrap: break-word;
+}
+
+#code-csp-warning {
+	position: fixed;
+	top: 0;
+	right: 0;
+	color: white;
+	margin: 16px;
+	text-align: center;
+	font-size: 12px;
+	font-family: sans-serif;
+	background-color:#444444;
+	cursor: pointer;
+	padding: 6px;
+	box-shadow: 1px 1px 1px rgba(0,0,0,.25);
+}
+
+#code-csp-warning:hover {
+	text-decoration: none;
+	background-color:#007acc;
+	box-shadow: 2px 2px 2px rgba(0,0,0,.25);
+}
+
+body.scrollBeyondLastLine {
+	margin-bottom: calc(100vh - 22px);
+}
+
+body.showEditorSelection .code-line {
+	position: relative;
+}
+
+body.showEditorSelection .code-active-line:before,
+body.showEditorSelection .code-line:hover:before {
+	content: "";
+	display: block;
+	position: absolute;
+	top: 0;
+	left: -12px;
+	height: 100%;
+}
+
+body.showEditorSelection li.code-active-line:before,
+body.showEditorSelection li.code-line:hover:before {
+	left: -30px;
+}
+
+.vscode-light.showEditorSelection .code-active-line:before {
+	border-left: 3px solid rgba(0, 0, 0, 0.15);
+}
+
+.vscode-light.showEditorSelection .code-line:hover:before {
+	border-left: 3px solid rgba(0, 0, 0, 0.40);
+}
+
+.vscode-light.showEditorSelection .code-line .code-line:hover:before {
+	border-left: none;
+}
+
+.vscode-dark.showEditorSelection .code-active-line:before {
+	border-left: 3px solid rgba(255, 255, 255, 0.4);
+}
+
+.vscode-dark.showEditorSelection .code-line:hover:before {
+	border-left: 3px solid rgba(255, 255, 255, 0.60);
+}
+
+.vscode-dark.showEditorSelection .code-line .code-line:hover:before {
+	border-left: none;
+}
+
+.vscode-high-contrast.showEditorSelection .code-active-line:before {
+	border-left: 3px solid rgba(255, 160, 0, 0.7);
+}
+
+.vscode-high-contrast.showEditorSelection .code-line:hover:before {
+	border-left: 3px solid rgba(255, 160, 0, 1);
+}
+
+.vscode-high-contrast.showEditorSelection .code-line .code-line:hover:before {
+	border-left: none;
+}
+
+img {
+	max-width: 100%;
+	max-height: 100%;
+}
+
+a {
+	text-decoration: none;
+}
+
+a:hover {
+	text-decoration: underline;
+}
+
+a:focus,
+input:focus,
+select:focus,
+textarea:focus {
+	outline: 1px solid -webkit-focus-ring-color;
+	outline-offset: -1px;
+}
+
+hr {
+	border: 0;
+	height: 2px;
+	border-bottom: 2px solid;
+}
+
+h1 {
+	padding-bottom: 0.3em;
+	line-height: 1.2;
+	border-bottom-width: 1px;
+	border-bottom-style: solid;
+}
+
+h1, h2, h3 {
+	font-weight: normal;
+}
+
+table {
+	border-collapse: collapse;
+}
+
+table > thead > tr > th {
+	text-align: left;
+	border-bottom: 1px solid;
+}
+
+table > thead > tr > th,
+table > thead > tr > td,
+table > tbody > tr > th,
+table > tbody > tr > td {
+	padding: 5px 10px;
+}
+
+table > tbody > tr + tr > td {
+	border-top: 1px solid;
+}
+
+blockquote {
+	margin: 0 7px 0 5px;
+	padding: 0 16px 0 10px;
+	border-left-width: 5px;
+	border-left-style: solid;
+}
+
+code {
+	font-family: Menlo, Monaco, Consolas, "Droid Sans Mono", "Courier New", monospace, "Droid Sans Fallback";
+	font-size: 1em;
+	line-height: 1.357em;
+}
+
+body.wordWrap pre {
+	white-space: pre-wrap;
+}
+
+pre:not(.hljs),
+pre.hljs code > div {
+	padding: 16px;
+	border-radius: 3px;
+	overflow: auto;
+}
+
+pre code {
+	color: var(--vscode-editor-foreground);
+	tab-size: 4;
+}
+
+/** Theming */
+
+.vscode-light pre {
+	background-color: rgba(220, 220, 220, 0.4);
+}
+
+.vscode-dark pre {
+	background-color: rgba(10, 10, 10, 0.4);
+}
+
+.vscode-high-contrast pre {
+	background-color: rgb(0, 0, 0);
+}
+
+.vscode-high-contrast h1 {
+	border-color: rgb(0, 0, 0);
+}
+
+.vscode-light table > thead > tr > th {
+	border-color: rgba(0, 0, 0, 0.69);
+}
+
+.vscode-dark table > thead > tr > th {
+	border-color: rgba(255, 255, 255, 0.69);
+}
+
+.vscode-light h1,
+.vscode-light hr,
+.vscode-light table > tbody > tr + tr > td {
+	border-color: rgba(0, 0, 0, 0.18);
+}
+
+.vscode-dark h1,
+.vscode-dark hr,
+.vscode-dark table > tbody > tr + tr > td {
+	border-color: rgba(255, 255, 255, 0.18);
+}
+
+</style>
+
+<style>
+/* Tomorrow Theme */
+/* http://jmblog.github.com/color-themes-for-google-code-highlightjs */
+/* Original theme - https://github.com/chriskempson/tomorrow-theme */
+
+/* Tomorrow Comment */
+.hljs-comment,
+.hljs-quote {
+	color: #8e908c;
+}
+
+/* Tomorrow Red */
+.hljs-variable,
+.hljs-template-variable,
+.hljs-tag,
+.hljs-name,
+.hljs-selector-id,
+.hljs-selector-class,
+.hljs-regexp,
+.hljs-deletion {
+	color: #c82829;
+}
+
+/* Tomorrow Orange */
+.hljs-number,
+.hljs-built_in,
+.hljs-builtin-name,
+.hljs-literal,
+.hljs-type,
+.hljs-params,
+.hljs-meta,
+.hljs-link {
+	color: #f5871f;
+}
+
+/* Tomorrow Yellow */
+.hljs-attribute {
+	color: #eab700;
+}
+
+/* Tomorrow Green */
+.hljs-string,
+.hljs-symbol,
+.hljs-bullet,
+.hljs-addition {
+	color: #718c00;
+}
+
+/* Tomorrow Blue */
+.hljs-title,
+.hljs-section {
+	color: #4271ae;
+}
+
+/* Tomorrow Purple */
+.hljs-keyword,
+.hljs-selector-tag {
+	color: #8959a8;
+}
+
+.hljs {
+	display: block;
+	overflow-x: auto;
+	color: #4d4d4c;
+	padding: 0.5em;
+}
+
+.hljs-emphasis {
+	font-style: italic;
+}
+
+.hljs-strong {
+	font-weight: bold;
+}
+</style>
+
+<style>
+/*
+ * Markdown PDF CSS
+ */
+
+ body {
+	font-family: -apple-system, BlinkMacSystemFont, "Segoe WPC", "Segoe UI", "Ubuntu", "Droid Sans", sans-serif, "Meiryo";
+	padding: 0 12px;
+}
+
+pre {
+	background-color: #f8f8f8;
+	border: 1px solid #cccccc;
+	border-radius: 3px;
+	overflow-x: auto;
+	white-space: pre-wrap;
+	overflow-wrap: break-word;
+}
+
+pre:not(.hljs) {
+	padding: 23px;
+	line-height: 19px;
+}
+
+blockquote {
+	background: rgba(127, 127, 127, 0.1);
+	border-color: rgba(0, 122, 204, 0.5);
+}
+
+.emoji {
+	height: 1.4em;
+}
+
+code {
+	font-size: 14px;
+	line-height: 19px;
+}
+
+/* for inline code */
+:not(pre):not(.hljs) > code {
+	color: #C9AE75; /* Change the old color so it seems less like an error */
+	font-size: inherit;
+}
+
+/* Page Break : use <div class="page"/> to insert page break
+-------------------------------------------------------- */
+.page {
+	page-break-after: always;
+}
+
+</style>
+
+<script src="https://unpkg.com/mermaid/dist/mermaid.min.js"></script>
+</head>
+<body>
+  <script>
+    mermaid.initialize({
+      startOnLoad: true,
+      theme: document.body.classList.contains('vscode-dark') || document.body.classList.contains('vscode-high-contrast')
+          ? 'dark'
+          : 'default'
+    });
+  </script>
+<h1 id="%F0%9F%94%B4-simulazione-livello-3---avanzato">🔴 SIMULAZIONE LIVELLO 3 - AVANZATO</h1>
+<blockquote>
+<p><strong>Difficoltà:</strong> Avanzato - Esame Reale | <strong>Tempo:</strong> 120 minuti | <strong>No formule, no hint</strong></p>
+</blockquote>
+<hr>
+<h2 id="%F0%9F%8E%AF-caratteristiche">🎯 CARATTERISTICHE</h2>
+<ul>
+<li>🔥 Difficoltà da esame universitario REALE</li>
+<li>🔥 Casi integrati multi-step</li>
+<li>🔥 ZERO formule fornite</li>
+<li>🔥 ZERO suggerimenti</li>
+<li>🔥 Pressione tempo reale</li>
+<li>🔥 Richieste implicite (devi capire cosa serve)</li>
+</ul>
+<p><strong>Target:</strong> 80%+ per superare (equivalente a 24/30)</p>
+<hr>
+<h2 id="%E2%9A%A0%EF%B8%8F-istruzioni-operative">⚠️ ISTRUZIONI OPERATIVE</h2>
+<ol>
+<li><strong>Timer:</strong> Imposta 120 minuti <strong>effettivi</strong> (no pause)</li>
+<li><strong>Ambiente:</strong> Simulazione esame (no appunti, no libri)</li>
+<li><strong>Materiali permessi:</strong> Solo calcolatrice</li>
+<li><strong>Scritture:</strong> Usa formato contabile Dare/Avere completo</li>
+<li><strong>Traccia:</strong> Leggi TUTTO prima di iniziare</li>
+<li><strong>Revisione:</strong> Riserva 15 minuti finali</li>
+</ol>
+<hr>
+<h2 id="%F0%9F%93%9D-parte-a---teoria-professionale-30-punti">📝 PARTE A - TEORIA PROFESSIONALE (30 punti)</h2>
+<h3 id="domanda-1-6-punti">Domanda 1 (6 punti)</h3>
+<p>Illustra il <strong>principio di competenza economica</strong> e spiega come si applica a:</p>
+<ul>
+<li>Costi anticipati</li>
+<li>Ricavi differiti</li>
+<li>Costi futuri
+Indica i conti di SP e CE coinvolti.</li>
+</ul>
+<hr>
+<h3 id="domanda-2-6-punti">Domanda 2 (6 punti)</h3>
+<p>Confronta <strong>ammortamento civilistico</strong> e <strong>ammortamento fiscale</strong>:</p>
+<ul>
+<li>Differenze normative</li>
+<li>Impatto sul bilancio</li>
+<li>Gestione delle deduzioni extracontabili</li>
+</ul>
+<hr>
+<h3 id="domanda-3-6-punti">Domanda 3 (6 punti)</h3>
+<p>Una holding acquista partecipazioni in una controllata per € 500.000. Dopo 2 anni il valore recuperabile è € 380.000. Come gestisci contabilmente la situazione? Scritture e classificazione CE.</p>
+<hr>
+<h3 id="domanda-4-6-punts">Domanda 4 (6 punts)</h3>
+<p>Il <strong>fondo TFR</strong> è un debito o un fondo rischi? Motiva la risposta e spiega perché non si applica il principio di prudenza nella sua valutazione.</p>
+<hr>
+<h3 id="domanda-5-6-punti">Domanda 5 (6 punti)</h3>
+<p>Un'azienda paga € 10.000 per un contratto di consulenza biennale (01/07/n - 30/06/n+2). Presenta TUTTE le scritture per anno n e n+1, inclusi assestamenti.</p>
+<hr>
+<h2 id="%F0%9F%A7%AE-parte-b---esercizi-integrati-70-punti">🧮 PARTE B - ESERCIZI INTEGRATI (70 punti)</h2>
+<hr>
+<h2 id="esercizio-1---caso-complessivo-immobilizzazioni-22-punti">ESERCIZIO 1 - CASO COMPLESSIVO IMMOBILIZZAZIONI (22 punti)</h2>
+<p><strong>Situazione iniziale:</strong></p>
+<p>L'azienda <strong>Zeta Industries S.p.A.</strong> presenta al 01/01/n i seguenti dati:</p>
+<p><strong>Immobilizzazione A:</strong></p>
+<ul>
+<li>Costo storico: € 180.000</li>
+<li>Fondo ammortamento: € 108.000</li>
+<li>Coefficiente: 15%</li>
+</ul>
+<p><strong>Operazioni anno n:</strong></p>
+<p><strong>15/02/n:</strong> Acquista <strong>Immobilizzazione B:</strong></p>
+<ul>
+<li>Costo base: € 240.000</li>
+<li>Spese notarili: € 4.800</li>
+<li>Modifiche strutturali pre-uso: € 15.200</li>
+<li>Tutto + IVA 22%</li>
+<li>Pagamento: 50% bonifico, 50% cambiali a 60 gg</li>
+<li>Coefficiente: 12%</li>
+</ul>
+<p><strong>30/06/n:</strong> Revisione straordinaria su <strong>Immobilizzazione A:</strong></p>
+<ul>
+<li>Costi manutenzione: € 18.000 + IVA (a conto)</li>
+<li>Miglioria (allunga vita utile di 3 anni): € 42.000 + IVA (a conto)</li>
+</ul>
+<p><strong>31/10/n:</strong> Vendita <strong>Immobilizzazione A:</strong></p>
+<ul>
+<li>Prezzo: € 65.000 + IVA 22%</li>
+<li>Incasso: assegno bancario</li>
+</ul>
+<p><strong>31/12/n:</strong> Ammortamenti di fine anno</p>
+<p><strong>RICHIESTO:</strong></p>
+<p>a) <strong>(5 punti)</strong> VNC Immobilizzazione A al 01/01/n</p>
+<p>b) <strong>(8 punti)</strong> Scritture acquisto Immobilizzazione B (15/02) e pagamenti successivi</p>
+<p>c) <strong>(4 punti)</strong> Scritture revisione Immobilizzazione A (30/06) - distingui manutenzione e miglioria</p>
+<p>d) <strong>(5 punti)</strong> Calcola ammortamenti anno n per ENTRAMBE le immobilizzazioni e scrivi le scritture</p>
+<p><em>Attenzione:</em> Immobilizzazione A va ammortizzata fino alla vendita considerando la miglioria. Immobilizzazione B è parziale.</p>
+<p>e) <strong>(6 punti)</strong> Vendita Immobilizzazione A (31/10): calcola VNC, determina plus/minus, scrivi la scrittura completa</p>
+<p><strong>Nota:</strong> Ricorda che la miglioria AUMENTA il costo storico, e l'ammortamento va ricalcolato considerando la nuova vita utile residua.</p>
+<hr>
+<h2 id="esercizio-2---costruzione-interna--leasing-18-punti">ESERCIZIO 2 - COSTRUZIONE INTERNA + LEASING (18 punti)</h2>
+<p><strong>Scenario:</strong></p>
+<p><strong>Omega Engineering S.r.l.</strong> nel corso dell'anno n:</p>
+<p><strong>Caso A - Costruzione Interna (01/03 – 30/11/n):</strong></p>
+<p>Costruisce internamente un capannone:</p>
+<table>
+<thead>
+<tr>
+<th>Elemento</th>
+<th>Importo</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Materie prime acquistate</td>
+<td>€ 180.000 + IVA</td>
+</tr>
+<tr>
+<td>Stipendi operai diretti</td>
+<td>€ 85.000</td>
+</tr>
+<tr>
+<td>Oneri sociali (30%)</td>
+<td>(calcola)</td>
+</tr>
+<tr>
+<td>Quote ammortamento attrezzature usate</td>
+<td>€ 12.000</td>
+</tr>
+<tr>
+<td>Manodopera esterna</td>
+<td>€ 38.000 + IVA</td>
+</tr>
+<tr>
+<td>Progettazione architetto</td>
+<td>€ 22.000 + IVA</td>
+</tr>
+<tr>
+<td>Totale costi capitalizzabili</td>
+<td>(?)</td>
+</tr>
+</tbody>
+</table>
+<p>Coefficiente ammortamento capannone: 3%</p>
+<p><strong>Caso B - Leasing Auto (01/05/n – 30/04/n+3):</strong></p>
+<ul>
+<li>Maxicanone: € 15.000 + IVA</li>
+<li>35 canoni mensili: € 2.000 cad. + IVA</li>
+<li>Esercizio: 01/01 – 31/12</li>
+</ul>
+<p><strong>RICHIESTO:</strong></p>
+<p><strong>Caso A (12 punti):</strong>
+a) Calcola costo totale capitalizzabile della costruzione
+b) Scrivi scritture: acquisto materie prime, stipendi con oneri, capitalizzazione totale al 30/11
+c) Ammortamento anno n (da 01/12)</p>
+<p><strong>Caso B (6 punti):</strong>
+d) Canone medio mensile
+e) Competenza anno n (mag-dic) vs Pagato anno n
+f) Risconto attivo al 31/12/n e scrittura assestamento</p>
+<hr>
+<h2 id="esercizio-3---integrazione-completa-operazioni--assestamenti-30-punti">ESERCIZIO 3 - INTEGRAZIONE COMPLETA: OPERAZIONI + ASSESTAMENTI (30 punti)</h2>
+<p><strong>Lambda Trading S.r.l.</strong> chiude l'esercizio n al 31/12. Presenta i seguenti dati:</p>
+<h3 id="operazioni-anno-n">OPERAZIONI ANNO N:</h3>
+<p><strong>01/04/n - Prestito concesso:</strong></p>
+<ul>
+<li>Capitale: € 400.000</li>
+<li>Tasso: 3,8% annuo</li>
+<li>Durata: 3 anni</li>
+<li>Interessi: esigibili il 31/03 di ogni anno</li>
+</ul>
+<p><strong>01/07/n - Mutuo passivo ricevuto:</strong></p>
+<ul>
+<li>Capitale: € 550.000</li>
+<li>Tasso: 4,5% annuo</li>
+<li>Durata: 8 anni</li>
+<li>Interessi: pagabili il 30/06 di ogni anno</li>
+</ul>
+<p><strong>Acquisti e vendite anno n:</strong></p>
+<ul>
+<li>Acquisti merci: € 680.000 + IVA 22%</li>
+<li>Vendite merci: € 920.000 + IVA 22%</li>
+<li>Tutti pagati/incassati: 60% banca, 40% credito/debito</li>
+</ul>
+<p><strong>15/09/n - TFR:</strong></p>
+<ul>
+<li>Dipendente Rossi licenziato</li>
+<li>TFR maturato da liquidare: € 45.000</li>
+<li>Pagamento con bonifico</li>
+</ul>
+<p><strong>Stipendi anno n:</strong></p>
+<ul>
+<li>Totale stipendi lordi: € 380.000</li>
+<li>Ritenute IRPEF (23%): trattenute e versate</li>
+<li>Contributi INPS (33%): versati</li>
+<li>Tutti pagati regolarmente</li>
+</ul>
+<h3 id="dati-per-assestamenti-al-3112n">DATI PER ASSESTAMENTI AL 31/12/n:</h3>
+<p><strong>Assicurazione:</strong></p>
+<ul>
+<li>Premio pagato 01/08/n: € 7.200 per 18 mesi</li>
+</ul>
+<p><strong>Affitto locali:</strong></p>
+<ul>
+<li>Contratto: € 2.500/mese</li>
+<li>Ultimo pagamento: 30/11/n (competenza ott-nov)</li>
+<li>Prossimo pagamento: 31/01/n+1 (competenza dic-gen-feb)</li>
+</ul>
+<p><strong>Crediti clienti:</strong></p>
+<ul>
+<li>Crediti nominali: € 580.000</li>
+<li>Fondo esistente: € 42.000</li>
+<li>Target svalutazione: 8%</li>
+</ul>
+<p><strong>Imposte (IRES 24%):</strong></p>
+<ul>
+<li>Reddito fiscale ante imposte: € 125.000</li>
+</ul>
+<p><strong>IVA:</strong></p>
+<ul>
+<li>IVA a debito: € 202.400</li>
+<li>IVA a credito: € 149.600</li>
+</ul>
+<p><strong>Rimanenze:</strong></p>
+<ul>
+<li>Rimanenze iniziali: € 85.000</li>
+<li>Rimanenze finali: € 112.000</li>
+</ul>
+<h3 id="richiesto-specificare-punti-per-sotto-voce">RICHIESTO (specificare punti per sotto-voce):</h3>
+<p><strong>A) OPERAZIONI ANNO N (15 punti totali):</strong></p>
+<ol>
+<li><strong>(3 pt)</strong> Prestito concesso: scritture concessione + maturazione interessi anno n</li>
+<li><strong>(3 pt)</strong> Mutuo: scritture ricezione + maturazione interessi anno n</li>
+<li><strong>(3 pt)</strong> Acquisti: scritture acquisto merci</li>
+<li><strong>(3 pt)</strong> Vendite: scritture vendita merci</li>
+<li><strong>(3 pt)</strong> TFR Rossi: scrittura liquidazione completa</li>
+</ol>
+<p><strong>B) ASSESTAMENTI (15 punti totali):</strong></p>
+<ol start="6">
+<li><strong>(2 pt)</strong> Assicurazione: tipo, calcolo, scrittura</li>
+<li><strong>(3 pt)</strong> Affitto: tipo, calcolo, scrittura (attenzione!)</li>
+<li><strong>(3 pt)</strong> Crediti: calcolo target, accantonamento, scrittura</li>
+<li><strong>(2 pt)</strong> IRES: calcolo imposta, scrittura</li>
+<li><strong>(2 pt)</strong> IVA: calcolo saldo, scrittura</li>
+<li><strong>(3 pt)</strong> Rimanenze: scritture completa (EP e EF)</li>
+</ol>
+<hr>
+<h2 id="%E2%9C%85-griglia-correzione-dettagliata">✅ GRIGLIA CORREZIONE DETTAGLIATA</h2>
+<h3 id="parte-a---teoria">PARTE A - TEORIA</h3>
+<table>
+<thead>
+<tr>
+<th>Domanda</th>
+<th>Max</th>
+<th>Criterio</th>
+<th>Mio</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>1 - Competenza</td>
+<td>6</td>
+<td>Definizione + 3 applicazioni + conti</td>
+<td>___</td>
+</tr>
+<tr>
+<td>2 - Ammortamenti</td>
+<td>6</td>
+<td>Differenze + bilancio + fiscale</td>
+<td>___</td>
+</tr>
+<tr>
+<td>3 - Svalutazione</td>
+<td>6</td>
+<td>Procedura + scritture + CE</td>
+<td>___</td>
+</tr>
+<tr>
+<td>4 - TFR</td>
+<td>6</td>
+<td>Classificazione + motivazione + principi</td>
+<td>___</td>
+</tr>
+<tr>
+<td>5 - Consulenza</td>
+<td>6</td>
+<td>Scritture complete 2 anni</td>
+<td>___</td>
+</tr>
+<tr>
+<td><strong>SUBTOTALE A</strong></td>
+<td><strong>30</strong></td>
+<td></td>
+<td><strong>___</strong></td>
+</tr>
+</tbody>
+</table>
+<h3 id="parte-b---esercizi">PARTE B - ESERCIZI</h3>
+<table>
+<thead>
+<tr>
+<th>Esercizio</th>
+<th>Max</th>
+<th>Criterio</th>
+<th>Mio</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Es. 1 Immobilizzazioni</strong></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>a) VNC iniziale</td>
+<td>5</td>
+<td>Calcolo corretto</td>
+<td>___</td>
+</tr>
+<tr>
+<td>b) Acquisto Imm. B</td>
+<td>8</td>
+<td>Costo storico + scritture + pagamenti</td>
+<td>___</td>
+</tr>
+<tr>
+<td>c) Revisione</td>
+<td>4</td>
+<td>Distinzione manutenzione/miglioria</td>
+<td>___</td>
+</tr>
+<tr>
+<td>d) Ammortamenti</td>
+<td>5</td>
+<td>Calcoli corretti entrambe imm.</td>
+<td>___</td>
+</tr>
+<tr>
+<td>e) Vendita</td>
+<td>6</td>
+<td>VNC + plus/minus + scrittura completa</td>
+<td>___</td>
+</tr>
+<tr>
+<td><strong>SUBTOTALE Es. 1</strong></td>
+<td><strong>22</strong></td>
+<td></td>
+<td><strong>___</strong></td>
+</tr>
+<tr>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td><strong>Es. 2 Costruzione+Leasing</strong></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>Caso A - Costruzione</td>
+<td>12</td>
+<td>Costo + scritture + ammortamento</td>
+<td>___</td>
+</tr>
+<tr>
+<td>Caso B - Leasing</td>
+<td>6</td>
+<td>Canone medio + competenza + risconto</td>
+<td>___</td>
+</tr>
+<tr>
+<td><strong>SUBTOTALE Es. 2</strong></td>
+<td><strong>18</strong></td>
+<td></td>
+<td><strong>___</strong></td>
+</tr>
+<tr>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td><strong>Es. 3 Integrazione</strong></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>Sezione A Operazioni</td>
+<td>15</td>
+<td>5 operazioni × 3 pt cad.</td>
+<td>___</td>
+</tr>
+<tr>
+<td>Sezione B Assestamenti</td>
+<td>15</td>
+<td>6 assestamenti (2-3 pt)</td>
+<td>___</td>
+</tr>
+<tr>
+<td><strong>SUBTOTALE Es. 3</strong></td>
+<td><strong>30</strong></td>
+<td></td>
+<td><strong>___</strong></td>
+</tr>
+</tbody>
+</table>
+<h3 id="totale-simulazione">TOTALE SIMULAZIONE</h3>
+<table>
+<thead>
+<tr>
+<th>Parte</th>
+<th>Punti</th>
+<th>%</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Parte A Teoria</strong></td>
+<td>___/30</td>
+<td>___%</td>
+</tr>
+<tr>
+<td><strong>Parte B Esercizi</strong></td>
+<td>___/70</td>
+<td>___%</td>
+</tr>
+<tr>
+<td><strong>TOTALE COMPLESSIVO</strong></td>
+<td><strong>___/100</strong></td>
+<td><strong>___%</strong></td>
+</tr>
+</tbody>
+</table>
+<h3 id="conversione-30">Conversione /30</h3>
+<p><strong>Punteggio finale:</strong> <em><strong>/100 × 30 / 100 = **</strong></em>/30**</p>
+<hr>
+<h2 id="%F0%9F%93%8A-valutazione-performance">📊 VALUTAZIONE PERFORMANCE</h2>
+<h3 id="risultato-complessivo">Risultato Complessivo</h3>
+<table>
+<thead>
+<tr>
+<th>Range</th>
+<th>Voto /30</th>
+<th>Valutazione</th>
+<th>Status</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>90-100%</td>
+<td>27-30</td>
+<td>🏆 ECCELLENTE</td>
+<td>Pronto esame</td>
+</tr>
+<tr>
+<td>80-89%</td>
+<td>24-26</td>
+<td>✅ OTTIMO</td>
+<td>Pronto (rivedi errori)</td>
+</tr>
+<tr>
+<td>70-79%</td>
+<td>21-23</td>
+<td>⚠️ BUONO</td>
+<td>Rafforza punti deboli</td>
+</tr>
+<tr>
+<td>60-69%</td>
+<td>18-20</td>
+<td>⚠️ SUFFICIENTE</td>
+<td>Ripassa e riprova</td>
+</tr>
+<tr>
+<td>&lt; 60%</td>
+<td>&lt; 18</td>
+<td>🔄 INSUFFICIENTE</td>
+<td>Livello 2 + teoria</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Il tuo risultato:</strong> <em><strong>/30 → <strong></strong></em>________</strong></p>
+<hr>
+<h2 id="%F0%9F%8E%AF-analisi-prestazione-per-area">🎯 ANALISI PRESTAZIONE PER AREA</h2>
+<h3 id="teoria-parte-a">Teoria (parte A)</h3>
+<table>
+<thead>
+<tr>
+<th>Area</th>
+<th>Punteggio</th>
+<th>Valutazione</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Competenza economica</td>
+<td>___/6</td>
+<td>_____</td>
+</tr>
+<tr>
+<td>Ammortamenti</td>
+<td>___/6</td>
+<td>_____</td>
+</tr>
+<tr>
+<td>Svalutazioni</td>
+<td>___/6</td>
+<td>_____</td>
+</tr>
+<tr>
+<td>TFR</td>
+<td>___/6</td>
+<td>_____</td>
+</tr>
+<tr>
+<td>Risconti pluriennali</td>
+<td>___/6</td>
+<td>_____</td>
+</tr>
+</tbody>
+</table>
+<h3 id="pratica-parte-b">Pratica (parte B)</h3>
+<table>
+<thead>
+<tr>
+<th>Area</th>
+<th>Punteggio</th>
+<th>Valutazione</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Immobilizzazioni</td>
+<td>___/22</td>
+<td>_____</td>
+</tr>
+<tr>
+<td>Costruzione + Leasing</td>
+<td>___/18</td>
+<td>_____</td>
+</tr>
+<tr>
+<td>Caso integrato</td>
+<td>___/30</td>
+<td>_____</td>
+</tr>
+</tbody>
+</table>
+<hr>
+<h2 id="%F0%9F%94%8D-diagnostic-dettagliata">🔍 DIAGNOSTIC DETTAGLIATA</h2>
+<h3 id="errori-per-tipologia">Errori per tipologia</h3>
+<p><strong>Calcoli matematici:</strong></p>
+<ul>
+<li><input type="checkbox" id="checkbox0"><label for="checkbox0">Errori nelle percentuali</label></li>
+<li><input type="checkbox" id="checkbox1"><label for="checkbox1">Errori nei calcoli proporzionali (gg/365)</label></li>
+<li><input type="checkbox" id="checkbox2"><label for="checkbox2">Errori nelle formule</label></li>
+<li>Dettagli: _______________________________</li>
+</ul>
+<p><strong>Procedura:</strong></p>
+<ul>
+<li><input type="checkbox" id="checkbox3"><label for="checkbox3">Sequenza operazioni sbagliata</label></li>
+<li><input type="checkbox" id="checkbox4"><label for="checkbox4">Dimenticato passaggi intermedi</label></li>
+<li><input type="checkbox" id="checkbox5"><label for="checkbox5">Confusione tra operazioni simili</label></li>
+<li>Dettagli: _______________________________</li>
+</ul>
+<p><strong>Scritture contabili:</strong></p>
+<ul>
+<li><input type="checkbox" id="checkbox6"><label for="checkbox6">Conti sbagliati</label></li>
+<li><input type="checkbox" id="checkbox7"><label for="checkbox7">Dare/Avere invertiti</label></li>
+<li><input type="checkbox" id="checkbox8"><label for="checkbox8">Importi errati</label></li>
+<li><input type="checkbox" id="checkbox9"><label for="checkbox9">Scritture incomplete</label></li>
+<li>Dettagli: _______________________________</li>
+</ul>
+<p><strong>Competenza economica:</strong></p>
+<ul>
+<li><input type="checkbox" id="checkbox10"><label for="checkbox10">Ratei vs risconti confusi</label></li>
+<li><input type="checkbox" id="checkbox11"><label for="checkbox11">Calcolo giorni/mesi errato</label></li>
+<li><input type="checkbox" id="checkbox12"><label for="checkbox12">Tipo assestamento sbagliato</label></li>
+<li>Dettagli: _______________________________</li>
+</ul>
+<p><strong>Pressione tempo:</strong></p>
+<ul>
+<li><input type="checkbox" id="checkbox13"><label for="checkbox13">Non ho finito</label></li>
+<li><input type="checkbox" id="checkbox14"><label for="checkbox14">Ho corso troppo (errori di fretta)</label></li>
+<li><input type="checkbox" id="checkbox15"><label for="checkbox15">Male gestito tempo tra sezioni</label></li>
+<li>Tempo usato: ___/120 minuti</li>
+</ul>
+<hr>
+<h2 id="%E2%8F%B1%EF%B8%8F-analisi-tempo">⏱️ ANALISI TEMPO</h2>
+<h3 id="tempo-effettivo-per-sezione">Tempo effettivo per sezione:</h3>
+<table>
+<thead>
+<tr>
+<th>Sezione</th>
+<th>Tempo target</th>
+<th>Tempo reale</th>
+<th>Delta</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Lettura traccia</td>
+<td>5 min</td>
+<td>___</td>
+<td>___</td>
+</tr>
+<tr>
+<td>Teoria (5 dom)</td>
+<td>25 min</td>
+<td>___</td>
+<td>___</td>
+</tr>
+<tr>
+<td>Es. 1 Immobilizz.</td>
+<td>30 min</td>
+<td>___</td>
+<td>___</td>
+</tr>
+<tr>
+<td>Es. 2 Costr+Leas</td>
+<td>25 min</td>
+<td>___</td>
+<td>___</td>
+</tr>
+<tr>
+<td>Es. 3 Integrato</td>
+<td>35 min</td>
+<td>___</td>
+<td>___</td>
+</tr>
+<tr>
+<td>Revisione finale</td>
+<td>15 min</td>
+<td>___</td>
+<td>___</td>
+</tr>
+<tr>
+<td><strong>TOTALE</strong></td>
+<td><strong>135</strong> (con buffer)</td>
+<td><strong>___</strong></td>
+<td><strong>___</strong></td>
+</tr>
+</tbody>
+</table>
+<h3 id="gestione-tempo---feedback">Gestione tempo - Feedback:</h3>
+<p><strong>Cosa ha funzionato:</strong></p>
+<hr>
+<hr>
+<p><strong>Cosa NON ha funzionato:</strong></p>
+<hr>
+<hr>
+<p><strong>Strategia per prossima volta:</strong></p>
+<hr>
+<hr>
+<hr>
+<h2 id="%F0%9F%8E%93-piano-di-azione-post-simulazione">🎓 PIANO DI AZIONE POST-SIMULAZIONE</h2>
+<h3 id="se-punteggio-%E2%89%A5-2430-80">SE PUNTEGGIO ≥ 24/30 (80%+):</h3>
+<p>✅ <strong>SEI PRONTO PER L'ESAME!</strong></p>
+<p><strong>Ultime rifiniture:</strong></p>
+<ul>
+<li><input type="checkbox" id="checkbox16"><label for="checkbox16">Rivedi solo errori specifici di questa simulazione</label></li>
+<li><input type="checkbox" id="checkbox17"><label for="checkbox17">Fai 1-2 esercizi extra sugli argomenti con errori</label></li>
+<li><input type="checkbox" id="checkbox18"><label for="checkbox18">Ripassa formule 1 volta al giorno</label></li>
+<li><input type="checkbox" id="checkbox19"><label for="checkbox19">Rifai test finale integrato entro 2 giorni</label></li>
+<li><input type="checkbox" id="checkbox20"><label for="checkbox20">Mantieni routine di studio fino a esame</label></li>
+</ul>
+<p><strong>Strategia esame:</strong></p>
+<ul>
+<li>Leggi tutta la traccia prima di iniziare</li>
+<li>Inizia da esercizi che conosci meglio</li>
+<li>Riserva 10-15 min per revisione</li>
+<li>Controlla calcoli e dare/avere</li>
+<li>NON lasciare domande in bianco</li>
+</ul>
+<hr>
+<h3 id="se-punteggio-18-2330-60-79">SE PUNTEGGIO 18-23/30 (60-79%):</h3>
+<p>⚠️ <strong>QUASI PRONTO - Servono ritocchi mirati</strong></p>
+<p><strong>Priorità assoluta:</strong></p>
+<ol>
+<li>Identifica le 2-3 aree con più errori (usa diagnostic sopra)</li>
+<li>Per ogni area critica:
+<ul>
+<li>Ripassa teoria specifica (moduli 01-04)</li>
+<li>Fai 10+ esercizi extra</li>
+<li>Rivedi formule e scritture tipo</li>
+</ul>
+</li>
+</ol>
+<p><strong>Piano 5 giorni:</strong></p>
+<p><strong>Giorno 1-2:</strong> Ripasso intensivo aree deboli</p>
+<ul>
+<li>Teoria da manuale</li>
+<li>5 esercizi/giorno su area critica</li>
+<li>Active recall serale</li>
+</ul>
+<p><strong>Giorno 3:</strong> Simulazione livello 2 (intermedio)</p>
+<ul>
+<li>Target: 85%+</li>
+<li>Se raggiungi target → vai al giorno 4</li>
+<li>Se non raggiungi → altro giorno su area debole</li>
+</ul>
+<p><strong>Giorno 4:</strong> Ripasso generale</p>
+<ul>
+<li>Quiz 01 e 02</li>
+<li>Test finale integrato</li>
+<li>Ripasso formule e mappe</li>
+</ul>
+<p><strong>Giorno 5:</strong> RIPROVA questa simulazione</p>
+<ul>
+<li>Aspettativa: 24-26/30</li>
+<li>Se raggiungi → pronto per esame</li>
+</ul>
+<hr>
+<h3 id="se-punteggio--1830--60">SE PUNTEGGIO &lt; 18/30 (&lt; 60%):</h3>
+<p>🔄 <strong>ATTENZIONE - Servono interventi strutturali</strong></p>
+<p><strong>Diagnosi problemi:</strong></p>
+<ul>
+<li><input type="checkbox" id="checkbox21"><label for="checkbox21">Lacune teoriche gravi → Ripassa TUTTI i moduli 01-04</label></li>
+<li><input type="checkbox" id="checkbox22"><label for="checkbox22">Non ricordo formule → Crea flashcard + ripetizione quotidiana</label></li>
+<li><input type="checkbox" id="checkbox23"><label for="checkbox23">Errori nelle scritture → Rifai 30+ esercizi base</label></li>
+<li><input type="checkbox" id="checkbox24"><label for="checkbox24">Gestione tempo → Fai più simulazioni con timer</label></li>
+</ul>
+<p><strong>Piano ripresa 10 giorni:</strong></p>
+<p><strong>Giorni 1-3:</strong> RESET COMPLETO</p>
+<ul>
+<li>Rileggi moduli 01-04 (2 moduli/giorno)</li>
+<li>Prendi appunti, crea schemi personali</li>
+<li>Fai esercizi base da ogni modulo</li>
+</ul>
+<p><strong>Giorni 4-5:</strong> Pratica intensiva base</p>
+<ul>
+<li>Simulazione Livello 1 (base)</li>
+<li>20+ esercizi guidati</li>
+<li>Quiz 01 e 02 (obiettivo: 90%+)</li>
+</ul>
+<p><strong>Giorno 6:</strong> Ripasso formule e scritture</p>
+<ul>
+<li>Crea lista TUTTE le formule</li>
+<li>Crea lista TUTTE le scritture tipo</li>
+<li>Memorizza con active recall</li>
+</ul>
+<p><strong>Giorni 7-8:</strong> Simulazione Livello 2</p>
+<ul>
+<li>Prima prova livello 2</li>
+<li>Analisi errori</li>
+<li>Correzione mirata</li>
+</ul>
+<p><strong>Giorno 9:</strong> Consolidamento</p>
+<ul>
+<li>Test finale integrato</li>
+<li>Ripasso generale</li>
+</ul>
+<p><strong>Giorno 10:</strong> RIPROVA Livello 3</p>
+<ul>
+<li>Target: almeno 21/30</li>
+<li>Se raggiungi → continua preparazione</li>
+<li>Se non raggiungi → valuta rinvio esame</li>
+</ul>
+<hr>
+<h2 id="%F0%9F%92%A1-insights--riflessione-metacognitiva">💡 INSIGHTS &amp; RIFLESSIONE METACOGNITIVA</h2>
+<h3 id="autovalutazione-onesta">Autovalutazione onesta</h3>
+<p><strong>Prima della simulazione:</strong></p>
+<ul>
+<li>Confidenza percepita (1-10): ___</li>
+<li>Ore studio totali: ___</li>
+<li>Sensazione preparazione: _______________</li>
+</ul>
+<p><strong>Durante la simulazione:</strong></p>
+<ul>
+<li>Livello stress (1-10): ___</li>
+<li>Difficoltà percepita (1-10): ___</li>
+<li>Sensazione controllo: _______________</li>
+</ul>
+<p><strong>Dopo la simulazione:</strong></p>
+<ul>
+<li>Confidenza post-test (1-10): ___</li>
+<li>Soddisfazione prestazione (1-10): ___</li>
+<li>Sorprese (positive/negative): _______________</li>
+</ul>
+<h3 id="cosa-ho-imparato">Cosa ho imparato</h3>
+<p><strong>Su di me come studente:</strong></p>
+<hr>
+<hr>
+<hr>
+<p><strong>Sulle mie capacità:</strong></p>
+<ul>
+<li>Punti di forza emersi: _______________________________</li>
+<li>Debolezze confermate: _______________________________</li>
+<li>Abilità sottovalutate: _______________________________</li>
+</ul>
+<p><strong>Sulla materia:</strong></p>
+<ul>
+<li>Argomento più chiaro del previsto: _______________________________</li>
+<li>Argomento più ostico: _______________________________</li>
+<li>Collegamento non visto prima: _______________________________</li>
+</ul>
+<h3 id="strategie-di-studio---cosa-cambiare">Strategie di studio - cosa cambiare</h3>
+<p><strong>Ha funzionato:</strong></p>
+<ul>
+<li><input type="checkbox" id="checkbox25"><label for="checkbox25">Chunking</label></li>
+<li><input type="checkbox" id="checkbox26"><label for="checkbox26">Active recall</label></li>
+<li><input type="checkbox" id="checkbox27"><label for="checkbox27">Spaced repetition</label></li>
+<li><input type="checkbox" id="checkbox28"><label for="checkbox28">Altro: _______________________________</label></li>
+</ul>
+<p><strong>NON ha funzionato:</strong></p>
+<ul>
+<li><input type="checkbox" id="checkbox29"><label for="checkbox29">Troppa teoria, poca pratica</label></li>
+<li><input type="checkbox" id="checkbox30"><label for="checkbox30">Troppe formule, poca comprensione</label></li>
+<li><input type="checkbox" id="checkbox31"><label for="checkbox31">Poco tempo su esercizi complessi</label></li>
+<li><input type="checkbox" id="checkbox32"><label for="checkbox32">Altro: _______________________________</label></li>
+</ul>
+<p><strong>Cambiamento principale da fare:</strong></p>
+<hr>
+<hr>
+<hr>
+<h2 id="%F0%9F%93%8B-checklist-finale-pre-esame">📋 CHECKLIST FINALE PRE-ESAME</h2>
+<p>Usa questo quando avrai superato la simulazione con 24+/30:</p>
+<h3 id="conoscenze-teoriche">Conoscenze teoriche</h3>
+<ul>
+<li><input type="checkbox" id="checkbox33"><label for="checkbox33">Conosco definizione + formula di TUTTE le operazioni</label></li>
+<li><input type="checkbox" id="checkbox34"><label for="checkbox34">So distinguere ratei/risconti attivi/passivi</label></li>
+<li><input type="checkbox" id="checkbox35"><label for="checkbox35">Capisco competenza economica in tutti i casi</label></li>
+<li><input type="checkbox" id="checkbox36"><label for="checkbox36">Conosco struttura SP e CE a memoria</label></li>
+<li><input type="checkbox" id="checkbox37"><label for="checkbox37">So classificare ogni voce in bilancio</label></li>
+</ul>
+<h3 id="competenze-operative">Competenze operative</h3>
+<ul>
+<li><input type="checkbox" id="checkbox38"><label for="checkbox38">So fare scritture di acquisto/vendita con IVA</label></li>
+<li><input type="checkbox" id="checkbox39"><label for="checkbox39">Calcolo correttamente ammortamenti (ordinario + parziale)</label></li>
+<li><input type="checkbox" id="checkbox40"><label for="checkbox40">Gestisco plus/minus su vendite immobilizzazioni</label></li>
+<li><input type="checkbox" id="checkbox41"><label for="checkbox41">Calcolo TFR completo (quota + rivalutazione + ritenuta)</label></li>
+<li><input type="checkbox" id="checkbox42"><label for="checkbox42">Faccio tutti gli assestamenti correttamente</label></li>
+<li><input type="checkbox" id="checkbox43"><label for="checkbox43">Calcolo canone medio mensile leasing</label></li>
+<li><input type="checkbox" id="checkbox44"><label for="checkbox44">Determino risconti/ratei con calcoli proporzionali</label></li>
+</ul>
+<h3 id="exam-readiness">Exam readiness</h3>
+<ul>
+<li><input type="checkbox" id="checkbox45"><label for="checkbox45">Ho fatto almeno 50+ esercizi completi</label></li>
+<li><input type="checkbox" id="checkbox46"><label for="checkbox46">Ho rifatto esercizi sbagliati 2+ volte</label></li>
+<li><input type="checkbox" id="checkbox47"><label for="checkbox47">Ho simulato 3+ esami a tempo</label></li>
+<li><input type="checkbox" id="checkbox48"><label for="checkbox48">Punteggio medio simulazioni: 24+/30</label></li>
+<li><input type="checkbox" id="checkbox49"><label for="checkbox49">Rivedo formule 10 minuti/giorno</label></li>
+<li><input type="checkbox" id="checkbox50"><label for="checkbox50">Ho piano gestione tempo in esame</label></li>
+<li><input type="checkbox" id="checkbox51"><label for="checkbox51">Ho strategia lettura traccia</label></li>
+<li><input type="checkbox" id="checkbox52"><label for="checkbox52">So gestire stress e tempo</label></li>
+</ul>
+<hr>
+<h2 id="%F0%9F%94%97-risorse-finali">🔗 RISORSE FINALI</h2>
+<p><strong>File soluzioni dettagliate:</strong> (crea file separato se necessario)
+<code>02-livello-avanzato-SOLUZIONI.md</code></p>
+<p><strong>Materiali di recupero:</strong></p>
+<ul>
+<li>Moduli teoria: <code>01-immobilizzazioni-materiali.md</code> → <code>04-assestamenti-rettifiche.md</code></li>
+<li>Riepilogo generale: <code>05-riepilogo-generale.md</code></li>
+<li>Metodi studio: <code>00-guida-completa-metodi.md</code></li>
+<li>Self-check: <code>02-self-check.md</code></li>
+</ul>
+<p><strong>Altre simulazioni:</strong></p>
+<ul>
+<li>Più facile: <code>01-livello-base.md</code></li>
+<li>Intermedia: <code>02-livello-intermedio.md</code></li>
+<li>Test finale: <code>03-test-finale-integrato.md</code></li>
+</ul>
+<hr>
+<h2 id="%F0%9F%93%9D-dati-sessione">📝 DATI SESSIONE</h2>
+<p><strong>Data simulazione:</strong> <em><strong>/</strong></em>/___
+<strong>Orario inizio:</strong> <em><strong>:</strong></em>
+<strong>Orario fine:</strong> <em><strong>:</strong></em>
+<strong>Durata effettiva:</strong> ___ minuti</p>
+<p><strong>Punteggio finale:</strong> <em><strong>/100 (</strong></em>%)
+<strong>Voto equivalente:</strong> ___/30</p>
+<p><strong>Livello confidenza finale (1-10):</strong> ___
+<strong>Pronto per esame reale:</strong><input type="checkbox" id="checkbox53"><label for="checkbox53">SÌ [ ] NO [ ] QUASI</label></p>
+<p><strong>Prossima azione:</strong></p>
+<hr>
+<p><strong>Data prossima simulazione/esame:</strong>
+<em><strong>/</strong></em>/___</p>
+<hr>
+<blockquote>
+<p>🔥 <strong>Questo è il livello massimo di difficoltà.</strong> Se superi questa simulazione con 24+/30, hai dimostrato padronanza completa della materia. Sei pronto per l'esame universitario e per situazioni professionali reali.</p>
+</blockquote>
+<blockquote>
+<p>💪 <strong>Remember:</strong> Il fallimento è temporaneo. La preparazione è permanente. Anche se oggi non hai raggiunto il target, ogni simulazione ti avvicina alla padronanza.</p>
+</blockquote>
+<p><strong>Good luck!</strong> 🍀</p>
+
+</body>
+</html>
