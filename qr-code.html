@@ -1,0 +1,251 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>📱 QR Code - Studio Neuroscienza</title>
+    <script src="https://cdn.jsdelivr.net/npm/qrcodejs@1.0.0/qrcode.min.js"></script>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 20px;
+        }
+
+        .container {
+            background: white;
+            border-radius: 20px;
+            padding: 40px;
+            box-shadow: 0 20px 60px rgba(0,0,0,0.3);
+            text-align: center;
+            max-width: 600px;
+            width: 100%;
+        }
+
+        h1 {
+            color: #667eea;
+            margin-bottom: 10px;
+            font-size: 2em;
+        }
+
+        .subtitle {
+            color: #666;
+            margin-bottom: 30px;
+            font-size: 1.1em;
+        }
+
+        .url-display {
+            background: #f5f5f5;
+            padding: 15px;
+            border-radius: 10px;
+            margin-bottom: 20px;
+            word-break: break-all;
+            font-family: 'Courier New', monospace;
+            color: #333;
+            font-weight: bold;
+        }
+
+        #qrcode {
+            margin: 30px auto;
+            display: inline-block;
+            padding: 20px;
+            background: white;
+            border-radius: 10px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+        }
+
+        .buttons {
+            display: flex;
+            gap: 15px;
+            justify-content: center;
+            flex-wrap: wrap;
+            margin-top: 30px;
+        }
+
+        button {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            border: none;
+            padding: 15px 30px;
+            font-size: 1.1em;
+            border-radius: 10px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            font-weight: 600;
+            box-shadow: 0 4px 15px rgba(102, 126, 234, 0.4);
+        }
+
+        button:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(102, 126, 234, 0.6);
+        }
+
+        button:active {
+            transform: translateY(0);
+        }
+
+        .info {
+            background: #e8f4f8;
+            border-left: 4px solid #2196f3;
+            padding: 15px;
+            margin-top: 30px;
+            border-radius: 5px;
+            text-align: left;
+        }
+
+        .info h3 {
+            color: #2196f3;
+            margin-bottom: 10px;
+            font-size: 1.2em;
+        }
+
+        .info ul {
+            margin-left: 20px;
+            color: #555;
+        }
+
+        .info li {
+            margin: 8px 0;
+        }
+
+        .success {
+            background: #4caf50;
+            color: white;
+            padding: 10px 20px;
+            border-radius: 5px;
+            margin-top: 20px;
+            display: inline-block;
+            font-weight: bold;
+        }
+
+        @media print {
+            body {
+                background: white;
+            }
+            .container {
+                box-shadow: none;
+            }
+            .buttons, .info {
+                display: none;
+            }
+        }
+
+        @media (max-width: 600px) {
+            .container {
+                padding: 20px;
+            }
+            h1 {
+                font-size: 1.5em;
+            }
+            button {
+                padding: 12px 20px;
+                font-size: 1em;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>📱 QR Code - Studio Neuroscienza</h1>
+        <p class="subtitle">Scansiona per accedere al sistema di studio da mobile</p>
+
+        <div class="url-display">
+            https://studio-neuroscienza.vercel.app
+        </div>
+
+        <div class="success">
+            ✅ Deploy completato su Vercel!
+        </div>
+
+        <div id="qrcode"></div>
+
+        <div class="buttons">
+            <button onclick="downloadQR()">💾 Scarica PNG</button>
+            <button onclick="window.print()">🖨️ Stampa</button>
+            <button onclick="copyURL()">📋 Copia URL</button>
+            <button onclick="openSite()">🚀 Apri Sito</button>
+        </div>
+
+        <div class="info">
+            <h3>📖 Come utilizzare:</h3>
+            <ul>
+                <li><strong>Scansiona il QR</strong> con la fotocamera del tuo smartphone</li>
+                <li><strong>Salva nei preferiti</strong> del browser mobile per accesso rapido</li>
+                <li><strong>Aggiungi alla Home</strong> dello smartphone come app</li>
+                <li><strong>Funziona offline</strong> dopo la prima visita (PWA)</li>
+                <li><strong>Sincronizzazione</strong> progressi tra dispositivi (localStorage)</li>
+            </ul>
+        </div>
+
+        <div class="info" style="background: #fff3cd; border-left-color: #ff9800; margin-top: 20px;">
+            <h3>🔄 Aggiornamenti automatici:</h3>
+            <ul>
+                <li>Ogni <code>git push</code> aggiorna automaticamente il sito</li>
+                <li>Non serve rigenerare il QR code</li>
+                <li>URL sempre lo stesso: <strong>studio-neuroscienza.vercel.app</strong></li>
+                <li>Deploy automatico in 30 secondi</li>
+            </ul>
+        </div>
+    </div>
+
+    <script>
+        const siteURL = 'https://studio-neuroscienza.vercel.app';
+
+        // Genera QR code automaticamente al caricamento
+        function generateQR() {
+            const qrcodeDiv = document.getElementById('qrcode');
+            qrcodeDiv.innerHTML = ''; // Pulisci contenuto precedente
+
+            new QRCode(qrcodeDiv, {
+                text: siteURL,
+                width: 280,
+                height: 280,
+                colorDark: "#667eea",
+                colorLight: "#ffffff",
+                correctLevel: QRCode.CorrectLevel.H
+            });
+        }
+
+        // Download QR come PNG
+        function downloadQR() {
+            const canvas = document.querySelector('#qrcode canvas');
+            if (canvas) {
+                const url = canvas.toDataURL('image/png');
+                const link = document.createElement('a');
+                link.download = 'studio-neuroscienza-qr-code.png';
+                link.href = url;
+                link.click();
+            } else {
+                alert('QR code non trovato!');
+            }
+        }
+
+        // Copia URL negli appunti
+        function copyURL() {
+            navigator.clipboard.writeText(siteURL).then(() => {
+                alert('✅ URL copiato negli appunti!');
+            }).catch(() => {
+                alert('❌ Impossibile copiare. URL: ' + siteURL);
+            });
+        }
+
+        // Apri il sito in una nuova tab
+        function openSite() {
+            window.open(siteURL, '_blank');
+        }
+
+        // Genera QR al caricamento della pagina
+        window.addEventListener('load', generateQR);
+    </script>
+</body>
+</html>
