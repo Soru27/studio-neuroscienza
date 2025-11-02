@@ -544,7 +544,7 @@ em {
 <!-- HEADER -->
 <header class="top-header">
   <div class="course-info">
-    <a href="../economi/index.html" class="home-icon" title="Home - Tutte le Materie">🏠</a>
+    <a href="../index.html" class="home-icon" title="Home - Tutte le Materie">🏠</a>
     <div>
       <div class="course-title">⚖️ DIRITTO</div>
       <div class="course-meta">
@@ -966,7 +966,7 @@ em {
       </label>
       <label style="display:block; margin:8px 0; cursor:pointer">
         <input type="radio" name="quiz1" value="B" style="margin-right:8px">
-        B) Pace e contatto pacifico ✅
+        B) Pace e contatto pacifico
       </label>
       <label style="display:block; margin:8px 0; cursor:pointer">
         <input type="radio" name="quiz1" value="C" style="margin-right:8px">
@@ -977,7 +977,7 @@ em {
         D) Autarchia nazionale
       </label>
     </div>
-    <button onclick="validateQuiz(1, 'B')" style="padding:10px 20px; background:var(--yellow); color:#000; border:none; border-radius:6px; font-weight:600; cursor:pointer; margin-top:8px">Verifica Risposta</button>
+    <button onclick="validateQuiz(1, 'Qg==')" style="padding:10px 20px; background:var(--yellow); color:#000; border:none; border-radius:6px; font-weight:600; cursor:pointer; margin-top:8px">Verifica Risposta</button>
     <div id="quiz1-feedback" style="margin-top:12px"></div>
     <div id="quiz1-stats" style="margin-top:8px; font-size:0.85em; color:var(--muted)"></div>
   </div>
@@ -996,7 +996,7 @@ em {
       </label>
       <label style="display:block; margin:8px 0; cursor:pointer">
         <input type="radio" name="quiz2" value="B" style="margin-right:8px">
-        B) Le multinazionali e i governi del G8 ✅
+        B) Le multinazionali e i governi del G8
       </label>
       <label style="display:block; margin:8px 0; cursor:pointer">
         <input type="radio" name="quiz2" value="C" style="margin-right:8px">
@@ -1007,7 +1007,7 @@ em {
         D) Le ONG umanitarie
       </label>
     </div>
-    <button onclick="validateQuiz(2, 'B')" style="padding:10px 20px; background:var(--yellow); color:#000; border:none; border-radius:6px; font-weight:600; cursor:pointer; margin-top:8px">Verifica Risposta</button>
+    <button onclick="validateQuiz(2, 'Qg==')" style="padding:10px 20px; background:var(--yellow); color:#000; border:none; border-radius:6px; font-weight:600; cursor:pointer; margin-top:8px">Verifica Risposta</button>
     <div id="quiz2-feedback" style="margin-top:12px"></div>
     <div id="quiz2-stats" style="margin-top:8px; font-size:0.85em; color:var(--muted)"></div>
   </div>
@@ -1026,7 +1026,7 @@ em {
       </label>
       <label style="display:block; margin:8px 0; cursor:pointer">
         <input type="radio" name="quiz3" value="B" style="margin-right:8px">
-        B) Piazza Alimonda ✅
+        B) Piazza Alimonda
       </label>
       <label style="display:block; margin:8px 0; cursor:pointer">
         <input type="radio" name="quiz3" value="C" style="margin-right:8px">
@@ -1037,7 +1037,7 @@ em {
         D) Porto Antico
       </label>
     </div>
-    <button onclick="validateQuiz(3, 'B')" style="padding:10px 20px; background:var(--yellow); color:#000; border:none; border-radius:6px; font-weight:600; cursor:pointer; margin-top:8px">Verifica Risposta</button>
+    <button onclick="validateQuiz(3, 'Qg==')" style="padding:10px 20px; background:var(--yellow); color:#000; border:none; border-radius:6px; font-weight:600; cursor:pointer; margin-top:8px">Verifica Risposta</button>
     <div id="quiz3-feedback" style="margin-top:12px"></div>
     <div id="quiz3-stats" style="margin-top:8px; font-size:0.85em; color:var(--muted)"></div>
   </div>
@@ -1337,7 +1337,7 @@ const viewData = {
 console.log('📊 View data:', viewData);
 
 // ========== QUIZ SYSTEM ==========
-function validateQuiz(num, correctAnswer) {
+function validateQuiz(num, encodedAnswer) {
   const selectedInput = document.querySelector(`input[name="quiz${num}"]:checked`);
   const feedback = document.getElementById(`quiz${num}-feedback`);
   const statsDiv = document.getElementById(`quiz${num}-stats`);
@@ -1347,6 +1347,8 @@ function validateQuiz(num, correctAnswer) {
     return;
   }
 
+  // Decodifica la risposta corretta (Base64 offuscato)
+  const correctAnswer = atob(encodedAnswer);
   const userAnswer = selectedInput.value;
   const storageKey = 'quiz-stats-diritto';
   let stats = JSON.parse(localStorage.getItem(storageKey) || '{}');
