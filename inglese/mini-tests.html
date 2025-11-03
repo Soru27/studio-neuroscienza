@@ -1,0 +1,384 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mini Tests - Progressive Verification</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --blue: #0ea5e9;
+            --green: #22c55e;
+            --red: #ef4444;
+            --yellow: #f59e0b;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            background: linear-gradient(135deg, #dbeafe 0%, #d1fae5 100%);
+            color: #111827;
+            line-height: 1.6;
+        }
+
+        .header {
+            background: linear-gradient(135deg, var(--blue), var(--green));
+            color: white;
+            padding: 2.5rem 1.5rem;
+            text-align: center;
+            box-shadow: 0 4px 20px rgba(14, 165, 233, 0.3);
+            position: relative;
+        }
+
+        .btn-home {
+            position: absolute;
+            top: 1.5rem;
+            left: 1.5rem;
+            background: white;
+            color: var(--blue);
+            padding: 0.75rem 1.5rem;
+            border-radius: 8px;
+            text-decoration: none;
+            font-weight: 600;
+        }
+
+        .container {
+            max-width: 900px;
+            margin: 0 auto;
+            padding: 2rem;
+        }
+
+        .test-selector {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 1rem;
+            margin-bottom: 2rem;
+        }
+
+        .test-btn {
+            background: white;
+            padding: 1.5rem;
+            border-radius: 12px;
+            border: 3px solid #e5e7eb;
+            cursor: pointer;
+            transition: all 0.2s;
+            text-align: center;
+            font-weight: 600;
+        }
+
+        .test-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 20px rgba(0,0,0,0.1);
+        }
+
+        .test-btn.active {
+            border-color: var(--blue);
+            background: var(--blue);
+            color: white;
+        }
+
+        .test-container {
+            background: white;
+            border-radius: 12px;
+            padding: 2rem;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.08);
+            display: none;
+        }
+
+        .test-container.active {
+            display: block;
+        }
+
+        .question {
+            background: #f9fafb;
+            padding: 1.5rem;
+            border-radius: 8px;
+            margin-bottom: 1.5rem;
+            border-left: 4px solid var(--blue);
+        }
+
+        .question-text {
+            font-size: 1.1rem;
+            margin-bottom: 1rem;
+            font-weight: 600;
+        }
+
+        .options {
+            display: grid;
+            gap: 0.75rem;
+        }
+
+        .option {
+            padding: 0.75rem 1rem;
+            border: 2px solid #e5e7eb;
+            border-radius: 6px;
+            cursor: pointer;
+            transition: all 0.2s;
+        }
+
+        .option:hover {
+            background: #f3f4f6;
+        }
+
+        .option.selected {
+            border-color: var(--blue);
+            background: #dbeafe;
+        }
+
+        .option.correct {
+            border-color: var(--green);
+            background: #dcfce7;
+        }
+
+        .option.incorrect {
+            border-color: var(--red);
+            background: #fee2e2;
+        }
+
+        .submit-btn {
+            background: var(--blue);
+            color: white;
+            padding: 1rem 2rem;
+            border: none;
+            border-radius: 8px;
+            font-size: 1.1rem;
+            font-weight: 600;
+            cursor: pointer;
+            width: 100%;
+            margin-top: 1rem;
+        }
+
+        .submit-btn:hover {
+            background: #0284c7;
+        }
+
+        .result {
+            background: white;
+            padding: 2rem;
+            border-radius: 12px;
+            margin-top: 2rem;
+            text-align: center;
+            display: none;
+        }
+
+        .result.show {
+            display: block;
+        }
+
+        .score {
+            font-size: 3rem;
+            font-weight: 700;
+            margin: 1rem 0;
+        }
+
+        .score.excellent { color: var(--green); }
+        .score.good { color: var(--blue); }
+        .score.needwork { color: var(--yellow); }
+        .score.poor { color: var(--red); }
+
+        @media (max-width: 768px) {
+            .container { padding: 1rem; }
+            .btn-home { position: static; margin-bottom: 1rem; }
+        }
+    </style>
+</head>
+<body>
+    <div class="header">
+        <a href="index.html" class="btn-home">🏠 Inglese Home</a>
+        <h1>📝 Mini Tests - Progressive Verification</h1>
+        <p>Test your English knowledge step by step</p>
+    </div>
+
+    <div class="container">
+        <div class="test-selector">
+            <div class="test-btn active" onclick="loadTest(1)">
+                📘 Day 1<br><small>Basics</small>
+            </div>
+            <div class="test-btn" onclick="loadTest(2)">
+                📗 Day 2<br><small>Intermediate</small>
+            </div>
+            <div class="test-btn" onclick="loadTest(3)">
+                📙 Day 3<br><small>Advanced</small>
+            </div>
+            <div class="test-btn" onclick="loadTest(4)">
+                📕 Final<br><small>Complete</small>
+            </div>
+        </div>
+
+        <div id="test1" class="test-container active">
+            <h2>📘 Day 1 - Basic Grammar (10 questions)</h2>
+            <div id="questions1"></div>
+            <button class="submit-btn" onclick="submitTest(1)">Submit Answers</button>
+            <div id="result1" class="result"></div>
+        </div>
+
+        <div id="test2" class="test-container">
+            <h2>📗 Day 2 - Intermediate (10 questions)</h2>
+            <div id="questions2"></div>
+            <button class="submit-btn" onclick="submitTest(2)">Submit Answers</button>
+            <div id="result2" class="result"></div>
+        </div>
+
+        <div id="test3" class="test-container">
+            <h2>📙 Day 3 - Advanced (10 questions)</h2>
+            <div id="questions3"></div>
+            <button class="submit-btn" onclick="submitTest(3)">Submit Answers</button>
+            <div id="result3" class="result"></div>
+        </div>
+
+        <div id="test4" class="test-container">
+            <h2>📕 Verifica Finale - Complete (15 questions)</h2>
+            <div id="questions4"></div>
+            <button class="submit-btn" onclick="submitTest(4)">Submit Final Test</button>
+            <div id="result4" class="result"></div>
+        </div>
+    </div>
+
+    <script>
+        const tests = {
+            1: [
+                { q: 'I ___ a student.', opts: ['am', 'is', 'are', 'be'], correct: 0 },
+                { q: 'She ___ to school every day.', opts: ['go', 'goes', 'going', 'is go'], correct: 1 },
+                { q: 'They ___ playing football now.', opts: ['is', 'am', 'are', 'be'], correct: 2 },
+                { q: 'I ___ English.', opts: ['speak', 'speaks', 'speaking', 'am speak'], correct: 0 },
+                { q: '___ you like pizza?', opts: ['Do', 'Does', 'Are', 'Is'], correct: 0 },
+                { q: 'He ___ have a car.', opts: ["don't", "doesn't", "isn't", "aren't"], correct: 1 },
+                { q: 'Where ___ you live?', opts: ['do', 'does', 'are', 'is'], correct: 0 },
+                { q: 'I went to Rome ___ year.', opts: ['last', 'since', 'for', 'ago'], correct: 0 },
+                { q: 'She is ___ than me.', opts: ['tall', 'taller', 'more tall', 'tallest'], correct: 1 },
+                { q: 'I play ___ piano.', opts: ['a', 'an', 'the', '-'], correct: 2 }
+            ],
+            2: [
+                { q: 'I ___ in London for 5 years.', opts: ['live', 'am living', 'have lived', 'lived'], correct: 2 },
+                { q: 'If it rains, I ___ home.', opts: ["'ll stay", 'stay', 'stayed', 'staying'], correct: 0 },
+                { q: 'You ___ wear uniform. (not necessary)', opts: ["mustn't", "don't have to", 'must', 'have to'], correct: 1 },
+                { q: 'I ___ TV when he called.', opts: ['watch', 'am watching', 'was watching', 'watched'], correct: 2 },
+                { q: 'She ___ seen that movie.', opts: ['has', 'have', 'is', 'was'], correct: 0 },
+                { q: 'I ___ to Paris last year.', opts: ['go', 'went', 'have gone', 'have been'], correct: 1 },
+                { q: 'He ___ be at home (light is on).', opts: ['can', 'could', 'must', 'might'], correct: 2 },
+                { q: 'I ___ here since 2020.', opts: ['work', 'worked', 'am working', 'have been working'], correct: 3 },
+                { q: 'Cars ___ in factories.', opts: ['make', 'makes', 'are made', 'is made'], correct: 2 },
+                { q: 'I wish I ___ rich.', opts: ['am', 'was', 'were', 'be'], correct: 2 }
+            ],
+            3: [
+                { q: 'If I had studied, I ___ passed.', opts: ['will have', 'would have', 'would', 'will'], correct: 1 },
+                { q: 'By 2025, I ___ graduated.', opts: ['will', 'will have', 'would', 'would have'], correct: 1 },
+                { q: 'The bridge ___ next year.', opts: ['will build', 'will be built', 'is building', 'builds'], correct: 1 },
+                { q: '"I\'ll call you" → He said he ___ me.', opts: ['will call', 'would call', 'calls', 'called'], correct: 1 },
+                { q: 'I ___ the train, so I was late.', opts: ['lost', 'missed', 'left', 'forgot'], correct: 1 },
+                { q: 'He ___ been smoking (evidence).', opts: ['must have', 'should have', 'could have', 'might have'], correct: 0 },
+                { q: 'Rarely ___ such beauty.', opts: ['I have seen', 'have I seen', 'I see', 'see I'], correct: 1 },
+                { q: 'I\'d rather you ___ here.', opts: ['stay', 'stayed', 'staying', 'to stay'], correct: 1 },
+                { q: 'It\'s time we ___.', opts: ['go', 'went', 'gone', 'going'], correct: 1 },
+                { q: '___ you help me, I\'d appreciate it.', opts: ['Should', 'Would', 'Could', 'Will'], correct: 0 }
+            ],
+            4: [
+                { q: 'I ___ English for 3 years.', opts: ['study', 'am studying', 'have studied', 'studied'], correct: 2 },
+                { q: 'If I ___ you, I\'d accept.', opts: ['am', 'was', 'were', 'be'], correct: 2 },
+                { q: 'She told me ___ late.', opts: ["don't be", 'to not be', 'not to be', 'not be'], correct: 2 },
+                { q: 'I enjoy ___ books.', opts: ['read', 'to read', 'reading', 'reads'], correct: 2 },
+                { q: 'He ___ here yesterday.', opts: ['is', 'was', 'has been', 'will be'], correct: 1 },
+                { q: 'They ___ married for 10 years.', opts: ['are', 'were', 'have been', 'will be'], correct: 2 },
+                { q: 'I wish I ___ studied harder.', opts: ['have', 'has', 'had', 'would'], correct: 2 },
+                { q: 'Unless you hurry, you ___ late.', opts: ['are', 'will be', 'would be', 'were'], correct: 1 },
+                { q: 'The work ___ by tomorrow.', opts: ['finishes', 'will finish', 'will be finished', 'is finishing'], correct: 2 },
+                { q: 'He suggested ___ early.', opts: ['to leave', 'leave', 'leaving', 'left'], correct: 2 },
+                { q: 'I\'d better ___ now.', opts: ['go', 'to go', 'going', 'gone'], correct: 0 },
+                { q: 'She made me ___ it.', opts: ['do', 'to do', 'doing', 'done'], correct: 0 },
+                { q: 'I\'m used to ___ early.', opts: ['wake', 'waking', 'woke', 'woken'], correct: 1 },
+                { q: 'He ___ smoke, but he quit.', opts: ['use to', 'used to', 'was used to', 'is used to'], correct: 1 },
+                { q: 'Not only ___ but also intelligent.', opts: ['he is kind', 'is he kind', 'kind he is', 'he kind is'], correct: 1 }
+            ]
+        };
+
+        let userAnswers = {};
+
+        function loadTest(testNum) {
+            document.querySelectorAll('.test-btn').forEach(btn => btn.classList.remove('active'));
+            document.querySelectorAll('.test-container').forEach(cont => cont.classList.remove('active'));
+            event.target.closest('.test-btn').classList.add('active');
+            document.getElementById('test' + testNum).classList.add('active');
+            renderQuestions(testNum);
+        }
+
+        function renderQuestions(testNum) {
+            const container = document.getElementById('questions' + testNum);
+            container.innerHTML = '';
+            userAnswers[testNum] = {};
+
+            tests[testNum].forEach((question, qIndex) => {
+                const qDiv = document.createElement('div');
+                qDiv.className = 'question';
+                qDiv.innerHTML = `
+                    <div class="question-text">${qIndex + 1}. ${question.q}</div>
+                    <div class="options">
+                        ${question.opts.map((opt, oIndex) => `
+                            <div class="option" onclick="selectOption(${testNum}, ${qIndex}, ${oIndex})">
+                                ${opt}
+                            </div>
+                        `).join('')}
+                    </div>
+                `;
+                container.appendChild(qDiv);
+            });
+        }
+
+        function selectOption(testNum, qIndex, oIndex) {
+            const question = document.querySelectorAll(`#questions${testNum} .question`)[qIndex];
+            question.querySelectorAll('.option').forEach(opt => opt.classList.remove('selected'));
+            question.querySelectorAll('.option')[oIndex].classList.add('selected');
+            userAnswers[testNum][qIndex] = oIndex;
+        }
+
+        function submitTest(testNum) {
+            let correct = 0;
+            const total = tests[testNum].length;
+
+            tests[testNum].forEach((question, qIndex) => {
+                const questionDiv = document.querySelectorAll(`#questions${testNum} .question`)[qIndex];
+                const options = questionDiv.querySelectorAll('.option');
+
+                options.forEach((opt, oIndex) => {
+                    opt.style.pointerEvents = 'none';
+                    if (oIndex === question.correct) {
+                        opt.classList.add('correct');
+                    }
+                    if (userAnswers[testNum][qIndex] === oIndex && oIndex !== question.correct) {
+                        opt.classList.add('incorrect');
+                    }
+                });
+
+                if (userAnswers[testNum][qIndex] === question.correct) {
+                    correct++;
+                }
+            });
+
+            const percentage = Math.round((correct / total) * 100);
+            const resultDiv = document.getElementById('result' + testNum);
+            resultDiv.classList.add('show');
+
+            let scoreClass = 'poor';
+            let message = 'Keep studying!';
+            if (percentage >= 90) { scoreClass = 'excellent'; message = '🏆 Excellent!'; }
+            else if (percentage >= 70) { scoreClass = 'good'; message = '✅ Good job!'; }
+            else if (percentage >= 50) { scoreClass = 'needwork'; message = '📚 Keep practicing!'; }
+
+            resultDiv.innerHTML = `
+                <h3>${message}</h3>
+                <div class="score ${scoreClass}">${percentage}%</div>
+                <p>You got ${correct} out of ${total} correct</p>
+            `;
+
+            localStorage.setItem('test' + testNum + '-score', percentage);
+        }
+
+        // Load first test on page load
+        renderQuestions(1);
+    </script>
+</body>
+</html>

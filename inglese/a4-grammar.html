@@ -1,0 +1,1293 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>A4 Grammar - Sistema Neuroscienza</title>
+
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Playfair+Display:wght@700&display=swap" rel="stylesheet">
+
+    <style>
+        /* ===== VARIABILI COLORI INGLESE ===== */
+        :root {
+            --blue-primary: #0ea5e9;
+            --blue-dark: #0284c7;
+            --blue-light: #e0f2fe;
+            --green-correct: #22c55e;
+            --green-light: #dcfce7;
+            --red-error: #ef4444;
+            --red-light: #fee2e2;
+            --yellow-warning: #f59e0b;
+            --yellow-light: #fef3c7;
+            --purple-advanced: #8b5cf6;
+            --purple-light: #ede9fe;
+            --cream: #faf9f7;
+            --text: #1f2937;
+            --text-light: #6b7280;
+            --border: #e5e7eb;
+        }
+
+        /* ===== RESET & BASE ===== */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            line-height: 1.6;
+            color: var(--text);
+            background: linear-gradient(135deg, var(--blue-light) 0%, var(--green-light) 100%);
+            min-height: 100vh;
+        }
+
+        /* ===== HEADER ===== */
+        .header {
+            background: linear-gradient(135deg, var(--blue-primary) 0%, var(--green-correct) 100%);
+            color: white;
+            padding: 3rem 2rem;
+            text-align: center;
+            box-shadow: 0 4px 20px rgba(14, 165, 233, 0.3);
+        }
+
+        .header h1 {
+            font-family: 'Playfair Display', serif;
+            font-size: 2.5rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .subtitle {
+            font-size: 1.1rem;
+            opacity: 0.95;
+            margin-bottom: 1rem;
+        }
+
+        .btn-home {
+            position: absolute;
+            top: 2rem;
+            left: 2rem;
+            background: white;
+            color: var(--blue-primary);
+            padding: 0.5rem 1rem;
+            border-radius: 8px;
+            text-decoration: none;
+            font-weight: 600;
+            transition: transform 0.2s;
+        }
+
+        .btn-home:hover {
+            transform: translateY(-2px);
+        }
+
+        /* ===== CONTAINER ===== */
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 2rem;
+        }
+
+        /* ===== DIFFICULTY LEGEND ===== */
+        .difficulty-legend {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 1rem;
+            margin-bottom: 2rem;
+        }
+
+        .diff-card {
+            padding: 1rem;
+            border-radius: 12px;
+            color: white;
+            text-align: center;
+            font-weight: 600;
+        }
+
+        .diff-card.basic { background: linear-gradient(135deg, var(--blue-primary), var(--blue-dark)); }
+        .diff-card.intermediate { background: linear-gradient(135deg, var(--yellow-warning), #d97706); }
+        .diff-card.advanced { background: linear-gradient(135deg, var(--purple-advanced), #7c3aed); }
+
+        /* ===== SECTIONS ===== */
+        .section {
+            background: white;
+            border-radius: 12px;
+            margin-bottom: 1.5rem;
+            overflow: hidden;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.08);
+        }
+
+        .section-header {
+            padding: 1.5rem;
+            cursor: pointer;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            font-weight: 600;
+            font-size: 1.2rem;
+            transition: background 0.3s;
+        }
+
+        .section-header:hover {
+            background: var(--cream);
+        }
+
+        .section-header.basic { border-left: 5px solid var(--blue-primary); }
+        .section-header.intermediate { border-left: 5px solid var(--yellow-warning); }
+        .section-header.advanced { border-left: 5px solid var(--purple-advanced); }
+
+        .section-content {
+            padding: 0 1.5rem;
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.5s ease-out, padding 0.3s;
+        }
+
+        .section-content.expanded {
+            padding: 1.5rem;
+            max-height: 5000px;
+        }
+
+        /* ===== GRAMMAR RULES ===== */
+        .rule-box {
+            background: var(--cream);
+            border-left: 4px solid var(--blue-primary);
+            padding: 1.5rem;
+            margin: 1rem 0;
+            border-radius: 8px;
+        }
+
+        .rule-box h4 {
+            color: var(--blue-dark);
+            margin-bottom: 0.5rem;
+        }
+
+        .example-correct {
+            background: var(--green-light);
+            border-left: 3px solid var(--green-correct);
+            padding: 1rem;
+            margin: 0.5rem 0;
+            border-radius: 6px;
+        }
+
+        .example-wrong {
+            background: var(--red-light);
+            border-left: 3px solid var(--red-error);
+            padding: 1rem;
+            margin: 0.5rem 0;
+            border-radius: 6px;
+            text-decoration: line-through;
+        }
+
+        /* ===== TABLES ===== */
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 1rem 0;
+        }
+
+        th, td {
+            padding: 0.75rem;
+            text-align: left;
+            border-bottom: 1px solid var(--border);
+        }
+
+        th {
+            background: var(--cream);
+            font-weight: 600;
+        }
+
+        /* ===== FLASHCARDS ===== */
+        .flashcards-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 1.5rem;
+            margin: 2rem 0;
+        }
+
+        .flashcard {
+            height: 200px;
+            perspective: 1000px;
+            cursor: pointer;
+        }
+
+        .flashcard-inner {
+            position: relative;
+            width: 100%;
+            height: 100%;
+            text-align: center;
+            transition: transform 0.6s;
+            transform-style: preserve-3d;
+        }
+
+        .flashcard.flipped .flashcard-inner {
+            transform: rotateY(180deg);
+        }
+
+        .flashcard-face {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            backface-visibility: hidden;
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 1.5rem;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+        }
+
+        .flashcard-front {
+            background: linear-gradient(135deg, var(--blue-primary), var(--blue-dark));
+            color: white;
+            font-weight: 600;
+        }
+
+        .flashcard-back {
+            background: white;
+            color: var(--text);
+            transform: rotateY(180deg);
+            border: 2px solid var(--border);
+        }
+
+        /* ===== CHECKLIST ===== */
+        .checklist-section {
+            background: white;
+            border-radius: 12px;
+            padding: 2rem;
+            margin: 2rem 0;
+        }
+
+        .progress-container {
+            background: var(--border);
+            height: 30px;
+            border-radius: 15px;
+            overflow: hidden;
+            margin-bottom: 2rem;
+        }
+
+        .progress-bar {
+            height: 100%;
+            background: linear-gradient(90deg, var(--blue-primary), var(--green-correct));
+            width: 0%;
+            transition: width 0.5s ease;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-weight: 600;
+        }
+
+        .checklist-item {
+            display: block;
+            padding: 0.5rem 0;
+            cursor: pointer;
+            transition: background 0.2s;
+        }
+
+        .checklist-item:hover {
+            background: var(--cream);
+            padding-left: 1rem;
+        }
+
+        .checklist-item input {
+            margin-right: 0.75rem;
+            width: 18px;
+            height: 18px;
+            cursor: pointer;
+        }
+
+        /* ===== RESPONSIVE ===== */
+        @media (max-width: 768px) {
+            .header h1 { font-size: 1.8rem; }
+            .container { padding: 1rem; }
+            .flashcards-grid { grid-template-columns: 1fr; }
+            .btn-home { position: static; display: inline-block; margin-bottom: 1rem; }
+        }
+    </style>
+</head>
+<body>
+    <!-- HEADER -->
+    <div class="header">
+        <a href="index.html" class="btn-home">🏠 Inglese Home</a>
+        <h1>📚 A4 Grammar - Complete Guide</h1>
+        <p class="subtitle">Foundations + Structures | Sistema Neuroscienza</p>
+    </div>
+
+    <!-- CONTAINER -->
+    <div class="container">
+        <!-- DIFFICULTY LEGEND -->
+        <div class="difficulty-legend">
+            <div class="diff-card basic">🔵 BASIC (A1-A2)</div>
+            <div class="diff-card intermediate">🟡 INTERMEDIATE (B1)</div>
+            <div class="diff-card advanced">🟣 ADVANCED (B2)</div>
+        </div>
+
+        <!-- SECTION 1: ARTICLES & NOUNS -->
+        <div class="section">
+            <div class="section-header basic" onclick="toggleSection(this)">
+                <span>🔵 ARTICLES & NOUNS</span>
+                <span>▼</span>
+            </div>
+            <div class="section-content">
+                <div class="rule-box">
+                    <h4>Definite Article: THE</h4>
+                    <p><strong>Usa THE quando:</strong></p>
+                    <ul>
+                        <li>Oggetto specifico/già menzionato: <em>The book on the table</em></li>
+                        <li>Unico nel suo genere: <em>The sun, the moon</em></li>
+                        <li>Superlativo: <em>The best, the tallest</em></li>
+                        <li>Strumenti musicali: <em>play the piano</em></li>
+                        <li>Nazioni plurali: <em>The USA, The Netherlands</em></li>
+                    </ul>
+                </div>
+
+                <div class="rule-box">
+                    <h4>Indefinite Articles: A/AN</h4>
+                    <p><strong>A</strong> → consonante: <em>a book, a university</em></p>
+                    <p><strong>AN</strong> → vocale/H muta: <em>an apple, an hour</em></p>
+                    <div class="example-correct">✅ It's <strong>a</strong> European country (suono /j/)</div>
+                    <div class="example-wrong">❌ It's an European country</div>
+                </div>
+
+                <table>
+                    <thead>
+                        <tr>
+                            <th>NO ARTICLE</th>
+                            <th>Example</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>Generalizzazioni</td>
+                            <td>Dogs are loyal (tutti i cani)</td>
+                        </tr>
+                        <tr>
+                            <td>Sport</td>
+                            <td>I play football</td>
+                        </tr>
+                        <tr>
+                            <td>Pasti</td>
+                            <td>Have breakfast/lunch/dinner</td>
+                        </tr>
+                        <tr>
+                            <td>Lingue</td>
+                            <td>I speak English</td>
+                        </tr>
+                        <tr>
+                            <td>Scuola/Lavoro</td>
+                            <td>Go to school/work</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+
+        <!-- SECTION 2: VERB TENSES -->
+        <div class="section">
+            <div class="section-header basic" onclick="toggleSection(this)">
+                <span>🔵 VERB TENSES - Present</span>
+                <span>▼</span>
+            </div>
+            <div class="section-content">
+                <div class="rule-box">
+                    <h4>Present Simple vs Present Continuous</h4>
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>Present Simple</th>
+                                <th>Present Continuous</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>Abitudini: I work every day</td>
+                                <td>Azioni in corso: I'm working now</td>
+                            </tr>
+                            <tr>
+                                <td>Fatti: Water boils at 100°C</td>
+                                <td>Temporaneo: I'm living in Rome (per ora)</td>
+                            </tr>
+                            <tr>
+                                <td>Orari: Train leaves at 8</td>
+                                <td>Futuro pianificato: I'm meeting Tom tomorrow</td>
+                            </tr>
+                            <tr>
+                                <td>Keywords: always, often, never</td>
+                                <td>Keywords: now, at the moment, currently</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+
+                <div class="rule-box">
+                    <h4>Present Perfect vs Past Simple</h4>
+                    <div class="example-correct">✅ I <strong>have visited</strong> Paris (esperienza, quando non importa)</div>
+                    <div class="example-correct">✅ I <strong>visited</strong> Paris last year (tempo specifico)</div>
+                    <div class="example-wrong">❌ I have visited Paris last year</div>
+
+                    <p><strong>Present Perfect per:</strong></p>
+                    <ul>
+                        <li>Esperienza: Have you ever been to Japan?</li>
+                        <li>Risultato presente: I've lost my keys (ancora persi)</li>
+                        <li>Periodo non finito: I've worked here since 2020</li>
+                        <li>Con: just, already, yet, ever, never, since, for</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <!-- SECTION 3: PAST TENSES -->
+        <div class="section">
+            <div class="section-header intermediate" onclick="toggleSection(this)">
+                <span>🟡 VERB TENSES - Past</span>
+                <span>▼</span>
+            </div>
+            <div class="section-content">
+                <div class="rule-box">
+                    <h4>Past Simple vs Past Continuous</h4>
+                    <div class="example-correct">
+                        ✅ I <strong>was sleeping</strong> when the phone <strong>rang</strong>
+                        <br><small>(azione lunga interrotta da azione breve)</small>
+                    </div>
+
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>Past Simple</th>
+                                <th>Past Continuous</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>Azioni complete: I finished at 5</td>
+                                <td>Azioni in progresso: I was working at 5</td>
+                            </tr>
+                            <tr>
+                                <td>Sequenza: I came, saw, conquered</td>
+                                <td>Simultanee: While I was cooking, he was reading</td>
+                            </tr>
+                            <tr>
+                                <td>Keywords: yesterday, ago, last</td>
+                                <td>Keywords: while, when, as</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+
+                <div class="rule-box">
+                    <h4>Past Perfect</h4>
+                    <p>Azione anteriore ad altra nel passato ("il passato del passato")</p>
+                    <div class="example-correct">
+                        ✅ When I arrived, the train <strong>had already left</strong>
+                        <br><small>(partenza treno PRIMA del mio arrivo)</small>
+                    </div>
+                    <p><strong>Timeline:</strong> Past Perfect → Past Simple → Now</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- SECTION 4: FUTURE FORMS -->
+        <div class="section">
+            <div class="section-header intermediate" onclick="toggleSection(this)">
+                <span>🟡 FUTURE FORMS</span>
+                <span>▼</span>
+            </div>
+            <div class="section-content">
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Form</th>
+                            <th>Use</th>
+                            <th>Example</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td><strong>Will</strong></td>
+                            <td>Decisioni istantanee, previsioni</td>
+                            <td>I'll help you! / It will rain tomorrow</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Be going to</strong></td>
+                            <td>Intenzioni, evidenza presente</td>
+                            <td>I'm going to study / Look! It's going to rain</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Present Continuous</strong></td>
+                            <td>Appuntamenti fissi</td>
+                            <td>I'm meeting the doctor at 3pm</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Present Simple</strong></td>
+                            <td>Orari, programmi ufficiali</td>
+                            <td>The train leaves at 8:30</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Future Continuous</strong></td>
+                            <td>Azione in corso nel futuro</td>
+                            <td>This time tomorrow I'll be flying to Paris</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Future Perfect</strong></td>
+                            <td>Completato prima di momento futuro</td>
+                            <td>By 2025 I'll have graduated</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+
+        <!-- SECTION 5: MODAL VERBS -->
+        <div class="section">
+            <div class="section-header intermediate" onclick="toggleSection(this)">
+                <span>🟡 MODAL VERBS</span>
+                <span>▼</span>
+            </div>
+            <div class="section-content">
+                <div class="rule-box">
+                    <h4>Ability</h4>
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>Present</th>
+                                <th>Past</th>
+                                <th>Future</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>CAN swim</td>
+                                <td>COULD swim</td>
+                                <td>WILL BE ABLE TO swim</td>
+                            </tr>
+                            <tr>
+                                <td>BE ABLE TO swim</td>
+                                <td>WAS ABLE TO swim (riuscito)</td>
+                                <td>-</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+
+                <div class="rule-box">
+                    <h4>Obligation & Necessity</h4>
+                    <ul>
+                        <li><strong>MUST</strong> = Obbligo forte interno: I must study (lo sento io)</li>
+                        <li><strong>HAVE TO</strong> = Obbligo esterno: I have to wear uniform (regola scuola)</li>
+                        <li><strong>SHOULD</strong> = Consiglio: You should rest</li>
+                        <li><strong>DON'T HAVE TO</strong> = Non necessario: You don't have to come</li>
+                        <li><strong>MUSTN'T</strong> = Proibito: You mustn't smoke here</li>
+                    </ul>
+                </div>
+
+                <div class="rule-box">
+                    <h4>Possibility & Deduction</h4>
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>Certainty Level</th>
+                                <th>Modal</th>
+                                <th>Example</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>100% sure</td>
+                                <td>MUST</td>
+                                <td>He must be at home (lights on)</td>
+                            </tr>
+                            <tr>
+                                <td>90% sure</td>
+                                <td>WILL</td>
+                                <td>That will be John (doorbell)</td>
+                            </tr>
+                            <tr>
+                                <td>50% possible</td>
+                                <td>MAY/MIGHT/COULD</td>
+                                <td>She may/might/could be late</td>
+                            </tr>
+                            <tr>
+                                <td>0% impossible</td>
+                                <td>CAN'T</td>
+                                <td>He can't be 50 (looks young)</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+
+        <!-- SECTION 6: CONDITIONALS -->
+        <div class="section">
+            <div class="section-header advanced" onclick="toggleSection(this)">
+                <span>🟣 CONDITIONALS</span>
+                <span>▼</span>
+            </div>
+            <div class="section-content">
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Type</th>
+                            <th>If-clause</th>
+                            <th>Main clause</th>
+                            <th>Use</th>
+                            <th>Example</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td><strong>Zero</strong></td>
+                            <td>Present Simple</td>
+                            <td>Present Simple</td>
+                            <td>Fatti sempre veri</td>
+                            <td>If you heat ice, it melts</td>
+                        </tr>
+                        <tr>
+                            <td><strong>First</strong></td>
+                            <td>Present Simple</td>
+                            <td>Will + infinitive</td>
+                            <td>Futuro possibile</td>
+                            <td>If it rains, I'll stay home</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Second</strong></td>
+                            <td>Past Simple</td>
+                            <td>Would + infinitive</td>
+                            <td>Presente ipotetico</td>
+                            <td>If I had money, I'd buy a car</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Third</strong></td>
+                            <td>Past Perfect</td>
+                            <td>Would have + past part.</td>
+                            <td>Passato impossibile</td>
+                            <td>If I had studied, I'd have passed</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Mixed</strong></td>
+                            <td>Past Perfect</td>
+                            <td>Would + infinitive</td>
+                            <td>Passato→presente</td>
+                            <td>If I had studied medicine, I'd be a doctor now</td>
+                        </tr>
+                    </tbody>
+                </table>
+
+                <div class="rule-box">
+                    <h4>Alternative to IF</h4>
+                    <ul>
+                        <li><strong>UNLESS</strong> = if not: Unless you hurry, you'll be late</li>
+                        <li><strong>PROVIDED/PROVIDING THAT</strong> = solo se: I'll come provided that you pay</li>
+                        <li><strong>AS LONG AS</strong> = finché: You can stay as long as you're quiet</li>
+                        <li><strong>IN CASE</strong> = nel caso: Take umbrella in case it rains</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <!-- SECTION 7: PASSIVE VOICE -->
+        <div class="section">
+            <div class="section-header advanced" onclick="toggleSection(this)">
+                <span>🟣 PASSIVE VOICE</span>
+                <span>▼</span>
+            </div>
+            <div class="section-content">
+                <div class="rule-box">
+                    <h4>Formation: BE + Past Participle</h4>
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>Tense</th>
+                                <th>Active</th>
+                                <th>Passive</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>Present Simple</td>
+                                <td>They make cars</td>
+                                <td>Cars are made</td>
+                            </tr>
+                            <tr>
+                                <td>Present Continuous</td>
+                                <td>They are making cars</td>
+                                <td>Cars are being made</td>
+                            </tr>
+                            <tr>
+                                <td>Past Simple</td>
+                                <td>They made cars</td>
+                                <td>Cars were made</td>
+                            </tr>
+                            <tr>
+                                <td>Present Perfect</td>
+                                <td>They have made cars</td>
+                                <td>Cars have been made</td>
+                            </tr>
+                            <tr>
+                                <td>Will</td>
+                                <td>They will make cars</td>
+                                <td>Cars will be made</td>
+                            </tr>
+                            <tr>
+                                <td>Modal</td>
+                                <td>They must make cars</td>
+                                <td>Cars must be made</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+
+                <div class="rule-box">
+                    <h4>When to use Passive</h4>
+                    <ul>
+                        <li>Agente sconosciuto/ovvio: <em>My bike was stolen</em></li>
+                        <li>Focus sull'azione: <em>The bridge is being repaired</em></li>
+                        <li>Stile formale: <em>Applications must be submitted by May</em></li>
+                        <li>Processi: <em>Coffee is grown in Brazil</em></li>
+                    </ul>
+                    <p><strong>BY + agent</strong> solo se informazione importante:</p>
+                    <div class="example-correct">✅ This book was written <strong>by Shakespeare</strong> (importante)</div>
+                    <div class="example-wrong">❌ Bread is made by bakers (ovvio)</div>
+                </div>
+            </div>
+        </div>
+
+        <!-- SECTION 8: REPORTED SPEECH -->
+        <div class="section">
+            <div class="section-header advanced" onclick="toggleSection(this)">
+                <span>🟣 REPORTED SPEECH</span>
+                <span>▼</span>
+            </div>
+            <div class="section-content">
+                <div class="rule-box">
+                    <h4>Backshift of Tenses</h4>
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>Direct Speech</th>
+                                <th>Reported Speech</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>Present Simple: "I work"</td>
+                                <td>Past Simple: He said he worked</td>
+                            </tr>
+                            <tr>
+                                <td>Present Continuous: "I'm working"</td>
+                                <td>Past Continuous: He said he was working</td>
+                            </tr>
+                            <tr>
+                                <td>Past Simple: "I worked"</td>
+                                <td>Past Perfect: He said he had worked</td>
+                            </tr>
+                            <tr>
+                                <td>Present Perfect: "I've worked"</td>
+                                <td>Past Perfect: He said he had worked</td>
+                            </tr>
+                            <tr>
+                                <td>Will: "I'll work"</td>
+                                <td>Would: He said he would work</td>
+                            </tr>
+                            <tr>
+                                <td>Can: "I can work"</td>
+                                <td>Could: He said he could work</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+
+                <div class="rule-box">
+                    <h4>Time/Place Changes</h4>
+                    <ul>
+                        <li>NOW → then</li>
+                        <li>TODAY → that day</li>
+                        <li>TOMORROW → the next/following day</li>
+                        <li>YESTERDAY → the day before</li>
+                        <li>HERE → there</li>
+                        <li>THIS → that</li>
+                        <li>THESE → those</li>
+                    </ul>
+                </div>
+
+                <div class="rule-box">
+                    <h4>Reporting Questions</h4>
+                    <div class="example-correct">
+                        ✅ "Where do you live?" → He asked where I lived
+                        <br><small>(NO question form, NO do/does)</small>
+                    </div>
+                    <div class="example-correct">
+                        ✅ "Do you smoke?" → He asked if/whether I smoked
+                        <br><small>(YES/NO questions: use IF/WHETHER)</small>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- FLASHCARDS -->
+        <div class="section">
+            <div class="section-header" onclick="toggleSection(this)">
+                <span>🃏 GRAMMAR FLASHCARDS</span>
+                <span>▼</span>
+            </div>
+            <div class="section-content expanded">
+                <p style="text-align: center; margin-bottom: 2rem;">
+                    <em>Click to reveal the answer!</em>
+                </p>
+
+                <div class="flashcards-grid">
+                    <!-- Article Flashcards -->
+                    <div class="flashcard" onclick="flipCard(this)">
+                        <div class="flashcard-inner">
+                            <div class="flashcard-face flashcard-front">
+                                <span style="position: absolute; top: 10px; right: 10px; font-size: 0.8rem;">🔵 BASIC</span>
+                                I play ___ piano and ___ football
+                            </div>
+                            <div class="flashcard-face flashcard-back">
+                                I play <strong>THE</strong> piano and <strong>Ø</strong> football
+                                <br><small>Strumenti = THE, Sport = no article</small>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="flashcard" onclick="flipCard(this)">
+                        <div class="flashcard-inner">
+                            <div class="flashcard-face flashcard-front">
+                                <span style="position: absolute; top: 10px; right: 10px; font-size: 0.8rem;">🔵 BASIC</span>
+                                It's ___ European country
+                            </div>
+                            <div class="flashcard-face flashcard-back">
+                                It's <strong>A</strong> European country
+                                <br><small>European starts with /j/ sound = consonant</small>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Tense Flashcards -->
+                    <div class="flashcard" onclick="flipCard(this)">
+                        <div class="flashcard-inner">
+                            <div class="flashcard-face flashcard-front">
+                                <span style="position: absolute; top: 10px; right: 10px; font-size: 0.8rem;">🔵 BASIC</span>
+                                I ___ (work) here since 2020
+                            </div>
+                            <div class="flashcard-face flashcard-back">
+                                I <strong>have worked/have been working</strong> here since 2020
+                                <br><small>SINCE = Present Perfect</small>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="flashcard" onclick="flipCard(this)">
+                        <div class="flashcard-inner">
+                            <div class="flashcard-face flashcard-front">
+                                <span style="position: absolute; top: 10px; right: 10px; font-size: 0.8rem;">🟡 INTERMEDIATE</span>
+                                While I ___ (cook), he ___ (watch) TV
+                            </div>
+                            <div class="flashcard-face flashcard-back">
+                                While I <strong>was cooking</strong>, he <strong>was watching</strong> TV
+                                <br><small>Simultaneous past actions = Past Continuous</small>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="flashcard" onclick="flipCard(this)">
+                        <div class="flashcard-inner">
+                            <div class="flashcard-face flashcard-front">
+                                <span style="position: absolute; top: 10px; right: 10px; font-size: 0.8rem;">🟡 INTERMEDIATE</span>
+                                By 2025, I ___ (graduate)
+                            </div>
+                            <div class="flashcard-face flashcard-back">
+                                By 2025, I <strong>will have graduated</strong>
+                                <br><small>BY + future time = Future Perfect</small>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Modal Flashcards -->
+                    <div class="flashcard" onclick="flipCard(this)">
+                        <div class="flashcard-inner">
+                            <div class="flashcard-face flashcard-front">
+                                <span style="position: absolute; top: 10px; right: 10px; font-size: 0.8rem;">🟡 INTERMEDIATE</span>
+                                You ___ wear uniform (not necessary)
+                            </div>
+                            <div class="flashcard-face flashcard-back">
+                                You <strong>don't have to</strong> wear uniform
+                                <br><small>Not necessary = DON'T HAVE TO</small>
+                                <br><small>(NOT: mustn't = prohibited)</small>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="flashcard" onclick="flipCard(this)">
+                        <div class="flashcard-inner">
+                            <div class="flashcard-face flashcard-front">
+                                <span style="position: absolute; top: 10px; right: 10px; font-size: 0.8rem;">🟡 INTERMEDIATE</span>
+                                He ___ be home (lights are on = sure)
+                            </div>
+                            <div class="flashcard-face flashcard-back">
+                                He <strong>must</strong> be home
+                                <br><small>Logical deduction = MUST</small>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Conditional Flashcards -->
+                    <div class="flashcard" onclick="flipCard(this)">
+                        <div class="flashcard-inner">
+                            <div class="flashcard-face flashcard-front">
+                                <span style="position: absolute; top: 10px; right: 10px; font-size: 0.8rem;">🟣 ADVANCED</span>
+                                If I ___ (study) harder, I ___ (pass)
+                                <br><small>(Past regret)</small>
+                            </div>
+                            <div class="flashcard-face flashcard-back">
+                                If I <strong>had studied</strong> harder, I <strong>would have passed</strong>
+                                <br><small>3rd Conditional = Past Perfect + would have</small>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="flashcard" onclick="flipCard(this)">
+                        <div class="flashcard-inner">
+                            <div class="flashcard-face flashcard-front">
+                                <span style="position: absolute; top: 10px; right: 10px; font-size: 0.8rem;">🟣 ADVANCED</span>
+                                If I ___ (be) you, I ___ (accept)
+                            </div>
+                            <div class="flashcard-face flashcard-back">
+                                If I <strong>were</strong> you, I <strong>would accept</strong>
+                                <br><small>2nd Conditional, always WERE with I</small>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Passive Flashcards -->
+                    <div class="flashcard" onclick="flipCard(this)">
+                        <div class="flashcard-inner">
+                            <div class="flashcard-face flashcard-front">
+                                <span style="position: absolute; top: 10px; right: 10px; font-size: 0.8rem;">🟣 ADVANCED</span>
+                                They are building a bridge → (passive)
+                            </div>
+                            <div class="flashcard-face flashcard-back">
+                                A bridge <strong>is being built</strong>
+                                <br><small>Present Continuous Passive = am/is/are being + past participle</small>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Reported Speech Flashcards -->
+                    <div class="flashcard" onclick="flipCard(this)">
+                        <div class="flashcard-inner">
+                            <div class="flashcard-face flashcard-front">
+                                <span style="position: absolute; top: 10px; right: 10px; font-size: 0.8rem;">🟣 ADVANCED</span>
+                                "I'll call you tomorrow" → He said...
+                            </div>
+                            <div class="flashcard-face flashcard-back">
+                                He said he <strong>would call</strong> me <strong>the next day</strong>
+                                <br><small>will→would, tomorrow→the next day</small>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="flashcard" onclick="flipCard(this)">
+                        <div class="flashcard-inner">
+                            <div class="flashcard-face flashcard-front">
+                                <span style="position: absolute; top: 10px; right: 10px; font-size: 0.8rem;">🟣 ADVANCED</span>
+                                "Where do you live?" → She asked...
+                            </div>
+                            <div class="flashcard-face flashcard-back">
+                                She asked <strong>where I lived</strong>
+                                <br><small>NO question form, NO auxiliary</small>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- CHECKLIST -->
+        <div class="checklist-section">
+            <h2>✅ GRAMMAR MASTERY CHECKLIST (25 points)</h2>
+
+            <div class="progress-container">
+                <div class="progress-bar" id="progressFill">0%</div>
+            </div>
+
+            <div id="evaluationText" style="text-align: center; font-size: 1.1rem; margin-top: 1rem;">Start checking to track progress!</div>
+
+            <h3 style="margin-top: 2rem; color: var(--blue-primary);">🔵 BASIC (A1-A2)</h3>
+            <label class="checklist-item">
+                <input type="checkbox" id="check1" onchange="updateProgress()">
+                I know when to use A/AN/THE
+            </label>
+            <label class="checklist-item">
+                <input type="checkbox" id="check2" onchange="updateProgress()">
+                I can use Present Simple vs Continuous correctly
+            </label>
+            <label class="checklist-item">
+                <input type="checkbox" id="check3" onchange="updateProgress()">
+                I understand Past Simple regular/irregular verbs
+            </label>
+            <label class="checklist-item">
+                <input type="checkbox" id="check4" onchange="updateProgress()">
+                I know basic future with WILL and GOING TO
+            </label>
+            <label class="checklist-item">
+                <input type="checkbox" id="check5" onchange="updateProgress()">
+                I can form questions and negatives
+            </label>
+            <label class="checklist-item">
+                <input type="checkbox" id="check6" onchange="updateProgress()">
+                I know countable vs uncountable nouns
+            </label>
+            <label class="checklist-item">
+                <input type="checkbox" id="check7" onchange="updateProgress()">
+                I understand comparatives and superlatives
+            </label>
+            <label class="checklist-item">
+                <input type="checkbox" id="check8" onchange="updateProgress()">
+                I can use basic prepositions of time/place
+            </label>
+
+            <h3 style="margin-top: 2rem; color: var(--yellow-warning);">🟡 INTERMEDIATE (B1)</h3>
+            <label class="checklist-item">
+                <input type="checkbox" id="check9" onchange="updateProgress()">
+                I master Present Perfect vs Past Simple
+            </label>
+            <label class="checklist-item">
+                <input type="checkbox" id="check10" onchange="updateProgress()">
+                I understand FOR/SINCE/AGO/ALREADY/YET
+            </label>
+            <label class="checklist-item">
+                <input type="checkbox" id="check11" onchange="updateProgress()">
+                I can use Past Continuous correctly
+            </label>
+            <label class="checklist-item">
+                <input type="checkbox" id="check12" onchange="updateProgress()">
+                I know modal verbs (can/could/may/might/must)
+            </label>
+            <label class="checklist-item">
+                <input type="checkbox" id="check13" onchange="updateProgress()">
+                I understand 1st and 2nd conditionals
+            </label>
+            <label class="checklist-item">
+                <input type="checkbox" id="check14" onchange="updateProgress()">
+                I can form basic passive voice
+            </label>
+            <label class="checklist-item">
+                <input type="checkbox" id="check15" onchange="updateProgress()">
+                I know relative clauses (who/which/that/where)
+            </label>
+            <label class="checklist-item">
+                <input type="checkbox" id="check16" onchange="updateProgress()">
+                I understand gerund vs infinitive basics
+            </label>
+
+            <h3 style="margin-top: 2rem; color: var(--purple-advanced);">🟣 ADVANCED (B2)</h3>
+            <label class="checklist-item">
+                <input type="checkbox" id="check17" onchange="updateProgress()">
+                I master Past Perfect and Past Perfect Continuous
+            </label>
+            <label class="checklist-item">
+                <input type="checkbox" id="check18" onchange="updateProgress()">
+                I can use all future forms correctly
+            </label>
+            <label class="checklist-item">
+                <input type="checkbox" id="check19" onchange="updateProgress()">
+                I understand 3rd and mixed conditionals
+            </label>
+            <label class="checklist-item">
+                <input type="checkbox" id="check20" onchange="updateProgress()">
+                I master passive in all tenses
+            </label>
+            <label class="checklist-item">
+                <input type="checkbox" id="check21" onchange="updateProgress()">
+                I can use reported speech correctly
+            </label>
+            <label class="checklist-item">
+                <input type="checkbox" id="check22" onchange="updateProgress()">
+                I know wish/if only structures
+            </label>
+            <label class="checklist-item">
+                <input type="checkbox" id="check23" onchange="updateProgress()">
+                I understand modal perfects (must have/could have)
+            </label>
+            <label class="checklist-item">
+                <input type="checkbox" id="check24" onchange="updateProgress()">
+                I can use inversion for emphasis
+            </label>
+            <label class="checklist-item">
+                <input type="checkbox" id="check25" onchange="updateProgress()">
+                I master phrasal verbs and idioms
+            </label>
+        </div>
+
+        <!-- QUICK REFERENCE -->
+        <div class="section">
+            <div class="section-header" onclick="toggleSection(this)">
+                <span>📋 QUICK REFERENCE TABLES</span>
+                <span>▼</span>
+            </div>
+            <div class="section-content">
+                <h3>Time Expressions Guide</h3>
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Expression</th>
+                            <th>Tense</th>
+                            <th>Example</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>FOR + period</td>
+                            <td>Present Perfect</td>
+                            <td>I've lived here for 5 years</td>
+                        </tr>
+                        <tr>
+                            <td>SINCE + point</td>
+                            <td>Present Perfect</td>
+                            <td>I've lived here since 2019</td>
+                        </tr>
+                        <tr>
+                            <td>AGO</td>
+                            <td>Past Simple</td>
+                            <td>I moved 5 years ago</td>
+                        </tr>
+                        <tr>
+                            <td>ALREADY</td>
+                            <td>Present Perfect</td>
+                            <td>I've already eaten</td>
+                        </tr>
+                        <tr>
+                            <td>YET</td>
+                            <td>Present Perfect (?/-)</td>
+                            <td>Have you eaten yet? I haven't eaten yet</td>
+                        </tr>
+                        <tr>
+                            <td>JUST</td>
+                            <td>Present Perfect</td>
+                            <td>I've just arrived</td>
+                        </tr>
+                        <tr>
+                            <td>EVER/NEVER</td>
+                            <td>Present Perfect</td>
+                            <td>Have you ever been? I've never been</td>
+                        </tr>
+                    </tbody>
+                </table>
+
+                <h3 style="margin-top: 2rem;">Irregular Verbs - Top 20 Essential</h3>
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Base Form</th>
+                            <th>Past Simple</th>
+                            <th>Past Participle</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr><td>be</td><td>was/were</td><td>been</td></tr>
+                        <tr><td>have</td><td>had</td><td>had</td></tr>
+                        <tr><td>do</td><td>did</td><td>done</td></tr>
+                        <tr><td>go</td><td>went</td><td>gone</td></tr>
+                        <tr><td>get</td><td>got</td><td>got/gotten</td></tr>
+                        <tr><td>make</td><td>made</td><td>made</td></tr>
+                        <tr><td>take</td><td>took</td><td>taken</td></tr>
+                        <tr><td>come</td><td>came</td><td>come</td></tr>
+                        <tr><td>see</td><td>saw</td><td>seen</td></tr>
+                        <tr><td>know</td><td>knew</td><td>known</td></tr>
+                        <tr><td>think</td><td>thought</td><td>thought</td></tr>
+                        <tr><td>give</td><td>gave</td><td>given</td></tr>
+                        <tr><td>find</td><td>found</td><td>found</td></tr>
+                        <tr><td>tell</td><td>told</td><td>told</td></tr>
+                        <tr><td>become</td><td>became</td><td>become</td></tr>
+                        <tr><td>leave</td><td>left</td><td>left</td></tr>
+                        <tr><td>feel</td><td>felt</td><td>felt</td></tr>
+                        <tr><td>bring</td><td>brought</td><td>brought</td></tr>
+                        <tr><td>begin</td><td>began</td><td>begun</td></tr>
+                        <tr><td>write</td><td>wrote</td><td>written</td></tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+
+    <!-- JAVASCRIPT -->
+    <script>
+        function toggleSection(header) {
+            const content = header.nextElementSibling;
+            const icon = header.querySelector('span:last-child');
+
+            content.classList.toggle('expanded');
+
+            if (content.classList.contains('expanded')) {
+                icon.textContent = '▲';
+            } else {
+                icon.textContent = '▼';
+            }
+        }
+
+        function flipCard(card) {
+            card.classList.toggle('flipped');
+        }
+
+        function updateProgress() {
+            const total = 25;
+            const checkboxes = document.querySelectorAll('.checklist-item input[type="checkbox"]');
+            const checked = document.querySelectorAll('.checklist-item input[type="checkbox"]:checked').length;
+            const percentage = Math.round((checked / total) * 100);
+
+            const progressBar = document.getElementById('progressFill');
+            progressBar.style.width = percentage + '%';
+            progressBar.textContent = percentage + '%';
+
+            const evaluationText = document.getElementById('evaluationText');
+
+            if (percentage === 0) {
+                evaluationText.innerHTML = 'Start checking to track progress!';
+                evaluationText.style.color = 'var(--text-light)';
+            } else if (percentage < 40) {
+                evaluationText.innerHTML = `⚠️ <strong>${percentage}%</strong> - Keep studying! Focus on basics first.`;
+                evaluationText.style.color = 'var(--red-error)';
+            } else if (percentage < 70) {
+                evaluationText.innerHTML = `📚 <strong>${percentage}%</strong> - Good progress! Continue with intermediate topics.`;
+                evaluationText.style.color = 'var(--yellow-warning)';
+            } else if (percentage < 90) {
+                evaluationText.innerHTML = `🎯 <strong>${percentage}%</strong> - Great job! Almost there!`;
+                evaluationText.style.color = 'var(--blue-primary)';
+            } else if (percentage < 100) {
+                evaluationText.innerHTML = `✅ <strong>${percentage}%</strong> - Excellent grammar knowledge!`;
+                evaluationText.style.color = 'var(--green-correct)';
+            } else {
+                evaluationText.innerHTML = `🏆 <strong>100%</strong> - PERFECT! Complete grammar mastery!`;
+                evaluationText.style.color = 'var(--green-correct)';
+            }
+
+            // Save to localStorage
+            const checkedIds = Array.from(checkboxes)
+                .filter(cb => cb.checked)
+                .map(cb => cb.id);
+            localStorage.setItem('a4-grammar-checklist', JSON.stringify(checkedIds));
+        }
+
+        // Load saved state on page load
+        window.addEventListener('DOMContentLoaded', () => {
+            const saved = localStorage.getItem('a4-grammar-checklist');
+            if (saved) {
+                try {
+                    const checkedIds = JSON.parse(saved);
+                    checkedIds.forEach(id => {
+                        const checkbox = document.getElementById(id);
+                        if (checkbox) {
+                            checkbox.checked = true;
+                        }
+                    });
+                    updateProgress();
+                } catch (e) {
+                    console.error('Error loading saved state:', e);
+                }
+            }
+        });
+    </script>
+</body>
+</html>

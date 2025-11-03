@@ -1,0 +1,1288 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Transport Vocabulary - Inglese Business</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&family=Playfair+Display:wght@700&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --blue-eng: #0ea5e9;
+            --green-growth: #10b981;
+            --text: #1f2937;
+            --text-light: #6b7280;
+            --border: #e5e7eb;
+            --vehicles: #3b82f6;
+            --verbs: #ef4444;
+            --places: #10b981;
+            --phrases: #f59e0b;
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            line-height: 1.6;
+            color: var(--text);
+            background: linear-gradient(135deg, #dbeafe 0%, #d1fae5 100%);
+            min-height: 100vh;
+            padding-bottom: 3rem;
+        }
+
+        .header {
+            background: linear-gradient(135deg, var(--blue-eng) 0%, var(--green-growth) 100%);
+            color: white;
+            padding: 3rem 2rem;
+            text-align: center;
+            box-shadow: 0 4px 20px rgba(14, 165, 233, 0.3);
+            position: relative;
+        }
+
+        .btn-home {
+            position: absolute;
+            top: 2rem;
+            left: 2rem;
+            background: white;
+            color: var(--blue-eng);
+            padding: 0.75rem 1.5rem;
+            border-radius: 8px;
+            text-decoration: none;
+            font-weight: 600;
+            transition: transform 0.2s;
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .btn-home:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 4px 12px rgba(0,0,0,0.2);
+        }
+
+        .header h1 {
+            font-family: 'Playfair Display', serif;
+            font-size: 2.5rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .method-tag {
+            background: rgba(255,255,255,0.2);
+            padding: 0.5rem 1rem;
+            border-radius: 20px;
+            display: inline-block;
+            margin-top: 1rem;
+            font-size: 0.9rem;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 2rem;
+        }
+
+        .info-box {
+            background: white;
+            padding: 1.5rem;
+            border-radius: 12px;
+            margin-bottom: 2rem;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.08);
+            border-left: 5px solid var(--blue-eng);
+        }
+
+        .info-box h3 {
+            color: var(--blue-eng);
+            margin-bottom: 1rem;
+        }
+
+        .quick-facts {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 1rem;
+        }
+
+        .fact {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .fact-icon {
+            font-size: 1.5rem;
+        }
+
+        .color-legend {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 1rem;
+            margin-bottom: 2rem;
+        }
+
+        .legend-card {
+            background: white;
+            padding: 1.5rem;
+            border-radius: 12px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.08);
+            border-left: 5px solid;
+            transition: transform 0.2s;
+        }
+
+        .legend-card:hover {
+            transform: translateY(-3px);
+        }
+
+        .legend-card.vehicles { border-color: var(--vehicles); }
+        .legend-card.verbs { border-color: var(--verbs); }
+        .legend-card.places { border-color: var(--places); }
+        .legend-card.phrases { border-color: var(--phrases); }
+
+        .legend-title {
+            font-weight: 700;
+            margin-bottom: 0.5rem;
+            font-size: 1.1rem;
+        }
+
+        .section {
+            background: white;
+            margin-bottom: 2rem;
+            border-radius: 12px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.08);
+            overflow: hidden;
+        }
+
+        .section-header {
+            padding: 1.5rem;
+            background: linear-gradient(135deg, #f3f4f6 0%, #e5e7eb 100%);
+            cursor: pointer;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            border-left: 5px solid var(--blue-eng);
+        }
+
+        .section-header:hover {
+            background: linear-gradient(135deg, #e5e7eb 0%, #d1d5db 100%);
+        }
+
+        .section-title {
+            font-size: 1.5rem;
+            font-weight: 700;
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+        }
+
+        .toggle-icon {
+            font-size: 1.5rem;
+            transition: transform 0.3s;
+        }
+
+        .section-header.active .toggle-icon {
+            transform: rotate(180deg);
+        }
+
+        .section-content {
+            padding: 2rem;
+            display: none;
+        }
+
+        .section-content.active {
+            display: block;
+        }
+
+        .vocab-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+            gap: 1.5rem;
+            margin-bottom: 2rem;
+        }
+
+        .vocab-card {
+            background: #f9fafb;
+            padding: 1.5rem;
+            border-radius: 8px;
+            border-left: 4px solid;
+            transition: transform 0.2s;
+        }
+
+        .vocab-card:hover {
+            transform: translateX(5px);
+            box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+        }
+
+        .vocab-card.vehicles { border-color: var(--vehicles); }
+        .vocab-card.verbs { border-color: var(--verbs); }
+        .vocab-card.places { border-color: var(--places); }
+        .vocab-card.phrases { border-color: var(--phrases); }
+
+        .vocab-english {
+            font-size: 1.3rem;
+            font-weight: 700;
+            color: var(--text);
+            margin-bottom: 0.5rem;
+        }
+
+        .vocab-italian {
+            font-size: 1.1rem;
+            color: var(--text-light);
+            margin-bottom: 0.75rem;
+        }
+
+        .vocab-pronunciation {
+            font-style: italic;
+            color: var(--text-light);
+            font-size: 0.9rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .vocab-example {
+            font-size: 0.95rem;
+            color: var(--text);
+            padding: 0.75rem;
+            background: white;
+            border-radius: 6px;
+            margin-top: 0.75rem;
+            border-left: 3px solid var(--blue-eng);
+        }
+
+        .vocab-example em {
+            font-weight: 600;
+            color: var(--blue-eng);
+        }
+
+        .flashcards-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 2rem;
+            perspective: 1000px;
+            margin-top: 2rem;
+        }
+
+        .flashcard {
+            height: 200px;
+            position: relative;
+            cursor: pointer;
+        }
+
+        .flashcard-inner {
+            position: relative;
+            width: 100%;
+            height: 100%;
+            transition: transform 0.6s;
+            transform-style: preserve-3d;
+        }
+
+        .flashcard.flipped .flashcard-inner {
+            transform: rotateY(180deg);
+        }
+
+        .flashcard-front,
+        .flashcard-back {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            backface-visibility: hidden;
+            border-radius: 12px;
+            padding: 2rem;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+        }
+
+        .flashcard-front {
+            background: linear-gradient(135deg, var(--blue-eng), #0284c7);
+            color: white;
+        }
+
+        .flashcard-back {
+            background: linear-gradient(135deg, var(--green-growth), #059669);
+            color: white;
+            transform: rotateY(180deg);
+        }
+
+        .flashcard-word {
+            font-size: 1.8rem;
+            font-weight: 700;
+            margin-bottom: 0.5rem;
+        }
+
+        .flashcard-hint {
+            font-size: 0.9rem;
+            opacity: 0.9;
+        }
+
+        .checklist {
+            background: white;
+            padding: 2rem;
+            border-radius: 12px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.08);
+        }
+
+        .checklist h3 {
+            font-size: 1.5rem;
+            margin-bottom: 1.5rem;
+            color: var(--blue-eng);
+        }
+
+        .checklist-group {
+            margin-bottom: 2rem;
+        }
+
+        .checklist-group-title {
+            font-weight: 700;
+            font-size: 1.1rem;
+            margin-bottom: 1rem;
+            padding-bottom: 0.5rem;
+            border-bottom: 2px solid;
+        }
+
+        .checklist-group-title.vehicles { color: var(--vehicles); border-color: var(--vehicles); }
+        .checklist-group-title.verbs { color: var(--verbs); border-color: var(--verbs); }
+        .checklist-group-title.places { color: var(--places); border-color: var(--places); }
+        .checklist-group-title.phrases { color: var(--phrases); border-color: var(--phrases); }
+
+        .checklist-item {
+            display: flex;
+            align-items: center;
+            padding: 0.75rem;
+            margin-bottom: 0.5rem;
+            background: #f9fafb;
+            border-radius: 6px;
+            transition: background 0.2s;
+        }
+
+        .checklist-item:hover {
+            background: #f3f4f6;
+        }
+
+        .checklist-item input {
+            margin-right: 1rem;
+            width: 20px;
+            height: 20px;
+            cursor: pointer;
+        }
+
+        .progress-bar-container {
+            margin: 2rem 0;
+            background: #e5e7eb;
+            border-radius: 10px;
+            height: 30px;
+            overflow: hidden;
+        }
+
+        .progress-bar {
+            height: 100%;
+            background: linear-gradient(90deg, var(--blue-eng), var(--green-growth));
+            transition: width 0.3s;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-weight: 700;
+        }
+
+        .synthesis {
+            background: white;
+            padding: 2rem;
+            border-radius: 12px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.08);
+            margin-bottom: 2rem;
+        }
+
+        .synthesis-box {
+            background: linear-gradient(135deg, #dbeafe 0%, #d1fae5 100%);
+            padding: 1.5rem;
+            border-radius: 8px;
+            margin-bottom: 1rem;
+            border-left: 5px solid var(--blue-eng);
+        }
+
+        .synthesis-title {
+            font-size: 1.2rem;
+            font-weight: 700;
+            color: var(--blue-eng);
+            margin-bottom: 1rem;
+        }
+
+        @media (max-width: 768px) {
+            .header h1 { font-size: 1.8rem; }
+            .container { padding: 1rem; }
+            .btn-home {
+                position: static;
+                margin-bottom: 1rem;
+            }
+            .vocab-grid,
+            .flashcards-container {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="header">
+        <a href="index.html" class="btn-home">🏠 Dashboard Inglese</a>
+        <h1>🚗 TRANSPORT VOCABULARY</h1>
+        <p>Business English - Vocabolario Trasporti</p>
+        <span class="method-tag">🧠 Dual Coding | Active Recall | Spaced Repetition</span>
+    </div>
+
+    <div class="container">
+        <!-- INFO BOX -->
+        <div class="info-box">
+            <h3>📋 Quick Reference - Vocabolario Essenziale</h3>
+            <div class="quick-facts">
+                <div class="fact"><span class="fact-icon">🚗</span> <strong>10 Vehicles</strong> (Road, Rail, Air, Water)</div>
+                <div class="fact"><span class="fact-icon">🛣️</span> <strong>8 Verbs</strong> (Movement & Travel)</div>
+                <div class="fact"><span class="fact-icon">📍</span> <strong>6 Places</strong> (Stations, Stops, Terminals)</div>
+                <div class="fact"><span class="fact-icon">💬</span> <strong>6 Phrases</strong> (Common Expressions)</div>
+            </div>
+        </div>
+
+        <!-- LEGENDA COLORI -->
+        <div class="color-legend">
+            <div class="legend-card vehicles">
+                <div class="legend-title">🚗 VEHICLES (Veicoli)</div>
+                <p>Mezzi di trasporto: car, bus, train, plane, ship...</p>
+            </div>
+            <div class="legend-card verbs">
+                <div class="legend-title">🛣️ VERBS (Verbi)</div>
+                <p>Azioni di movimento: drive, fly, sail, ride...</p>
+            </div>
+            <div class="legend-card places">
+                <div class="legend-title">📍 PLACES (Luoghi)</div>
+                <p>Stazioni e fermate: airport, station, port, terminal...</p>
+            </div>
+            <div class="legend-card phrases">
+                <div class="legend-title">💬 PHRASES (Frasi)</div>
+                <p>Espressioni comuni: catch a bus, miss a flight...</p>
+            </div>
+        </div>
+
+        <!-- SEZIONE 1: ROAD TRANSPORT -->
+        <div class="section">
+            <div class="section-header" onclick="toggleSection(this)">
+                <h2 class="section-title">
+                    🚗 ROAD TRANSPORT (Trasporto su Strada)
+                </h2>
+                <span class="toggle-icon">▼</span>
+            </div>
+            <div class="section-content">
+                <div class="vocab-grid">
+                    <div class="vocab-card vehicles">
+                        <div class="vocab-english">Car</div>
+                        <div class="vocab-italian">Automobile, Macchina</div>
+                        <div class="vocab-pronunciation">/kɑːr/</div>
+                        <div class="vocab-example">
+                            I <em>drive my car</em> to work every day.<br>
+                            <small>(Guido la mia macchina per andare al lavoro ogni giorno)</small>
+                        </div>
+                    </div>
+
+                    <div class="vocab-card vehicles">
+                        <div class="vocab-english">Bus</div>
+                        <div class="vocab-italian">Autobus, Pullman</div>
+                        <div class="vocab-pronunciation">/bʌs/</div>
+                        <div class="vocab-example">
+                            She <em>takes the bus</em> to school.<br>
+                            <small>(Lei prende l'autobus per andare a scuola)</small>
+                        </div>
+                    </div>
+
+                    <div class="vocab-card vehicles">
+                        <div class="vocab-english">Truck</div>
+                        <div class="vocab-italian">Camion</div>
+                        <div class="vocab-pronunciation">/trʌk/</div>
+                        <div class="vocab-example">
+                            The <em>truck delivers</em> goods to the warehouse.<br>
+                            <small>(Il camion consegna merci al magazzino)</small>
+                        </div>
+                    </div>
+
+                    <div class="vocab-card vehicles">
+                        <div class="vocab-english">Bike / Bicycle</div>
+                        <div class="vocab-italian">Bicicletta</div>
+                        <div class="vocab-pronunciation">/baɪk/ /ˈbaɪsɪkl/</div>
+                        <div class="vocab-example">
+                            He <em>rides his bike</em> to the park.<br>
+                            <small>(Lui va in bicicletta al parco)</small>
+                        </div>
+                    </div>
+
+                    <div class="vocab-card vehicles">
+                        <div class="vocab-english">Motorcycle</div>
+                        <div class="vocab-italian">Motocicletta, Moto</div>
+                        <div class="vocab-pronunciation">/ˈməʊtəsaɪkl/</div>
+                        <div class="vocab-example">
+                            She <em>rides a motorcycle</em> for commuting.<br>
+                            <small>(Lei guida una moto per spostarsi)</small>
+                        </div>
+                    </div>
+
+                    <div class="vocab-card vehicles">
+                        <div class="vocab-english">Taxi / Cab</div>
+                        <div class="vocab-italian">Taxi</div>
+                        <div class="vocab-pronunciation">/ˈtæksi/ /kæb/</div>
+                        <div class="vocab-example">
+                            We <em>took a taxi</em> to the airport.<br>
+                            <small>(Abbiamo preso un taxi per l'aeroporto)</small>
+                        </div>
+                    </div>
+                </div>
+
+                <h3 style="margin: 2rem 0 1rem; color: var(--verbs);">🛣️ Verbi di Movimento (Road)</h3>
+                <div class="vocab-grid">
+                    <div class="vocab-card verbs">
+                        <div class="vocab-english">Drive</div>
+                        <div class="vocab-italian">Guidare (veicolo)</div>
+                        <div class="vocab-pronunciation">/draɪv/</div>
+                        <div class="vocab-example">
+                            Can you <em>drive</em> me to the station?<br>
+                            <small>(Puoi accompagnarmi in macchina alla stazione?)</small>
+                        </div>
+                    </div>
+
+                    <div class="vocab-card verbs">
+                        <div class="vocab-english">Ride</div>
+                        <div class="vocab-italian">Andare in (bici/moto)</div>
+                        <div class="vocab-pronunciation">/raɪd/</div>
+                        <div class="vocab-example">
+                            I <em>ride</em> my bike to work.<br>
+                            <small>(Vado in bici al lavoro)</small>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- SEZIONE 2: RAIL TRANSPORT -->
+        <div class="section">
+            <div class="section-header" onclick="toggleSection(this)">
+                <h2 class="section-title">
+                    🚆 RAIL TRANSPORT (Trasporto Ferroviario)
+                </h2>
+                <span class="toggle-icon">▼</span>
+            </div>
+            <div class="section-content">
+                <div class="vocab-grid">
+                    <div class="vocab-card vehicles">
+                        <div class="vocab-english">Train</div>
+                        <div class="vocab-italian">Treno</div>
+                        <div class="vocab-pronunciation">/treɪn/</div>
+                        <div class="vocab-example">
+                            The <em>train departs</em> at 9:00 AM.<br>
+                            <small>(Il treno parte alle 9:00)</small>
+                        </div>
+                    </div>
+
+                    <div class="vocab-card vehicles">
+                        <div class="vocab-english">Subway / Metro / Underground</div>
+                        <div class="vocab-italian">Metropolitana</div>
+                        <div class="vocab-pronunciation">/ˈsʌbweɪ/ /ˈmetrəʊ/</div>
+                        <div class="vocab-example">
+                            Take the <em>subway</em> to reach downtown.<br>
+                            <small>(Prendi la metro per raggiungere il centro)</small>
+                        </div>
+                    </div>
+
+                    <div class="vocab-card vehicles">
+                        <div class="vocab-english">Tram</div>
+                        <div class="vocab-italian">Tram</div>
+                        <div class="vocab-pronunciation">/træm/</div>
+                        <div class="vocab-example">
+                            The <em>tram stops</em> near the museum.<br>
+                            <small>(Il tram si ferma vicino al museo)</small>
+                        </div>
+                    </div>
+
+                    <div class="vocab-card places">
+                        <div class="vocab-english">Railway Station</div>
+                        <div class="vocab-italian">Stazione Ferroviaria</div>
+                        <div class="vocab-pronunciation">/ˈreɪlweɪ ˈsteɪʃn/</div>
+                        <div class="vocab-example">
+                            Meet me at the <em>railway station</em>.<br>
+                            <small>(Incontriamoci alla stazione ferroviaria)</small>
+                        </div>
+                    </div>
+
+                    <div class="vocab-card places">
+                        <div class="vocab-english">Platform</div>
+                        <div class="vocab-italian">Binario</div>
+                        <div class="vocab-pronunciation">/ˈplætfɔːm/</div>
+                        <div class="vocab-example">
+                            The train leaves from <em>platform 5</em>.<br>
+                            <small>(Il treno parte dal binario 5)</small>
+                        </div>
+                    </div>
+                </div>
+
+                <h3 style="margin: 2rem 0 1rem; color: var(--verbs);">🛣️ Verbi (Rail)</h3>
+                <div class="vocab-grid">
+                    <div class="vocab-card verbs">
+                        <div class="vocab-english">Catch / Take</div>
+                        <div class="vocab-italian">Prendere (mezzo)</div>
+                        <div class="vocab-pronunciation">/kætʃ/ /teɪk/</div>
+                        <div class="vocab-example">
+                            I need to <em>catch the 8 AM train</em>.<br>
+                            <small>(Devo prendere il treno delle 8)</small>
+                        </div>
+                    </div>
+
+                    <div class="vocab-card verbs">
+                        <div class="vocab-english">Miss</div>
+                        <div class="vocab-italian">Perdere (mezzo)</div>
+                        <div class="vocab-pronunciation">/mɪs/</div>
+                        <div class="vocab-example">
+                            Don't <em>miss your train</em>!<br>
+                            <small>(Non perdere il treno!)</small>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- SEZIONE 3: AIR TRANSPORT -->
+        <div class="section">
+            <div class="section-header" onclick="toggleSection(this)">
+                <h2 class="section-title">
+                    ✈️ AIR TRANSPORT (Trasporto Aereo)
+                </h2>
+                <span class="toggle-icon">▼</span>
+            </div>
+            <div class="section-content">
+                <div class="vocab-grid">
+                    <div class="vocab-card vehicles">
+                        <div class="vocab-english">Plane / Airplane / Aircraft</div>
+                        <div class="vocab-italian">Aereo</div>
+                        <div class="vocab-pronunciation">/pleɪn/ /ˈeəpleɪn/</div>
+                        <div class="vocab-example">
+                            The <em>plane takes off</em> at 3 PM.<br>
+                            <small>(L'aereo decolla alle 15:00)</small>
+                        </div>
+                    </div>
+
+                    <div class="vocab-card vehicles">
+                        <div class="vocab-english">Helicopter</div>
+                        <div class="vocab-italian">Elicottero</div>
+                        <div class="vocab-pronunciation">/ˈhelɪkɒptə/</div>
+                        <div class="vocab-example">
+                            The <em>helicopter</em> landed on the roof.<br>
+                            <small>(L'elicottero è atterrato sul tetto)</small>
+                        </div>
+                    </div>
+
+                    <div class="vocab-card places">
+                        <div class="vocab-english">Airport</div>
+                        <div class="vocab-italian">Aeroporto</div>
+                        <div class="vocab-pronunciation">/ˈeəpɔːt/</div>
+                        <div class="vocab-example">
+                            Arrive at the <em>airport</em> 2 hours early.<br>
+                            <small>(Arriva all'aeroporto 2 ore prima)</small>
+                        </div>
+                    </div>
+
+                    <div class="vocab-card places">
+                        <div class="vocab-english">Terminal</div>
+                        <div class="vocab-italian">Terminal</div>
+                        <div class="vocab-pronunciation">/ˈtɜːmɪnl/</div>
+                        <div class="vocab-example">
+                            International flights depart from <em>terminal 2</em>.<br>
+                            <small>(I voli internazionali partono dal terminal 2)</small>
+                        </div>
+                    </div>
+
+                    <div class="vocab-card places">
+                        <div class="vocab-english">Gate</div>
+                        <div class="vocab-italian">Gate, Porta d'imbarco</div>
+                        <div class="vocab-pronunciation">/ɡeɪt/</div>
+                        <div class="vocab-example">
+                            Boarding at <em>gate 24</em>.<br>
+                            <small>(Imbarco al gate 24)</small>
+                        </div>
+                    </div>
+                </div>
+
+                <h3 style="margin: 2rem 0 1rem; color: var(--verbs);">🛣️ Verbi (Air)</h3>
+                <div class="vocab-grid">
+                    <div class="vocab-card verbs">
+                        <div class="vocab-english">Fly</div>
+                        <div class="vocab-italian">Volare</div>
+                        <div class="vocab-pronunciation">/flaɪ/</div>
+                        <div class="vocab-example">
+                            I <em>fly to London</em> tomorrow.<br>
+                            <small>(Volo a Londra domani)</small>
+                        </div>
+                    </div>
+
+                    <div class="vocab-card verbs">
+                        <div class="vocab-english">Board</div>
+                        <div class="vocab-italian">Imbarcarsi</div>
+                        <div class="vocab-pronunciation">/bɔːd/</div>
+                        <div class="vocab-example">
+                            Passengers may now <em>board the plane</em>.<br>
+                            <small>(I passeggeri possono ora imbarcarsi)</small>
+                        </div>
+                    </div>
+
+                    <div class="vocab-card verbs">
+                        <div class="vocab-english">Land</div>
+                        <div class="vocab-italian">Atterrare</div>
+                        <div class="vocab-pronunciation">/lænd/</div>
+                        <div class="vocab-example">
+                            The plane will <em>land</em> in 20 minutes.<br>
+                            <small>(L'aereo atterrerà tra 20 minuti)</small>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- SEZIONE 4: WATER TRANSPORT -->
+        <div class="section">
+            <div class="section-header" onclick="toggleSection(this)">
+                <h2 class="section-title">
+                    ⚓ WATER TRANSPORT (Trasporto Marittimo)
+                </h2>
+                <span class="toggle-icon">▼</span>
+            </div>
+            <div class="section-content">
+                <div class="vocab-grid">
+                    <div class="vocab-card vehicles">
+                        <div class="vocab-english">Ship</div>
+                        <div class="vocab-italian">Nave</div>
+                        <div class="vocab-pronunciation">/ʃɪp/</div>
+                        <div class="vocab-example">
+                            The <em>ship sails</em> across the ocean.<br>
+                            <small>(La nave naviga attraverso l'oceano)</small>
+                        </div>
+                    </div>
+
+                    <div class="vocab-card vehicles">
+                        <div class="vocab-english">Boat</div>
+                        <div class="vocab-italian">Barca, Imbarcazione</div>
+                        <div class="vocab-pronunciation">/bəʊt/</div>
+                        <div class="vocab-example">
+                            We rented a <em>boat</em> for fishing.<br>
+                            <small>(Abbiamo noleggiato una barca per pescare)</small>
+                        </div>
+                    </div>
+
+                    <div class="vocab-card vehicles">
+                        <div class="vocab-english">Ferry</div>
+                        <div class="vocab-italian">Traghetto</div>
+                        <div class="vocab-pronunciation">/ˈferi/</div>
+                        <div class="vocab-example">
+                            Take the <em>ferry</em> to cross the river.<br>
+                            <small>(Prendi il traghetto per attraversare il fiume)</small>
+                        </div>
+                    </div>
+
+                    <div class="vocab-card places">
+                        <div class="vocab-english">Port / Harbor</div>
+                        <div class="vocab-italian">Porto</div>
+                        <div class="vocab-pronunciation">/pɔːt/ /ˈhɑːbə/</div>
+                        <div class="vocab-example">
+                            The ship arrived at the <em>port</em>.<br>
+                            <small>(La nave è arrivata al porto)</small>
+                        </div>
+                    </div>
+                </div>
+
+                <h3 style="margin: 2rem 0 1rem; color: var(--verbs);">🛣️ Verbi (Water)</h3>
+                <div class="vocab-grid">
+                    <div class="vocab-card verbs">
+                        <div class="vocab-english">Sail</div>
+                        <div class="vocab-italian">Navigare, Salpare</div>
+                        <div class="vocab-pronunciation">/seɪl/</div>
+                        <div class="vocab-example">
+                            The boat <em>sails</em> at sunset.<br>
+                            <small>(La barca salpa al tramonto)</small>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- SEZIONE 5: COMMON PHRASES -->
+        <div class="section">
+            <div class="section-header" onclick="toggleSection(this)">
+                <h2 class="section-title">
+                    💬 COMMON PHRASES (Espressioni Comuni)
+                </h2>
+                <span class="toggle-icon">▼</span>
+            </div>
+            <div class="section-content">
+                <div class="vocab-grid">
+                    <div class="vocab-card phrases">
+                        <div class="vocab-english">Catch a bus/train/flight</div>
+                        <div class="vocab-italian">Prendere un autobus/treno/volo</div>
+                        <div class="vocab-example">
+                            I need to <em>catch the 10 AM flight</em>.<br>
+                            <small>(Devo prendere il volo delle 10)</small>
+                        </div>
+                    </div>
+
+                    <div class="vocab-card phrases">
+                        <div class="vocab-english">Miss a bus/train/flight</div>
+                        <div class="vocab-italian">Perdere un autobus/treno/volo</div>
+                        <div class="vocab-example">
+                            She <em>missed her train</em> this morning.<br>
+                            <small>(Ha perso il treno stamattina)</small>
+                        </div>
+                    </div>
+
+                    <div class="vocab-card phrases">
+                        <div class="vocab-english">Get on / Get off</div>
+                        <div class="vocab-italian">Salire / Scendere (da mezzo)</div>
+                        <div class="vocab-example">
+                            <em>Get on</em> at the next stop, <em>get off</em> at Main Street.<br>
+                            <small>(Sali alla prossima fermata, scendi a Main Street)</small>
+                        </div>
+                    </div>
+
+                    <div class="vocab-card phrases">
+                        <div class="vocab-english">Book a ticket</div>
+                        <div class="vocab-italian">Prenotare un biglietto</div>
+                        <div class="vocab-example">
+                            I <em>booked a ticket</em> online.<br>
+                            <small>(Ho prenotato un biglietto online)</small>
+                        </div>
+                    </div>
+
+                    <div class="vocab-card phrases">
+                        <div class="vocab-english">Check in / Check out</div>
+                        <div class="vocab-italian">Fare il check-in / check-out</div>
+                        <div class="vocab-example">
+                            Please <em>check in</em> 2 hours before departure.<br>
+                            <small>(Fai il check-in 2 ore prima della partenza)</small>
+                        </div>
+                    </div>
+
+                    <div class="vocab-card phrases">
+                        <div class="vocab-english">Delayed / Cancelled</div>
+                        <div class="vocab-italian">In ritardo / Cancellato</div>
+                        <div class="vocab-example">
+                            The flight is <em>delayed</em> by 30 minutes.<br>
+                            <small>(Il volo è in ritardo di 30 minuti)</small>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- SEZIONE 6: FLASHCARDS -->
+        <div class="section">
+            <div class="section-header" onclick="toggleSection(this)">
+                <h2 class="section-title">
+                    🃏 FLASHCARDS INTERATTIVE
+                </h2>
+                <span class="toggle-icon">▼</span>
+            </div>
+            <div class="section-content">
+                <p style="text-align: center; color: var(--text-light); margin-bottom: 2rem;">
+                    Clicca sulle carte per voltarle e memorizzare i termini!
+                </p>
+                <div class="flashcards-container">
+                    <div class="flashcard" onclick="flipCard(this)">
+                        <div class="flashcard-inner">
+                            <div class="flashcard-front">
+                                <div class="flashcard-word">Car</div>
+                                <div class="flashcard-hint">🚗 Road Vehicle</div>
+                            </div>
+                            <div class="flashcard-back">
+                                <div class="flashcard-word">Automobile</div>
+                                <div class="flashcard-hint">Macchina</div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="flashcard" onclick="flipCard(this)">
+                        <div class="flashcard-inner">
+                            <div class="flashcard-front">
+                                <div class="flashcard-word">Train</div>
+                                <div class="flashcard-hint">🚆 Rail Transport</div>
+                            </div>
+                            <div class="flashcard-back">
+                                <div class="flashcard-word">Treno</div>
+                                <div class="flashcard-hint">Trasporto ferroviario</div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="flashcard" onclick="flipCard(this)">
+                        <div class="flashcard-inner">
+                            <div class="flashcard-front">
+                                <div class="flashcard-word">Plane</div>
+                                <div class="flashcard-hint">✈️ Air Transport</div>
+                            </div>
+                            <div class="flashcard-back">
+                                <div class="flashcard-word">Aereo</div>
+                                <div class="flashcard-hint">Trasporto aereo</div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="flashcard" onclick="flipCard(this)">
+                        <div class="flashcard-inner">
+                            <div class="flashcard-front">
+                                <div class="flashcard-word">Ship</div>
+                                <div class="flashcard-hint">⚓ Water Transport</div>
+                            </div>
+                            <div class="flashcard-back">
+                                <div class="flashcard-word">Nave</div>
+                                <div class="flashcard-hint">Trasporto marittimo</div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="flashcard" onclick="flipCard(this)">
+                        <div class="flashcard-inner">
+                            <div class="flashcard-front">
+                                <div class="flashcard-word">Drive</div>
+                                <div class="flashcard-hint">🛣️ Verb</div>
+                            </div>
+                            <div class="flashcard-back">
+                                <div class="flashcard-word">Guidare</div>
+                                <div class="flashcard-hint">I drive a car</div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="flashcard" onclick="flipCard(this)">
+                        <div class="flashcard-inner">
+                            <div class="flashcard-front">
+                                <div class="flashcard-word">Fly</div>
+                                <div class="flashcard-hint">🛣️ Verb</div>
+                            </div>
+                            <div class="flashcard-back">
+                                <div class="flashcard-word">Volare</div>
+                                <div class="flashcard-hint">I fly to Rome</div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="flashcard" onclick="flipCard(this)">
+                        <div class="flashcard-inner">
+                            <div class="flashcard-front">
+                                <div class="flashcard-word">Airport</div>
+                                <div class="flashcard-hint">📍 Place</div>
+                            </div>
+                            <div class="flashcard-back">
+                                <div class="flashcard-word">Aeroporto</div>
+                                <div class="flashcard-hint">Where planes depart</div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="flashcard" onclick="flipCard(this)">
+                        <div class="flashcard-inner">
+                            <div class="flashcard-front">
+                                <div class="flashcard-word">Station</div>
+                                <div class="flashcard-hint">📍 Place</div>
+                            </div>
+                            <div class="flashcard-back">
+                                <div class="flashcard-word">Stazione</div>
+                                <div class="flashcard-hint">Train/Bus station</div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="flashcard" onclick="flipCard(this)">
+                        <div class="flashcard-inner">
+                            <div class="flashcard-front">
+                                <div class="flashcard-word">Catch a bus</div>
+                                <div class="flashcard-hint">💬 Phrase</div>
+                            </div>
+                            <div class="flashcard-back">
+                                <div class="flashcard-word">Prendere l'autobus</div>
+                                <div class="flashcard-hint">Take the bus</div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="flashcard" onclick="flipCard(this)">
+                        <div class="flashcard-inner">
+                            <div class="flashcard-front">
+                                <div class="flashcard-word">Miss a flight</div>
+                                <div class="flashcard-hint">💬 Phrase</div>
+                            </div>
+                            <div class="flashcard-back">
+                                <div class="flashcard-word">Perdere il volo</div>
+                                <div class="flashcard-hint">Don't be late!</div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="flashcard" onclick="flipCard(this)">
+                        <div class="flashcard-inner">
+                            <div class="flashcard-front">
+                                <div class="flashcard-word">Board</div>
+                                <div class="flashcard-hint">🛣️ Verb</div>
+                            </div>
+                            <div class="flashcard-back">
+                                <div class="flashcard-word">Imbarcarsi</div>
+                                <div class="flashcard-hint">Get on plane/ship</div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="flashcard" onclick="flipCard(this)">
+                        <div class="flashcard-inner">
+                            <div class="flashcard-front">
+                                <div class="flashcard-word">Delayed</div>
+                                <div class="flashcard-hint">💬 Status</div>
+                            </div>
+                            <div class="flashcard-back">
+                                <div class="flashcard-word">In ritardo</div>
+                                <div class="flashcard-hint">Flight is delayed</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- SEZIONE 7: CHECKLIST -->
+        <div class="section">
+            <div class="section-header" onclick="toggleSection(this)">
+                <h2 class="section-title">
+                    ✅ CHECKLIST PROGRESSIVA (30 Termini)
+                </h2>
+                <span class="toggle-icon">▼</span>
+            </div>
+            <div class="section-content">
+                <div class="checklist">
+                    <h3>📊 Progresso Complessivo</h3>
+                    <div class="progress-bar-container">
+                        <div class="progress-bar" id="progressBar">0%</div>
+                    </div>
+
+                    <div class="checklist-group">
+                        <div class="checklist-group-title vehicles">🚗 VEHICLES (10 termini)</div>
+                        <div class="checklist-item">
+                            <input type="checkbox" onchange="updateProgress()">
+                            <span>Car - Automobile</span>
+                        </div>
+                        <div class="checklist-item">
+                            <input type="checkbox" onchange="updateProgress()">
+                            <span>Bus - Autobus</span>
+                        </div>
+                        <div class="checklist-item">
+                            <input type="checkbox" onchange="updateProgress()">
+                            <span>Truck - Camion</span>
+                        </div>
+                        <div class="checklist-item">
+                            <input type="checkbox" onchange="updateProgress()">
+                            <span>Bike/Bicycle - Bicicletta</span>
+                        </div>
+                        <div class="checklist-item">
+                            <input type="checkbox" onchange="updateProgress()">
+                            <span>Motorcycle - Motocicletta</span>
+                        </div>
+                        <div class="checklist-item">
+                            <input type="checkbox" onchange="updateProgress()">
+                            <span>Train - Treno</span>
+                        </div>
+                        <div class="checklist-item">
+                            <input type="checkbox" onchange="updateProgress()">
+                            <span>Plane/Airplane - Aereo</span>
+                        </div>
+                        <div class="checklist-item">
+                            <input type="checkbox" onchange="updateProgress()">
+                            <span>Ship - Nave</span>
+                        </div>
+                        <div class="checklist-item">
+                            <input type="checkbox" onchange="updateProgress()">
+                            <span>Boat - Barca</span>
+                        </div>
+                        <div class="checklist-item">
+                            <input type="checkbox" onchange="updateProgress()">
+                            <span>Ferry - Traghetto</span>
+                        </div>
+                    </div>
+
+                    <div class="checklist-group">
+                        <div class="checklist-group-title verbs">🛣️ VERBS (8 termini)</div>
+                        <div class="checklist-item">
+                            <input type="checkbox" onchange="updateProgress()">
+                            <span>Drive - Guidare</span>
+                        </div>
+                        <div class="checklist-item">
+                            <input type="checkbox" onchange="updateProgress()">
+                            <span>Ride - Andare in (bici/moto)</span>
+                        </div>
+                        <div class="checklist-item">
+                            <input type="checkbox" onchange="updateProgress()">
+                            <span>Fly - Volare</span>
+                        </div>
+                        <div class="checklist-item">
+                            <input type="checkbox" onchange="updateProgress()">
+                            <span>Sail - Navigare</span>
+                        </div>
+                        <div class="checklist-item">
+                            <input type="checkbox" onchange="updateProgress()">
+                            <span>Catch/Take - Prendere (mezzo)</span>
+                        </div>
+                        <div class="checklist-item">
+                            <input type="checkbox" onchange="updateProgress()">
+                            <span>Miss - Perdere (mezzo)</span>
+                        </div>
+                        <div class="checklist-item">
+                            <input type="checkbox" onchange="updateProgress()">
+                            <span>Board - Imbarcarsi</span>
+                        </div>
+                        <div class="checklist-item">
+                            <input type="checkbox" onchange="updateProgress()">
+                            <span>Land - Atterrare</span>
+                        </div>
+                    </div>
+
+                    <div class="checklist-group">
+                        <div class="checklist-group-title places">📍 PLACES (6 termini)</div>
+                        <div class="checklist-item">
+                            <input type="checkbox" onchange="updateProgress()">
+                            <span>Airport - Aeroporto</span>
+                        </div>
+                        <div class="checklist-item">
+                            <input type="checkbox" onchange="updateProgress()">
+                            <span>Railway Station - Stazione ferroviaria</span>
+                        </div>
+                        <div class="checklist-item">
+                            <input type="checkbox" onchange="updateProgress()">
+                            <span>Platform - Binario</span>
+                        </div>
+                        <div class="checklist-item">
+                            <input type="checkbox" onchange="updateProgress()">
+                            <span>Terminal - Terminal</span>
+                        </div>
+                        <div class="checklist-item">
+                            <input type="checkbox" onchange="updateProgress()">
+                            <span>Gate - Gate imbarco</span>
+                        </div>
+                        <div class="checklist-item">
+                            <input type="checkbox" onchange="updateProgress()">
+                            <span>Port/Harbor - Porto</span>
+                        </div>
+                    </div>
+
+                    <div class="checklist-group">
+                        <div class="checklist-group-title phrases">💬 PHRASES (6 termini)</div>
+                        <div class="checklist-item">
+                            <input type="checkbox" onchange="updateProgress()">
+                            <span>Catch a bus/train - Prendere autobus/treno</span>
+                        </div>
+                        <div class="checklist-item">
+                            <input type="checkbox" onchange="updateProgress()">
+                            <span>Miss a flight - Perdere il volo</span>
+                        </div>
+                        <div class="checklist-item">
+                            <input type="checkbox" onchange="updateProgress()">
+                            <span>Get on / Get off - Salire / Scendere</span>
+                        </div>
+                        <div class="checklist-item">
+                            <input type="checkbox" onchange="updateProgress()">
+                            <span>Book a ticket - Prenotare biglietto</span>
+                        </div>
+                        <div class="checklist-item">
+                            <input type="checkbox" onchange="updateProgress()">
+                            <span>Check in / Check out</span>
+                        </div>
+                        <div class="checklist-item">
+                            <input type="checkbox" onchange="updateProgress()">
+                            <span>Delayed / Cancelled - Ritardo / Cancellato</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- SEZIONE 8: SINTESI -->
+        <div class="synthesis">
+            <h3 style="color: var(--blue-eng); font-size: 1.5rem; margin-bottom: 1.5rem;">⚡ SINTESI ULTRA-RAPIDA</h3>
+
+            <div class="synthesis-box">
+                <div class="synthesis-title">⏱️ 3 MINUTI - Panoramica Completa</div>
+                <p><strong>Transport vocabulary</strong> include 4 categorie principali:</p>
+                <ul style="margin-left: 2rem; line-height: 2;">
+                    <li><strong>🚗 Road</strong>: car, bus, truck, bike, motorcycle, taxi - Verbi: drive, ride</li>
+                    <li><strong>🚆 Rail</strong>: train, subway/metro, tram - Luoghi: station, platform - Verbi: catch, miss</li>
+                    <li><strong>✈️ Air</strong>: plane, helicopter - Luoghi: airport, terminal, gate - Verbi: fly, board, land</li>
+                    <li><strong>⚓ Water</strong>: ship, boat, ferry - Luoghi: port/harbor - Verbo: sail</li>
+                </ul>
+                <p><strong>Frasi comuni</strong>: catch/miss a bus, get on/off, book a ticket, check in/out, delayed/cancelled</p>
+            </div>
+
+            <div class="synthesis-box">
+                <div class="synthesis-title">⏱️ 1 MINUTO - Essenziale</div>
+                <p><strong>30 termini essenziali</strong>: 10 veicoli (car, bus, train, plane, ship...), 8 verbi (drive, fly, catch, miss, board...), 6 luoghi (airport, station, port, terminal...), 6 frasi comuni (catch/miss transport, get on/off, delayed). Memorizza con <strong>dual coding</strong> (immagine mentale + traduzione) e <strong>context examples</strong>.</p>
+            </div>
+
+            <div class="synthesis-box">
+                <div class="synthesis-title">⏱️ 30 SECONDI - Ultra-Compatto</div>
+                <p><strong>Transport = 4 categorie (Road/Rail/Air/Water) + Veicoli + Verbi + Luoghi + Frasi</strong>. Total 30 termini business English per viaggi e logistica. Pratica con flashcards + spaced repetition.</p>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Toggle section expand/collapse
+        function toggleSection(header) {
+            header.classList.toggle('active');
+            const content = header.nextElementSibling;
+            content.classList.toggle('active');
+        }
+
+        // Flip flashcard
+        function flipCard(card) {
+            card.classList.toggle('flipped');
+        }
+
+        // Update progress bar
+        function updateProgress() {
+            const checkboxes = document.querySelectorAll('.checklist input[type="checkbox"]');
+            const checked = document.querySelectorAll('.checklist input[type="checkbox"]:checked');
+            const percentage = Math.round((checked.length / checkboxes.length) * 100);
+
+            const progressBar = document.getElementById('progressBar');
+            progressBar.style.width = percentage + '%';
+            progressBar.textContent = percentage + '%';
+
+            // Color coding
+            if (percentage < 30) {
+                progressBar.style.background = 'linear-gradient(90deg, #ef4444, #dc2626)';
+            } else if (percentage < 70) {
+                progressBar.style.background = 'linear-gradient(90deg, #f59e0b, #d97706)';
+            } else {
+                progressBar.style.background = 'linear-gradient(90deg, var(--blue-eng), var(--green-growth))';
+            }
+
+            // Save to localStorage
+            const checkedIds = Array.from(checked).map((cb, index) => index);
+            localStorage.setItem('transport-checklist', JSON.stringify(checkedIds));
+        }
+
+        // Load saved progress
+        window.addEventListener('DOMContentLoaded', () => {
+            const saved = localStorage.getItem('transport-checklist');
+            if (saved) {
+                const checkedIds = JSON.parse(saved);
+                const checkboxes = document.querySelectorAll('.checklist input[type="checkbox"]');
+                checkedIds.forEach(id => {
+                    if (checkboxes[id]) {
+                        checkboxes[id].checked = true;
+                    }
+                });
+                updateProgress();
+            }
+
+            console.log('🚗 Transport Vocabulary loaded');
+            console.log('📚 30 essential terms | 12 flashcards | 4 categories');
+        });
+    </script>
+</body>
+</html>
