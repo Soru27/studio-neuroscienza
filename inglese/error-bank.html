@@ -1,402 +1,299 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html lang="it">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Error Bank - Common Mistakes</title>
-
-    <!-- Google Fonts -->
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;600&display=swap" rel="stylesheet">
-
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Playfair+Display:wght@700&display=swap" rel="stylesheet">
     <style>
         :root {
-            --red-error: #dc2626;
-            --green-correct: #16a34a;
-            --blue-primary: #2563eb;
-            --yellow-warning: #ca8a04;
-            --purple-grammar: #7c3aed;
-            --gray-bg: #f3f4f6;
-            --white: #ffffff;
-            --text: #111827;
+            --blue-eng: #0ea5e9;
+            --green-correct: #10b981;
+            --red-error: #ef4444;
+            --orange-warning: #f59e0b;
+            --text: #1f2937;
             --text-light: #6b7280;
             --border: #e5e7eb;
+            --bg-light: #f9fafb;
         }
-
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
-
+        * { margin: 0; padding: 0; box-sizing: border-box; }
         body {
             font-family: 'Inter', sans-serif;
-            background: linear-gradient(135deg, #fee2e2 0%, #fef3c7 100%);
-            color: var(--text);
             line-height: 1.6;
+            color: var(--text);
+            background: linear-gradient(135deg, #fef2f2 0%, #fee2e2 100%);
             min-height: 100vh;
         }
-
         .header {
-            background: linear-gradient(135deg, var(--red-error) 0%, var(--yellow-warning) 100%);
+            background: linear-gradient(135deg, var(--red-error) 0%, var(--orange-warning) 100%);
             color: white;
-            padding: 2.5rem 1.5rem;
+            padding: 3rem 2rem;
             text-align: center;
-            box-shadow: 0 4px 20px rgba(220, 38, 38, 0.3);
+            box-shadow: 0 4px 20px rgba(239, 68, 68, 0.3);
+            position: relative;
         }
-
         .header h1 {
-            font-size: 2.2rem;
+            font-family: 'Playfair Display', serif;
+            font-size: 2.5rem;
             margin-bottom: 0.5rem;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.2);
         }
-
+        .subtitle { font-size: 1.1rem; opacity: 0.95; margin-bottom: 1rem; }
+        .method-tag {
+            display: inline-block;
+            background: rgba(255,255,255,0.2);
+            padding: 0.5rem 1rem;
+            border-radius: 20px;
+            font-size: 0.9rem;
+            backdrop-filter: blur(10px);
+        }
         .btn-home {
             position: absolute;
-            top: 1.5rem;
-            left: 1.5rem;
+            top: 2rem;
+            left: 2rem;
             background: white;
             color: var(--red-error);
-            padding: 0.5rem 1rem;
+            padding: 0.75rem 1.5rem;
             border-radius: 8px;
             text-decoration: none;
             font-weight: 600;
-            transition: transform 0.2s;
+            transition: all 0.3s;
+            font-size: 1.5rem;
         }
-
         .btn-home:hover {
             transform: translateY(-2px);
+            box-shadow: 0 4px 12px rgba(0,0,0,0.2);
         }
-
-        .container {
-            max-width: 1200px;
-            margin: 0 auto;
+        .container { max-width: 1200px; margin: 0 auto; padding: 2rem; }
+        .info-box {
+            background: white;
+            border-radius: 12px;
             padding: 2rem;
+            margin-bottom: 2rem;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.08);
+            border-left: 5px solid var(--red-error);
         }
-
-        /* Search and Filters */
+        .info-box h2 { color: var(--red-error); margin-bottom: 1rem; font-size: 1.5rem; }
         .controls {
             background: white;
             border-radius: 12px;
             padding: 1.5rem;
             margin-bottom: 2rem;
             box-shadow: 0 4px 15px rgba(0,0,0,0.08);
+            display: flex;
+            gap: 1rem;
+            flex-wrap: wrap;
+            align-items: center;
         }
-
-        .search-box {
+        .search-box { flex: 1; min-width: 250px; }
+        .search-box input {
             width: 100%;
             padding: 0.75rem 1rem;
-            font-size: 1rem;
             border: 2px solid var(--border);
             border-radius: 8px;
-            margin-bottom: 1rem;
+            font-size: 1rem;
+            transition: border-color 0.3s;
         }
-
-        .search-box:focus {
-            outline: none;
-            border-color: var(--blue-primary);
-        }
-
-        .filter-buttons {
-            display: flex;
-            gap: 0.5rem;
-            flex-wrap: wrap;
-        }
-
+        .search-box input:focus { outline: none; border-color: var(--blue-eng); }
+        .filter-buttons { display: flex; gap: 0.5rem; flex-wrap: wrap; }
         .filter-btn {
             padding: 0.5rem 1rem;
             border: 2px solid var(--border);
             background: white;
-            border-radius: 6px;
+            border-radius: 20px;
             cursor: pointer;
-            transition: all 0.2s;
-            font-weight: 500;
+            transition: all 0.3s;
+            font-weight: 600;
+            font-size: 0.9rem;
         }
-
-        .filter-btn:hover {
-            background: var(--gray-bg);
-        }
-
+        .filter-btn:hover { background: var(--bg-light); }
         .filter-btn.active {
-            background: var(--blue-primary);
+            background: var(--blue-eng);
             color: white;
-            border-color: var(--blue-primary);
+            border-color: var(--blue-eng);
         }
-
-        /* Error Cards */
-        .error-grid {
-            display: grid;
-            gap: 1.5rem;
-        }
-
-        .error-card {
+        .errors-container {
             background: white;
             border-radius: 12px;
-            padding: 1.5rem;
+            padding: 2rem;
             box-shadow: 0 4px 15px rgba(0,0,0,0.08);
-            transition: transform 0.2s;
         }
-
-        .error-card:hover {
-            transform: translateY(-2px);
+        .error-item {
+            border-bottom: 1px solid var(--border);
+            padding: 1.5rem 0;
+            transition: background 0.2s;
         }
-
-        .category-badge {
+        .error-item:last-child { border-bottom: none; }
+        .error-item:hover {
+            background: var(--bg-light);
+            padding-left: 1rem;
+            padding-right: 1rem;
+            margin-left: -1rem;
+            margin-right: -1rem;
+            border-radius: 8px;
+        }
+        .error-category {
             display: inline-block;
-            padding: 0.25rem 0.75rem;
-            border-radius: 20px;
-            font-size: 0.85rem;
-            font-weight: 600;
-            margin-bottom: 1rem;
-        }
-
-        .category-grammar { background: var(--purple-grammar); color: white; }
-        .category-vocabulary { background: var(--blue-primary); color: white; }
-        .category-spelling { background: var(--yellow-warning); color: white; }
-        .category-prepositions { background: #059669; color: white; }
-
-        .error-content {
-            display: grid;
-            gap: 1rem;
-        }
-
-        .error-example {
-            padding: 1rem;
-            border-radius: 8px;
-            font-family: 'JetBrains Mono', monospace;
-            font-size: 0.95rem;
-        }
-
-        .wrong {
-            background: #fee2e2;
-            border-left: 4px solid var(--red-error);
-            position: relative;
-        }
-
-        .wrong::before {
-            content: "❌";
-            position: absolute;
-            left: -25px;
-            top: 50%;
-            transform: translateY(-50%);
-        }
-
-        .correct {
-            background: #dcfce7;
-            border-left: 4px solid var(--green-correct);
-            position: relative;
-        }
-
-        .correct::before {
-            content: "✅";
-            position: absolute;
-            left: -25px;
-            top: 50%;
-            transform: translateY(-50%);
-        }
-
-        .explanation {
-            background: #f0f9ff;
-            border-left: 4px solid var(--blue-primary);
-            padding: 1rem;
-            border-radius: 8px;
-            margin-top: 0// filepath: c:\Users\relax\Desktop\economi\inglese\error-bank.html
-<!DOCTYPE html>
-<html lang="it">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Error Bank - Common Mistakes</title>
-
-    <!-- Google Fonts -->
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;600&display=swap" rel="stylesheet">
-
-    <style>
-        :root {
-            --red-error: #dc2626;
-            --green-correct: #16a34a;
-            --blue-primary: #2563eb;
-            --yellow-warning: #ca8a04;
-            --purple-grammar: #7c3aed;
-            --gray-bg: #f3f4f6;
-            --white: #ffffff;
-            --text: #111827;
-            --text-light: #6b7280;
-            --border: #e5e7eb;
-        }
-
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
-
-        body {
-            font-family: 'Inter', sans-serif;
-            background: linear-gradient(135deg, #fee2e2 0%, #fef3c7 100%);
-            color: var(--text);
-            line-height: 1.6;
-            min-height: 100vh;
-        }
-
-        .header {
-            background: linear-gradient(135deg, var(--red-error) 0%, var(--yellow-warning) 100%);
+            background: var(--orange-warning);
             color: white;
-            padding: 2.5rem 1.5rem;
-            text-align: center;
-            box-shadow: 0 4px 20px rgba(220, 38, 38, 0.3);
-        }
-
-        .header h1 {
-            font-size: 2.2rem;
+            padding: 0.25rem 0.75rem;
+            border-radius: 12px;
+            font-size: 0.75rem;
+            font-weight: 600;
+            text-transform: uppercase;
             margin-bottom: 0.5rem;
         }
-
-        .btn-home {
-            position: absolute;
-            top: 1.5rem;
-            left: 1.5rem;
-            background: white;
-            color: var(--red-error);
-            padding: 0.5rem 1rem;
-            border-radius: 8px;
-            text-decoration: none;
-            font-weight: 600;
-            transition: transform 0.2s;
-        }
-
-        .btn-home:hover {
-            transform: translateY(-2px);
-        }
-
-        .container {
-            max-width: 1200px;
-            margin: 0 auto;
-            padding: 2rem;
-        }
-
-        /* Search and Filters */
-        .controls {
-            background: white;
-            border-radius: 12px;
-            padding: 1.5rem;
-            margin-bottom: 2rem;
-            box-shadow: 0 4px 15px rgba(0,0,0,0.08);
-        }
-
-        .search-box {
-            width: 100%;
-            padding: 0.75rem 1rem;
-            font-size: 1rem;
-            border: 2px solid var(--border);
-            border-radius: 8px;
-            margin-bottom: 1rem;
-        }
-
-        .search-box:focus {
-            outline: none;
-            border-color: var(--blue-primary);
-        }
-
-        .filter-buttons {
-            display: flex;
-            gap: 0.5rem;
-            flex-wrap: wrap;
-        }
-
-        .filter-btn {
-            padding: 0.5rem 1rem;
-            border: 2px solid var(--border);
-            background: white;
-            border-radius: 6px;
-            cursor: pointer;
-            transition: all 0.2s;
-            font-weight: 500;
-        }
-
-        .filter-btn:hover {
-            background: var(--gray-bg);
-        }
-
-        .filter-btn.active {
-            background: var(--blue-primary);
-            color: white;
-            border-color: var(--blue-primary);
-        }
-
-        /* Error Cards */
-        .error-grid {
+        .error-category.grammar { background: var(--blue-eng); }
+        .error-category.vocabulary { background: var(--green-correct); }
+        .error-category.spelling { background: var(--red-error); }
+        .error-comparison {
             display: grid;
-            gap: 1.5rem;
-        }
-
-        .error-card {
-            background: white;
-            border-radius: 12px;
-            padding: 1.5rem;
-            box-shadow: 0 4px 15px rgba(0,0,0,0.08);
-            transition: transform 0.2s;
-        }
-
-        .error-card:hover {
-            transform: translateY(-2px);
-        }
-
-        .category-badge {
-            display: inline-block;
-            padding: 0.25rem 0.75rem;
-            border-radius: 20px;
-            font-size: 0.85rem;
-            font-weight: 600;
-            margin-bottom: 1rem;
-        }
-
-        .category-grammar { background: var(--purple-grammar); color: white; }
-        .category-vocabulary { background: var(--blue-primary); color: white; }
-        .category-spelling { background: var(--yellow-warning); color: white; }
-        .category-prepositions { background: #059669; color: white; }
-
-        .error-content {
-            display: grid;
+            grid-template-columns: 1fr auto 1fr;
             gap: 1rem;
+            align-items: center;
+            margin: 1rem 0;
         }
-
-        .error-example {
+        .error-wrong {
+            background: #fef2f2;
+            border: 2px solid var(--red-error);
             padding: 1rem;
             border-radius: 8px;
-            font-family: 'JetBrains Mono', monospace;
-            font-size: 0.95rem;
         }
-
-        .wrong {
-            background: #fee2e2;
-            border-left: 4px solid var(--red-error);
-            position: relative;
+        .error-wrong::before {
+            content: '\u274C WRONG:';
+            display: block;
+            font-weight: 700;
+            color: var(--red-error);
+            margin-bottom: 0.5rem;
+            font-size: 0.85rem;
         }
-
-        .wrong::before {
-            content: "❌";
-            position: absolute;
-            left: -25px;
-            top: 50%;
-            transform: translateY(-50%);
-        }
-
-        .correct {
-            background: #dcfce7;
-            border-left: 4px solid var(--green-correct);
-            position: relative;
-        }
-
-        .correct::before {
-            content: "✅";
-            position: absolute;
-            left: -25px;
-            top: 50%;
-            transform: translateY(-50%);
-        }
-
-        .explanation {
-            background: #f0f9ff;
-            border-left: 4px solid var(--blue-primary);
+        .error-arrow { font-size: 1.5rem; color: var(--text-light); }
+        .error-correct {
+            background: #f0fdf4;
+            border: 2px solid var(--green-correct);
             padding: 1rem;
             border-radius: 8px;
-            margin-top: 0
+        }
+        .error-correct::before {
+            content: '\u2705 CORRECT:';
+            display: block;
+            font-weight: 700;
+            color: var(--green-correct);
+            margin-bottom: 0.5rem;
+            font-size: 0.85rem;
+        }
+        .error-text { font-size: 1.1rem; font-weight: 600; }
+        .error-explanation {
+            background: var(--bg-light);
+            border-left: 4px solid var(--blue-eng);
+            padding: 1rem;
+            border-radius: 8px;
+            margin-top: 1rem;
+        }
+        .error-explanation::before {
+            content: '\uD83D\uDCA1 SPIEGAZIONE:';
+            display: block;
+            font-weight: 700;
+            color: var(--blue-eng);
+            margin-bottom: 0.5rem;
+            font-size: 0.85rem;
+        }
+        .no-results { text-align: center; padding: 3rem; color: var(--text-light); }
+        @media (max-width: 768px) {
+            .header h1 { font-size: 1.8rem; }
+            .container { padding: 1rem; }
+            .btn-home { position: static; display: inline-flex; margin-bottom: 1rem; }
+            .controls { flex-direction: column; align-items: stretch; }
+            .error-comparison { grid-template-columns: 1fr; }
+            .error-arrow { transform: rotate(90deg); text-align: center; }
+        }
+    </style>
+</head>
+<body>
+    <div class="header">
+        <a href="index.html" class="btn-home"></a>
+        <h1> ERROR BANK</h1>
+        <p class="subtitle">Common Mistakes Database | Database Errori Comuni</p>
+        <span class="method-tag"> Learn from Mistakes | Impara dagli Errori</span>
+    </div>
+    <div class="container">
+        <div class="info-box">
+            <h2> Come Funziona l Error Bank</h2>
+            <p><strong>Database interattivo</strong> degli errori più comuni commessi dagli studenti italiani di inglese. Ogni errore include:</p>
+            <ul style="margin-top: 1rem; margin-left: 1.5rem; line-height: 2;">
+                <li> Forma <strong>sbagliata</strong> (common mistake)</li>
+                <li> Forma <strong>corretta</strong> (correct form)</li>
+                <li> <strong>Spiegazione dettagliata</strong> in italiano del perché è sbagliato</li>
+                <li> <strong>Categoria</strong>: Grammar, Vocabulary, o Spelling</li>
+            </ul>
+            <p style="margin-top: 1rem;"><em>Usa la search bar per cercare errori specifici o filtra per categoria.</em></p>
+        </div>
+        <div class="controls">
+            <div class="search-box">
+                <input type="text" id="searchInput" placeholder=" Cerca errore (es. I go to home, informations...)" oninput="filterErrors()">
+            </div>
+            <div class="filter-buttons">
+                <button class="filter-btn active" data-category="all" onclick="setFilter('all')"> All</button>
+                <button class="filter-btn" data-category="grammar" onclick="setFilter('grammar')"> Grammar</button>
+                <button class="filter-btn" data-category="vocabulary" onclick="setFilter('vocabulary')"> Vocabulary</button>
+                <button class="filter-btn" data-category="spelling" onclick="setFilter('spelling')"> Spelling</button>
+            </div>
+        </div>
+        <div class="errors-container" id="errorsContainer"></div>
+    </div>
+    <script>
+        const errors = [
+            { category: 'grammar', wrong: 'I go to home every day', correct: 'I go home every day', explanation: 'Con "home" non si usa "to" quando è complemento di moto a luogo. Usiamo "home" come avverbio, non come nome. Diciamo "I go home" ma "I go to the office".' },
+            { category: 'vocabulary', wrong: 'I need some informations', correct: 'I need some information', explanation: '"Information" è un sostantivo non numerabile in inglese (uncountable). Non ha plurale. Diciamo "some information", "a lot of information", mai "informations".' },
+            { category: 'grammar', wrong: 'I am agree with you', correct: 'I agree with you', explanation: '"Agree" è un verbo normale, non un aggettivo. Non richiede "to be". Diciamo "I agree" (sono d accordo), non "I am agree".' },
+            { category: 'grammar', wrong: 'She is more good than him', correct: 'She is better than him', explanation: '"Good" ha un comparativo irregolare: "better" (migliore). Non usiamo "more good". Altri irregolari: bad  worse, far  farther.' },
+            { category: 'spelling', wrong: 'I will be their tomorrow', correct: 'I will be there tomorrow', explanation: '"There" = là (luogo). "Their" = loro (possessivo). Non confondere: there (luogo) vs their (possesso) vs they re (they are).' },
+            { category: 'grammar', wrong: 'I have 25 years old', correct: 'I am 25 years old', explanation: 'In inglese l età si esprime con il verbo "to be", non "to have". Diciamo "I am X years old" (letteralmente: "Io sono X anni vecchio").' },
+            { category: 'vocabulary', wrong: 'I want that you come with me', correct: 'I want you to come with me', explanation: 'Dopo "want" non usiamo "that" + frase completa. Usiamo: want + oggetto + infinito. Schema: want + someone + to + verbo.' },
+            { category: 'grammar', wrong: 'Who did opened the door?', correct: 'Who opened the door?', explanation: 'Con "who" come soggetto NON usiamo "did". Usiamo il past simple diretto. "Who opened?" (Chi ha aperto?). Ma: "Who did you see?" (Chi hai visto?).' },
+            { category: 'spelling', wrong: 'I loose my keys often', correct: 'I lose my keys often', explanation: '"Lose" (perdere) si scrive con una "o". "Loose" (sciolto/allentato) si scrive con due "o". Pronuncia diversa: lose /luːz/, loose /luːs/.' },
+            { category: 'grammar', wrong: 'I have been in London 3 years ago', correct: 'I was in London 3 years ago', explanation: 'Con espressioni di tempo definite (3 years ago, last week, in 2020) usiamo Past Simple, non Present Perfect. Present Perfect si usa con "for/since/already/yet".' },
+            { category: 'vocabulary', wrong: 'I made a mistake. I want to say sorry', correct: 'I made a mistake. I want to apologize', explanation: '"Say sorry" è informale/colloquiale. Meglio "apologize" (scusarsi formalmente). Oppure "I m sorry" (mi dispiace) o "excuse me" (mi scusi).' },
+            { category: 'grammar', wrong: 'I didn t went to school yesterday', correct: 'I didn t go to school yesterday', explanation: 'Dopo "did/didn t" (ausiliare passato) il verbo va in forma base, non in past simple. Diciamo "didn t go", non "didn t went".' }
+        ];
+        let currentFilter = 'all';
+        function renderErrors() {
+            const container = document.getElementById('errorsContainer');
+            const searchTerm = document.getElementById('searchInput').value.toLowerCase();
+            let filteredErrors = errors.filter(error => {
+                const matchCategory = currentFilter === 'all' || error.category === currentFilter;
+                const matchSearch = error.wrong.toLowerCase().includes(searchTerm) || error.correct.toLowerCase().includes(searchTerm) || error.explanation.toLowerCase().includes(searchTerm);
+                return matchCategory && matchSearch;
+            });
+            if (filteredErrors.length === 0) {
+                container.innerHTML = '<div class="no-results"><p style="font-size: 3rem;"></p><p style="font-size: 1.2rem; font-weight: 600; margin-bottom: 0.5rem;">Nessun errore trovato</p><p style="color: var(--text-light);">Prova a modificare la ricerca o cambiare filtro</p></div>';
+                return;
+            }
+            container.innerHTML = filteredErrors.map(error => `
+                <div class="error-item">
+                    <span class="error-category ${error.category}">${error.category}</span>
+                    <div class="error-comparison">
+                        <div class="error-wrong"><div class="error-text">${error.wrong}</div></div>
+                        <div class="error-arrow"></div>
+                        <div class="error-correct"><div class="error-text">${error.correct}</div></div>
+                    </div>
+                    <div class="error-explanation">${error.explanation}</div>
+                </div>
+            `).join('');
+        }
+        function setFilter(category) {
+            currentFilter = category;
+            document.querySelectorAll('.filter-btn').forEach(btn => {
+                btn.classList.remove('active');
+                if (btn.dataset.category === category) { btn.classList.add('active'); }
+            });
+            renderErrors();
+        }
+        function filterErrors() { renderErrors(); }
+        window.addEventListener('DOMContentLoaded', () => {
+            renderErrors();
+            console.log(' Error Bank loaded: ' + errors.length + ' errors');
+        });
+    </script>
+</body>
+</html>
