@@ -38,15 +38,30 @@
             border-radius: 8px;
             text-decoration: none;
             font-weight: 600;
-            transition: transform 0.2s;
+            transition: all 0.3s;
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
         }
-        .btn-home:hover { transform: translateY(-2px); }
+        .btn-home:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 4px 12px rgba(0,0,0,0.2);
+        }
         .header h1 {
             font-family: 'Playfair Display', serif;
             font-size: 2.5rem;
             margin-bottom: 0.5rem;
         }
         .header p { font-size: 1.1rem; opacity: 0.95; }
+        .method-tag {
+            display: inline-block;
+            background: rgba(255,255,255,0.2);
+            padding: 0.5rem 1rem;
+            border-radius: 20px;
+            font-size: 0.9rem;
+            margin-top: 1rem;
+            backdrop-filter: blur(10px);
+        }
         .container { max-width: 1200px; margin: 0 auto; padding: 2rem; }
         .stats {
             display: grid;
@@ -114,9 +129,10 @@
 </head>
 <body>
     <div class="header">
-        <a href="../index.html" class="btn-home"> Dashboard Principale</a>
-        <h1> INGLESE - Business English</h1>
+        <a href="../index.html" class="btn-home">🏠 Dashboard Principale</a>
+        <h1>🇬🇧 INGLESE - Business English</h1>
         <p>Complete Learning System | Sistema Neuroscienza</p>
+        <div class="method-tag">🧠 Metodo: Active Recall + Spaced Repetition</div>
     </div>
     <div class="container">
         <div class="stats">
@@ -127,7 +143,7 @@
         </div>
         <div class="modules-grid">
             <a href="transport.html" class="module-card">
-                <div class="module-icon"></div>
+                <div class="module-icon">🚗</div>
                 <h2 class="module-title">Transport Vocabulary</h2>
                 <p class="module-description">Vocabolario completo sui mezzi di trasporto: Road, Rail, Air, Water. 30 termini essenziali con esempi bilingue e pronuncia IPA.</p>
                 <div class="module-features">
@@ -138,7 +154,7 @@
                 </div>
             </a>
             <a href="a4-grammar.html" class="module-card">
-                <div class="module-icon"></div>
+                <div class="module-icon">📚</div>
                 <h2 class="module-title">A4 Grammar Complete</h2>
                 <p class="module-description">Grammatica completa A1-B2: Articles, Tenses, Modals, Conditionals, Passive, Reported Speech. Sistema progressivo con 3 livelli di difficoltà.</p>
                 <div class="module-features">
@@ -149,7 +165,7 @@
                 </div>
             </a>
             <a href="error-bank.html" class="module-card">
-                <div class="module-icon"></div>
+                <div class="module-icon">❌</div>
                 <h2 class="module-title">Error Bank</h2>
                 <p class="module-description">Database interattivo degli errori più comuni per italiani: Grammar, Vocabulary, Spelling. Ogni errore con spiegazione dettagliata in italiano e correzione.</p>
                 <div class="module-features">
@@ -160,7 +176,7 @@
                 </div>
             </a>
             <a href="mini-tests.html" class="module-card">
-                <div class="module-icon"></div>
+                <div class="module-icon">📝</div>
                 <h2 class="module-title">Mini Tests Progressivi</h2>
                 <p class="module-description">4 test progressivi da Day 1 (Basics) a Verifica Finale (Advanced). 45 domande totali con instant feedback colorato e score tracking.</p>
                 <div class="module-features">
@@ -173,13 +189,14 @@
         </div>
         <div class="footer">
             <p><strong>Sistema Neuroscienza Cognitiva Applicata</strong></p>
-            <p style="margin-top: 0.5rem; font-size: 0.9rem;"> Metodi: Dual Coding | Active Recall | Spaced Repetition | Progressive Difficulty</p>
-            <p style="margin-top: 0.5rem; font-size: 0.85rem; color: #9ca3af;"> 2025 - Studio Neuroscienza</p>
+            <p style="margin-top: 0.5rem; font-size: 0.9rem;">🧠 Metodi: Dual Coding | Active Recall | Spaced Repetition | Progressive Difficulty</p>
+            <p style="margin-top: 0.5rem; font-size: 0.85rem; color: #9ca3af;">© 2025 - Studio Neuroscienza</p>
         </div>
     </div>
     <script>
-        console.log(' Inglese Dashboard loaded successfully');
-        console.log(' 4 modules available: Transport, Grammar, Error Bank, Tests');
+        console.log('🇬🇧 Inglese Dashboard loaded successfully');
+        console.log('📚 4 modules available: Transport, Grammar, Error Bank, Tests');
+        console.log('🔗 Navigation ready');
     </script>
 </body>
 </html>
