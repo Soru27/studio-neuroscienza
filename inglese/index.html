@@ -1,101 +1,365 @@
-<!DOCTYPE html>
-<html lang="it">
-<head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Inglese - In Arrivo</title>
-<style>
-:root {
-  --primary: #14b8a6;
-  --bg-gradient: linear-gradient(135deg, #14b8a6 0%, #06b6d4 100%);
-}
+<!DOCTYPE html><!DOCTYPE html>
 
-* { margin: 0; padding: 0; box-sizing: border-box; }
+<html lang="it"><html lang="it">
 
-body {
-  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-  background: var(--bg-gradient);
-  min-height: 100vh;
-  display: flex;
-  align-items: center;
+<head><head>
+
+    <meta charset="UTF-8"><meta charset="UTF-8">
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"><meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Inglese - Business English Dashboard</title><title>Inglese - In Arrivo</title>
+
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&family=Playfair+Display:wght@700&display=swap" rel="stylesheet"><style>
+
+    <style>:root {
+
+        * {  --primary: #14b8a6;
+
+            margin: 0;  --bg-gradient: linear-gradient(135deg, #14b8a6 0%, #06b6d4 100%);
+
+            padding: 0;}
+
+            box-sizing: border-box;
+
+        }* { margin: 0; padding: 0; box-sizing: border-box; }
+
+
+
+        :root {body {
+
+            --blue-eng: #0ea5e9;  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+
+            --green-growth: #10b981;  background: var(--bg-gradient);
+
+            --text: #1f2937;  min-height: 100vh;
+
+            --text-light: #6b7280;  display: flex;
+
+        }  align-items: center;
+
   justify-content: center;
-  padding: 20px;
-}
 
-.container {
-  max-width: 600px;
-  background: white;
-  border-radius: 20px;
+        body {  padding: 20px;
+
+            font-family: 'Inter', sans-serif;}
+
+            background: linear-gradient(135deg, #dbeafe 0%, #d1fae5 100%);
+
+            color: var(--text);.container {
+
+            line-height: 1.6;  max-width: 600px;
+
+            min-height: 100vh;  background: white;
+
+        }  border-radius: 20px;
+
   padding: 50px;
-  text-align: center;
-  box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+
+        .header {  text-align: center;
+
+            background: linear-gradient(135deg, var(--blue-eng), var(--green-growth));  box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+
+            color: white;}
+
+            padding: 3rem 2rem;
+
+            text-align: center;.icon {
+
+            box-shadow: 0 4px 20px rgba(14, 165, 233, 0.3);  font-size: 6em;
+
+            position: relative;  margin-bottom: 20px;
+
+        }  animation: pulse 2s ease-in-out infinite;
+
 }
 
-.icon {
-  font-size: 6em;
-  margin-bottom: 20px;
-  animation: pulse 2s ease-in-out infinite;
-}
+        .btn-home {
 
-@keyframes pulse {
-  0%, 100% { transform: scale(1); }
-  50% { transform: scale(1.1); }
-}
+            position: absolute;@keyframes pulse {
 
-h1 {
-  font-size: 2.5em;
-  color: var(--primary);
-  margin-bottom: 20px;
-}
+            top: 2rem;  0%, 100% { transform: scale(1); }
+
+            left: 2rem;  50% { transform: scale(1.1); }
+
+            background: white;}
+
+            color: var(--blue-eng);
+
+            padding: 0.75rem 1.5rem;h1 {
+
+            border-radius: 8px;  font-size: 2.5em;
+
+            text-decoration: none;  color: var(--primary);
+
+            font-weight: 600;  margin-bottom: 20px;
+
+            transition: transform 0.2s;}
+
+        }
 
 p {
-  font-size: 1.2em;
-  color: #64748b;
-  margin-bottom: 30px;
+
+        .btn-home:hover {  font-size: 1.2em;
+
+            transform: translateY(-2px);  color: #64748b;
+
+        }  margin-bottom: 30px;
+
   line-height: 1.6;
-}
 
-.btn {
-  display: inline-block;
-  padding: 15px 40px;
+        .header h1 {}
+
+            font-family: 'Playfair Display', serif;
+
+            font-size: 2.5rem;.btn {
+
+            margin-bottom: 0.5rem;  display: inline-block;
+
+        }  padding: 15px 40px;
+
   background: var(--bg-gradient);
-  color: white;
-  text-decoration: none;
-  border-radius: 50px;
-  font-weight: 600;
-  font-size: 1.1em;
+
+        .container {  color: white;
+
+            max-width: 1200px;  text-decoration: none;
+
+            margin: 0 auto;  border-radius: 50px;
+
+            padding: 2rem;  font-weight: 600;
+
+        }  font-size: 1.1em;
+
   transition: transform 0.3s ease, box-shadow 0.3s ease;
-}
 
-.btn:hover {
-  transform: translateY(-3px);
-  box-shadow: 0 10px 25px rgba(20, 184, 166, 0.4);
-}
+        .stats {}
 
-.meta {
-  margin-top: 30px;
-  padding-top: 20px;
-  border-top: 2px solid #e2e8f0;
-  color: #94a3b8;
-  font-size: 0.9em;
-}
+            display: grid;
+
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));.btn:hover {
+
+            gap: 1.5rem;  transform: translateY(-3px);
+
+            margin-bottom: 3rem;  box-shadow: 0 10px 25px rgba(20, 184, 166, 0.4);
+
+        }}
+
+
+
+        .stat-card {.meta {
+
+            background: white;  margin-top: 30px;
+
+            padding: 1.5rem;  padding-top: 20px;
+
+            border-radius: 12px;  border-top: 2px solid #e2e8f0;
+
+            text-align: center;  color: #94a3b8;
+
+            box-shadow: 0 4px 15px rgba(0,0,0,0.08);  font-size: 0.9em;
+
+        }}
+
 </style>
+
+        .stat-number {</head>
+
+            font-size: 2.5rem;<body>
+
+            font-weight: 700;
+
+            color: var(--blue-eng);<div class="container">
+
+        }  <div class="icon">🇬🇧</div>
+
+  <h1>Inglese</h1>
+
+        .stat-label {  <p>
+
+            color: var(--text-light);    📚 Materials for this subject are being prepared.<br>
+
+            font-size: 0.9rem;    Come back soon for complete contents on Business English,
+
+            margin-top: 0.5rem;    grammar, conversation and commercial documents.
+
+        }  </p>
+
+  <a href="../index.html" class="btn">🏠 Back to Homepage</a>
+
+        .modules-grid {  <div class="meta">
+
+            display: grid;    A.S. 2025/2026 | Jeffrey Minaya | AFM Quinta Serale
+
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));  </div>
+
+            gap: 2rem;</div>
+
+        }
+
+</body>
+
+        .module-card {</html>
+
+            background: white;
+            border-radius: 12px;
+            padding: 2rem;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.08);
+            transition: transform 0.3s, box-shadow 0.3s;
+            text-decoration: none;
+            color: inherit;
+            display: block;
+            border-left: 5px solid var(--blue-eng);
+        }
+
+        .module-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 25px rgba(0,0,0,0.15);
+        }
+
+        .module-icon {
+            font-size: 3rem;
+            margin-bottom: 1rem;
+        }
+
+        .module-title {
+            font-size: 1.5rem;
+            font-weight: 700;
+            margin-bottom: 0.5rem;
+        }
+
+        .module-description {
+            color: var(--text-light);
+            margin-bottom: 1rem;
+        }
+
+        .module-features {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.5rem;
+            margin-top: 1rem;
+            padding-top: 1rem;
+            border-top: 1px solid #e5e7eb;
+        }
+
+        .feature-badge {
+            background: #dbeafe;
+            color: var(--blue-eng);
+            padding: 0.25rem 0.75rem;
+            border-radius: 20px;
+            font-size: 0.85rem;
+            font-weight: 600;
+        }
+
+        .footer {
+            text-align: center;
+            margin-top: 4rem;
+            padding: 2rem;
+            color: var(--text-light);
+        }
+
+        @media (max-width: 768px) {
+            .header h1 { font-size: 1.8rem; }
+            .container { padding: 1rem; }
+            .btn-home { position: static; margin-bottom: 1rem; }
+        }
+    </style>
 </head>
 <body>
+    <div class="header">
+        <a href="../index.html" class="btn-home">🏠 Dashboard Principale</a>
+        <h1>🇬🇧 INGLESE - Business English</h1>
+        <p>Complete Learning System | Sistema Neuroscienza</p>
+    </div>
 
-<div class="container">
-  <div class="icon">🇬🇧</div>
-  <h1>Inglese</h1>
-  <p>
-    📚 Materials for this subject are being prepared.<br>
-    Come back soon for complete contents on Business English,
-    grammar, conversation and commercial documents.
-  </p>
-  <a href="../index.html" class="btn">🏠 Back to Homepage</a>
-  <div class="meta">
-    A.S. 2025/2026 | Jeffrey Minaya | AFM Quinta Serale
-  </div>
-</div>
+    <div class="container">
+        <div class="stats">
+            <div class="stat-card">
+                <div class="stat-number">4</div>
+                <div class="stat-label">Moduli Completi</div>
+            </div>
+            <div class="stat-card">
+                <div class="stat-number">100+</div>
+                <div class="stat-label">Flashcards</div>
+            </div>
+            <div class="stat-card">
+                <div class="stat-number">50+</div>
+                <div class="stat-label">Termini & Regole</div>
+            </div>
+            <div class="stat-card">
+                <div class="stat-number">45</div>
+                <div class="stat-label">Test Questions</div>
+            </div>
+        </div>
 
+        <div class="modules-grid">
+            <a href="transport.html" class="module-card">
+                <div class="module-icon">🚗</div>
+                <h2 class="module-title">Transport Vocabulary</h2>
+                <p class="module-description">
+                    Vocabolario completo sui mezzi di trasporto: Road, Rail, Air, Water. 30 termini essenziali con esempi bilingue e pronuncia.
+                </p>
+                <div class="module-features">
+                    <span class="feature-badge">30 Termini</span>
+                    <span class="feature-badge">12 Flashcards</span>
+                    <span class="feature-badge">4 Categorie</span>
+                    <span class="feature-badge">Esempi ITA/ENG</span>
+                </div>
+            </a>
+
+            <a href="a4-grammar.html" class="module-card">
+                <div class="module-icon">📚</div>
+                <h2 class="module-title">A4 Grammar Complete</h2>
+                <p class="module-description">
+                    Grammatica completa A1-B2: Articles, Tenses, Modals, Conditionals, Passive, Reported Speech. Sistema progressivo con 3 livelli di difficoltà.
+                </p>
+                <div class="module-features">
+                    <span class="feature-badge">25 Regole</span>
+                    <span class="feature-badge">12 Flashcards</span>
+                    <span class="feature-badge">3 Livelli</span>
+                    <span class="feature-badge">Quick Reference</span>
+                </div>
+            </a>
+
+            <a href="error-bank.html" class="module-card">
+                <div class="module-icon">❌</div>
+                <h2 class="module-title">Error Bank</h2>
+                <p class="module-description">
+                    Database interattivo degli errori più comuni: Grammar, Vocabulary, Spelling. Ogni errore con spiegazione dettagliata e correzione.
+                </p>
+                <div class="module-features">
+                    <span class="feature-badge">12+ Errori</span>
+                    <span class="feature-badge">Filtri Categoria</span>
+                    <span class="feature-badge">Search Bar</span>
+                    <span class="feature-badge">Spiegazioni ITA</span>
+                </div>
+            </a>
+
+            <a href="mini-tests.html" class="module-card">
+                <div class="module-icon">📝</div>
+                <h2 class="module-title">Mini Tests</h2>
+                <p class="module-description">
+                    4 test progressivi: Day 1 (Basics), Day 2 (Intermediate), Day 3 (Advanced), Verifica Finale. Instant feedback e score tracking.
+                </p>
+                <div class="module-features">
+                    <span class="feature-badge">45 Questions</span>
+                    <span class="feature-badge">4 Test Levels</span>
+                    <span class="feature-badge">Instant Feedback</span>
+                    <span class="feature-badge">Score Tracking</span>
+                </div>
+            </a>
+        </div>
+
+        <div class="footer">
+            <p>© 2025 - Sistema Neuroscienza Cognitiva Applicata</p>
+            <p style="margin-top: 0.5rem; font-size: 0.9rem;">
+                Metodi: Dual Coding | Active Recall | Spaced Repetition | Progressive Difficulty
+            </p>
+        </div>
+    </div>
+
+    <script>
+        console.log('🇬🇧 Inglese Dashboard loaded');
+        console.log('📚 4 modules available: Transport, Grammar, Error Bank, Tests');
+    </script>
 </body>
 </html>
