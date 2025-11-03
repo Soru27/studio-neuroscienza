@@ -1,101 +1,714 @@
 <!DOCTYPE html>
 <html lang="it">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Storia - In Arrivo</title>
-<style>
-:root {
-  --primary: #f59e0b;
-  --bg-gradient: linear-gradient(135deg, #f59e0b 0%, #fbbf24 100%);
-}
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>🏛️ Storia - Dashboard Lezioni</title>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --primary: #8b0000;
+            --secondary: #ff4500;
+            --accent: #dc143c;
+            --success: #4caf50;
+            --dark: #2c1810;
+            --light: #fef2f2;
+            --shadow: rgba(139, 0, 0, 0.15);
+        }
 
-* { margin: 0; padding: 0; box-sizing: border-box; }
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
 
-body {
-  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-  background: var(--bg-gradient);
-  min-height: 100vh;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  padding: 20px;
-}
+        body {
+            font-family: 'Inter', sans-serif;
+            background: linear-gradient(135deg, #fef2f2 0%, #fee2e2 100%);
+            color: var(--dark);
+            line-height: 1.6;
+            min-height: 100vh;
+        }
 
-.container {
-  max-width: 600px;
-  background: white;
-  border-radius: 20px;
-  padding: 50px;
-  text-align: center;
-  box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
-}
+        .header {
+            background: linear-gradient(135deg, var(--primary) 0%, var(--secondary) 100%);
+            color: white;
+            padding: 3rem 2rem;
+            box-shadow: 0 4px 6px var(--shadow);
+            margin-bottom: 2rem;
+            text-align: center;
+            position: relative;
+        }
 
-.icon {
-  font-size: 6em;
-  margin-bottom: 20px;
-  animation: pulse 2s ease-in-out infinite;
-}
+        .header h1 {
+            font-family: 'Playfair Display', serif;
+            font-size: 3rem;
+            margin-bottom: 0.5rem;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+        }
 
-@keyframes pulse {
-  0%, 100% { transform: scale(1); }
-  50% { transform: scale(1.1); }
-}
+        .header .subtitle {
+            font-size: 1.2rem;
+            opacity: 0.95;
+            font-weight: 300;
+        }
 
-h1 {
-  font-size: 2.5em;
-  color: var(--primary);
-  margin-bottom: 20px;
-}
+        .btn-home {
+            position: absolute;
+            top: 2rem;
+            left: 2rem;
+            background: white;
+            color: var(--primary);
+            padding: 0.75rem 1.5rem;
+            border-radius: 8px;
+            text-decoration: none;
+            font-weight: 600;
+            transition: all 0.3s;
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
 
-p {
-  font-size: 1.2em;
-  color: #64748b;
-  margin-bottom: 30px;
-  line-height: 1.6;
-}
+        .btn-home:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 4px 12px rgba(0,0,0,0.2);
+        }
 
-.btn {
-  display: inline-block;
-  padding: 15px 40px;
-  background: var(--bg-gradient);
-  color: white;
-  text-decoration: none;
-  border-radius: 50px;
-  font-weight: 600;
-  font-size: 1.1em;
-  transition: transform 0.3s ease, box-shadow 0.3s ease;
-}
+        .container {
+            max
+        .stat-label {
 
-.btn:hover {
-  transform: translateY(-3px);
-  box-shadow: 0 10px 25px rgba(245, 158, 11, 0.4);
-}
+            color: var(--text-light);            font-size: 1.2rem;  font-size: 1.2em;
 
-.meta {
-  margin-top: 30px;
-  padding-top: 20px;
-  border-top: 2px solid #e2e8f0;
-  color: #94a3b8;
-  font-size: 0.9em;
-}
-</style>
-</head>
-<body>
+            font-size: 0.9rem;
 
-<div class="container">
-  <div class="icon">🏛️</div>
-  <h1>Storia</h1>
-  <p>
-    📚 Il materiale per questa materia è in fase di preparazione.<br>
-    Torna presto per accedere a contenuti completi su storia contemporanea
-    e analisi degli eventi del Novecento.
-  </p>
-  <a href="../index.html" class="btn">🏠 Torna alla Homepage</a>
-  <div class="meta">
-    A.S. 2025/2026 | Jeffrey Minaya | AFM Quinta Serale
-  </div>
-</div>
+        }            opacity: 0.95;  color: #64748b;
 
+
+
+        .lessons-grid {            font-weight: 300;  margin-bottom: 30px;
+
+            display: grid;
+
+            gap: 2rem;        }  line-height: 1.6;
+
+            margin-top: 2rem;
+
+        }}
+
+
+
+        .lesson-card {        .btn-home {
+
+            background: white;
+
+            border-radius: 12px;            position: absolute;.btn {
+
+            padding: 2rem;
+
+            box-shadow: 0 4px 15px rgba(0,0,0,0.08);            top: 2rem;  display: inline-block;
+
+            transition: transform 0.3s, box-shadow 0.3s;
+
+            border-left: 5px solid;            left: 2rem;  padding: 15px 40px;
+
+            text-decoration: none;
+
+            color: inherit;            background: white;  background: var(--bg-gradient);
+
+            display: block;
+
+        }            color: var(--primary);  color: white;
+
+
+
+        .lesson-card:hover {            padding: 0.75rem 1.5rem;  text-decoration: none;
+
+            transform: translateY(-5px);
+
+            box-shadow: 0 8px 25px rgba(0,0,0,0.15);            border-radius: 8px;  border-radius: 50px;
+
+        }
+
+            text-decoration: none;  font-weight: 600;
+
+        .lesson-card.available {
+
+            border-color: var(--success);            font-weight: 600;  font-size: 1.1em;
+
+        }
+
+            transition: all 0.3s;  transition: transform 0.3s ease, box-shadow 0.3s ease;
+
+        .lesson-card.coming-soon {
+
+            border-color: var(--text-light);            display: inline-flex;}
+
+            opacity: 0.6;
+
+            cursor: not-allowed;            align-items: center;
+
+        }
+
+            gap: 0.5rem;.btn:hover {
+
+        .lesson-header {
+
+            display: flex;        }  transform: translateY(-3px);
+
+            justify-content: space-between;
+
+            align-items: flex-start;  box-shadow: 0 10px 25px rgba(245, 158, 11, 0.4);
+
+            margin-bottom: 1rem;
+
+        }        .btn-home:hover {}
+
+
+
+        .lesson-icon {            transform: translateY(-2px);
+
+            font-size: 3rem;
+
+        }            box-shadow: 0 4px 12px rgba(0,0,0,0.2);.meta {
+
+
+
+        .lesson-badge {        }  margin-top: 30px;
+
+            padding: 0.5rem 1rem;
+
+            border-radius: 20px;  padding-top: 20px;
+
+            font-size: 0.85rem;
+
+            font-weight: 600;        .container {  border-top: 2px solid #e2e8f0;
+
+        }
+
+            max-width: 1400px;  color: #94a3b8;
+
+        .lesson-badge.completed {
+
+            background: rgba(21, 128, 61, 0.1);            margin: 0 auto;  font-size: 0.9em;
+
+            color: var(--success);
+
+            border: 1px solid var(--success);            padding: 0 1.5rem 3rem;}
+
+        }
+
+        }</style>
+
+        .lesson-badge.soon {
+
+            background: rgba(107, 114, 128, 0.1);</head>
+
+            color: var(--text-light);
+
+            border: 1px solid var(--text-light);        .section-title {<body>
+
+        }
+
+            font-family: 'Playfair Display', serif;
+
+        .lesson-title {
+
+            font-size: 1.8rem;            font-size: 2rem;<div class="container">
+
+            font-weight: 700;
+
+            margin-bottom: 0.5rem;            color: var(--primary);  <div class="icon">🏛️</div>
+
+            color: var(--text);
+
+        }            margin: 3rem 0 1.5rem;  <h1>Storia</h1>
+
+
+
+        .lesson-period {            text-align: center;  <p>
+
+            color: var(--text-light);
+
+            font-size: 0.95rem;            position: relative;    📚 Il materiale per questa materia è in fase di preparazione.<br>
+
+            margin-bottom: 1rem;
+
+        }        }    Torna presto per accedere a contenuti completi su storia contemporanea
+
+
+
+        .lesson-description {    e analisi degli eventi del Novecento.
+
+            color: var(--text);
+
+            line-height: 1.7;        .section-title::after {  </p>
+
+            margin-bottom: 1.5rem;
+
+        }            content: '';  <a href="../index.html" class="btn">🏠 Torna alla Homepage</a>
+
+
+
+        .lesson-features {            display: block;  <div class="meta">
+
+            display: flex;
+
+            flex-wrap: wrap;            width: 100px;    A.S. 2025/2026 | Jeffrey Minaya | AFM Quinta Serale
+
+            gap: 1rem;
+
+            padding-top: 1rem;            height: 3px;  </div>
+
+            border-top: 1px solid var(--border);
+
+        }            background: var(--secondary);</div>
+
+
+
+        .feature {            margin: 1rem auto 0;
+
+            display: flex;
+
+            align-items: center;            border-radius: 2px;</body>
+
+            gap: 0.5rem;
+
+            font-size: 0.9rem;        }</html>
+
+            color: var(--text-light);
+
+        }
+
+        .stats-container {
+
+        .footer {            display: grid;
+
+            text-align: center;            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+
+            margin-top: 4rem;            gap: 1.5rem;
+
+            padding: 2rem;            margin-bottom: 3rem;
+
+            color: var(--text-light);        }
+
+        }
+
+        .stat-card {
+
+        @media (max-width: 768px) {            background: white;
+
+            .header h1 { font-size: 1.8rem; }            padding: 1.5rem;
+
+            .container { padding: 1rem; }            border-radius: 12px;
+
+            .btn-home {            box-shadow: 0 4px 6px var(--shadow);
+
+                position: static;            text-align: center;
+
+                margin-bottom: 1rem;        }
+
+            }
+
+        }        .stat-number {
+
+    </style>            font-size: 2.5rem;
+
+</head>            font-weight: 700;
+
+<body>            color: var(--primary);
+
+    <div class="header">            margin-bottom: 0.5rem;
+
+        <a href="../index.html" class="btn-home">🏠 Dashboard Principale</a>        }
+
+        <h1>🏛️ STORIA</h1>
+
+        <p class="subtitle">Materiale di Studio - Metodo Neuroscienza Cognitiva</p>        .stat-label {
+
+    </div>            color: #6b7280;
+
+            font-size: 0.9rem;
+
+    <div class="container">        }
+
+        <!-- STATISTICHE -->
+
+        <div class="stats">        .lezioni-grid {
+
+            <div class="stat-card">            display: grid;
+
+                <div class="stat-number">1</div>            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+
+                <div class="stat-label">Lezioni Complete</div>            gap: 2rem;
+
+            </div>            margin-bottom: 3rem;
+
+            <div class="stat-card">        }
+
+                <div class="stat-number">30</div>
+
+                <div class="stat-label">Punti Checklist</div>        .lezione-card {
+
+            </div>            background: white;
+
+            <div class="stat-card">            border-radius: 12px;
+
+                <div class="stat-number">12</div>            overflow: hidden;
+
+                <div class="stat-label">Flashcards Interattive</div>            box-shadow: 0 4px 6px var(--shadow);
+
+            </div>            transition: all 0.3s;
+
+            <div class="stat-card">        }
+
+                <div class="stat-number">3</div>
+
+                <div class="stat-label">Livelli Sintesi</div>        .lezione-card:hover {
+
+            </div>            transform: translateY(-5px);
+
+        </div>            box-shadow: 0 8px 16px var(--shadow);
+
+        }
+
+        <!-- LEZIONI -->
+
+        <div class="lessons-grid">        .lezione-header {
+
+            <!-- PRIMA GUERRA MONDIALE -->            background: linear-gradient(135deg, var(--primary) 0%, var(--secondary) 100%);
+
+            <a href="prima-guerra-mondiale.html" class="lesson-card available">            color: white;
+
+                <div class="lesson-header">            padding: 2rem;
+
+                    <div class="lesson-icon">🌍</div>        }
+
+                    <span class="lesson-badge completed">✅ Completato</span>
+
+                </div>        .lezione-header.disabled {
+
+                <h2 class="lesson-title">La Prima Guerra Mondiale</h2>            background: linear-gradient(135deg, #6b7280 0%, #9ca3af 100%);
+
+                <p class="lesson-period">1914-1918 | La Grande Guerra</p>        }
+
+                <p class="lesson-description">
+
+                    Studio completo della Prima Guerra Mondiale con metodi neuroscientifici: cause profonde, quattro fronti di guerra, ruolo dell'Italia (neutralità, interventismo, Caporetto, Vittorio Veneto), Trattato di Versailles e conseguenze che prepararono la Seconda Guerra Mondiale.        .lezione-header h2 {
+
+                </p>            font-family: 'Playfair Display', serif;
+
+                <div class="lesson-features">            font-size: 1.8rem;
+
+                    <span class="feature">🔵 7 Cause profonde</span>            margin-bottom: 0.5rem;
+
+                    <span class="feature">🔴 4 Fronti di guerra</span>        }
+
+                    <span class="feature">🟡 Italia: da neutralità a vittoria</span>
+
+                    <span class="feature">🟢 Pace e conseguenze</span>        .lezione-periodo {
+
+                    <span class="feature">🎯 8 Sezioni espandibili</span>            font-size: 0.95rem;
+
+                    <span class="feature">🃏 12 Flashcards flip</span>            opacity: 0.9;
+
+                    <span class="feature">✅ Checklist 30 punti</span>        }
+
+                    <span class="feature">⚡ Sintesi 3 livelli</span>
+
+                </div>        .lezione-body {
+
+            </a>            padding: 2rem;
+
+        }
+
+            <!-- RIVOLUZIONE RUSSA (Coming Soon) -->
+
+            <div class="lesson-card coming-soon">        .badge-list {
+
+                <div class="lesson-header">            display: flex;
+
+                    <div class="lesson-icon">🇷🇺</div>            flex-wrap: wrap;
+
+                    <span class="lesson-badge soon">🔜 In arrivo</span>            gap: 0.5rem;
+
+                </div>            margin-bottom: 1.5rem;
+
+                <h2 class="lesson-title">Rivoluzione Russa</h2>        }
+
+                <p class="lesson-period">1917 | Due rivoluzioni, un impero caduto</p>
+
+                <p class="lesson-description">        .badge {
+
+                    Rivoluzione di Febbraio, caduta degli Zar, Soviet, Bolscevichi, Lenin, Ottobre Rosso, Guerra Civile, nascita URSS.            padding: 0.4rem 0.8rem;
+
+                </p>            border-radius: 20px;
+
+                <div class="lesson-features">            font-size: 0.85rem;
+
+                    <span class="feature">📚 Materiale in preparazione</span>            font-weight: 600;
+
+                </div>        }
+
+            </div>
+
+        .badge.completato {
+
+            <!-- FASCISMO (Coming Soon) -->            background: #dcfce7;
+
+            <div class="lesson-card coming-soon">            color: #15803d;
+
+                <div class="lesson-header">        }
+
+                    <div class="lesson-icon">🇮🇹</div>
+
+                    <span class="lesson-badge soon">🔜 In arrivo</span>        .badge.prossimamente {
+
+                </div>            background: #e5e7eb;
+
+                <h2 class="lesson-title">Il Fascismo in Italia</h2>            color: #6b7280;
+
+                <p class="lesson-period">1919-1945 | Ascesa e caduta del regime</p>        }
+
+                <p class="lesson-description">
+
+                    Crisi post-bellica, biennio rosso, Mussolini, Marcia su Roma, leggi fascistissime, politica estera, Seconda Guerra Mondiale, RSI, caduta.        .topics-list {
+
+                </p>            list-style: none;
+
+                <div class="lesson-features">            margin-bottom: 1.5rem;
+
+                    <span class="feature">📚 Materiale in preparazione</span>        }
+
+                </div>
+
+            </div>        .topics-list li {
+
+            padding: 0.5rem 0;
+
+            <!-- SECONDA GUERRA MONDIALE (Coming Soon) -->            border-bottom: 1px solid #f3f4f6;
+
+            <div class="lesson-card coming-soon">        }
+
+                <div class="lesson-header">
+
+                    <div class="lesson-icon">🌐</div>        .topics-list li:last-child {
+
+                    <span class="lesson-badge soon">🔜 In arrivo</span>            border-bottom: none;
+
+                </div>        }
+
+                <h2 class="lesson-title">La Seconda Guerra Mondiale</h2>
+
+                <p class="lesson-period">1939-1945 | Il conflitto più devastante</p>        .btn-view {
+
+                <p class="lesson-description">            display: block;
+
+                    Cause (Versailles, totalitarismi, crisi '29), invasione Polonia, fronti europei e asiatici, Olocausto, bomba atomica, ONU, Guerra Fredda.            background: linear-gradient(135deg, var(--primary) 0%, var(--secondary) 100%);
+
+                </p>            color: white;
+
+                <div class="lesson-features">            padding: 1rem;
+
+                    <span class="feature">📚 Materiale in preparazione</span>            text-align: center;
+
+                </div>            text-decoration: none;
+
+            </div>            border-radius: 8px;
+
+            font-weight: 600;
+
+            <!-- GUERRA FREDDA (Coming Soon) -->            transition: all 0.3s;
+
+            <div class="lesson-card coming-soon">        }
+
+                <div class="lesson-header">
+
+                    <div class="lesson-icon">❄️</div>        .btn-view:hover {
+
+                    <span class="lesson-badge soon">🔜 In arrivo</span>            transform: translateY(-2px);
+
+                </div>            box-shadow: 0 4px 12px var(--shadow);
+
+                <h2 class="lesson-title">La Guerra Fredda</h2>        }
+
+                <p class="lesson-period">1947-1991 | Due superpotenze, un mondo diviso</p>
+
+                <p class="lesson-description">        .btn-disabled {
+
+                    USA vs URSS, cortina di ferro, Piano Marshall, NATO vs Patto Varsavia, Cuba, Vietnam, corsa spaziale, crollo Muro Berlino, fine URSS.            background: #e5e7eb;
+
+                </p>            color: #9ca3af;
+
+                <div class="lesson-features">            cursor: not-allowed;
+
+                    <span class="feature">📚 Materiale in preparazione</span>            border: none;
+
+                </div>            width: 100%;
+
+            </div>        }
+
+        </div>
+
+        .btn-disabled:hover {
+
+        <!-- FOOTER -->            transform: none;
+
+        <div class="footer">            box-shadow: none;
+
+            <p>© 2025 - Sistema Neuroscienza Cognitiva Applicata</p>        }
+
+            <p style="margin-top: 0.5rem; font-size: 0.9rem;">
+
+                Metodi: Chunking, Dual Coding, Active Recall, Spaced Repetition        .footer {
+
+            </p>            text-align: center;
+
+        </div>            padding: 2rem;
+
+    </div>            background: white;
+
+            margin-top: 3rem;
+
+    <script>        }
+
+        // Disable coming-soon clicks
+
+        document.querySelectorAll('.coming-soon').forEach(card => {        @media (max-width: 768px) {
+
+            card.addEventListener('click', (e) => {            .header h1 { font-size: 2rem; }
+
+                e.preventDefault();            .btn-home {
+
+                alert('📚 Lezione in preparazione!\n\nQuesto materiale sarà disponibile prossimamente.');                position: static;
+
+            });                display: inline-flex;
+
+        });                margin-bottom: 1rem;
+
+            }
+
+        console.log('🏛️ Storia Dashboard caricata');            .lezioni-grid { grid-template-columns: 1fr; }
+
+        console.log('✅ 1 lezione completa: Prima Guerra Mondiale');        }
+
+        console.log('🔜 4 lezioni in arrivo');    </style>
+
+    </script></head>
+
+</body><body>
+
+</html>    <div class="header">
+
+        <a href="../index.html" class="btn-home">🏠 Dashboard</a>
+        <h1>🏛️ Storia</h1>
+        <p class="subtitle">Lezioni con Metodi Neuroscientifici</p>
+    </div>
+
+    <div class="container">
+        <div class="stats-container">
+            <div class="stat-card">
+                <div class="stat-number">1</div>
+                <div class="stat-label">Lezione Completata</div>
+            </div>
+            <div class="stat-card">
+                <div class="stat-number">30</div>
+                <div class="stat-label">Punti Checklist</div>
+            </div>
+            <div class="stat-card">
+                <div class="stat-number">12</div>
+                <div class="stat-label">Flashcards Interattive</div>
+            </div>
+            <div class="stat-card">
+                <div class="stat-number">17M+</div>
+                <div class="stat-label">Vittime WWI</div>
+            </div>
+        </div>
+
+        <h2 class="section-title">🌍 Prima Guerra Mondiale</h2>
+
+        <div class="lezioni-grid">
+            <div class="lezione-card">
+                <div class="lezione-header">
+                    <h2>🌍 La Grande Guerra</h2>
+                    <p class="lezione-periodo">1914-1918</p>
+                </div>
+                <div class="lezione-body">
+                    <div class="badge-list">
+                        <span class="badge completato">✅ Completato</span>
+                        <span class="badge completato">🧠 Neuroscienza</span>
+                    </div>
+                    <ul class="topics-list">
+                        <li>✅ 7 Cause profonde (Imperialismo, Nazionalismo, Alleanze)</li>
+                        <li>✅ 4 Fronti: Occidentale, Orientale, Italiano, Minori</li>
+                        <li>✅ Italia: Neutralità → Caporetto → Vittorio Veneto</li>
+                        <li>✅ Pace: Versailles, 4 imperi caduti, nuovi stati</li>
+                        <li>✅ 12 Flashcards Active Recall (3 livelli)</li>
+                        <li>✅ Checklist 30 punti + Progress bar</li>
+                        <li>✅ Sintesi 3min/1min/30sec</li>
+                    </ul>
+                    <a href="prima-guerra-mondiale.html" class="btn-view">📖 Vai alla Lezione</a>
+                </div>
+            </div>
+
+            <div class="lezione-card">
+                <div class="lezione-header disabled">
+                    <h2>🚩 Rivoluzione Russa</h2>
+                    <p class="lezione-periodo">1917-1922</p>
+                </div>
+                <div class="lezione-body">
+                    <div class="badge-list">
+                        <span class="badge prossimamente">⏳ Prossimamente</span>
+                    </div>
+                    <ul class="topics-list">
+                        <li>📝 Crisi zarista e guerra</li>
+                        <li>📝 Febbraio 1917: Caduta Zar</li>
+                        <li>📝 Ottobre 1917: Bolscevichi</li>
+                        <li>📝 Guerra civile 1918-1922</li>
+                        <li>📝 Lenin e Stalin</li>
+                    </ul>
+                    <button class="btn-view btn-disabled">🔒 In Preparazione</button>
+                </div>
+            </div>
+
+            <div class="lezione-card">
+                <div class="lezione-header disabled">
+                    <h2>⚫ Fascismo</h2>
+                    <p class="lezione-periodo">1922-1943</p>
+                </div>
+                <div class="lezione-body">
+                    <div class="badge-list">
+                        <span class="badge prossimamente">⏳ Prossimamente</span>
+                    </div>
+                    <ul class="topics-list">
+                        <li>📝 "Vittoria mutilata" post-WWI</li>
+                        <li>📝 Marcia su Roma (1922)</li>
+                        <li>📝 Stato totalitario</li>
+                        <li>📝 Patti Lateranensi (1929)</li>
+                    </ul>
+                    <button class="btn-view btn-disabled">🔒 In Preparazione</button>
+                </div>
+            </div>
+        </div>
+
+        <div style="background: white; padding: 2rem; border-radius: 12px; border-left: 5px solid var(--primary);">
+            <h3 style="color: var(--primary); margin-bottom: 1rem;">🧠 Metodo Neuroscienza Applicata</h3>
+            <p style="margin-bottom: 1rem;">Lezioni progettate con metodi scientifici per ottimizzare apprendimento:</p>
+            <ul style="list-style: none; padding: 0;">
+                <li style="padding: 0.5rem 0;">✅ <strong>Chunking:</strong> Info in 7±2 elementi</li>
+                <li style="padding: 0.5rem 0;">✅ <strong>Dual Coding:</strong> Testo + Timeline ASCII</li>
+                <li style="padding: 0.5rem 0;">✅ <strong>Color Cognition:</strong> 4 colori semantici</li>
+                <li style="padding: 0.5rem 0;">✅ <strong>Active Recall:</strong> Flashcards 3 livelli</li>
+                <li style="padding: 0.5rem 0;">✅ <strong>Spaced Repetition:</strong> Checklist 30 punti</li>
+            </ul>
+        </div>
+    </div>
+
+    <div class="footer">
+        <p style="font-weight: 600; margin-bottom: 0.5rem;">🏛️ Storia - Sistema Neuroscienza</p>
+        <p style="color: #6b7280;">
+            <a href="../index.html" style="color: var(--primary); text-decoration: none;">Dashboard Principale</a>
+        </p>
+    </div>
 </body>
 </html>
