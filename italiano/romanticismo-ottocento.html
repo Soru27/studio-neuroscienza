@@ -347,6 +347,116 @@
             margin-top: 10px;
         }
 
+        /* Oral Exam Simulator */
+        .oral-exam-simulator {
+            background: linear-gradient(135deg, #fff5f5 0%, #ffe5e5 100%);
+            border: 3px solid var(--rosso-conflitto);
+            border-radius: 12px;
+            padding: 30px;
+            margin: 40px 0;
+            box-shadow: 0 6px 25px rgba(214, 40, 40, 0.15);
+        }
+
+        .oral-exam-simulator h3 {
+            color: var(--rosso-conflitto);
+            font-size: 1.8em;
+            margin-bottom: 10px;
+            text-align: center;
+        }
+
+        .oral-exam-simulator > p {
+            text-align: center;
+            color: var(--text-light);
+            margin-bottom: 30px;
+            font-style: italic;
+        }
+
+        .quiz-questions {
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+        }
+
+        .quiz-item {
+            background: white;
+            border-radius: 10px;
+            padding: 20px;
+            box-shadow: 0 3px 12px rgba(0,0,0,0.1);
+            transition: all 0.3s;
+        }
+
+        .quiz-item:hover {
+            box-shadow: 0 5px 20px rgba(0,0,0,0.15);
+        }
+
+        .quiz-question {
+            width: 100%;
+            background: linear-gradient(135deg, var(--brown) 0%, var(--tan) 100%);
+            color: white;
+            border: none;
+            padding: 15px 20px;
+            border-radius: 8px;
+            font-size: 1.1em;
+            font-weight: 600;
+            cursor: pointer;
+            text-align: left;
+            transition: all 0.3s;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .quiz-question:hover {
+            transform: translateX(5px);
+            box-shadow: 0 4px 15px rgba(139, 69, 19, 0.3);
+        }
+
+        .quiz-question::before {
+            content: '▶';
+            font-size: 0.9em;
+            transition: transform 0.3s;
+        }
+
+        .quiz-item.active .quiz-question::before {
+            transform: rotate(90deg);
+        }
+
+        .quiz-answer {
+            margin-top: 15px;
+            padding: 20px;
+            background: #f8f9fa;
+            border-left: 4px solid var(--verde-valori);
+            border-radius: 6px;
+            line-height: 1.8;
+            color: var(--text);
+            max-height: 0;
+            overflow: hidden;
+            transition: all 0.4s ease;
+        }
+
+        .quiz-item.active .quiz-answer {
+            max-height: 1000px;
+            margin-top: 15px;
+        }
+
+        .quiz-answer strong {
+            color: var(--verde-valori);
+            display: block;
+            margin-bottom: 10px;
+            font-size: 1.05em;
+        }
+
+        .quiz-timer {
+            display: inline-block;
+            background: var(--giallo-sistema);
+            color: white;
+            padding: 5px 12px;
+            border-radius: 20px;
+            font-size: 0.9em;
+            font-weight: 600;
+            margin-left: 10px;
+        }
+
         /* Quiz Checklist */
         .checklist {
             background: white;
@@ -1078,6 +1188,177 @@
             </div>
         </div>
 
+        <!-- SIMULATORE INTERROGAZIONE ORALE -->
+        <div class="oral-exam-simulator">
+            <h3>🎤 Simulatore Interrogazione Orale</h3>
+            <p>Pratica con le domande più frequenti del professore • Clicca per rivelare la risposta guidata</p>
+
+            <div class="quiz-questions">
+                <!-- Domanda 1: Romanticismo -->
+                <div class="quiz-item">
+                    <button class="quiz-question" onclick="toggleQuiz(this)">
+                        Che cos'è il Romanticismo e quando si diffuse in Italia?
+                        <span class="quiz-timer">⏱️ 30 sec</span>
+                    </button>
+                    <div class="quiz-answer">
+                        <strong>💡 Risposta guidata (schema 30 secondi):</strong>
+                        Il Romanticismo è un <strong>movimento culturale</strong> nato in Europa tra fine '700 e inizio '800 (1780-1830).
+                        In Italia si diffonde dal <strong>1816</strong> con la rivista "Il Conciliatore".
+                        Reagisce contro l'<strong>Illuminismo</strong> (troppa ragione) e il <strong>Classicismo</strong> (regole rigide).
+                        Valori fondamentali: <strong>sentimento, fede, libertà, nazione, popolo</strong>.
+                    </div>
+                </div>
+
+                <!-- Domanda 2: Manzoni e Romanticismo -->
+                <div class="quiz-item">
+                    <button class="quiz-question" onclick="toggleQuiz(this)">
+                        Manzoni e il Romanticismo: quali idee romantiche mantiene?
+                        <span class="quiz-timer">⏱️ 45 sec</span>
+                    </button>
+                    <div class="quiz-answer">
+                        <strong>💡 Risposta guidata:</strong>
+                        Manzoni è un romantico <strong>moderato</strong>. Mantiene 3 pilastri romantici:
+                        <br>1️⃣ <strong>Fede cattolica</strong> – La Provvidenza guida la storia (vedi Promessi Sposi)
+                        <br>2️⃣ <strong>Storia come maestra</strong> – Il romanzo storico insegna valori morali ("utile per iscopo, vero per mezzo")
+                        <br>3️⃣ <strong>Lingua popolare</strong> – Scrive in fiorentino parlato per essere capito dal popolo
+                        <br><br>Ma rifiuta: eccessi sentimentali, fantastico irrazionale, individualismo estremo.
+                    </div>
+                </div>
+
+                <!-- Domanda 3: Leopardi anti-romantico -->
+                <div class="quiz-item">
+                    <button class="quiz-question" onclick="toggleQuiz(this)">
+                        Perché Leopardi è considerato anti-romantico?
+                        <span class="quiz-timer">⏱️ 40 sec</span>
+                    </button>
+                    <div class="quiz-answer">
+                        <strong>💡 Risposta guidata:</strong>
+                        Leopardi <strong>rifiuta 3 pilastri romantici</strong>:
+                        <br>1️⃣ <strong>NO alla fede</strong> – Non crede in Provvidenza, vede la Natura come "matrigna" indifferente
+                        <br>2️⃣ <strong>NO al progresso</strong> – Il pessimismo cosmico nega il futuro migliore romantico
+                        <br>3️⃣ <strong>NO al popolo</strong> – Rimane intellettuale classicista, usa greco e latino
+                        <br><br>È vicino al Romanticismo solo per: <strong>sentimento, io lirico, natura (ma vista negativamente)</strong>.
+                    </div>
+                </div>
+
+                <!-- Domanda 4: Conversione di Manzoni -->
+                <div class="quiz-item">
+                    <button class="quiz-question" onclick="toggleQuiz(this)">
+                        La conversione di Manzoni: che cosa significa?
+                        <span class="quiz-timer">⏱️ 35 sec</span>
+                    </button>
+                    <div class="quiz-answer">
+                        <strong>💡 Risposta guidata:</strong>
+                        La conversione del <strong>1810</strong> è il passaggio di Manzoni:
+                        <br>• Da <strong>illuminista laico</strong> (razionalista, non credente)
+                        <br>• A <strong>cattolico fervente</strong> (fede nella Provvidenza)
+                        <br><br>Causa: esperienza religiosa a Parigi (moglie Enrichetta si converte al cattolicesimo).
+                        <br><strong>Conseguenze letterarie:</strong> Inni Sacri (1812-1815), Promessi Sposi (Provvidenza come tema centrale).
+                    </div>
+                </div>
+
+                <!-- Domanda 5: Vicende legate alla conversione -->
+                <div class="quiz-item">
+                    <button class="quiz-question" onclick="toggleQuiz(this)">
+                        Quali vicende biografiche coincidono con la conversione?
+                        <span class="quiz-timer">⏱️ 30 sec</span>
+                    </button>
+                    <div class="quiz-answer">
+                        <strong>💡 Risposta guidata:</strong>
+                        3 eventi chiave del <strong>1810</strong>:
+                        <br>1️⃣ <strong>Matrimonio</strong> con Enrichetta Blondel (calvinista, poi cattolica)
+                        <br>2️⃣ <strong>Morte della madre</strong> Giulia Beccaria (riflessione sulla vita)
+                        <br>3️⃣ <strong>Episodio della chiesa parigina</strong> – Durante una folla, Manzoni si rifugia in chiesa e ha un'esperienza spirituale
+                        <br><br>Risultato: abbandona illuminismo, abbraccia fede cattolica.
+                    </div>
+                </div>
+
+                <!-- Domanda 6: Prima della conversione -->
+                <div class="quiz-item">
+                    <button class="quiz-question" onclick="toggleQuiz(this)">
+                        Prima della conversione, che cosa era Manzoni?
+                        <span class="quiz-timer">⏱️ 25 sec</span>
+                    </button>
+                    <div class="quiz-answer">
+                        <strong>💡 Risposta guidata:</strong>
+                        Prima del 1810, Manzoni era un <strong>illuminista giacobino</strong>:
+                        <br>• <strong>Razionalista</strong> – credeva solo nella ragione, non nella fede
+                        <br>• <strong>Anti-clericale</strong> – criticava la Chiesa cattolica
+                        <br>• <strong>Repubblicano</strong> – sosteneva ideali della Rivoluzione Francese
+                        <br>• Opere: <em>Il Trionfo della Libertà</em> (1801, poema giacobino)
+                    </div>
+                </div>
+
+                <!-- Domanda 7: Tre stesure Promessi Sposi -->
+                <div class="quiz-item">
+                    <button class="quiz-question" onclick="toggleQuiz(this)">
+                        I Promessi Sposi: quali sono le tre stesure?
+                        <span class="quiz-timer">⏱️ 35 sec</span>
+                    </button>
+                    <div class="quiz-answer">
+                        <strong>💡 Risposta guidata:</strong>
+                        Le <strong>3 redazioni</strong>:
+                        <br>1️⃣ <strong>Fermo e Lucia</strong> (1821-1823) – Prima stesura, 4 volumi, mai pubblicata, lingua mista
+                        <br>2️⃣ <strong>Promessi Sposi</strong> (1827, "Ventisettana") – Revisione pubblicata, 3 volumi, ancora lingua non uniforme
+                        <br>3️⃣ <strong>Promessi Sposi</strong> (1840-1842, "Quarantana") – Edizione definitiva, lingua fiorentina parlata (dopo viaggio a Firenze 1827)
+                        <br><br><strong>Obiettivo:</strong> "Sciacquare i panni in Arno" – trovare lingua nazionale comprensibile.
+                    </div>
+                </div>
+
+                <!-- Domanda 8: Polemica Classicisti-Romantici -->
+                <div class="quiz-item">
+                    <button class="quiz-question" onclick="toggleQuiz(this)">
+                        In cosa consiste la polemica tra Classicisti e Romantici?
+                        <span class="quiz-timer">⏱️ 40 sec</span>
+                    </button>
+                    <div class="quiz-answer">
+                        <strong>💡 Risposta guidata:</strong>
+                        <strong>Classicisti</strong> (conservatori):
+                        <br>• Imitazione modelli greci/latini • Regole fisse (3 unità teatro) • Mitologia • Lingua aulica
+                        <br><br><strong>Romantici</strong> (innovatori):
+                        <br>• Libertà creativa • Temi moderni e storici • Sentimento + fede • Lingua popolare
+                        <br><br><strong>Documenti chiave:</strong>
+                        <br>• 1816: Madame de Staël, <em>Sulla maniera e utilità delle traduzioni</em> (attacca classicisti)
+                        <br>• Risposta: Pietro Giordani difende classicismo
+                        <br>• Manzoni scrive <em>Lettre à M. Chauvet</em> (1820) – manifesto romantico italiano
+                    </div>
+                </div>
+
+                <!-- Domanda 9: Inni Sacri -->
+                <div class="quiz-item">
+                    <button class="quiz-question" onclick="toggleQuiz(this)">
+                        Cosa sono gli Inni Sacri di Manzoni?
+                        <span class="quiz-timer">⏱️ 30 sec</span>
+                    </button>
+                    <div class="quiz-answer">
+                        <strong>💡 Risposta guidata:</strong>
+                        Gli <strong>Inni Sacri</strong> (1812-1815) sono 5 poesie religiose scritte dopo la conversione:
+                        <br>1. <em>La Resurrezione</em>
+                        <br>2. <em>Il Nome di Maria</em>
+                        <br>3. <em>Il Natale</em>
+                        <br>4. <em>La Passione</em>
+                        <br>5. <em>La Pentecoste</em> (il più famoso, 1822)
+                        <br><br><strong>Caratteristiche:</strong> Fede cattolica, lirica corale (non solo io), linguaggio popolare accessibile.
+                    </div>
+                </div>
+
+                <!-- Domanda 10: Utile per iscopo -->
+                <div class="quiz-item">
+                    <button class="quiz-question" onclick="toggleQuiz(this)">
+                        "Utile per iscopo, vero per mezzo": cosa significa?
+                        <span class="quiz-timer">⏱️ 30 sec</span>
+                    </button>
+                    <div class="quiz-answer">
+                        <strong>💡 Risposta guidata:</strong>
+                        È la <strong>poetica di Manzoni</strong> espressa nella lettera <em>Sul Romanticismo</em> (1823):
+                        <br>• <strong>UTILE per iscopo</strong> – Lo scopo del romanzo è insegnare valori morali (fede, giustizia, perdono)
+                        <br>• <strong>VERO per mezzo</strong> – Il metodo è la storia vera (ricostruzione accurata Seicento, peste 1630)
+                        <br><br>Il romanzo storico <strong>non è solo intrattenimento</strong>, ma strumento educativo: tramite fatti storici veri, insegna morale cristiana.
+                    </div>
+                </div>
+            </div>
+        </div>
+
         <!-- SEZIONE 6: Flashcards Interattive -->
         <div class="section">
             <div class="section-header giallo" onclick="toggleSection(this)">
@@ -1498,6 +1779,12 @@
         // Flip Flashcard
         function flipCard(card) {
             card.classList.toggle('flipped');
+        }
+
+        // Toggle Quiz Answer
+        function toggleQuiz(button) {
+            const quizItem = button.parentElement;
+            quizItem.classList.toggle('active');
         }
 
         // Scroll to Top
