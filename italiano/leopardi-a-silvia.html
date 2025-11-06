@@ -2551,15 +2551,26 @@
 
             const elementsToRemove = clone.querySelectorAll(
                 '.audio-controls, .read-section-btn, .controls, ' +
-                '.quiz-container, .checklist, .flashcard, ' +
-                'button, input, select, .btn-home, .scroll-top'
+                '.quiz-container, .checklist, .flashcard, .flashcards-grid, ' +
+                'button, input, select, label, .btn-home, .scroll-top, ' +
+                '.info-card, table, .section-header, .progress-bar'
             );
             elementsToRemove.forEach(el => el.remove());
 
-            let text = clone.innerText;
+            const allText = clone.querySelectorAll('*');
+            allText.forEach(el => {
+                if (el.childNodes) {
+                    el.childNodes.forEach(node => {
+                        if (node.nodeType === 3) {
+                            node.textContent = node.textContent.replace(/[\u{1F000}-\u{1FAFF}]/gu, '');
+                            node.textContent = node.textContent.replace(/[\u{2600}-\u{27BF}]/gu, '');
+                            node.textContent = node.textContent.replace(/[\u{1F300}-\u{1F9FF}]/gu, '');
+                        }
+                    });
+                }
+            });
 
-            text = text.replace(/[\u{1F000}-\u{1F9FF}]|[\u{2600}-\u{26FF}]|[\u{2700}-\u{27BF}]/gu, '');
-            text = text.replace(/[🏠📚📖ℹ️📅🎨📝🔄💭🌅💔⚰️🤔😢🧠✅]/g, '');
+            let text = clone.innerText;
             text = text.replace(/\s+/g, ' ').trim();
 
             return text;
