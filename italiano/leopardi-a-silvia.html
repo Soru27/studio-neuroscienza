@@ -428,6 +428,67 @@
         .scroll-top.show {
             display: flex;
         }
+
+        /* Audio Controls */
+        .audio-controls {
+            background: white;
+            padding: 15px 20px;
+            border-radius: 12px;
+            box-shadow: 0 4px 6px var(--shadow);
+            display: flex;
+            gap: 10px;
+            align-items: center;
+            flex-wrap: wrap;
+            margin-bottom: 20px;
+        }
+
+        .audio-controls button {
+            background: var(--primary);
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 6px;
+            cursor: pointer;
+            font-size: 0.95em;
+            transition: all 0.3s;
+        }
+
+        .audio-controls button:hover {
+            background: var(--accent);
+            transform: scale(1.05);
+        }
+
+        .audio-controls button:disabled {
+            opacity: 0.5;
+            cursor: not-allowed;
+        }
+
+        .audio-controls label {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            font-size: 0.9em;
+        }
+
+        .audio-controls input[type="range"] {
+            width: 120px;
+        }
+
+        .read-section-btn {
+            background: var(--primary);
+            color: white;
+            border: none;
+            padding: 4px 10px;
+            border-radius: 4px;
+            cursor: pointer;
+            font-size: 0.8em;
+            margin-left: 10px;
+            transition: all 0.2s;
+        }
+
+        .read-section-btn:hover {
+            background: var(--accent);
+        }
     </style>
 </head>
 <body>
@@ -438,7 +499,17 @@
     </div>
 
     <div class="container">
-        <!-- Info Card -->
+        <!-- Audio Controls -->
+        <div class="audio-controls">
+            <button id="btnLeggiTutto">Leggi Lezione</button>
+            <button id="btnPausa">Pausa</button>
+            <button id="btnStop">Stop</button>
+            <label>
+                Velocità: <input type="range" id="velocita" min="0.5" max="2" step="0.1" value="0.9">
+                <span id="velocitaValue">0.9x</span>
+            </label>
+        </div>
+    </div>
         <div class="info-card">
             <h2 style="color: var(--primary); margin-bottom: 1rem;">ℹ️ Informazioni Rapide</h2>
             <div class="info-grid">
@@ -2456,10 +2527,106 @@
 
         // Initialize: show all strofe by default
         document.addEventListener('DOMContentLoaded', function() {
-            // Mostra tutte le strofe all'inizio
             document.querySelectorAll('[id^="strofa-"]').forEach(strofa => {
                 strofa.style.display = 'block';
             });
+        });
+
+        // Text-to-Speech Controls
+        const synth = window.speechSynthesis;
+        let currentUtterance = null;
+        let isPaused = false;
+
+        const btnLeggiTutto = document.getElementById('btnLeggiTutto');
+        const btnPausa = document.getElementById('btnPausa');
+        const btnStop = document.getElementById('btnStop');
+        const velocitaSlider = document.getElementById('velocita');
+        const velocitaValue = document.getElementById('velocitaValue');
+
+        function getMainContent() {
+            const container = document.querySelector('.container');
+            const clone = container.cloneNode(true);
+            const audioControls = clone.querySelector('.audio-controls');
+            if (audioControls) audioControls.remove();
+            const buttons = clone.querySelectorAll('.read-section-btn');
+            buttons.forEach(btn => btn.remove());
+            return clone.innerText;
+        }
+
+        btnLeggiTutto.addEventListener('click', () => {
+            if (synth.speaking) {
+                synth.cancel();
+            }
+            const text = getMainContent();
+            currentUtterance = new SpeechSynthesisUtterance(text);
+            currentUtterance.lang = 'it-IT';
+            currentUtterance.rate = parseFloat(velocitaSlider.value);
+            currentUtterance.pitch = 1;
+            currentUtterance.volume = 1;
+
+            currentUtterance.onend = () => {
+                btnLeggiTutto.textContent = 'Leggi Lezione';
+                btnPausa.textContent = 'Pausa';
+                isPaused = false;
+            };
+
+            synth.speak(currentUtterance);
+            btnLeggiTutto.textContent = 'Riavvia';
+            isPaused = false;
+        });
+
+        btnPausa.addEventListener('click', () => {
+            if (!synth.speaking) return;
+
+            if (isPaused) {
+                synth.resume();
+                btnPausa.textContent = 'Pausa';
+                isPaused = false;
+            } else {
+                synth.pause();
+                btnPausa.textContent = 'Riprendi';
+                isPaused = true;
+            }
+        });
+
+        btnStop.addEventListener('click', () => {
+            synth.cancel();
+            btnLeggiTutto.textContent = 'Leggi Lezione';
+            btnPausa.textContent = 'Pausa';
+            isPaused = false;
+        });
+
+        velocitaSlider.addEventListener('input', (e) => {
+            velocitaValue.textContent = e.target.value + 'x';
+            if (synth.speaking && currentUtterance) {
+                synth.cancel();
+                const text = getMainContent();
+                currentUtterance = new SpeechSynthesisUtterance(text);
+                currentUtterance.lang = 'it-IT';
+                currentUtterance.rate = parseFloat(e.target.value);
+                synth.speak(currentUtterance);
+            }
+        });
+
+        document.querySelectorAll('h2, h3').forEach(heading => {
+            const btn = document.createElement('button');
+            btn.textContent = 'Leggi';
+            btn.className = 'read-section-btn';
+            btn.onclick = (e) => {
+                e.stopPropagation();
+                synth.cancel();
+                let section = heading.nextElementSibling;
+                let sectionText = heading.textContent + '. ';
+                while (section && !['H2', 'H3'].includes(section.tagName)) {
+                    sectionText += section.innerText + ' ';
+                    section = section.nextElementSibling;
+                }
+                const utterance = new SpeechSynthesisUtterance(sectionText);
+                utterance.lang = 'it-IT';
+                utterance.rate = parseFloat(velocitaSlider.value);
+                synth.speak(utterance);
+            };
+            heading.appendChild(btn);
         });
     </script>
 </body>
