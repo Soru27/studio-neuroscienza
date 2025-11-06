@@ -1950,13 +1950,26 @@
         const velocitaValue = document.getElementById('velocitaValue');
 
         function getMainContent() {
-            const container = document.querySelector('.container');
-            const clone = container.cloneNode(true);
-            const audioControls = clone.querySelector('.audio-controls');
-            if (audioControls) audioControls.remove();
-            const buttons = clone.querySelectorAll('.read-section-btn');
-            buttons.forEach(btn => btn.remove());
-            return clone.innerText;
+            const mainContent = document.querySelector('.container');
+            if (!mainContent) return '';
+
+            const clone = mainContent.cloneNode(true);
+
+            const elementsToRemove = clone.querySelectorAll(
+                '.audio-controls, .read-section-btn, .controls, ' +
+                '.quiz-container, .checklist, .flashcard, ' +
+                'button, input, select, .btn-home, .scroll-top, ' +
+                '.color-legend, .metodo-tag'
+            );
+            elementsToRemove.forEach(el => el.remove());
+
+            let text = clone.innerText;
+
+            text = text.replace(/[\u{1F000}-\u{1F9FF}]|[\u{2600}-\u{26FF}]|[\u{2700}-\u{27BF}]/gu, '');
+            text = text.replace(/[🏠🎭📊🔵🔴🟢🟡🧠⚖️📚📖🇬🇧🇩🇪🇮🇹]/g, '');
+            text = text.replace(/\s+/g, ' ').trim();
+
+            return text;
         }
 
         btnLeggiTutto.addEventListener('click', () => {
