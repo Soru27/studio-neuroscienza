@@ -1,0 +1,693 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Conto Economico - Riclassificazione Valore Aggiunto</title>
+<style>
+:root {
+  --primary: #4287f5;
+  --success: #4caf50;
+  --error: #f44336;
+  --warning: #ff9800;
+  --purple: #8a2be2;
+  --blue: #0055a5;
+  --text: #2c3e50;
+  --muted: #94a3b8;
+  --border: #e2e8f0;
+  --bg-light: #f8f9fa;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Arial, sans-serif;
+  font-size: 15px;
+  line-height: 1.6;
+  color: var(--text);
+  padding: 20px;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+h1 {
+  color: var(--primary);
+  margin-bottom: 10px;
+  font-size: 2em;
+}
+
+h2 {
+  color: var(--purple);
+  margin: 30px 0 15px;
+  font-size: 1.5em;
+  border-bottom: 2px solid var(--border);
+  padding-bottom: 8px;
+}
+
+h3 {
+  color: var(--blue);
+  margin: 20px 0 10px;
+  font-size: 1.2em;
+}
+
+.header {
+  text-align: center;
+  margin-bottom: 40px;
+  padding: 20px;
+  background: linear-gradient(135deg, var(--primary), var(--purple));
+  color: white;
+  border-radius: 8px;
+}
+
+.subtitle {
+  font-size: 0.9em;
+  opacity: 0.9;
+  margin-top: 8px;
+}
+
+.card {
+  background: white;
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  padding: 20px;
+  margin: 20px 0;
+  box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+}
+
+.badge {
+  display: inline-block;
+  padding: 4px 12px;
+  border-radius: 12px;
+  font-size: 0.85em;
+  font-weight: 600;
+  margin-right: 8px;
+}
+
+.b-blue { background: rgba(66,135,245,0.1); color: var(--primary); }
+.b-green { background: rgba(76,175,80,0.1); color: var(--success); }
+.b-red { background: rgba(244,67,54,0.1); color: var(--error); }
+.b-yellow { background: rgba(255,152,0,0.1); color: var(--warning); }
+
+table {
+  width: 100%;
+  border-collapse: collapse;
+  margin: 15px 0;
+}
+
+th, td {
+  padding: 12px;
+  text-align: left;
+  border-bottom: 1px solid var(--border);
+}
+
+th {
+  background: var(--bg-light);
+  font-weight: 600;
+  color: var(--primary);
+}
+
+tr:hover {
+  background: var(--bg-light);
+}
+
+.form-group {
+  margin: 15px 0;
+}
+
+label {
+  display: block;
+  margin-bottom: 5px;
+  font-weight: 600;
+  color: var(--text);
+}
+
+select, input[type="number"], input[type="text"] {
+  width: 100%;
+  padding: 10px;
+  border: 1px solid var(--border);
+  border-radius: 4px;
+  font-size: 14px;
+}
+
+select:focus, input:focus {
+  outline: none;
+  border-color: var(--primary);
+  box-shadow: 0 0 0 2px rgba(66,135,245,0.1);
+}
+
+.btn {
+  padding: 10px 20px;
+  border: none;
+  border-radius: 4px;
+  font-size: 14px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.2s;
+}
+
+.btn-primary {
+  background: var(--primary);
+  color: white;
+}
+
+.btn-primary:hover {
+  background: #3270d9;
+  transform: translateY(-1px);
+}
+
+.btn-success {
+  background: var(--success);
+  color: white;
+}
+
+.btn-danger {
+  background: var(--error);
+  color: white;
+  padding: 6px 12px;
+  font-size: 12px;
+}
+
+.btn-sm {
+  padding: 6px 12px;
+  font-size: 13px;
+}
+
+.grid {
+  display: grid;
+  grid-template-columns: 2fr 1fr 1fr 80px;
+  gap: 10px;
+  align-items: end;
+}
+
+.result-box {
+  background: linear-gradient(135deg, rgba(66,135,245,0.05), rgba(138,43,226,0.05));
+  padding: 20px;
+  border-radius: 8px;
+  border-left: 4px solid var(--primary);
+  margin: 20px 0;
+}
+
+.result-item {
+  display: flex;
+  justify-content: space-between;
+  padding: 10px 0;
+  border-bottom: 1px solid var(--border);
+}
+
+.result-item:last-child {
+  border-bottom: none;
+}
+
+.result-label {
+  font-weight: 600;
+  color: var(--text);
+}
+
+.result-value {
+  font-size: 1.1em;
+  font-weight: 700;
+  color: var(--primary);
+}
+
+.result-value.positive {
+  color: var(--success);
+}
+
+.result-value.negative {
+  color: var(--error);
+}
+
+.alert {
+  padding: 15px;
+  border-radius: 4px;
+  margin: 15px 0;
+}
+
+.alert-info {
+  background: rgba(66,135,245,0.1);
+  border-left: 4px solid var(--primary);
+  color: var(--text);
+}
+
+.footer {
+  margin-top: 50px;
+  padding-top: 20px;
+  border-top: 2px solid var(--border);
+  text-align: center;
+  color: var(--muted);
+  font-size: 0.9em;
+}
+
+.nav-links {
+  display: flex;
+  justify-content: space-between;
+  margin: 30px 0;
+  padding: 15px 0;
+  border-top: 2px solid var(--border);
+}
+
+.nav-links a {
+  color: var(--primary);
+  text-decoration: none;
+  font-weight: 600;
+}
+
+.nav-links a:hover {
+  text-decoration: underline;
+}
+
+@media (max-width: 768px) {
+  .grid {
+    grid-template-columns: 1fr;
+  }
+
+  body {
+    padding: 10px;
+  }
+}
+</style>
+</head>
+<body>
+
+<div class="header">
+  <h1>Conto Economico - Riclassificazione a Valore Aggiunto</h1>
+  <div class="subtitle">Art. 2425 c.c. - Sistema Interattivo NPI-Learning</div>
+  <div class="subtitle">Modulo 06 - Economia Aziendale AFM</div>
+</div>
+
+<div class="alert alert-info">
+  <strong>Obiettivo:</strong> Compilare il Conto Economico civilistico e riclassificarlo per calcolare Valore Aggiunto, MOL, EBIT e Utile/Perdita d'esercizio. I dati vengono salvati automaticamente.
+</div>
+
+<div class="card">
+  <h2>Teoria: Art. 2425 c.c. - Struttura Conto Economico</h2>
+
+  <h3>A) Valore della Produzione</h3>
+  <p>Comprende tutti i ricavi derivanti dall'attività caratteristica dell'impresa:</p>
+  <ul>
+    <li><strong>A1</strong> - Ricavi delle vendite e delle prestazioni</li>
+    <li><strong>A2</strong> - Variazioni rimanenze prodotti (+ aumento, - diminuzione)</li>
+    <li><strong>A3</strong> - Variazioni lavori in corso</li>
+    <li><strong>A4</strong> - Incrementi per lavori interni</li>
+    <li><strong>A5</strong> - Altri ricavi e proventi</li>
+  </ul>
+
+  <h3>B) Costi della Produzione</h3>
+  <p>Include tutti i costi sostenuti per l'attività produttiva:</p>
+  <ul>
+    <li><strong>B6</strong> - Materie prime, sussidiarie, di consumo</li>
+    <li><strong>B7</strong> - Servizi (consulenze, utenze, trasporti)</li>
+    <li><strong>B8</strong> - Godimento beni di terzi (affitti, leasing)</li>
+    <li><strong>B9</strong> - Personale (salari, oneri sociali, TFR)</li>
+    <li><strong>B10</strong> - Ammortamenti e svalutazioni</li>
+    <li><strong>B11</strong> - Variazioni rimanenze materie prime</li>
+    <li><strong>B12</strong> - Accantonamenti per rischi</li>
+    <li><strong>B13</strong> - Altri accantonamenti</li>
+    <li><strong>B14</strong> - Oneri diversi di gestione</li>
+  </ul>
+
+  <h3>C) Proventi e Oneri Finanziari</h3>
+  <ul>
+    <li><strong>C15</strong> - Proventi da partecipazioni (+)</li>
+    <li><strong>C16</strong> - Altri proventi finanziari (+)</li>
+    <li><strong>C17</strong> - Interessi e oneri finanziari (-)</li>
+  </ul>
+
+  <h3>E) Proventi e Oneri Straordinari</h3>
+  <ul>
+    <li><strong>E20</strong> - Proventi straordinari (+)</li>
+    <li><strong>E21</strong> - Oneri straordinari (-)</li>
+  </ul>
+
+  <h3>Imposte</h3>
+  <ul>
+    <li><strong>I22</strong> - Imposte correnti sul reddito (-)</li>
+  </ul>
+</div>
+
+<div class="card">
+  <h2>Riclassificazione a Valore Aggiunto</h2>
+
+  <div class="result-box" style="background: white; border-left-color: var(--blue);">
+    <h3 style="margin-top: 0;">Formula della Riclassificazione</h3>
+    <ol>
+      <li><strong>Valore della Produzione</strong> = A1 + A2 + A3 + A4 + A5</li>
+      <li><strong>Costi Esterni</strong> = B6 + B7 + B8 + B11 + B14</li>
+      <li><strong>Valore Aggiunto</strong> = Valore Produzione - Costi Esterni</li>
+      <li><strong>MOL</strong> (Margine Operativo Lordo) = VA - B9 (Costo Personale)</li>
+      <li><strong>EBIT</strong> (Risultato Operativo) = MOL - B10 - B12 - B13</li>
+      <li><strong>Risultato Ante Imposte</strong> = EBIT + C (Finanziari) + E (Straordinari)</li>
+      <li><strong>Utile/Perdita</strong> = Risultato Ante Imposte - Imposte</li>
+    </ol>
+  </div>
+</div>
+
+<div class="card">
+  <h2>Compilazione Interattiva</h2>
+
+  <div class="grid">
+    <div class="form-group">
+      <label>Voce Contabile</label>
+      <select id="voce">
+        <optgroup label="A - Valore Produzione">
+          <option value="A1">A1 - Ricavi vendite</option>
+          <option value="A2">A2 - Variaz. rimanenze prodotti</option>
+          <option value="A4">A4 - Lavori interni</option>
+          <option value="A5">A5 - Altri ricavi</option>
+        </optgroup>
+        <optgroup label="B - Costi Produzione">
+          <option value="B6">B6 - Materie prime</option>
+          <option value="B7">B7 - Servizi</option>
+          <option value="B8">B8 - Godimento beni terzi</option>
+          <option value="B9">B9 - Personale</option>
+          <option value="B10">B10 - Ammortamenti</option>
+          <option value="B11">B11 - Variaz. rim. materie</option>
+          <option value="B12">B12 - Accantonamenti rischi</option>
+          <option value="B14">B14 - Oneri diversi</option>
+        </optgroup>
+        <optgroup label="C - Proventi/Oneri Finanziari">
+          <option value="C15">C15 - Proventi partecipazioni</option>
+          <option value="C16">C16 - Altri proventi finanziari</option>
+          <option value="C17">C17 - Interessi passivi</option>
+        </optgroup>
+        <optgroup label="E - Proventi/Oneri Straordinari">
+          <option value="E20">E20 - Proventi straordinari</option>
+          <option value="E21">E21 - Oneri straordinari</option>
+        </optgroup>
+        <optgroup label="Imposte">
+          <option value="I22">I22 - Imposte correnti</option>
+        </optgroup>
+      </select>
+    </div>
+
+    <div class="form-group">
+      <label>Importo (€)</label>
+      <input type="number" id="importo" min="0" step="0.01" placeholder="0.00">
+    </div>
+
+    <div class="form-group">
+      <label>Segno</label>
+      <select id="segno">
+        <option value="+">+ Ricavo/Provento</option>
+        <option value="-">- Costo/Onere</option>
+      </select>
+    </div>
+
+    <div class="form-group">
+      <label>&nbsp;</label>
+      <button class="btn btn-primary" onclick="aggiungiRiga()">Aggiungi</button>
+    </div>
+  </div>
+
+  <h3>Voci Inserite</h3>
+  <table id="tabellaVoci">
+    <thead>
+      <tr>
+        <th>Voce</th>
+        <th>Descrizione</th>
+        <th style="text-align: right;">Importo (€)</th>
+        <th>Segno</th>
+        <th style="text-align: center;">Azioni</th>
+      </tr>
+    </thead>
+    <tbody id="righeVoci">
+      <tr>
+        <td colspan="5" style="text-align: center; color: var(--muted);">Nessuna voce inserita</td>
+      </tr>
+    </tbody>
+  </table>
+
+  <div style="margin-top: 20px; text-align: right;">
+    <button class="btn btn-danger btn-sm" onclick="resetDati()" style="margin-right: 10px;">Reset</button>
+    <button class="btn btn-success btn-sm" onclick="calcolaRiclassificazione()">Calcola Riclassificazione</button>
+  </div>
+</div>
+
+<div class="card" id="risultatiCard" style="display: none;">
+  <h2>Risultati Riclassificazione</h2>
+
+  <div class="result-box">
+    <div class="result-item">
+      <span class="result-label">1. Valore della Produzione</span>
+      <span class="result-value" id="valProduzione">€ 0,00</span>
+    </div>
+    <div class="result-item">
+      <span class="result-label">2. Costi Esterni</span>
+      <span class="result-value negative" id="costiEsterni">€ 0,00</span>
+    </div>
+    <div class="result-item" style="background: rgba(66,135,245,0.05); margin: 10px -10px; padding: 15px 10px;">
+      <span class="result-label" style="font-size: 1.1em;">3. VALORE AGGIUNTO (VA)</span>
+      <span class="result-value" id="valoreAggiunto" style="font-size: 1.3em;">€ 0,00</span>
+    </div>
+    <div class="result-item">
+      <span class="result-label">4. Margine Operativo Lordo (MOL)</span>
+      <span class="result-value" id="mol">€ 0,00</span>
+    </div>
+    <div class="result-item">
+      <span class="result-label">5. Risultato Operativo (EBIT)</span>
+      <span class="result-value" id="ebit">€ 0,00</span>
+    </div>
+    <div class="result-item">
+      <span class="result-label">6. Risultato Ante Imposte</span>
+      <span class="result-value" id="anteImposte">€ 0,00</span>
+    </div>
+    <div class="result-item" style="background: rgba(76,175,80,0.05); margin: 10px -10px; padding: 15px 10px;">
+      <span class="result-label" style="font-size: 1.1em;">7. UTILE/PERDITA D'ESERCIZIO</span>
+      <span class="result-value" id="utile" style="font-size: 1.3em;">€ 0,00</span>
+    </div>
+  </div>
+
+  <button class="btn btn-primary" onclick="esportaJSON()" style="margin-top: 15px;">Esporta Dati (JSON)</button>
+</div>
+
+<div class="nav-links">
+  <a href="05-riepilogo-generale.html">← Riepilogo Generale</a>
+  <a href="../index.html">Home →</a>
+</div>
+
+<div class="footer">
+  <p><strong>© 2025 - Jeffrey Minaya</strong> | AFM Quinta Serale | A.S. 2025/2026</p>
+  <p>Modulo 06: Conto Economico - Riclassificazione Valore Aggiunto</p>
+  <p>Sistema NPI-Learning - Metodologia Neuroscienza Cognitiva</p>
+</div>
+
+<script>
+let voci = [];
+
+const descrizioni = {
+  'A1': 'Ricavi vendite',
+  'A2': 'Variaz. rim. prodotti',
+  'A4': 'Lavori interni',
+  'A5': 'Altri ricavi',
+  'B6': 'Materie prime',
+  'B7': 'Servizi',
+  'B8': 'Godimento beni terzi',
+  'B9': 'Personale',
+  'B10': 'Ammortamenti',
+  'B11': 'Variaz. rim. materie',
+  'B12': 'Accantonamenti rischi',
+  'B14': 'Oneri diversi',
+  'C15': 'Proventi partecipazioni',
+  'C16': 'Altri proventi finanziari',
+  'C17': 'Interessi passivi',
+  'E20': 'Proventi straordinari',
+  'E21': 'Oneri straordinari',
+  'I22': 'Imposte correnti'
+};
+
+function caricaDati() {
+  const salvati = localStorage.getItem('conto-economico-voci');
+  if (salvati) {
+    voci = JSON.parse(salvati);
+    aggiornaTabella();
+  }
+}
+
+function salvaDati() {
+  localStorage.setItem('conto-economico-voci', JSON.stringify(voci));
+}
+
+function aggiungiRiga() {
+  const voce = document.getElementById('voce').value;
+  const importo = parseFloat(document.getElementById('importo').value);
+  const segno = document.getElementById('segno').value;
+
+  if (!importo || importo <= 0) {
+    alert('Inserisci un importo valido maggiore di 0');
+    return;
+  }
+
+  const nuovaVoce = {
+    id: Date.now(),
+    voce: voce,
+    descrizione: descrizioni[voce],
+    importo: importo,
+    segno: segno
+  };
+
+  voci.push(nuovaVoce);
+  salvaDati();
+  aggiornaTabella();
+
+  document.getElementById('importo').value = '';
+  document.getElementById('importo').focus();
+}
+
+function eliminaRiga(id) {
+  if (confirm('Eliminare questa voce?')) {
+    voci = voci.filter(v => v.id !== id);
+    salvaDati();
+    aggiornaTabella();
+  }
+}
+
+function aggiornaTabella() {
+  const tbody = document.getElementById('righeVoci');
+
+  if (voci.length === 0) {
+    tbody.innerHTML = '<tr><td colspan="5" style="text-align: center; color: var(--muted);">Nessuna voce inserita</td></tr>';
+    return;
+  }
+
+  tbody.innerHTML = voci.map(v => `
+    <tr>
+      <td><strong>${v.voce}</strong></td>
+      <td>${v.descrizione}</td>
+      <td style="text-align: right;">€ ${v.importo.toLocaleString('it-IT', {minimumFractionDigits: 2})}</td>
+      <td><span class="badge ${v.segno === '+' ? 'b-green' : 'b-red'}">${v.segno}</span></td>
+      <td style="text-align: center;">
+        <button class="btn btn-danger" onclick="eliminaRiga(${v.id})">Elimina</button>
+      </td>
+    </tr>
+  `).join('');
+}
+
+function sommaVoci(codici, segno) {
+  return voci
+    .filter(v => codici.includes(v.voce) && v.segno === segno)
+    .reduce((sum, v) => sum + v.importo, 0);
+}
+
+function calcolaRiclassificazione() {
+  if (voci.length === 0) {
+    alert('Inserisci almeno una voce prima di calcolare');
+    return;
+  }
+
+  const valoreProduzione =
+    sommaVoci(['A1', 'A2', 'A4', 'A5'], '+') -
+    sommaVoci(['A1', 'A2', 'A4', 'A5'], '-');
+
+  const costiEsterni =
+    sommaVoci(['B6', 'B7', 'B8', 'B11', 'B14'], '-') -
+    sommaVoci(['B6', 'B7', 'B8', 'B11', 'B14'], '+');
+
+  const valoreAggiunto = valoreProduzione - costiEsterni;
+
+  const costoPersonale =
+    sommaVoci(['B9'], '-') -
+    sommaVoci(['B9'], '+');
+
+  const mol = valoreAggiunto - costoPersonale;
+
+  const ammortamenti =
+    sommaVoci(['B10', 'B12'], '-') -
+    sommaVoci(['B10', 'B12'], '+');
+
+  const ebit = mol - ammortamenti;
+
+  const proventiFinanziari =
+    sommaVoci(['C15', 'C16'], '+') -
+    sommaVoci(['C15', 'C16'], '-');
+
+  const oneriFinanziari =
+    sommaVoci(['C17'], '-') -
+    sommaVoci(['C17'], '+');
+
+  const proventiStraordinari =
+    sommaVoci(['E20'], '+') -
+    sommaVoci(['E20'], '-');
+
+  const oneriStraordinari =
+    sommaVoci(['E21'], '-') -
+    sommaVoci(['E21'], '+');
+
+  const anteImposte = ebit + proventiFinanziari - oneriFinanziari + proventiStraordinari - oneriStraordinari;
+
+  const imposte =
+    sommaVoci(['I22'], '-') -
+    sommaVoci(['I22'], '+');
+
+  const utile = anteImposte - imposte;
+
+  document.getElementById('valProduzione').textContent = formatEuro(valoreProduzione);
+  document.getElementById('costiEsterni').textContent = formatEuro(costiEsterni);
+  document.getElementById('valoreAggiunto').textContent = formatEuro(valoreAggiunto);
+  document.getElementById('mol').textContent = formatEuro(mol);
+  document.getElementById('ebit').textContent = formatEuro(ebit);
+  document.getElementById('anteImposte').textContent = formatEuro(anteImposte);
+  document.getElementById('utile').textContent = formatEuro(utile);
+
+  document.getElementById('valoreAggiunto').className = valoreAggiunto >= 0 ? 'result-value positive' : 'result-value negative';
+  document.getElementById('mol').className = mol >= 0 ? 'result-value positive' : 'result-value negative';
+  document.getElementById('ebit').className = ebit >= 0 ? 'result-value positive' : 'result-value negative';
+  document.getElementById('utile').className = utile >= 0 ? 'result-value positive' : 'result-value negative';
+
+  document.getElementById('risultatiCard').style.display = 'block';
+  document.getElementById('risultatiCard').scrollIntoView({ behavior: 'smooth' });
+
+  const risultati = {
+    valoreProduzione,
+    costiEsterni,
+    valoreAggiunto,
+    mol,
+    ebit,
+    anteImposte,
+    utile,
+    timestamp: new Date().toISOString()
+  };
+
+  localStorage.setItem('conto-economico-risultati', JSON.stringify(risultati));
+}
+
+function formatEuro(valore) {
+  return '€ ' + valore.toLocaleString('it-IT', {minimumFractionDigits: 2, maximumFractionDigits: 2});
+}
+
+function resetDati() {
+  if (confirm('Eliminare tutti i dati inseriti? Questa azione non è reversibile.')) {
+    voci = [];
+    salvaDati();
+    localStorage.removeItem('conto-economico-risultati');
+    aggiornaTabella();
+    document.getElementById('risultatiCard').style.display = 'none';
+    document.getElementById('importo').focus();
+  }
+}
+
+function esportaJSON() {
+  const risultati = JSON.parse(localStorage.getItem('conto-economico-risultati') || '{}');
+  const data = {
+    voci: voci,
+    risultati: risultati,
+    dataEsportazione: new Date().toISOString()
+  };
+
+  const blob = new Blob([JSON.stringify(data, null, 2)], {type: 'application/json'});
+  const url = URL.createObjectURL(blob);
+  const a = document.createElement('a');
+  a.href = url;
+  a.download = 'conto-economico-' + new Date().toISOString().split('T')[0] + '.json';
+  a.click();
+  URL.revokeObjectURL(url);
+}
+
+window.addEventListener('DOMContentLoaded', caricaDati);
+</script>
+
+</body>
+</html>
